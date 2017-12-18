@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-simp_options"><img src="https://travis-ci.org/simp/pupmod-simp-simp_options.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#module-description">Module Description - What the module does and why it is useful</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with simp_options</a>
+    <ul>
+      <li><a href="#what-simp_options-affects">What simp_options affects</a></li>
+      <li><a href="#beginning-with-simp_options">Beginning with simp_options</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>This module provides variables needed by one or more SIMP module.</p>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+<p>This module is a component of the <a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>, a compliance-management framework built on Puppet.</p>
+
+<p>Most SIMP modules actively take advantage of this module when used within the SIMP ecosystem.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>The <code>simp_options</code> module primarily provides variables that are
+* Enablers of capabilities provided or used by SIMP modules.
+* Data that describes the configuration of a site.
+  * The scope of the data is larger than the scope of a single module.
+  * 0..n unrelated profiles might make use of this data.</p>
+
+<p>Some of these variables support SIMP’s security compliance reporting.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-simpoptions-affects">What simp_options affects</h3>
+
+<p>The variables provided by <code>simp_options</code> are used by SIMP modules to
+enable and/or configure capabilities.</p>
+
+<h3 id="beginning-with-simpoptions">Beginning with simp_options</h3>
+
+<p><code>simp_options</code> is configured for you when you run <code>simp config</code> on your SIMP
+system.  Otherwise, setup is simple:  include the class as the first class in your
+<code>site.pp</code> and select the desired capabilities through Hiera or your ENC.</p>
+
+<hr />
+
+<p><strong>NOTE</strong></p>
+
+<p>The <code>environments/simp/hieradata/simp_defs.yaml</code> file delivered with the
+ simp puppet module is an example file that can be used to create the
+ appropriate hieradata for your site.</p>
+
+<hr />
+
+<h2 id="usage">Usage</h2>
+
+<p>TODO - Need to describe the nuances of the global catalysts?
+* More details of what they do than what is in each manifest
+* How they are related/interoperate.
+* Any bad stuff that can happen if you don’t enable them.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>TODO - Anything to put here?  Module is trivial, so further explanation
+doesn’t seem warranted.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This module is applicable to SIMP systems or systems containing SIMP components.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Please see the <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">SIMP Contribution Guidelines</a>.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

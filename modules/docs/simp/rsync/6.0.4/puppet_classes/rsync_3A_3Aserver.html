@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: rsync::server
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::rsync::server";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (r)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">rsync::server</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: rsync::server</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1mnz2yi/manifests/server.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class provides a method to set up a fully functioning rsync server.</p>
+
+<p>The main idea behind this was to work around limitations of the native Puppet
+fileserving type.</p>
+
+<p>Most usual options are supported, but there are far too many to tackle all of
+them at once.</p>
+
+<p>This mainly daemonizes rsync and keeps it running. It will also subscribe it
+to the stunnel service if it has been declared.</p>
+
+<p>== Parameters ==</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>stunnel</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::stunnel&#39;, { default_value =&gt; true })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Use Stunnel to encrypt this connection. It is
+<em>highly</em> recommended to leave this enabled.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stunnel_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>8730</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port upon which Stunnel should listen for
+connections.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>listen_address</span>
+      
+      
+        <span class='type'>(<tt>Simplib::IP</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;0.0.0.0&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The IP Address upon which to listen. Set to
+0.0.0.0 to listen on all addresses.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>drop_rsyslog_noise</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Ensure that any noise from rsync is
+dropped. The only items that will be retained will be startup, shutdown,
+and remote connection activities. Anything from 127.0.0.1 will be dropped
+as useless.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>trusted_nets</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Netlist</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::trusted_nets&#39;, { default_value =&gt; [&#39;127.0.0.1&#39;] })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of networks and/or hostnames that are
+allowed to connect to this service.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1mnz2yi/manifests/server.pp', line 31</span>
+
+class rsync::server (
+  Boolean          $stunnel            = simplib::lookup(&#39;simp_options::stunnel&#39;, { default_value =&gt; true }),
+  Simplib::Port    $stunnel_port       = 8730,
+  Simplib::IP      $listen_address     = &#39;0.0.0.0&#39;,
+  Boolean          $drop_rsyslog_noise = true,
+  Simplib::Netlist $trusted_nets       = simplib::lookup(&#39;simp_options::trusted_nets&#39;, { default_value =&gt; [&#39;127.0.0.1&#39;] })
+) {
+  include &#39;::rsync&#39;
+  include &#39;::rsync::server::global&#39;
+
+  $_subscribe  = $stunnel ? {
+    true    =&gt; Service[&#39;stunnel&#39;],
+    default =&gt; undef
+  }
+
+  if $stunnel {
+    include &#39;::stunnel&#39;
+
+    stunnel::connection { &#39;rsync&#39;:
+      connect      =&gt; [873],
+      accept       =&gt; &quot;${listen_address}:${stunnel_port}&quot;,
+      client       =&gt; false,
+      trusted_nets =&gt; $trusted_nets
+    }
+  }
+
+  concat { &#39;/etc/rsyncd.conf&#39;:
+    owner          =&gt; &#39;root&#39;,
+    group          =&gt; &#39;root&#39;,
+    mode           =&gt; &#39;0400&#39;,
+    ensure_newline =&gt; true,
+    warn           =&gt; true,
+    require        =&gt; Package[&#39;rsync&#39;]
+  }
+
+  if &#39;systemd&#39; in $facts[&#39;init_systems&#39;] {
+    service { &#39;rsyncd&#39;:
+      ensure     =&gt; &#39;running&#39;,
+      enable     =&gt; true,
+      hasstatus  =&gt; true,
+      hasrestart =&gt; true,
+      require    =&gt; Package[&#39;rsync&#39;],
+      subscribe  =&gt; $_subscribe
+    }
+  }
+  else {
+    file { &#39;/etc/init.d/rsyncd&#39;:
+      ensure  =&gt; &#39;file&#39;,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;root&#39;,
+      mode    =&gt; &#39;0750&#39;,
+      content =&gt; file(&quot;${module_name}/rsync.init&quot;)
+    }
+
+    service { &#39;rsyncd&#39;:
+      ensure     =&gt; &#39;running&#39;,
+      enable     =&gt; true,
+      hasstatus  =&gt; true,
+      hasrestart =&gt; true,
+      require    =&gt; Package[&#39;rsync&#39;],
+      provider   =&gt; &#39;redhat&#39;,
+      subscribe  =&gt; $_subscribe
+    }
+    File[&#39;/etc/init.d/rsyncd&#39;] ~&gt; Service[&#39;rsyncd&#39;]
+  }
+
+  Concat[&#39;/etc/rsyncd.conf&#39;] ~&gt; Service[&#39;rsyncd&#39;]
+
+  if $drop_rsyslog_noise {
+    include &#39;::rsyslog&#39;
+
+    rsyslog::rule::drop { &#39;00_rsyncd&#39;:
+      rule =&gt; &#39;$programname == \&#39;rsyncd\&#39; and not ($msg contains \&#39;rsync on\&#39; or $msg contains \&#39;SIG\&#39; or $msg contains \&#39;listening\&#39;)&#39;
+    }
+    rsyslog::rule::drop { &#39;00_rsync_localhost&#39;:
+      rule =&gt; &#39;$programname == \&#39;rsyncd\&#39; and $msg contains \&#39;127.0.0.1\&#39;&#39;
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

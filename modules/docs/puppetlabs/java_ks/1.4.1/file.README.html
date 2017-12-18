@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="javaks">java_ks</h1>
+
+<p><a href="https://travis-ci.org/puppetlabs/puppetlabs-java_ks"><img src="https://travis-ci.org/puppetlabs/puppetlabs-java_ks.png?branch=master" alt="Build Status" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview - What is the java_ks module?</a></li>
+  <li><a href="#module-description">Module Description - What does the module do?</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with java_ks</a></li>
+  <li><a href="#usage">Usage - The parameters available for configuration</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>The java_ks module uses a combination of keytool and openssl to manage entries in a Java keystore.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>The java_ks module contains a type called <code>java_ks</code> and a single provider named <code>keytool</code>.  Their purpose is to enable importation of arbitrary, already generated and signed certificates into a Java keystore for use by various applications.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="beginning-with-javaks">Beginning with java_ks</h3>
+
+<p>To get started with java_ks, declare each <code>java_ks</code> resource you need.</p>
+
+<pre class="code ruby"><code class="ruby">java_ks { &#39;puppetca:truststore&#39;:
+  ensure       =&gt; latest,
+  certificate  =&gt; &#39;/etc/puppet/ssl/certs/ca.pem&#39;,
+  target       =&gt; &#39;/etc/activemq/broker.ts&#39;,
+  password     =&gt; &#39;puppet&#39;,
+  trustcacerts =&gt; true,
+}
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+
+<p>You must specify a target in some way. You can specify <code>target</code> after the colon in the title or by using the target attribute in the resource. If you declare both, it will prefer the attribute.</p>
+
+<pre class="code ruby"><code class="ruby">java_ks { &#39;puppetca:keystore&#39;:
+  ensure       =&gt; latest,
+  certificate  =&gt; &#39;/etc/puppet/ssl/certs/ca.pem&#39;,
+  target       =&gt; &#39;/etc/activemq/broker.ks&#39;,
+  password     =&gt; &#39;puppet&#39;,
+  trustcacerts =&gt; true,
+}
+
+java_ks { &#39;broker.example.com:/etc/activemq/broker.ks&#39;:
+  ensure      =&gt; latest,
+  certificate =&gt; &#39;/etc/puppet/ssl/certs/broker.example.com.pe-internal-broker.pem&#39;,
+  private_key =&gt; &#39;/etc/puppet/ssl/private_keys/broker.example.com.pe-internal-broker.pem&#39;,
+  password    =&gt; &#39;puppet&#39;,
+}
+</code></pre>
+
+<h3 id="certificates">Certificates</h3>
+<p>To have a Java application server use a specific certificate for incoming connections, use the certificate parameter. You will need to simultaneously import the private key accompanying the signed certificate you want to use. As long as you provide the path to the key and the certificate, the provider will do the conversion for you.</p>
+
+<h3 id="namevars">Namevars</h3>
+
+<p>The java_ks module supports multiple certificates with different keystores but the same alias by implementing Puppet’s composite namevar functionality.  Titles map to namevars via <code>$alias:$target</code> (alias of certificate, colon, on-disk path to the keystore). If you create dependencies on these resources you need to remember to use the same title syntax outlined for generating the composite namevars.</p>
+
+<p><em>Note about composite namevars:</em>
+The way composite namevars currently work, you must have the colon in the title. This is true <em>even if you define name and target parameters.</em>  The title can be <code>foo:bar</code>, but the name and target parameters must be <code>broker.example.com</code> and <code>/etc/activemq/broker.ks</code>. If you follow convention, it will do as you expect and correctly create an entry in the
+broker.ks keystore with the alias of broker.example.com.</p>
+
+<h2 id="reference">Reference</h2>
+
+<h3 id="public-types">Public Types</h3>
+<ul>
+  <li><code>java_ks</code>: This resource manages the entries in a Java keystore, and uses composite namevars to allow the same alias across multiple target keystores.</li>
+</ul>
+
+<h3 id="public-providers">Public Providers</h3>
+<ul>
+  <li><code>keytool</code>: Manages Java keystores by using a combination of the <code>openssl</code> and <code>keytool</code> commands.</li>
+</ul>
+
+<h4 id="parameters">Parameters</h4>
+<p>All parameters, except where specified, are optional.</p>
+
+<h5 id="certificate"><code>certificate</code></h5>
+<p><em>Required.</em> A server certificate, followed by zero or more intermediate certificate authorities. Places the certificates in the keystore. This autorequires the specified file and must be present on the node before java_ks{} is run. Valid options: string. Default: undef.</p>
+
+<h5 id="chain"><code>chain</code></h5>
+<p>Takes intermediate certificate authorities from a separate file from the server certificate. This autorequires the file of the same path and must be present on the node before java_ks{} is run. Valid options: string. Default: undef.</p>
+
+<h5 id="ensure"><code>ensure</code></h5>
+<p>Valid options: absent, present, latest. Latest verifies sha256 certificate fingerprints for the stored certificate and the source file. Default: present.</p>
+
+<h5 id="name"><code>name</code></h5>
+<p><em>Required.</em> Identifies the entry in the keystore. This will be converted to lowercase. Valid options: string. Default: undef.</p>
+
+<h5 id="password"><code>password</code></h5>
+<p>This password is used to protect the keystore. If private keys are also protected, this password will be used to attempt to unlock them. Valid options: String. Must be 6 or more characters. This cannot be used together with <code>password_file</code>, but <em>you must pass at least one of these parameters.</em> Default: undef.</p>
+
+<h5 id="passwordfile"><code>password_file</code></h5>
+<p>Sets a plaintext file where the password is stored. Used as an alternative to <code>password</code>. This cannot be used together with <code>password</code>, but <em>you must pass at least one of these parameters.</em> Valid options: String to the plaintext file. Default: undef.</p>
+
+<h5 id="destkeypass"><code>destkeypass</code></h5>
+<p>The password you want to set to protect the key in the keystore.</p>
+
+<h5 id="path"><code>path</code></h5>
+<p>Used for command (keytool, openssl) execution. Valid options: array or file path separated list (for example : in linux). Default: undef.</p>
+
+<h5 id="privatekey"><code>private_key</code></h5>
+<p>Sets a private key that encrypts traffic to a server application. Must be accompanied by a signed certificate for the keytool provider. This autorequires the specified file and must be present on the node before java_ks{} is run. Valid options: string. Default: undef.</p>
+
+<h5 id="privatekeytype"><code>private_key_type</code></h5>
+
+<p>Set the type of the private key. Usually this is RSA but EC (Elliptic Curve) keys are also supported. Valid options: <code>rsa</code> and <code>ec</code>. Default: <code>rsa</code>.</p>
+
+<h5 id="target"><code>target</code></h5>
+<p><em>Required.</em> Specifies a destination file for the keystore. Autorequires the parent directory of the file. Valid options: string. Default: undef.</p>
+
+<h5 id="trustcacerts"><code>trustcacerts</code></h5>
+<p>Certificate authorities input into a keystore aren’t trusted by default, so if you are adding a CA you need to set this parameter to ‘true’. Valid options: ‘true’ or ‘false’. Default: ‘false’.</p>
+
+<h3 id="storetype"><code>storetype</code></h3>
+
+<p>The storetype parameter allows you to use ‘jceks’ format if desired.</p>
+
+<pre class="code ruby"><code class="ruby">java_ks { &#39;puppetca:/opt/puppet/truststore.jceks&#39;:
+  ensure       =&gt; latest,
+  storetype    =&gt; &#39;jceks&#39;,
+  certificate  =&gt; &#39;/etc/puppet/ssl/certs/ca.pem&#39;,
+  password     =&gt; &#39;puppet&#39;,
+  trustcacerts =&gt; true,
+}
+</code></pre>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>The java_ks module uses the <code>keytool</code> and <code>openssl</code> commands. It should work on all systems with these commands.</p>
+
+<p>Java 7 is supported as of 1.0.0.</p>
+
+<p>Developed against IBM Java 6 on AIX. Other versions may be unsupported.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve.</p>
+
+<p>We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our <a href="https://docs.puppetlabs.com/forge/contributing.html">module contribution guide.</a></p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

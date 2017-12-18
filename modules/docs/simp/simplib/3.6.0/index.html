@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="https://img.shields.io/:license-apache-blue.svg" alt="License" /></a>
+<a href="https://bestpractices.coreinfrastructure.org/projects/73"><img src="https://bestpractices.coreinfrastructure.org/projects/73/badge" alt="CII Best Practices" /></a>
+<a href="https://forge.puppetlabs.com/simp/simplib"><img src="https://img.shields.io/puppetforge/v/simp/simplib.svg" alt="Puppet Forge" /></a>
+<a href="https://forge.puppetlabs.com/simp/simplib"><img src="https://img.shields.io/puppetforge/dt/simp/simplib.svg" alt="Puppet Forge Downloads" /></a>
+<a href="https://travis-ci.org/simp/pupmod-simp-simplib"><img src="https://travis-ci.org/simp/pupmod-simp-simplib.svg" alt="Build Status" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+<ol>
+  <li><a href="#this-is-a-simp-module">Overview</a></li>
+  <li><a href="#module-description">Module Description - What the module does and why it is useful</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with simplib</a>
+    <ul>
+      <li><a href="#what-simplib-affects">What simplib affects</a></li>
+      <li><a href="#setup-requirements">Setup requirements</a></li>
+      <li><a href="#beginning-with-simplib">Beginning with simplib</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a>
+    <ul>
+      <li><a href="#facts">Facts</a></li>
+      <li><a href="#functions">Functions</a></li>
+      <li><a href="#types">Types</a></li>
+      <li><a href="#data-types">Data Types</a></li>
+    </ul>
+  </li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+<p>This module is a component of the
+<a href="https://simp-project.com">System Integrity Management Platform</a>,
+a compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they can be submitted to our
+<a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p><em>simp/simplib</em> is a collection custom functions, facts, and small types.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-simplib-affects">What simplib affects</h3>
+
+<p>simplib contains functions, facts, and small utility classes.</p>
+
+<h3 id="setup-requirements">Setup Requirements</h3>
+
+<p>Agents will need to enable <code>pluginsync</code>.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>Please see <a href="#reference">reference</a> for usage.</p>
+
+<p>Full documentation can be found in the <a href="https://simp.github.io/pupmod-simp-simplib">module docs</a></p>
+
+<h2 id="reference">Reference</h2>
+
+<p>A list of things provided by simplib is below.</p>
+
+<p>Please reference the <code>doc/</code> directory in the top level of the repo or the code
+itself for more detailed documentation.</p>
+
+<h3 id="facts">Facts</h3>
+
+<ul>
+  <li><strong>acpid_enabled</strong>        -  Return true if ACPI is available on the system</li>
+  <li><strong>boot_dir_uuid</strong>        -  Return the UUID of the partition holding the
+   boot directory</li>
+  <li><strong>cmdline</strong>              -  Returns the contents of <code>/proc/cmdline</code> as a
+   hash</li>
+  <li><strong>cpuinfo</strong>              -  Returns the contents of <code>/proc/cpuinfo</code> as a
+   hash</li>
+  <li><strong>defaultgateway</strong>       -  Return the default gateway of the system</li>
+  <li><strong>defaultgatewayiface</strong>  -  Return the default gw interface of the system</li>
+  <li><strong>fips_ciphers</strong>         -  Returns a list of available OpenSSL ciphers</li>
+  <li><strong>fips_enabled</strong>         -  Determine whether or not FIPS is enabled on
+   this system</li>
+  <li><strong>fullrun</strong>              -  Determine whether or not to do an intensive run</li>
+  <li><strong>gdm_version</strong>          -  Return the version of GDM that is installed</li>
+  <li><strong>grub_version</strong>         -  Return the grub version installed on the system</li>
+  <li><strong>init_systems</strong>         -  Return a list of all init systems present on
+   the system</li>
+  <li><strong>ipv6_enabled</strong>         -  Return true if IPv6 is enabled and false if not</li>
+  <li><strong>reboot_required</strong>      -  Returns a hash of ‘name’ =&gt; ‘reason’ entries</li>
+  <li><strong>runlevel</strong>             -  Return the current system runlevel</li>
+  <li><strong>shmall</strong>               -  Return the value of shmall from sysctl</li>
+  <li><strong>puppet_settings</strong>      -  Returns a hash of all Puppet settings on a node</li>
+  <li><strong>tmp_mounts</strong>           -  This fact provides information about <code>/tmp</code>,
+  <code>/var/tmp</code>, and <code>/dev/shm</code> should they be present on the system</li>
+  <li><strong>uid_min</strong>              -  Return the minimum uid allowed</li>
+</ul>
+
+<h3 id="functions">Functions</h3>
+
+<ul>
+  <li><a href="#array_include">array_include</a></li>
+  <li><a href="#array_size">array_size</a></li>
+  <li><a href="#array_union">array_union</a></li>
+  <li><a href="#bracketize">bracketize</a></li>
+  <li><a href="#deep_merge">deep_merge</a></li>
+  <li><a href="#filtered">filtered</a></li>
+  <li><a href="#generate_reboot_msg">generate_reboot_msg</a></li>
+  <li><a href="#get_ports">get_ports</a></li>
+  <li><a href="#h2n">h2n</a></li>
+  <li><a href="#host_is_me">host_is_me</a></li>
+  <li><a href="#inspect">inspect</a></li>
+  <li><a href="#ip_is_me">ip_is_me</a></li>
+  <li><a href="#ip_to_cron">ip_to_cron</a></li>
+  <li><a href="#ipaddresses">ipaddresses</a></li>
+  <li><a href="#join_mount_opts">join_mount_opts</a></li>
+  <li><a href="#localuser">localuser</a></li>
+  <li><a href="#mapval">mapval</a></li>
+  <li><a href="#nets2cidr">nets2cidr</a></li>
+  <li><a href="#nets2ddq">nets2ddq</a></li>
+  <li><a href="#parse_hosts">parse_hosts</a></li>
+  <li><a href="#passgen">passgen</a></li>
+  <li><a href="#rand_cron">rand_cron</a></li>
+  <li><a href="#simp_version">simp_version</a></li>
+  <li><a href="#slice_array">slice_array</a></li>
+  <li><a href="#strip_ports">strip_ports</a></li>
+  <li><a href="#to_integer">to_integer</a></li>
+  <li><a href="#to_string">to_string</a></li>
+  <li><a href="#validate_array_member">validate_array_member</a></li>
+  <li><a href="#validate_array_of_hashes">validate_array_of_hashes</a></li>
+  <li><a href="#validate_between">validate_between</a></li>
+  <li><a href="#validate_bool_simp">validate_bool_simp</a></li>
+  <li><a href="#validate_deep_hash">validate_deep_hash</a></li>
+  <li><a href="#validate_float">validate_float</a></li>
+  <li><a href="#validate_integer">validate_integer</a></li>
+  <li><a href="#validate_macaddress">validate_macaddress</a></li>
+  <li><a href="#validate_net_list">validate_net_list</a></li>
+  <li><a href="#validate_port">validate_port</a></li>
+  <li><a href="#validate_re_array">validate_re_array</a></li>
+  <li><a href="#validate_sysctl_value">validate_sysctl_value</a></li>
+  <li><a href="#validate_umask">validate_umask</a></li>
+  <li><a href="#validate_uri_list">validate_uri_list</a></li>
+</ul>
+
+<h4 id="arrayinclude"><strong>array_include</strong></h4>
+
+<p>Determine if the first passed array contains the contents of another array or
+string.</p>
+
+<p>Example:</p>
+
+<p>```ruby
+$arr_x = [ ‘foo’, ‘bar’ ]
+$arr_y = [ ‘foo’, ‘baz’, ‘bar’ ]</p>
+
+<p>if array_include($arr_x, $arr_y) {
+  notice(‘this will be printed’)
+}
+if array_include($arr_x, ‘bar’) {
+  notice(‘this will be printed’)
+}
+if array_include($arr_x, ‘baz’) {
+  notice(‘this will not be printed’)
+}
+```</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="arraysize"><strong>array_size</strong></h4>
+
+<p>Returns the number of elements in an array. If a string is passed, simply
+returns ‘1’.</p>
+
+<p>This is in contrast to the Puppet Labs stdlib ‘size’ function which returns
+the size of an array or the length of a string when called.</p>
+
+<p>Returns: <code>integer</code></p>
+
+<h4 id="arrayunion"><strong>array_union</strong></h4>
+
+<p>Return the union of two arrays.</p>
+
+<p>Example:</p>
+
+<p>```ruby
+$arr_x = [‘1’,’2’]
+$arr_y = [‘2’,’3’,’4’]</p>
+
+<p>$res = array_union($arr_x, $arr_y)</p>
+
+<p>$res contains: [‘1’,’2’,’3’,’4’]
+```</p>
+
+<p>Returns: <code>array</code></p>
+
+<h4 id="bracketize"><strong>bracketize</strong></h4>
+
+<p>Add brackets to IP addresses and arrays of IP addresses based on the
+rules for bracketing IPv6 addresses. Ignore anything that doesn’t
+look like an IPv6 address.</p>
+
+<p>Returns: <code>string</code> or <code>array</code></p>
+
+<h4 id="deepmerge"><strong>deep_merge</strong></h4>
+
+<p>Perform a deep merge on two passed hashes.</p>
+
+<p>This code is shamelessly stolen from the guts of
+ActiveSupport::CoreExtensions::Hash::DeepMerge and munged together with the
+Puppet Labs stdlib ‘merge’ function.</p>
+
+<p>Returns: <code>hash</code></p>
+
+<h4 id="filtered"><strong>filtered</strong></h4>
+<p>##### data_hash variant</p>
+
+<p>Hiera v5 backend that takes a list of allowed hiera key names, and only returns
+results from the underlying backend function that match those keys.</p>
+
+<p>This allows hiera data to be delegated to end users in a multi-tenant environment
+without allowing them the ability to override every hiera data point (and potentially break systems)</p>
+
+<p>Usage:
+<code>yaml
+---
+version: 5 # Specific version of hiera we are using, required for v4 and v5
+defaults:  # Used for any hierarchy level that omits these keys.
+  datadir: "data"         # This path is relative to hiera.yaml's directory.
+  data_hash: "yaml_data"  # Use the built-in YAML backend.
+hierarchy: # Each hierarchy consists of multiple levels
+  - name: "OSFamily"
+    path: "osfamily/%{facts.osfamily}.yaml"
+  - name: "datamodules"
+    data_hash: simplib::filtered
+    datadir: "delegated-data"
+    paths: 
+            - "%{facts.sitename}/osfamily/%{facts.osfamily}.yaml"
+            - "%{facts.sitename}/os/%{facts.operatingsystem}.yaml"
+            - "%{facts.sitename}/host/%{facts.fqdn}.yaml"
+            - "%{facts.sitename}/common.yaml"
+    options: 
+       function: yaml_data
+       filter: 
+         - profiles::ntp::servers
+         - profiles::.*
+  - name: "Common"
+    path: "common.yaml"
+</code></p>
+
+<p>Returns: <code>hash</code></p>
+
+<h4 id="generaterebootmsg"><strong>generate_reboot_msg</strong></h4>
+
+<p>Generate a reboot message from a passed hash.</p>
+
+<p>Requires a hash of the following form:</p>
+
+<p><code>ruby
+{
+  'id'  =&gt; 'reason',
+  'id2' =&gt; 'reason2',
+  ...
+}
+</code></p>
+
+<p>Will return a message such as:</p>
+
+<p><code>ruby
+A system reboot is required due to:
+  id =&gt; reason
+  id2 =&gt; reason2
+</code></p>
+
+<p>Returns: <code>hash</code></p>
+
+<h4 id="getports"><strong>get_ports</strong></h4>
+
+<p>Take an array of items that may contain port numbers and appropriately return
+the port portion. Works with hostnames, IPv4, and IPv6.</p>
+
+<p>```
+$foo = [‘https://mysite.net:8443’,’http://yoursite.net:8081’]</p>
+
+<p>$bar = strip_ports($foo)</p>
+
+<p>$bar contains: [‘8443’,’8081’]
+```</p>
+
+<p>Returns: <code>array</code></p>
+
+<h4 id="h2n"><strong>h2n</strong></h4>
+
+<p>Return an IP address for the passed hostname.</p>
+
+<p>Returns: <code>string</code></p>
+
+<h4 id="hostisme"><strong>host_is_me</strong></h4>
+
+<p>Detect if a local system identifier Hostname/IP address is contained in the
+passed whitespace delimited list. Whitespace and comma delimiters and passed
+arrays are accepted. 127.0.0.1 and ::1 are never matched, use ‘localhost’ or
+‘localhost6’ for that if necessary.</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="inspect"><strong>inspect</strong></h4>
+
+<p>Prints out Puppet warning messages that display the passed variable.</p>
+
+<p>This is mainly meant for debugging purposes.</p>
+
+<p>Returns: <code>string</code></p>
+
+<h4 id="ipaddresses"><strong>ipaddresses</strong></h4>
+
+<p>Return an array of all IP addresses known to be associated with the client. If
+an argument is passed, and is not false, then only return non-local addresses.</p>
+
+<p>Returns: <code>array</code></p>
+
+<h4 id="ipisme"><strong>ip_is_me</strong></h4>
+
+<p>Detect if an IP address is contained in the passed whitespace delimited list.</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="iptocron"><strong>ip_to_cron</strong></h4>
+
+<p>Provides a “random” value to cron based on the passed integer value.
+Used to avoid starting a certain cron job at the same time on all
+servers.  If used with no parameters, it will return a single value between
+0-59. first argument is the occurrence within a timeframe, for example if you
+want it to run 2 times per hour the second argument is the timeframe, by
+default its 60 minutes, but it could also be 24 hours etc</p>
+
+<p>Pulled from: http://projects.puppetlabs.com/projects/puppet/wiki/Cron_Patterns/8/diff
+Author: ohadlevy@gmail.com
+License: None</p>
+
+<p>Example:</p>
+
+<p><code>ruby
+ip_to_cron()     - returns one value between 0..59
+ip_to_cron(2)    - returns an array of two values between 0..59
+ip_to_cron(2,24) - returns an array of two values between 0..23
+</code></p>
+
+<p>Returns: <code>integer</code> or <code>array</code></p>
+
+<h4 id="joinmountopts"><strong>join_mount_opts</strong></h4>
+
+<p>Merge two sets of ‘mount’ options in a reasonable fashion. The second set will
+always override the first.</p>
+
+<p>Returns: <code>string</code></p>
+
+<h4 id="localuser"><strong>localuser</strong></h4>
+
+<p>Pull a pre-set password from a password list and return an array of user
+details associated with the passed hostname.</p>
+
+<p>If the password starts with the string ‘$1$’ and the length is 34
+characters, then it will be assumed to be an MD5 hash to be directly applied
+to the system.</p>
+
+<p>If the password is in plain text form, then it will be hashed and stored back
+into the source file for future use. The plain text version will be commented
+out in the file.</p>
+
+<p>Arguments:
+* filename (path to the file containing the local users)
+* hostname (host that you are trying to match against)</p>
+
+<p>Returns: <code>array</code></p>
+
+<h4 id="mapval"><strong>mapval</strong></h4>
+
+<p>Pull a mapped value from a text file. Must provide a Ruby regex!.</p>
+
+<p>Returns: <code>string</code></p>
+
+<h4 id="nets2cidr"><strong>nets2cidr</strong></h4>
+
+<p>Convert an array of networks into CIDR notation</p>
+
+<p>Returns: <code>array</code></p>
+
+<h4 id="nets2ddq"><strong>nets2ddq</strong></h4>
+
+<p>Convert an array of networks into dotted quad notation</p>
+
+<p>Returns: <code>array</code></p>
+
+<h4 id="parsehosts"><strong>parse_hosts</strong></h4>
+
+<p>Take an array of items that may contain port numbers or protocols and return
+the host information, ports, and protocols. Works with hostnames, IPv4, and
+IPv6.</p>
+
+<p>Example:</p>
+
+<p>```ruby
+parse_hosts([ ‘1.2.3.4’, ‘<a href="http://1.2.3.4">http://1.2.3.4</a>’, ‘<a href="https://1.2.3.4:443">https://1.2.3.4:443</a>’ ])</p>
+
+<p>Returns: ‘1.2.3.4’ =&gt; {
+           ports =&gt; [‘443’],
+           protocols =&gt; {
+             ‘http’ =&gt; [],
+             ‘https’ =&gt; [‘443’]
+           }
+         }
+```
+—————–</p>
+
+<blockquote>
+  <p><strong>NOTE</strong></p>
+
+  <p>IPv6 addresses will be returned normalized with square brackets</p>
+</blockquote>
+
+<hr />
+
+<p>Returns: <code>hash</code></p>
+
+<h4 id="passgen"><strong>passgen</strong></h4>
+
+<p>Generates a random password string for a passed identifier. Uses
+Puppet[:environmentpath]/$environment/simp_autofiles/gen_passwd/ as the
+destination directory.</p>
+
+<p>```
+The minimum length password that this function will return is 6
+characters.</p>
+
+<pre class="code ruby"><code class="ruby">Arguments: identifier, &lt;modifier hash&gt;; in that order.
+
+&lt;modifier hash&gt; may contain any of the following options:
+  - &#39;last&#39; =&gt; false(*) or true
+    * Return the last generated password
+  - &#39;length&#39; =&gt; Integer
+    * Length of the new password
+  - &#39;hash&#39; =&gt; false(*), true, md5, sha256 (true), sha512
+    * Return a hash of the password instead of the password itself.
+  - &#39;complexity&#39; =&gt; 0(*), 1, 2
+    * 0 =&gt; Use only Alphanumeric characters in your password (safest) 1 =&gt;
+    * Add reasonably safe symbols 2 =&gt; Printable ASCII
+
+If no, or an invalid, second argument is provided then it will return the
+currently stored string. ```
+</code></pre>
+
+<p>Returns: <code>string</code></p>
+
+<h4 id="randcron"><strong>rand_cron</strong></h4>
+
+<p>Provides a “random” value to cron based on the passed integer value.
+Used to avoid starting a certain cron job at the same time on all
+servers.  If used with no parameters, it will return a single value between
+0-59 first argument is the occurrence within a timeframe, for example if you
+want it to run 2 times per hour the second argument is the timeframe, by
+default its 60 minutes, but it could also be 24 hours etc</p>
+
+<p>Based on: http://projects.puppetlabs.com/projects/puppet/wiki/Cron_Patterns/8/diff
+Author: ohadlevy@gmail.com
+License: None Posted</p>
+
+<p>Example:
+<code>ruby
+int_to_cron('100')     - returns one value between 0..59 based on the value 100
+int_to_cron(100,2)    - returns an array of two values between 0..59 based on the value 100
+int_to_cron(100,2,24) - returns an array of two values between 0..23 based on the value 100
+</code></p>
+
+<p>Returns: <code>integer</code> or <code>array</code></p>
+
+<h4 id="simpversion"><strong>simp_version</strong></h4>
+
+<p>Return the version of SIMP that this server is running.</p>
+
+<p>Returns: <code>string</code></p>
+
+<h4 id="slicearray"><strong>slice_array</strong></h4>
+
+<p>Split an array into an array of arrays that contain groupings of ‘max_length’
+size. This is similar to ‘each_slice’ in newer versions of Ruby.</p>
+
+<p>```ruby
+  * Options *</p>
+
+<p>to_slice =&gt; The array to slice. This will be flattened if necessary.</p>
+
+<p>max_length =&gt; The maximum length of each slice.</p>
+
+<p>split_char =&gt; An optional character upon which to count sub-elements
+  as multiples. Only one per subelement is supported.
+```</p>
+
+<p>Returns: <code>array of arrays</code></p>
+
+<h4 id="stripports"><strong>strip_ports</strong></h4>
+
+<p>Take an array of items that may contain port numbers and appropriately return
+the non-port portion. Works with hostnames, IPv4, and IPv6.</p>
+
+<p>```
+$foo = [‘https://mysite.net:8443’,
+        ‘http://yoursite.net:8081’,
+        ‘https://theirsite.com’]</p>
+
+<p>$bar = strip_ports($foo)</p>
+
+<p>$bar contains: [‘https://mysite.net’,’http://yoursite.net’,’theirsite.com’]
+```</p>
+
+<p>Returns: <code>array</code></p>
+
+<h4 id="tointeger"><strong>to_integer</strong></h4>
+
+<p>Converts the argument into an Integer.</p>
+
+<p>Only works if the passed argument responds to the ‘to_i’ Ruby method.</p>
+
+<p>Returns: <code>integer</code></p>
+
+<h4 id="tostring"><strong>to_string</strong></h4>
+
+<p>Converts the argument into a String.</p>
+
+<p>Only works if the passed argument responds to the ‘to_s’ Ruby method.</p>
+
+<p>Returns: <code>string</code></p>
+
+<h4 id="validatearrayofhashes"><strong>validate_array_of_hashes</strong></h4>
+
+<p>Validate that the passed argument is either an empty array or an array that
+only contains hashes.</p>
+
+<p>Examples:</p>
+
+<p><code>ruby
+validate_array_of_hashes([{'foo' =&gt; 'bar'}]) # =&gt; OK
+validate_array_of_hashes([])                 # =&gt; OK
+validate_array_of_hashes(['FOO','BAR'])      # =&gt; BAD
+</code></p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validatearraymember"><strong>validate_array_member</strong></h4>
+
+<p>Validate that the first string (or array) passed is a member of the second
+array passed. An optional third argument of i can be passed, which ignores
+the case of the objects inside the array.</p>
+
+<p>Examples:</p>
+
+<p>```ruby
+validate_array_member(‘foo’,[‘foo’,’bar’])     # =&gt; true
+validate_array_member(‘foo’,[‘FOO’,’BAR’])     # =&gt; false</p>
+
+<h1 id="optional-i-as-third-object-ignoring-case-of-foo-and-bar">Optional ‘i’ as third object, ignoring case of FOO and BAR</h1>
+
+<p>validate_array_member(‘foo’,[‘FOO’,’BAR’],’i’) # =&gt; true
+```</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validatebetween"><strong>validate_between</strong></h4>
+
+<p>Validate that the first value is between the second and third values
+numerically.</p>
+
+<p>This is a pure Ruby comparison, not a human comparison.</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validateboolsimp"><strong>validate_bool_simp</strong></h4>
+
+<p>Validate that all passed values are either true or false. Abort catalog
+compilation if any value fails this check.</p>
+
+<p>Modified from the stdlib validate_bool to handle the strings ‘true’ and
+‘false’.</p>
+
+<p>The following values will pass:</p>
+
+<p>```ruby
+$iamtrue = true</p>
+
+<p>validate_bool(true)
+validate_bool(“false”)
+validate_bool(“true”)
+validate_bool(true, ‘true’, false, $iamtrue)
+```</p>
+
+<p>The following values will fail, causing compilation to abort:</p>
+
+<p>```ruby
+$some_array = [ true ]</p>
+
+<p>validate_bool($some_array)
+```</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validatedeephash"><strong>validate_deep_hash</strong></h4>
+
+<p>Perform a deep validation on two passed hashes.</p>
+
+<p>The first hash is the one to validate against, and the second is the one being
+validated. The first hash (i.e. the source) exists to define a valid structure
+and potential regular expression to validate against, or to skip an
+entry. Arrays of values will match each entry to the given regular expression.
+Below are examples of a source hash and a hash to compare against it:</p>
+
+<p>```ruby
+    ‘source’ = {
+       ‘foo’ =&gt; {
+         ‘bar’ =&gt; {
+           #NOTE: Use single quotes for regular expressions
+           ‘baz’ =&gt; ‘^\d+$’,
+           ‘abc’ =&gt; ‘^\w+$’,
+           ‘def’ =&gt; nil #NOTE: not ‘nil’ in quotes
+         },
+         ‘baz’ =&gt; {
+           ‘xyz’ =&gt; ‘^true|false$’
+         }
+       }
+     }</p>
+
+<pre class="code ruby"><code class="ruby">&#39;to_check&#39; = {
+   &#39;foo&#39; =&gt; {
+     &#39;bar&#39; =&gt; {
+       &#39;baz&#39; =&gt; &#39;123&#39;,
+       &#39;abc&#39; =&gt; [ &#39;these&#39;, &#39;are&#39;, &#39;words&#39; ],
+       &#39;def&#39; =&gt; &#39;Anything will work here!&#39;
+     },
+     &#39;baz&#39; =&gt; {
+       &#39;xyz&#39; =&gt; &#39;false&#39;
+     }
+   } ```
+</code></pre>
+
+<p>This fails because we expect the value of ‘foo’ to be a series of digits, not
+letters.</p>
+
+<p>Additionally, all keys must be defined in the source hash that is being
+validated against. Unknown keys in the hash being compared will cause a</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validatefloat"><strong>validate_float</strong></h4>
+
+<p>Validates whether or not the passed argument is a float.</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validateinteger"><strong>validate_integer</strong></h4>
+
+<p>Validates whether or not the passed argument is an integer.</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validatemacaddress"><strong>validate_macaddress</strong></h4>
+
+<p>Validate that all passed values are valid MAC addresses.</p>
+
+<p>The following values will pass:</p>
+
+<p>```ruby
+$macaddress = ‘CA:FE:BE:EF:00:11’</p>
+
+<p>validate_macaddress($macaddress)
+validate_macaddress($macaddress,’00:11:22:33:44:55’)
+validate_macaddress([$macaddress,’00:11:22:33:44:55’])
+```</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validateport"><strong>validate_port</strong></h4>
+
+<p>Validates whether or not the passed argument is a valid port (i.e.  between
+1 - 65535).</p>
+
+<p>The following values will pass:</p>
+
+<p>```puppet
+$port = ‘10541’
+$ports = [‘5555’, ‘7777’, ‘1’, ‘65535’]</p>
+
+<p>validate_port($port)
+validate_port($ports)
+validate_port(‘11’, ‘22’)
+```</p>
+
+<p>The following values will not pass:</p>
+
+<p><code>puppet
+validate_port('0')
+validate_port('65536')
+</code></p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validatenetlist"><strong>validate_net_list</strong></h4>
+
+<p>Validate that a passed list (Array or single String) of networks is filled
+with valid IP addresses or hostnames. Hostnames are checked per
+<a href="https://tools.ietf.org/html/rfc1123">RFC 1123</a>.Ports appended with a colon (:)
+are allowed.</p>
+
+<p>There is a second, optional argument that is a regex of strings that should be
+ignored from the list. Omit the beginning and ending ‘/’ delimiters.</p>
+
+<p>The following values will pass:</p>
+
+<p>```ruby
+$trusted_nets = [‘10.10.10.0/24’,’1.2.3.4’,’1.3.4.5:400’]
+validate_net_list($trusted_nets)</p>
+
+<p>$trusted_nets = ‘10.10.10.0/24’
+validate_net_list($trusted_nets)</p>
+
+<p>$trusted_nets = [‘10.10.10.0/24’,’1.2.3.4’,’any’,’ALL’]
+validate_net_list($trusted_nets,’^(any|ALL)$’)
+```</p>
+
+<p>The following values will fail:</p>
+
+<p>```ruby
+$trusted_nets = ‘10.10.10.0/24,1.2.3.4’
+validate_net_list($trusted_nets)</p>
+
+<p>$trusted_nets = ‘bad stuff’
+validate_net_list($trusted_nets)
+```</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validaterearray"><strong>validate_re_array</strong></h4>
+
+<p>Perform simple validation of a string, or array of strings, against one or
+more regular expressions. The first argument of this function should be a
+string to test, and the second argument should be a stringified regular
+expression (without the // delimiters) or an array of regular expressions. If
+none of the regular expressions match the string passed in, compilation will
+abort with a parse error.</p>
+
+<p>If a third argument is specified, this will be the error message raised and
+seen by the user.</p>
+
+<p>The following strings will validate against the regular expressions:</p>
+
+<p><code>ruby
+validate_re_array('one', '^one$')
+validate_re_array('one', [ '^one','^two' ])
+validate_re_array(['one','two'], [ '^one', '^two' ])
+</code></p>
+
+<p>The following strings will fail to validate, causing compilation to abort:</p>
+
+<p><code>ruby
+validate_re_array('one', [ '^two', '^three' ])
+</code></p>
+
+<p>A helpful error message can be returned like this:</p>
+
+<p><code>ruby
+validate_re_array($::puppetversion, '^2.7', 'The $puppetversion fact
+value does not match 2.7')
+</code></p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validatesysctlvalue"><strong>validate_sysctl_value</strong></h4>
+
+<p>Validate that the passed value is correct for the passed sysctl key.</p>
+
+<p>If a key is not know, simply returns that the value is valid.</p>
+
+<p>Example:</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validateumask"><strong>validate_umask</strong></h4>
+
+<p>Validate that the passed value is a valid umask string.</p>
+
+<p>Examples:</p>
+
+<p>```ruby
+$val = ‘0077’ validate_umask($val) # =&gt; OK</p>
+
+<p>$val = ‘0078’ validate_umask($val) # =&gt; BAD
+```</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h4 id="validateurilist"><strong>validate_uri_list</strong></h4>
+
+<p>Usage: validate_uri_list([LIST],[])</p>
+
+<p>Validate that a passed list (Array or single String) of URIs is valid
+according to Ruby’s URI parser.</p>
+
+<p>The following values will pass:</p>
+
+<p>```ruby
+$uris = [http://foo.bar.baz:1234’,’ldap://my.ldap.server’]
+validate_uri_list($uris)</p>
+
+<p>$uris = [‘ldap://my.ldap.server’,’ldaps://my.ldap.server’]
+validate_uri_list($uris,[‘ldap’,’ldaps’])
+```</p>
+
+<p>Returns: <code>boolean</code></p>
+
+<h3 id="types">Types</h3>
+
+<ul>
+  <li><strong>ftpusers</strong></li>
+  <li><strong>init_ulimit</strong></li>
+  <li><strong>prepend_file_line</strong></li>
+  <li><strong>reboot_notify</strong></li>
+  <li><strong>runlevel</strong></li>
+  <li><strong>script_umask</strong></li>
+  <li><strong>simp_file_line</strong></li>
+</ul>
+
+<h3 id="data-types">Data Types</h3>
+
+<p>The following Puppet 4 compatible Data Types have been added for convenience
+and validation across the SIMP codebase.</p>
+
+<ul>
+  <li>Simplib::EmailAddress
+    <ul>
+      <li>Simple e-mail address validator
+        <ul>
+          <li><code>foo@bar.com</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Host
+    <ul>
+      <li>A single Host or an IP Address
+        <ul>
+          <li><code>1.2.3.4</code></li>
+          <li><code>my-host.com</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Host::Port
+    <ul>
+      <li>A single Host or an IP Address with a Port
+        <ul>
+          <li><code>1.2.3.4:80</code></li>
+          <li><code>my-host.com:443</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Hostname
+    <ul>
+      <li>A hostname, Unicode hostnames are not currently supported
+        <ul>
+          <li><code>my-host.com</code></li>
+          <li><code>aa.bb</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP
+    <ul>
+      <li>An IP Address
+        <ul>
+          <li><code>1.2.3.4</code></li>
+          <li><code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::Port
+    <ul>
+      <li>An IP Address (V4 or V6) with a Port</li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V4
+    <ul>
+      <li>An IPv4 Address
+        <ul>
+          <li><code>1.2.3.4</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::CIDR
+    <ul>
+      <li>An IPv4 or IPv6 Address with a CIDR Subnet
+        <ul>
+          <li><code>1.2.3.4/24</code></li>
+          <li><code>2001:0db8:85a3:0000:0000:8a2e:0370:7334/96</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V4::CIDR
+    <ul>
+      <li>An IPv4 Address with a CIDR Subnet
+        <ul>
+          <li><code>1.2.3.4/24</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V4::DDQ
+    <ul>
+      <li>An IPv4 Address with a Dotted Quad Subnet
+        <ul>
+          <li><code>1.2.3.4/255.255.0.0</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V4::Port
+    <ul>
+      <li>An IPv4 Address with an attached Port
+        <ul>
+          <li><code>1.2.3.4:443</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V6
+    <ul>
+      <li>An IPv6 Address
+        <ul>
+          <li><code>::1</code></li>
+          <li><code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code></li>
+          <li><code>[::1]</code></li>
+          <li><code>[2001:0db8:85a3:0000:0000:8a2e:0370:7334]</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V6::Base
+    <ul>
+      <li>A regular IPv6 Address
+        <ul>
+          <li><code>::1</code></li>
+          <li><code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V6::Bracketed
+    <ul>
+      <li>A bracketed IPv6 Address
+        <ul>
+          <li><code>[::1]</code></li>
+          <li><code>[2001:0db8:85a3:0000:0000:8a2e:0370:7334]</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V6::CIDR
+    <ul>
+      <li>An IPv6 address with a CIDR subnet
+        <ul>
+          <li><code>2001:0db8:85a3:0000:0000:8a2e:0370:7334/96</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::IP::V6::Port
+    <ul>
+      <li>An IPv6 address with an attached Port
+        <ul>
+          <li><code>[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:443</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Netlist
+    <ul>
+      <li>An Array of network-relevant entries
+        <ul>
+          <li>Hostname</li>
+          <li>IPv4</li>
+          <li>IPv4 with Subnet</li>
+          <li>IPv4 with Port</li>
+          <li>IPv6</li>
+          <li>IPv4 with Subnet</li>
+          <li>IPv4 with Port</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Netlist::Host
+    <ul>
+      <li>An Array of Hosts
+        <ul>
+          <li>Hostname</li>
+          <li>IPv4</li>
+          <li>IPv6</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Netlist::IP
+    <ul>
+      <li>An Array of IP Addresses
+        <ul>
+          <li>IPv4</li>
+          <li>IPv6</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Netlist::IP::V4
+    <ul>
+      <li>An Array of IPv4 Addresses</li>
+    </ul>
+  </li>
+  <li>Simplib::Netlist::IP::V6
+    <ul>
+      <li>An Array of IPv6 Addresses</li>
+    </ul>
+  </li>
+  <li>Simplib::Netlist::Port
+    <ul>
+      <li>An Array of Hosts with Ports</li>
+    </ul>
+  </li>
+  <li>Simplib::Port
+    <ul>
+      <li>A Port Number</li>
+    </ul>
+  </li>
+  <li>Simplib::Port::Dynamic
+    <ul>
+      <li>Either 49152 or 65535</li>
+    </ul>
+  </li>
+  <li>Simplib::Port::Random
+    <ul>
+      <li>Port 0</li>
+    </ul>
+  </li>
+  <li>Simplib::Port::System
+    <ul>
+      <li>1-1024</li>
+    </ul>
+  </li>
+  <li>Simplib::Port::User
+    <ul>
+      <li>1025-49151</li>
+      <li>49153-65534</li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::CFacility
+    <ul>
+      <li>A syslog log facility, in the form expected by <code>syslog(3)</code>
+        <ul>
+          <li>LOG_KERN</li>
+          <li>LOG_LOCAL6</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::CPriority
+    <ul>
+      <li>A syslog log priority, in the form expected by <code>syslog(3)</code>
+        <ul>
+          <li>LOG_KERN.LOG_INFO</li>
+          <li>LOG_LOCAL6.LOG_WARNING</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::CSeverity
+    <ul>
+      <li>A syslog log severity, in the form expected by <code>syslog(3)</code>
+        <ul>
+          <li>LOG_INFO</li>
+          <li>LOG_WARNING</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::Facility
+    <ul>
+      <li>A syslog log facility, in either all uppercase or all lowercase.
+        <ul>
+          <li>kern</li>
+          <li>local6</li>
+          <li>LOCAL6</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::LowerFacility
+    <ul>
+      <li>A syslog log facility, in all lowercase.
+        <ul>
+          <li>auth</li>
+          <li>local4</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::UpperFacility
+    <ul>
+      <li>A syslog log facility, in all uppercase.
+        <ul>
+          <li>MAIL</li>
+          <li>LOCAL7</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::Severity
+    <ul>
+      <li>A syslog severity level, in either all uppercase or all lowercase.
+        <ul>
+          <li>info</li>
+          <li>WARNING</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::LowerSeverity
+    <ul>
+      <li>A syslog severity level, in all lowercase.
+        <ul>
+          <li>info</li>
+          <li>emerg</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::UpperSeverity
+    <ul>
+      <li>A syslog severity level, in all uppercase.
+        <ul>
+          <li>DEBUG</li>
+          <li>WARNING</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::Priority
+    <ul>
+      <li>A syslog priority destination, in format ‘facility.severity’ and in either
+all uppercase or all lowercase. This type only accepts the keyword
+facilities and severities.
+        <ul>
+          <li>mail.info</li>
+          <li>KERN.EMERG</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::LowerPriority
+    <ul>
+      <li>A syslog priority destination, in format ‘facility.severity’ and in only
+all lowercase. This type only accepts the keyword
+facilities and severities.
+        <ul>
+          <li>mail.info</li>
+          <li>user.err</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Syslog::UpperPriority
+    <ul>
+      <li>A syslog priority destination, in format ‘facility.severity’ and in only
+all uppercase. This type only accepts the keyword
+facilities and severities.
+        <ul>
+          <li>SYSLOG.WARNING</li>
+          <li>AUTHPRIV.INFO</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Simplib::Umask
+    <ul>
+      <li>A valid Umask</li>
+    </ul>
+  </li>
+  <li>Simplib::URI
+    <ul>
+      <li>A valid URI string (lightly sanity checked)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="development">Development</h2>
+
+<p>Please read our <a href="http://simp.readthedocs.io/en/master/contributors_guide/index.html">Contribution Guide</a>
+and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">Developer Wiki</a></p>
+
+<p>If you find any issues, they can be submitted to our
+<a href="https://simp-project.atlassian.net">JIRA</a>.</p>
+
+<p><a href="https://simp-project.com">System Integrity Management Platform</a></p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-svckill"><img src="https://travis-ci.org/simp/pupmod-simp-svckill.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#this-is-a-simp-module">Overview</a></li>
+  <li><a href="#module-description">Module Description - A Puppet module for managing svckill</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with pupmod-simp-svckill</a>
+    <ul>
+      <li><a href="#what-simp-svckill-affects">What pupmod-simp-svckill affects</a></li>
+      <li><a href="#beginning-with-svckill">Beginning with svckill</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+<p>This module is a component of the
+<a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>,
+a compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they can be submitted to our
+<a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+
+<p>Please read our <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">Contribution Guide</a>
+and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">developer wiki</a>.</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but it
+can be used independently:
+* When included within the SIMP ecosystem, security compliance settings will be
+managed from the Puppet server.
+* In the future, all SIMP-managed security subsystems will be disabled by
+default and must be explicitly opted into by administrators.  Please review
+<em>simp/simp_options</em> for details.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>Svckill is a system that attempts to run with the security best practice that
+“No unnecessary services should be running on the system.”</p>
+
+<p>The way svckill works is to fetch all services on the running system and then
+shutdown and disable any that are not declared in a Puppet manifest (or ignore
+list/file) somewhere.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-simp-svckill-affects">What simp svckill affects</h3>
+
+<p><em>simp/svckill</em> effects ALL services on a given node. If this class is included
+on a node, all services not declared in a puppet service resource or a svckill
+ignore list will be disabled and turned off on a system. The following are
+exceptions:</p>
+
+<p>```
+    The following services are hard coded to never be killed by svckill:
+      * amtu
+      * blk-availability
+      * crond
+      * ebtables
+      * gpm
+      * haldaemon
+      * ip6tables
+      * iptables
+      * irqbalance
+      * killall
+      * libvirt-guests
+      * lvm2-monitor
+      * mcstrans
+      * mdmonitor
+      * messagebus
+      * netcf-transaction
+      * netfs
+      * netlabel
+      * network
+      * ntpdate
+      * portreserve
+      * puppet
+      * restorecond
+      * sandbox
+      * sshd
+      * sysstat
+      * udev-post
+      * getty*
+      * dbus*</p>
+
+<p>These are here because their status function is broken
+      * krb524
+      * mdmpd
+      * readahead_later
+      * rawdevices
+      * lm_sensors
+      * kudzu
+```</p>
+
+<h3 id="beginning-with-svckill">Beginning with svckill</h3>
+
+<p>You can set up svckill on a node by:</p>
+
+<p><code>puppet
+include 'svckill'
+</code></p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="i-have-a-service-i-dont-want-puppet-to-kill-on-a-single-node">I have a service I don’t want puppet to kill on a single node</h3>
+
+<p>There are two ways to solve this problem:</p>
+
+<p>Declare the service in puppet:</p>
+
+<p><code>puppet
+service { 'myservice':
+  ensure =&gt; running,
+}
+</code></p>
+
+<p>or Declare the service in an ignore list in svckill:</p>
+
+<p><code>puppet
+svckill { 'myservice':
+  ignore =&gt; ['myservice'],
+}
+</code></p>
+
+<h3 id="i-want-to-ignore-a-list-of-services-i-deploy-in-a-file">I want to ignore a list of services I deploy in a file</h3>
+
+<p><code>puppet
+svckill { 'ourservices':
+  ignorefiles =&gt; '/opt/services',
+}
+</code></p>
+
+<h3 id="i-want-to-set-a-list-of-services-allowed-in-my-entire-infrascture">I want to set a list of services allowed in my entire infrascture</h3>
+
+<p>```puppet
+site.pp</p>
+
+<p>class { ‘svckill’:
+  ignore =&gt; [‘A’,
+             ‘B’,
+             ‘C’
+            ],
+}
+```</p>
+
+<h3 id="i-dont-want-to-kill-a-service-but-id-like-to-be-alerted-when-it-is-running">I don’t want to kill a service, but I’d like to be alerted when it is running</h3>
+
+<p><code>puppet
+class { 'svckill':
+  ignore =&gt; 'A',
+  mode   =&gt; 'warning',
+}
+</code></p>
+
+<h2 id="reference">Reference</h2>
+
+<h3 id="types">Types</h3>
+<ul>
+  <li><a href="#svckill-type">‘svckill’</a>: Type used to declare services to ignore.</li>
+</ul>
+
+<h3 id="public-classes">Public Classes</h3>
+<ul>
+  <li><a href="#svckill-class">‘svckill’</a>: Main class used to set up a set of default
+services to ignore in an infrastructure.</li>
+  <li><a href="#svckillignore">‘svckill::ignore’</a>: Ensure a service will not be killed by
+svckill</li>
+  <li><a href="#svckillignorecollector">‘svckill::ignore::collector’</a>: Build default ignore
+file for svckill</li>
+</ul>
+
+<h3 id="svckill-type"><code>svckill</code> Type</h3>
+
+<h4 id="parameters">Parameters</h4>
+
+<h5 id="ignore">ignore</h5>
+<p>An array of services to never kill. Can also accept a regex.
+  * Valid Options: Array of Strings.</p>
+
+<h5 id="ignorefiles">ignorefiles</h5>
+<p>An array of files containing a list of services to ignore, one
+per line. Can also accept regexes in the file.
+  * Valid Options: Array of Strings.
+  * Default: <code>/usr/local/etc/svckill.ignore</code></p>
+
+<h5 id="verbose">verbose</h5>
+<p>If set, output all services that were affected by svckill.
+  * Valid Options: true or false.
+  * Default: <code>true</code></p>
+
+<h5 id="mode">mode</h5>
+<p>If set to ‘enforcing’, will actually shut down and disable all
+services not listed in your manifests or the exclusion file. If set to
+‘warning’, will only report on what would happen without actually making the
+changes to the system.
+  * Valid Options: enforcing and warning.
+  * Default: <code>warning</code>.</p>
+
+<h3 id="svckill-class"><code>svckill</code> Class</h3>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<h5 id="ignore-1">ignore</h5>
+<p>An array of services to never kill. Can also accept a regex.
+  * Valid Options: Array of Strings.
+  * Default: <code>[]</code>.</p>
+
+<h5 id="ignoredefaults">ignore_defaults</h5>
+<p>An internal list of embedded services to never kill.
+  * Valid Options: Array of Strings.
+  * Default: <code>[]</code>.</p>
+
+<h5 id="ignorefiles-1">ignore_files</h5>
+<p>An array of files containing a list of services to ignore, one
+per line. Can also accept regexes in the file.
+  * Valid Options: Array of Strings.
+  * Default: <code>[]</code>.</p>
+
+<h5 id="verbose-1">verbose</h5>
+<p>If set, output all services that were affected by svckill.
+  * Valid Options: true or false.
+  * Default: <code>true</code></p>
+
+<h5 id="mode-1">mode</h5>
+<p>If set to ‘enforcing’, will actually shut down and disable all
+services not listed in your manifests or the exclusion file. If set to
+‘warning’, will only report on what would happen without actually making the
+changes to the system.
+  * Valid Options: enforcing and warning.
+  * Default:<code>warning</code>.</p>
+
+<h3 id="svckillignore"><code>svckill::ignore</code></h3>
+
+<h4 id="parameters-2">Parameters</h4>
+
+<h5 id="name">name</h5>
+<p>Name of service to ignore with svckill.
+  * Valid Options: String.</p>
+
+<h3 id="svckillignorecollector"><code>svckill::ignore::collector</code></h3>
+
+<h4 id="parameters-3">Parameters</h4>
+
+<h5 id="defaultignorefile">default_ignore_file</h5>
+<p>Path to ignore file.
+  * Valid Options: Absolute Path.
+  * Default: <code>/usr/local/etc/svckill.ignore</code>.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This module is only designed to work in RHEL or CentOS 6 and 7. Any other
+operating systems have not been tested and results cannot be guaranteed.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Please see the
+<a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">SIMP Contribution Guidelines</a>.</p>
+
+<p>General developer documentation can be found on
+<a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">Confluence</a>.
+Visit the project homepage on <a href="https://simp-project.com">GitHub</a>,
+chat with us on our <a href="https://simp-project.hipchat.com/">HipChat</a>,
+and look at our issues on  <a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

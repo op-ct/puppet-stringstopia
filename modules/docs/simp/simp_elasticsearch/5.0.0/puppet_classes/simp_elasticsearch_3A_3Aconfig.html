@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp_elasticsearch::config
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp_elasticsearch::config";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp_elasticsearch::config</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp_elasticsearch::config</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-i97n36/manifests/config.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class makes adjustments to files/system parameters
+used by for the elasticsearch service, so that this
+service can run in a SIMP environment.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-i97n36/manifests/config.pp', line 5</span>
+
+class simp_elasticsearch::config {
+  assert_private()
+  # Correct the permissions on the ES templates directory
+  # TODO Verify this workaround is still required.
+  file { &#39;/etc/elasticsearch/templates_import&#39;:
+    ensure =&gt; directory,
+    owner  =&gt; &#39;root&#39;,
+    group  =&gt; &#39;root&#39;,
+    mode   =&gt; &#39;0644&#39;,
+  }
+
+  file { $::elasticsearch::config[&#39;path.data&#39;]:
+    ensure  =&gt; &#39;directory&#39;,
+    owner   =&gt; $::elasticsearch::elasticsearch_user,
+    group   =&gt; $::elasticsearch::elasticsearch_group,
+    require =&gt; Package[&#39;elasticsearch&#39;]
+  }
+
+  # This is here due to some weird bug in ES that won&#39;t read /etc properly.
+  # TODO Verify this workaround is still required.
+  file { &#39;/usr/share/elasticsearch/config&#39;:
+    ensure =&gt; &#39;symlink&#39;,
+    target =&gt; &#39;/etc/elasticsearch&#39;,
+    force  =&gt; true
+  }
+
+  pam::limits::rule { &#39;es_heap_sizelock&#39;:
+    domains =&gt; [ $::elasticsearch::elasticsearch_user ],
+    type    =&gt; &#39;-&#39;,
+    item    =&gt; &#39;memlock&#39;,
+    value   =&gt; &#39;unlimited&#39;,
+    order   =&gt; 0,
+  }
+
+  # Out-of-the-box, ES will not start in a SIMP environment because
+  # JNA is configured to use /tmp as its tmpdir and /tmp is set to
+  # noexec.  We can configure the JNA directory via JVM options,
+  # but, this causes ES to core unless the ES user&#39;s home directory
+  # exists. Unfortunately, that directory is set to /home/elasticsearch
+  # when the ES user is created in the elasticsearch RPM post-install.
+  # This directory is not universally appropriate (e.g. when /home
+  # is a NFS-mounted system), so to solve the JNA problem, we need
+  # to both set the JNA tmpdir JVM option (see
+  # simp_elasticsearch::jvm_options_defaults) and change the ES user
+  # home directory to one more suitable for a service.
+
+  # Change the home directory
+  user {  $::elasticsearch::elasticsearch_user:
+    ensure  =&gt; &#39;present&#39;,
+    comment =&gt; &#39;elasticsearch user&#39;,
+    home    =&gt; &#39;/var/local/elasticsearch&#39;,
+    shell   =&gt; &#39;/sbin/nologin&#39;,
+    system  =&gt; true
+  }
+
+  # Make sure directory exists
+  # NOTE:  Can&#39;t do this in the user resource above, because setting the
+  # &#39;managehome&#39; attribute to true won&#39;t create the directory for a user
+  # that already exists.
+  file { &#39;/var/local/elasticsearch&#39;:
+    ensure =&gt; &#39;directory&#39;,
+    group  =&gt;  $::elasticsearch::elasticsearch_group,
+    owner  =&gt;  $::elasticsearch::elasticsearch_user,
+    mode   =&gt; &#39;0770&#39;,
+  }
+
+  # Create tmp directory for JNA
+  #TODO set up systemd-tmpfiles/tmpwatch rule for this dir, if needed
+  file { $::simp_elasticsearch::jna_tmpdir:
+    ensure  =&gt; &#39;directory&#39;,
+    group   =&gt;  $::elasticsearch::elasticsearch_group,
+    owner   =&gt;  $::elasticsearch::elasticsearch_user,
+    mode    =&gt; &#39;0770&#39;,
+    seltype =&gt; &#39;tmp_t&#39;,
+  }
+
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="inifile">inifile</h1>
+
+<p><a href="https://travis-ci.org/puppetlabs/puppetlabs-inifile"><img src="https://travis-ci.org/puppetlabs/puppetlabs-inifile.png?branch=master" alt="Build Status" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#module-description">Module Description - What the module does and why it is useful</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with inifile module</a>
+    <ul>
+      <li><a href="#beginning-with-inifile">Beginning with inifile</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>The inifile module lets Puppet manage settings stored in INI-style configuration files.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>Many applications use INI-style configuration files to store their settings. This module supplies two custom resource types to let you manage those settings through Puppet.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="beginning-with-inifile">Beginning with inifile</h3>
+
+<p>To manage a single setting in an INI file, add the <code>ini_setting</code> type to a class:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;ini_setting { &quot;sample setting&quot;:
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  ensure  =&gt; present,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  path    =&gt; &#39;/tmp/foo.ini&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  section =&gt; &#39;bar&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;  setting =&gt; &#39;baz&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;  value   =&gt; &#39;quux&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<h2 id="usage">Usage</h2>
+
+<p>The inifile module tries hard not to manipulate your file any more than it needs to. In most cases, it doesn’t affect the original whitespace, comments, ordering, etc.</p>
+
+<ul>
+  <li>Supports comments starting with either ‘#’ or ‘;’.</li>
+  <li>Supports either whitespace or no whitespace around ‘=’.</li>
+  <li>Adds any missing sections to the INI file.</li>
+</ul>
+
+<h3 id="manage-multiple-values-in-a-setting">Manage multiple values in a setting</h3>
+
+<p>Use the <code>ini_subsetting</code> type:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;ini_subsetting {&#39;sample subsetting&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  ensure            =&gt; present,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  section           =&gt; &#39;&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  key_val_separator =&gt; &#39;=&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;  path              =&gt; &#39;/etc/default/pe-puppetdb&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;  setting           =&gt; &#39;JAVA_ARGS&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;  subsetting        =&gt; &#39;-Xmx&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n8&quot; name=&quot;n8&quot;&gt;8&lt;/a&gt;&lt;/span&gt;  value             =&gt; &#39;512m&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n9&quot; name=&quot;n9&quot;&gt;9&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<p>Results in managing this <code>-Xmx</code> subsetting:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;JAVA_ARGS=&quot;-Xmx512m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/pe-puppetdb/puppetdb-oom.hprof&quot;
+</code></pre></div>
+</div>
+</div>
+
+<h3 id="use-a-non-standard-section-header">Use a non-standard section header</h3>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;ini_setting { &#39;default minage&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  ensure         =&gt; present,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  path           =&gt; &#39;/etc/security/users&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  section        =&gt; &#39;default&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;  setting        =&gt; &#39;minage&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;  value          =&gt; &#39;1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;  section_prefix =&gt; &#39;&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n8&quot; name=&quot;n8&quot;&gt;8&lt;/a&gt;&lt;/span&gt;  section_suffix =&gt; &#39;:&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n9&quot; name=&quot;n9&quot;&gt;9&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<p>Results in:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;default:
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;   minage = 1
+</code></pre></div>
+</div>
+</div>
+
+<h3 id="implement-child-providers">Implement child providers</h3>
+
+<p>You might want to create child providers that inherit the <code>ini_setting</code> provider, for one or both of these purposes:</p>
+
+<ul>
+  <li>
+    <p>Make a custom resource to manage an application that stores its settings in INI files, without recreating the code to manage the files themselves.</p>
+  </li>
+  <li>
+    <p><a href="https://docs.puppetlabs.com/references/latest/type.html#resources-attribute-purge">Purge all unmanaged settings</a> from a managed INI file.</p>
+  </li>
+</ul>
+
+<p>To implement child providers, first specify a custom type. Have it implement a namevar called <code>name</code> and a property called <code>value</code>:</p>
+
+<div class="language-ruby highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span style=&quot;color:#777&quot;&gt;#my_module/lib/puppet/type/glance_api_config.rb&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;&lt;span style=&quot;color:#036;font-weight:bold&quot;&gt;Puppet&lt;/span&gt;::&lt;span style=&quot;color:#036;font-weight:bold&quot;&gt;Type&lt;/span&gt;.newtype(&lt;span style=&quot;color:#A60&quot;&gt;:glance_api_config&lt;/span&gt;) &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  ensurable
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  newparam(&lt;span style=&quot;color:#A60&quot;&gt;:name&lt;/span&gt;, &lt;span style=&quot;color:#A60&quot;&gt;:namevar&lt;/span&gt; =&gt; &lt;span style=&quot;color:#069&quot;&gt;true&lt;/span&gt;) &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;    desc &lt;span style=&quot;background-color:hsla(0,100%,50%,0.05)&quot;&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;color:#D20&quot;&gt;Section/setting name to manage from glance-api.conf&lt;/span&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;    &lt;span style=&quot;color:#777&quot;&gt;# namevar should be of the form section/setting&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;    newvalues(&lt;span style=&quot;background-color:hsla(300,100%,50%,0.06)&quot;&gt;&lt;span style=&quot;color:#404&quot;&gt;/&lt;/span&gt;&lt;span style=&quot;color:#D20&quot;&gt;\S&lt;/span&gt;&lt;span style=&quot;color:#808&quot;&gt;+&lt;/span&gt;&lt;span style=&quot;color:#D20&quot;&gt;\/&lt;/span&gt;&lt;span style=&quot;color:#D20&quot;&gt;\S&lt;/span&gt;&lt;span style=&quot;color:#808&quot;&gt;+&lt;/span&gt;&lt;span style=&quot;color:#404&quot;&gt;/&lt;/span&gt;&lt;/span&gt;)
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n8&quot; name=&quot;n8&quot;&gt;8&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n9&quot; name=&quot;n9&quot;&gt;9&lt;/a&gt;&lt;/span&gt;  newproperty(&lt;span style=&quot;color:#A60&quot;&gt;:value&lt;/span&gt;) &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;strong&gt;&lt;a href=&quot;#n10&quot; name=&quot;n10&quot;&gt;10&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;    desc &lt;span style=&quot;background-color:hsla(0,100%,50%,0.05)&quot;&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;color:#D20&quot;&gt;The value of the setting to define&lt;/span&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n11&quot; name=&quot;n11&quot;&gt;11&lt;/a&gt;&lt;/span&gt;    munge &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;do&lt;/span&gt; |v|
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n12&quot; name=&quot;n12&quot;&gt;12&lt;/a&gt;&lt;/span&gt;      v.to_s.strip
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n13&quot; name=&quot;n13&quot;&gt;13&lt;/a&gt;&lt;/span&gt;    &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n14&quot; name=&quot;n14&quot;&gt;14&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n15&quot; name=&quot;n15&quot;&gt;15&lt;/a&gt;&lt;/span&gt;&lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;end&lt;/span&gt;
+</code></pre></div>
+</div>
+</div>
+
+<p>Your type also needs a provider that uses the <code>ini_setting</code> provider as its parent:</p>
+
+<div class="language-ruby highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;&lt;span style=&quot;color:#777&quot;&gt;# my_module/lib/puppet/provider/glance_api_config/ini_setting.rb&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;&lt;span style=&quot;color:#036;font-weight:bold&quot;&gt;Puppet&lt;/span&gt;::&lt;span style=&quot;color:#036;font-weight:bold&quot;&gt;Type&lt;/span&gt;.type(&lt;span style=&quot;color:#A60&quot;&gt;:glance_api_config&lt;/span&gt;).provide(
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#A60&quot;&gt;:ini_setting&lt;/span&gt;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#777&quot;&gt;# set ini_setting as the parent provider&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#A60&quot;&gt;:parent&lt;/span&gt; =&gt; &lt;span style=&quot;color:#036;font-weight:bold&quot;&gt;Puppet&lt;/span&gt;::&lt;span style=&quot;color:#036;font-weight:bold&quot;&gt;Type&lt;/span&gt;.type(&lt;span style=&quot;color:#A60&quot;&gt;:ini_setting&lt;/span&gt;).provider(&lt;span style=&quot;color:#A60&quot;&gt;:ruby&lt;/span&gt;)
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;) &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#777&quot;&gt;# implement section as the first part of the namevar&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n8&quot; name=&quot;n8&quot;&gt;8&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;def&lt;/span&gt; &lt;span style=&quot;color:#06B;font-weight:bold&quot;&gt;section&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n9&quot; name=&quot;n9&quot;&gt;9&lt;/a&gt;&lt;/span&gt;    resource[&lt;span style=&quot;color:#A60&quot;&gt;:name&lt;/span&gt;].split(&lt;span style=&quot;background-color:hsla(0,100%,50%,0.05)&quot;&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;color:#D20&quot;&gt;/&lt;/span&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;/span&gt;, &lt;span style=&quot;color:#00D&quot;&gt;2&lt;/span&gt;).first
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;strong&gt;&lt;a href=&quot;#n10&quot; name=&quot;n10&quot;&gt;10&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;  &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n11&quot; name=&quot;n11&quot;&gt;11&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;def&lt;/span&gt; &lt;span style=&quot;color:#06B;font-weight:bold&quot;&gt;setting&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n12&quot; name=&quot;n12&quot;&gt;12&lt;/a&gt;&lt;/span&gt;    &lt;span style=&quot;color:#777&quot;&gt;# implement setting as the second part of the namevar&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n13&quot; name=&quot;n13&quot;&gt;13&lt;/a&gt;&lt;/span&gt;    resource[&lt;span style=&quot;color:#A60&quot;&gt;:name&lt;/span&gt;].split(&lt;span style=&quot;background-color:hsla(0,100%,50%,0.05)&quot;&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;color:#D20&quot;&gt;/&lt;/span&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;/span&gt;, &lt;span style=&quot;color:#00D&quot;&gt;2&lt;/span&gt;).last
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n14&quot; name=&quot;n14&quot;&gt;14&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n15&quot; name=&quot;n15&quot;&gt;15&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#777&quot;&gt;# hard code the file path (this allows purging)&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n16&quot; name=&quot;n16&quot;&gt;16&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;def&lt;/span&gt; &lt;span style=&quot;color:#069&quot;&gt;self&lt;/span&gt;.&lt;span style=&quot;color:#06B;font-weight:bold&quot;&gt;file_path&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n17&quot; name=&quot;n17&quot;&gt;17&lt;/a&gt;&lt;/span&gt;    &lt;span style=&quot;background-color:hsla(0,100%,50%,0.05)&quot;&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;color:#D20&quot;&gt;/etc/glance/glance-api.conf&lt;/span&gt;&lt;span style=&quot;color:#710&quot;&gt;&#39;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n18&quot; name=&quot;n18&quot;&gt;18&lt;/a&gt;&lt;/span&gt;  &lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n19&quot; name=&quot;n19&quot;&gt;19&lt;/a&gt;&lt;/span&gt;&lt;span style=&quot;color:#080;font-weight:bold&quot;&gt;end&lt;/span&gt;
+</code></pre></div>
+</div>
+</div>
+
+<p>Now the settings in /etc/glance/glance-api.conf file can be managed as individual resources:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;glance_api_config { &#39;HEADER/important_config&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  value =&gt; &#39;secret_value&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<p>If you’ve implemented self.file_path, you can have Puppet purge the file of all lines that aren’t implemented as Puppet resources:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;resources { &#39;glance_api_config&#39;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  purge =&gt; true,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<h3 id="manage-multiple-inisettings">Manage multiple ini_settings</h3>
+
+<p>To manage multiple ini_settings, use the <a href="#function-create_ini_settings"><code>create_ini_settings</code></a> function.</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;$defaults = { &#39;path&#39; =&gt; &#39;/tmp/foo.ini&#39; }
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;$example = { &#39;section1&#39; =&gt; { &#39;setting1&#39; =&gt; &#39;value1&#39; } }
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;create_ini_settings($example, $defaults)
+</code></pre></div>
+</div>
+</div>
+
+<p>results in:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;ini_setting { &#39;[section1] setting1&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  ensure  =&gt; present,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  section =&gt; &#39;section1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  setting =&gt; &#39;setting1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;  value   =&gt; &#39;value1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;  path    =&gt; &#39;/tmp/foo.ini&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<p>To include special parameters, the following code:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;$defaults = { &#39;path&#39; =&gt; &#39;/tmp/foo.ini&#39; }
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;$example = {
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  &#39;section1&#39; =&gt; {
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;    &#39;setting1&#39;  =&gt; &#39;value1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;    &#39;settings2&#39; =&gt; {
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;      &#39;ensure&#39; =&gt; &#39;absent&#39;
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;    }
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n8&quot; name=&quot;n8&quot;&gt;8&lt;/a&gt;&lt;/span&gt;  }
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n9&quot; name=&quot;n9&quot;&gt;9&lt;/a&gt;&lt;/span&gt;}
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;strong&gt;&lt;a href=&quot;#n10&quot; name=&quot;n10&quot;&gt;10&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;create_ini_settings($example, $defaults)
+</code></pre></div>
+</div>
+</div>
+
+<p>results in:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;ini_setting { &#39;[section1] setting1&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  ensure  =&gt; present,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  section =&gt; &#39;section1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  setting =&gt; &#39;setting1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;  value   =&gt; &#39;value1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;  path    =&gt; &#39;/tmp/foo.ini&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;}
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n8&quot; name=&quot;n8&quot;&gt;8&lt;/a&gt;&lt;/span&gt;ini_setting { &#39;[section1] setting2&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n9&quot; name=&quot;n9&quot;&gt;9&lt;/a&gt;&lt;/span&gt;  ensure  =&gt; absent,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;strong&gt;&lt;a href=&quot;#n10&quot; name=&quot;n10&quot;&gt;10&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;  section =&gt; &#39;section1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n11&quot; name=&quot;n11&quot;&gt;11&lt;/a&gt;&lt;/span&gt;  setting =&gt; &#39;setting2&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n12&quot; name=&quot;n12&quot;&gt;12&lt;/a&gt;&lt;/span&gt;  path    =&gt; &#39;/tmp/foo.ini&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n13&quot; name=&quot;n13&quot;&gt;13&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<h4 id="manage-multiple-inisettings-with-hiera">Manage multiple ini_settings with Hiera</h4>
+
+<p>This example requires Puppet 3.x/4.x, as it uses automatic retrieval of Hiera data for class parameters and <code>puppetlabs/stdlib</code>.</p>
+
+<p>For the profile <code>example</code>:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;class profile::example (
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  $settings,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;) {
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  validate_hash($settings)
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;  $defaults = { &#39;path&#39; =&gt; &#39;/tmp/foo.ini&#39; }
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;  create_ini_settings($settings, $defaults)
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<p>Provide this in your Hiera data:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;profile::example::settings:
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  section1:
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;    setting1: value1
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;    setting2: value2
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;    setting3:
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;      ensure: absent
+</code></pre></div>
+</div>
+</div>
+
+<p>Results in:</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;ini_setting { &#39;[section1] setting1&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  ensure  =&gt; present,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;  section =&gt; &#39;section1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;  setting =&gt; &#39;setting1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;  value   =&gt; &#39;value1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;  path    =&gt; &#39;/tmp/foo.ini&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;}
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n8&quot; name=&quot;n8&quot;&gt;8&lt;/a&gt;&lt;/span&gt;ini_setting { &#39;[section1] setting2&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt; &lt;a href=&quot;#n9&quot; name=&quot;n9&quot;&gt;9&lt;/a&gt;&lt;/span&gt;  ensure  =&gt; present,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;strong&gt;&lt;a href=&quot;#n10&quot; name=&quot;n10&quot;&gt;10&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;  section =&gt; &#39;section1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n11&quot; name=&quot;n11&quot;&gt;11&lt;/a&gt;&lt;/span&gt;  setting =&gt; &#39;setting2&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n12&quot; name=&quot;n12&quot;&gt;12&lt;/a&gt;&lt;/span&gt;  value   =&gt; &#39;value2&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n13&quot; name=&quot;n13&quot;&gt;13&lt;/a&gt;&lt;/span&gt;  path    =&gt; &#39;/tmp/foo.ini&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n14&quot; name=&quot;n14&quot;&gt;14&lt;/a&gt;&lt;/span&gt;}
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n15&quot; name=&quot;n15&quot;&gt;15&lt;/a&gt;&lt;/span&gt;ini_setting { &#39;[section1] setting3&#39;:
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n16&quot; name=&quot;n16&quot;&gt;16&lt;/a&gt;&lt;/span&gt;  ensure  =&gt; absent,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n17&quot; name=&quot;n17&quot;&gt;17&lt;/a&gt;&lt;/span&gt;  section =&gt; &#39;section1&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n18&quot; name=&quot;n18&quot;&gt;18&lt;/a&gt;&lt;/span&gt;  setting =&gt; &#39;setting3&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n19&quot; name=&quot;n19&quot;&gt;19&lt;/a&gt;&lt;/span&gt;  path    =&gt; &#39;/tmp/foo.ini&#39;,
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;strong&gt;&lt;a href=&quot;#n20&quot; name=&quot;n20&quot;&gt;20&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<h2 id="reference">Reference</h2>
+
+<h3 id="public-types">Public Types</h3>
+
+<ul>
+  <li>
+    <p><a href="#type-ini_setting"><code>ini_setting</code></a></p>
+  </li>
+  <li>
+    <p><a href="#type-ini_subsetting"><code>ini_subsetting</code></a></p>
+  </li>
+</ul>
+
+<h3 id="public-functions">Public Functions</h3>
+
+<ul>
+  <li><a href="#function-create_ini_settings"><code>create_ini_settings</code></a></li>
+</ul>
+
+<h3 id="type-inisetting">Type: ini_setting</h3>
+
+<p>Manages a setting within an INI file.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<h5 id="ensure"><code>ensure</code></h5>
+
+<p>Determines whether the specified setting should exist. Valid options: ‘present’ and ‘absent’. Default value: ‘present’.</p>
+
+<h5 id="keyvalseparator"><code>key_val_separator</code></h5>
+
+<p><em>Optional.</em> Specifies a string to use between each setting name and value (e.g., to determine whether the separator includes whitespace). Valid options: a string. Default value: ‘ = ‘.</p>
+
+<h5 id="name"><code>name</code></h5>
+
+<p><em>Optional.</em> Specifies an arbitrary name to identify the resource. Valid options: a string. Default value: the title of your declared resource.</p>
+
+<h5 id="path"><code>path</code></h5>
+
+<p><em>Required.</em> Specifies an INI file containing the setting to manage. Valid options: a string containing an absolute path.</p>
+
+<h5 id="section"><code>section</code></h5>
+
+<p><em>Optional.</em> Designates a section of the specified INI file containing the setting to manage. To manage a global setting (at the beginning of the file, before any named sections) enter “”. Defaults to “”. Valid options: a string.</p>
+
+<h5 id="setting"><code>setting</code></h5>
+
+<p><em>Required.</em> Designates a setting to manage within the specified INI file and section. Valid options: a string.</p>
+
+<h5 id="showdiff"><code>show_diff</code></h5>
+
+<p><em>Optional.</em> Prevents outputting actual values to the logfile. Useful for handling of passwords and other sensitive information. Possible values are:
+  * <code>true</code>: This allows all values to be passed to logfiles. (default)
+  * <code>false</code>: The values in the logfiles will be replaced with <code>[redacted sensitive information]</code>. 
+  * <code>md5</code>: The values in the logfiles will be replaced with their md5 hash.</p>
+
+<p>Global show_diff configuraton takes priority over this one -
+<a href="[https://docs.puppetlabs.com/references/latest/configuration.html#showdiff].">https://docs.puppetlabs.com/references/latest/configuration.html#showdiff</a>. Default value: ‘true’.</p>
+
+<h5 id="value"><code>value</code></h5>
+
+<p><em>Optional.</em> Supplies a value for the specified setting. Valid options: a string. Default value: undefined.</p>
+
+<h5 id="sectionprefix"><code>section_prefix</code></h5>
+
+<p><em>Optional.</em>  Designates the string that will appear before the section’s name.  Default value: “[”</p>
+
+<h5 id="sectionsuffix"><code>section_suffix</code></h5>
+
+<p><em>Optional.</em>  Designates the string that will appear after the section’s name.  Default value: “]”.</p>
+
+<h5 id="refreshonly"><code>refreshonly</code></h5>
+
+<p><em>Optional.</em>  A boolean to indicate whether or not the value associated with the setting should be updated if this resource is only part of a refresh event.  Default value: <strong>false</strong>.</p>
+
+<p>For example, if we want a timestamp associated with the last time a setting’s value was updated, we could do something like this:</p>
+
+<pre class="code ruby"><code class="ruby">ini_setting { &#39;foosetting&#39;:
+  ensure  =&gt; present,
+  path    =&gt; &#39;/tmp/file.ini&#39;,
+  section =&gt; &#39;foo&#39;,
+  setting =&gt; &#39;foosetting&#39;,
+  value   =&gt; &#39;bar&#39;,
+  notify  =&gt; Ini_Setting[&#39;foosetting_timestamp&#39;],
+}
+
+$now = strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)
+ini_setting {&#39;foosetting_timestamp&#39;:
+  ensure      =&gt; present,
+  path        =&gt; &#39;/tmp/file.ini&#39;,
+  section     =&gt; &#39;foo&#39;,
+  setting     =&gt; &#39;foosetting_timestamp&#39;,
+  value       =&gt; $now,
+  refreshonly =&gt; true,
+}
+</code></pre>
+
+<p><strong>NOTE:</strong> This type finds all sections in the file by looking for lines like <code>${section_prefix}${title}${section_suffix}</code>.</p>
+
+<h3 id="type-inisubsetting">Type: ini_subsetting</h3>
+
+<p>Manages multiple values within the same INI setting.</p>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<h5 id="ensure-1"><code>ensure</code></h5>
+
+<p>Specifies whether the subsetting should be present. Valid options: ‘present’ and ‘absent’. Default value: ‘present’.</p>
+
+<h5 id="keyvalseparator-1"><code>key_val_separator</code></h5>
+
+<p><em>Optional.</em> Specifies a string to use between setting name and value (e.g., to determine whether the separator includes whitespace). Valid options: a string. Default value: ‘ = ‘.</p>
+
+<h5 id="path-1"><code>path</code></h5>
+
+<p><em>Required.</em> Specifies an INI file containing the subsetting to manage. Valid options: a string containing an absolute path.</p>
+
+<h5 id="quotechar"><code>quote_char</code></h5>
+
+<p><em>Optional.</em> The character used to quote the entire value of the setting. Valid values are ‘’, ‘”’, and “’”. Defaults to ‘’. Valid options: ‘’, ‘”’ and “’”. Default value: ‘’.</p>
+
+<h5 id="section-1"><code>section</code></h5>
+
+<p><em>Optional.</em> Designates a section of the specified INI file containing the setting to manage. To manage a global setting (at the beginning of the file, before any named sections) enter “”. Defaults to “”. Valid options: a string.</p>
+
+<h5 id="setting-1"><code>setting</code></h5>
+
+<p><em>Required.</em> Designates a setting within the specified section containing the subsetting to manage. Valid options: a string.</p>
+
+<h5 id="showdiff-1"><code>show_diff</code></h5>
+
+<p><em>Optional.</em> Prevents outputting actual values to the logfile. Useful for handling of passwords and other sensitive information. Possible values are:
+  * <code>true</code>: This allows all values to be passed to logfiles. (default)
+  * <code>false</code>: The values in the logfiles will be replaced with <code>[redacted sensitive information]</code>. 
+  * <code>md5</code>: The values in the logfiles will be replaced with their md5 hash.</p>
+
+<p>Global show_diff configuraton takes priority over this one -
+<a href="[https://docs.puppetlabs.com/references/latest/configuration.html#showdiff].">https://docs.puppetlabs.com/references/latest/configuration.html#showdiff</a>. Default value: ‘true’.</p>
+
+<h5 id="subsetting"><code>subsetting</code></h5>
+
+<p><em>Required.</em> Designates a subsetting to manage within the specified setting. Valid options: a string.</p>
+
+<h5 id="subsettingseparator"><code>subsetting_separator</code></h5>
+
+<p><em>Optional.</em> Specifies a string to use between subsettings. Valid options: a string. Default value: “ “.</p>
+
+<h5 id="subsettingkeyvalseparator"><code>subsetting_key_val_separator</code></h5>
+
+<p><em>Optional.</em> Specifies a string to use between subsetting name and value (if there is a separator between the subsetting name and its value). Valid options: a string. Default value: empty string.</p>
+
+<h5 id="useexactmatch"><code>use_exact_match</code></h5>
+
+<p><em>Optional.</em> Whether to use partial or exact matching for subsetting. Should be set to true if the subsettings do not have values. Valid options: true, false. Default value: false.</p>
+
+<h5 id="value-1"><code>value</code></h5>
+
+<p><em>Optional.</em> Supplies a value for the specified subsetting. Valid options: a string. Default value: undefined.</p>
+
+<h5 id="inserttype"><code>insert_type</code></h5>
+
+<p><em>Optional.</em> Selects where a new subsetting item should be inserted.</p>
+
+<ul>
+  <li><em>start</em>  - insert at the beginning of the line.</li>
+  <li><em>end</em>    - insert at the end of the line (default).</li>
+  <li><em>before</em> - insert before the specified element if possible.</li>
+  <li><em>after</em>  - insert after the specified element if possible.</li>
+  <li><em>index</em>  - insert at the specified index number.</li>
+</ul>
+
+<h5 id="insertvalue"><code>insert_value</code></h5>
+
+<p><em>Optional.</em> The value for the insert type if the value if required.</p>
+
+<h3 id="function-createinisettings">Function: create_ini_settings</h3>
+
+<p>Manages multiple <code>ini_setting</code> resources from a hash. Note that this cannot be used with ini_subsettings.</p>
+
+<p><code>create_ini_settings($settings, $defaults)</code></p>
+
+<h4 id="arguments">Arguments</h4>
+
+<h5 id="first-argument-settings">First argument: <code>settings</code></h5>
+
+<p><em>Required.</em> Specify a hash representing the <code>ini_setting</code> resources you want to create.</p>
+
+<h5 id="second-argument-defaults">Second argument: <code>defaults</code></h5>
+
+<p><em>Optional.</em> Accepts a hash to be used as the values for any attributes not defined in the first argument.</p>
+
+<div class="language-puppet highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre class="code ruby"><code class="ruby">&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n1&quot; name=&quot;n1&quot;&gt;1&lt;/a&gt;&lt;/span&gt;$example = {
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n2&quot; name=&quot;n2&quot;&gt;2&lt;/a&gt;&lt;/span&gt;  &#39;section1&#39; =&gt; {
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n3&quot; name=&quot;n3&quot;&gt;3&lt;/a&gt;&lt;/span&gt;    &#39;setting1&#39; =&gt; {
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n4&quot; name=&quot;n4&quot;&gt;4&lt;/a&gt;&lt;/span&gt;      &#39;value&#39; =&gt; &#39;value1&#39;, &#39;path&#39; =&gt; &#39;/tmp/foo.ini&#39;
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n5&quot; name=&quot;n5&quot;&gt;5&lt;/a&gt;&lt;/span&gt;    }
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n6&quot; name=&quot;n6&quot;&gt;6&lt;/a&gt;&lt;/span&gt;  }
+&lt;span class=&quot;line-numbers&quot;&gt;&lt;a href=&quot;#n7&quot; name=&quot;n7&quot;&gt;7&lt;/a&gt;&lt;/span&gt;}
+</code></pre></div>
+</div>
+</div>
+
+<p>Default value: ‘{}’.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This module has been tested on <a href="https://forge.puppetlabs.com/supported#compat-matrix">all PE-supported platforms</a>, and no issues have been identified. Additionally, it is tested (but not supported) on Windows 7, Mac OS X 10.9, and Solaris 12.</p>
+
+<p>Due to (PUP-4709) the create_ini_settings function will cause errors when attempting to create multiple ini_settings in one go when using Puppet 4.0.x or 4.1.x. If needed, the temporary fix for this can be found here: https://github.com/puppetlabs/puppetlabs-inifile/pull/196.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad of hardware, software, and deployment configurations that Puppet is intended to serve.</p>
+
+<p>We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things.</p>
+
+<p>For more information, see our <a href="https://docs.puppetlabs.com/forge/contributing.html">module contribution guide.</a></p>
+
+<h3 id="contributors">Contributors</h3>
+
+<p>To see who’s already involved, see the <a href="https://github.com/puppetlabs/puppetlabs-inifile/graphs/contributors">list of contributors.</a></p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

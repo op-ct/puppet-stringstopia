@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="nsswitchconf-module-for-puppet">nsswitch.conf module for Puppet</h1>
+<p><a href="https://travis-ci.org/trlinkin/puppet-nsswitch"><img src="https://travis-ci.org/trlinkin/puppet-nsswitch.svg?branch=master" alt="Build Status" /></a></p>
+
+<p>A way of expressing nsswitch.conf configurations declaratively. This
+should manage the standard 15 databases NSS supports, plus the <code>sudo</code> entry
+respected by sudo since the 1.7.0 release.</p>
+
+<h3 id="defaults">Defaults</h3>
+
+<p>Currently this module has support for EL based Linux distributions,
+Fedora, Debian/Ubuntu, and Gentoo. This module by default will create a basic
+nsswitch.conf that uses defaults derived from what the distribution uses in
+the nsswitch.conf file on fresh install. These defaults have been verified
+on the mentioned distributions by the kindness and diligence of
+contributors, of which I’m very grateful.</p>
+
+<h3 id="supported-systems">Supported Systems</h3>
+<p>This module should be capable of supporting the following systems:
+ * Debian/Ubuntu
+ * RHEL (Centos, RHEL6.x, Amazon)
+ * Fedora
+ * Oracle Linux 5.x, 6.x
+ * Gentoo</p>
+
+<p>Testing has only confirmed functionality on the following:
+  * Ubuntu 12.4
+  * Fedora 19
+  * Centos 6/7
+  * RHEL 6/7</p>
+
+<h3 id="usage">Usage</h3>
+
+<h4 id="nsswitch-class">nsswitch class</h4>
+
+<p>This is the class by which you will manage the nsswitch.conf file. There
+is one paramter per standard database NSS supports. The class accepts both strings
+and arrays as paramters. The benefit being, you could possibly merge an array
+of options with hiera. When using an array, each element should be the
+lookup service followed by the reaction statement.</p>
+
+<p>Available parameters are:</p>
+
+<ul>
+  <li>passwd</li>
+  <li>group</li>
+  <li>shadow</li>
+  <li>hosts</li>
+  <li>bootparams</li>
+  <li>aliases</li>
+  <li>automount</li>
+  <li>ethers</li>
+  <li>netgroup</li>
+  <li>netmasks</li>
+  <li>network</li>
+  <li>protocols</li>
+  <li>publickey</li>
+  <li>rpc</li>
+  <li>services</li>
+  <li>sudo</li>
+</ul>
+
+<p>For more information on NSS, please see the man pages. <code>man 5 nsswitch.conf</code></p>
+
+<h4 id="examples">Examples</h4>
+
+<p>```Puppet
+# defaults only
+include nsswitch</p>
+
+<h1 id="setting-a-simple-lookup">setting a simple lookup</h1>
+<p>class { ‘nsswitch’:
+  publickey =&gt; ‘nis’,
+}</p>
+
+<h1 id="hosts-lookups-contain-a-reaction-statement-for-the-dns-service">‘hosts’ lookups contain a reaction statement for the ‘dns’ service</h1>
+<p>class { ‘nsswitch’:
+  passwd =&gt; [‘ldap’,’files’],
+  hosts  =&gt; [‘dns [!UNAVAIL=return]’,’files’],
+}
+```</p>
+
+<h4 id="example-nsswitchconf-with-all-defaults-for-rhel-systems">Example nsswitch.conf with all defaults for RHEL systems</h4>
+
+<pre class="code ruby"><code class="ruby"># This file is controlled by Puppet
+
+passwd:     files
+shadow:     files
+group:      files
+hosts:      files dns
+bootparams: nisplus [NOTFOUND=return] files
+ethers:     files
+netmasks:   files
+networks:   files
+protocols:  files
+rpc:        files
+services:   files
+netgroup:   nisplus
+publickey:  nisplus
+automount:  files nisplus
+aliases:    files nisplus
+</code></pre>
+
+<h3 id="changelog">Changelog</h3>
+
+<ul>
+  <li>Migrate to Puppet 4 with data in modules and strong typing</li>
+  <li>Change quoting of string in <code>params.pp</code></li>
+  <li>Correct <code>.travis.yml</code> tests</li>
+  <li>Add unit tests for different EL versions</li>
+  <li>Cleanup metadata tabbing and add EL 7 version</li>
+  <li>Add Puppet/PE requirements to metadata.json</li>
+  <li>Add explicit support for EL 7</li>
+  <li>Change tabbing in params.pp</li>
+  <li>Remove undesirable tags from metadata</li>
+  <li>Merge pull request #15 from togge/master</li>
+  <li>added support for gshadow</li>
+  <li>Update Changelog and bump version to 1.1.0</li>
+  <li>Extend Travis-CI testing</li>
+  <li>Updates to the README.md</li>
+  <li>Fixup the travis-ci configuration</li>
+  <li>Removing Gemfile.lock - I was wrong</li>
+  <li>Update spec tests to use Rspec 3.x syntax</li>
+  <li>Refactor unit tests for changes in Rspec/Rspec-Puppet</li>
+  <li>Add changes to Gemfile and add a Gemfile.lock</li>
+  <li>Remove Gemfile.lock from the .gitignore</li>
+  <li>Fix fact name in spec tests</li>
+  <li>Add fixtures to .gitignore</li>
+  <li>add OEL supprt</li>
+  <li>making changes to pass lint</li>
+  <li>Bump version to 1.0.0</li>
+  <li>Adding license file</li>
+  <li>Further clean up metadata.json</li>
+  <li>Add travis-ci badge</li>
+  <li>Correct wrong link in metadata.json</li>
+  <li>Add .travis.yml for automated Travis-CI testing</li>
+  <li>Add .rspec file for testing purposes</li>
+  <li>Bump version to 0.1.0 for release</li>
+  <li>Convert to metadata.json</li>
+  <li>Add initial components of automated testing</li>
+  <li>Remove useless filename selection</li>
+</ul>
+
+<h4 id="license">License</h4>
+<p>Copyright 2013 Thomas Linkin <a href="mailto:tom@puppetlabs.com">tom@puppetlabs.com</a></p>
+
+<p>Licensed under the Apache License, Version 2.0 (the “License”);
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at</p>
+
+<pre class="code ruby"><code class="ruby"> <span class='id identifier rubyid_http'>http</span><span class='symbol'>:/</span><span class='op'>/</span><span class='id identifier rubyid_www'>www</span><span class='period'>.</span><span class='id identifier rubyid_apache'>apache</span><span class='period'>.</span><span class='id identifier rubyid_org'>org</span><span class='op'>/</span><span class='id identifier rubyid_licenses'>licenses</span><span class='op'>/</span><span class='const'>LICENSE</span><span class='op'>-</span><span class='float'>2.0</span>
+</code></pre>
+
+<p>Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an “AS IS” BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

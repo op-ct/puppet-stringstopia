@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: haveged::config
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::haveged::config";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (h)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">haveged::config</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: haveged::config</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>::haveged::params</dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1adfjb0/manifests/config.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>= Class: haveged::config</p>
+
+<p>Manage the haveged configuration file</p>
+
+<p>== Parameters:</p>
+
+<p>[<em>buffer_size</em>]
+  The size of the collection buffer in KB.</p>
+
+<p>[<em>data_cache_size</em>]
+  The data cache size in KB.</p>
+
+<p>[<em>instruction_cache_size</em>]
+  The instruction cache size in KB.</p>
+
+<p>[<em>write_wakeup_threshold</em>]
+  The haveged daemon generates more data if the number of entropy bits
+  falls below this value.</p>
+
+<p>== Requires:</p>
+
+<p>Puppetlabs stdlib module.</p>
+
+<p>== Sample Usage:</p>
+
+<p>class { ‘haveged::config’: }</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>buffer_size</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>defined(&#39;$::haveged::buffer_size&#39;)</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data_cache_size</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>defined(&#39;$::haveged::data_cache_size&#39;)</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>instruction_cache_size</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>defined(&#39;$::haveged::instruction_cache_size&#39;)</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>write_wakeup_threshold</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>defined(&#39;$::haveged::write_wakeup_threshold&#39;)</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1adfjb0/manifests/config.pp', line 29</span>
+
+class haveged::config (
+  $buffer_size            =  defined(&#39;$::haveged::buffer_size&#39;) ? { true =&gt; getvar(&#39;::haveged::buffer_size&#39;), default =&gt; undef },
+  $data_cache_size        =  defined(&#39;$::haveged::data_cache_size&#39;) ? { true =&gt; getvar(&#39;::haveged::data_cache_size&#39;), default =&gt; undef },
+  $instruction_cache_size =  defined(&#39;$::haveged::instruction_cache_size&#39;) ? { true =&gt; getvar(&#39;::haveged::instruction_cache_size&#39;), default =&gt; undef },
+  $write_wakeup_threshold =  defined(&#39;$::haveged::write_wakeup_threshold&#39;) ? { true =&gt; getvar(&#39;::haveged::write_wakeup_threshold&#39;), default =&gt; undef }
+) inherits ::haveged::params {
+
+  # Validate numeric parameters
+  #if $buffer_size {
+  #  validate_re($buffer_size, &#39;^[0-9]+$&#39;)
+  #}
+  #if $data_cache_size {
+  #  validate_re($data_cache_size, &#39;^[0-9]+$&#39;)
+  #}
+  #if $instruction_cache_size {
+  #  validate_re($instruction_cache_size, &#39;^[0-9]+$&#39;)
+  #}
+  #if $write_wakeup_threshold {
+  #  validate_re($write_wakeup_threshold, &#39;^[0-9]+$&#39;)
+  #}
+
+  $opts_hash = {
+    &#39;-b&#39; =&gt; $buffer_size,
+    &#39;-d&#39; =&gt; $data_cache_size,
+    &#39;-i&#39; =&gt; $instruction_cache_size,
+    &#39;-w&#39; =&gt; $write_wakeup_threshold,
+  }
+
+  # Remove all entries where the value is &#39;undef&#39;
+  $opts_ok = delete_undef_values($opts_hash)
+
+  # Concat key and value into array elements
+  $opts_strings = join_keys_to_values($opts_ok, &#39; &#39;)
+
+  # Join array elements into one string
+  $opts = join($opts_strings, &#39; &#39;)
+
+  # Update shell configuration file if applicable
+  $_daemon_opts_file = getvar(&#39;::haveged::params::daemon_opts_file&#39;)
+  if $_daemon_opts_file {
+
+    file { $_daemon_opts_file:
+      ensure  =&gt; file,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;root&#39;,
+      mode    =&gt; &#39;0644&#39;,
+      content =&gt; template(&quot;${module_name}/default.erb&quot;),
+    }
+  }
+
+  # Update systemd configuration file if applicable
+  $_systemd_opts_dir = getvar(&#39;::haveged::params::systemd_opts_dir&#39;)
+  if ($_systemd_opts_dir != undef) {
+
+    file { $_systemd_opts_dir:
+      ensure =&gt; directory,
+      owner  =&gt; &#39;root&#39;,
+      group  =&gt; &#39;root&#39;,
+      mode   =&gt; &#39;0644&#39;,
+    }
+
+    file { &quot;${_systemd_opts_dir}/opts.conf&quot;:
+      ensure  =&gt; file,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;root&#39;,
+      mode    =&gt; &#39;0644&#39;,
+      content =&gt; template(&quot;${module_name}/systemd.erb&quot;),
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

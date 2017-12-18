@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: apache::mod::security
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::apache::mod::security";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">apache::mod::security</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: apache::mod::security</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>::apache::params</dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod/security.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>logroot</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::logroot</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>crs_package</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::modsec_crs_package</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activated_rules</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::modsec_default_rules</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::modsec_dir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_secruleengine</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::modsec_secruleengine</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>audit_log_relevant_status</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;^(?:5|4(?!04))&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>audit_log_parts</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::modsec_audit_log_parts</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secpcrematchlimit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::secpcrematchlimit</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secpcrematchlimitrecursion</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::secpcrematchlimitrecursion</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allowed_methods</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;GET HEAD POST OPTIONS&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>content_types</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;application/x-www-form-urlencoded|multipart/form-data|text/xml|application/xml|application/x-amf&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restricted_extensions</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;.asa/ .asax/ .ascx/ .axd/ .backup/ .bak/ .bat/ .cdx/ .cer/ .cfg/ .cmd/ .com/ .config/ .conf/ .cs/ .csproj/ .csr/ .dat/ .db/ .dbf/ .dll/ .dos/ .htr/ .htw/ .ida/ .idc/ .idq/ .inc/ .ini/ .key/ .licx/ .lnk/ .log/ .mdb/ .old/ .pass/ .pdb/ .pol/ .printer/ .pwd/ .resources/ .resx/ .sql/ .sys/ .vb/ .vbs/ .vbproj/ .vsdisco/ .webinfo/ .xsd/ .xsx/&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restricted_headers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/Proxy-Connection/ /Lock-Token/ /Content-Range/ /Translate/ /via/ /if/&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secdefaultaction</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;deny&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>anomaly_score_blocking</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;off&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>inbound_anomaly_threshold</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;5&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>outbound_anomaly_threshold</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;4&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>critical_anomaly_score</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;5&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>error_anomaly_score</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;4&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>warning_anomaly_score</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;3&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>notice_anomaly_score</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;2&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secrequestmaxnumargs</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;255&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secrequestbodylimit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;13107200&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secrequestbodynofileslimit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;131072&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secrequestbodyinmemorylimit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;131072&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_security_crs</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod/security.pp', line 1</span>
+
+class apache::mod::security (
+  $logroot                    = $::apache::params::logroot,
+  $crs_package                 = $::apache::params::modsec_crs_package,
+  $activated_rules             = $::apache::params::modsec_default_rules,
+  $modsec_dir                  = $::apache::params::modsec_dir,
+  $modsec_secruleengine        = $::apache::params::modsec_secruleengine,
+  $audit_log_relevant_status   = &#39;^(?:5|4(?!04))&#39;,
+  $audit_log_parts             = $::apache::params::modsec_audit_log_parts,
+  $secpcrematchlimit           = $::apache::params::secpcrematchlimit,
+  $secpcrematchlimitrecursion  = $::apache::params::secpcrematchlimitrecursion,
+  $allowed_methods             = &#39;GET HEAD POST OPTIONS&#39;,
+  $content_types               = &#39;application/x-www-form-urlencoded|multipart/form-data|text/xml|application/xml|application/x-amf&#39;,
+  $restricted_extensions       = &#39;.asa/ .asax/ .ascx/ .axd/ .backup/ .bak/ .bat/ .cdx/ .cer/ .cfg/ .cmd/ .com/ .config/ .conf/ .cs/ .csproj/ .csr/ .dat/ .db/ .dbf/ .dll/ .dos/ .htr/ .htw/ .ida/ .idc/ .idq/ .inc/ .ini/ .key/ .licx/ .lnk/ .log/ .mdb/ .old/ .pass/ .pdb/ .pol/ .printer/ .pwd/ .resources/ .resx/ .sql/ .sys/ .vb/ .vbs/ .vbproj/ .vsdisco/ .webinfo/ .xsd/ .xsx/&#39;,
+  $restricted_headers          = &#39;/Proxy-Connection/ /Lock-Token/ /Content-Range/ /Translate/ /via/ /if/&#39;,
+  $secdefaultaction            = &#39;deny&#39;,
+  $anomaly_score_blocking      = &#39;off&#39;,
+  $inbound_anomaly_threshold   = &#39;5&#39;,
+  $outbound_anomaly_threshold  = &#39;4&#39;,
+  $critical_anomaly_score      = &#39;5&#39;,
+  $error_anomaly_score         = &#39;4&#39;,
+  $warning_anomaly_score       = &#39;3&#39;,
+  $notice_anomaly_score        = &#39;2&#39;,
+  $secrequestmaxnumargs        = &#39;255&#39;,
+  $secrequestbodylimit         = &#39;13107200&#39;,
+  $secrequestbodynofileslimit  = &#39;131072&#39;,
+  $secrequestbodyinmemorylimit = &#39;131072&#39;,
+  $manage_security_crs         = true,
+) inherits ::apache::params {
+  include ::apache
+
+  $_secdefaultaction = $secdefaultaction ? {
+    /log/   =&gt; $secdefaultaction, # it has log or nolog,auditlog or log,noauditlog
+    default =&gt; &quot;${secdefaultaction},log&quot;,
+  }
+
+  if $::osfamily == &#39;FreeBSD&#39; {
+    fail(&#39;FreeBSD is not currently supported&#39;)
+  }
+
+  if ($::osfamily == &#39;Suse&#39; and $::operatingsystemrelease &lt; &#39;11&#39;) {
+    fail(&#39;SLES 10 is not currently supported.&#39;)
+  }
+
+  ::apache::mod { &#39;security&#39;:
+    id  =&gt; &#39;security2_module&#39;,
+    lib =&gt; &#39;mod_security2.so&#39;,
+  }
+
+
+  ::apache::mod { &#39;unique_id_module&#39;:
+    id  =&gt; &#39;unique_id_module&#39;,
+    lib =&gt; &#39;mod_unique_id.so&#39;,
+  }
+
+  if $crs_package  {
+    package { $crs_package:
+      ensure =&gt; &#39;installed&#39;,
+      before =&gt; [
+        File[$::apache::confd_dir],
+        File[$modsec_dir],
+      ],
+    }
+  }
+
+  # Template uses:
+  # - logroot
+  # - $modsec_dir
+  # - $audit_log_parts
+  # - secpcrematchlimit
+  # - secpcrematchlimitrecursion
+  # - secrequestbodylimit
+  # - secrequestbodynofileslimit
+  # - secrequestbodyinmemorylimit
+  file { &#39;security.conf&#39;:
+    ensure  =&gt; file,
+    content =&gt; template(&#39;apache/mod/security.conf.erb&#39;),
+    mode    =&gt; $::apache::file_mode,
+    path    =&gt; &quot;${::apache::mod_dir}/security.conf&quot;,
+    owner   =&gt; $::apache::params::user,
+    group   =&gt; $::apache::params::group,
+    require =&gt; Exec[&quot;mkdir ${::apache::mod_dir}&quot;],
+    before  =&gt; File[$::apache::mod_dir],
+    notify  =&gt; Class[&#39;apache::service&#39;],
+  }
+
+  file { $modsec_dir:
+    ensure  =&gt; directory,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0755&#39;,
+    purge   =&gt; true,
+    force   =&gt; true,
+    recurse =&gt; true,
+    require =&gt; Package[&#39;httpd&#39;],
+  }
+
+  file { &quot;${modsec_dir}/activated_rules&quot;:
+    ensure  =&gt; directory,
+    owner   =&gt; $::apache::params::user,
+    group   =&gt; $::apache::params::group,
+    mode    =&gt; &#39;0555&#39;,
+    purge   =&gt; true,
+    force   =&gt; true,
+    recurse =&gt; true,
+    notify  =&gt; Class[&#39;apache::service&#39;],
+  }
+
+  if $manage_security_crs {
+    # Template uses:
+    # - $_secdefaultaction
+    # - $critical_anomaly_score
+    # - $error_anomaly_score
+    # - $warning_anomaly_score
+    # - $notice_anomaly_score
+    # - $inbound_anomaly_threshold
+    # - $outbound_anomaly_threshold
+    # - $anomaly_score_blocking
+    # - $allowed_methods
+    # - $content_types
+    # - $restricted_extensions
+    # - $restricted_headers
+    # - $secrequestmaxnumargs
+    file { &quot;${modsec_dir}/security_crs.conf&quot;:
+      ensure  =&gt; file,
+      content =&gt; template(&#39;apache/mod/security_crs.conf.erb&#39;),
+      require =&gt; File[$modsec_dir],
+      notify  =&gt; Class[&#39;apache::service&#39;],
+    }
+  }
+
+  unless $::operatingsystem == &#39;SLES&#39; { apache::security::rule_link { $activated_rules: } }
+
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

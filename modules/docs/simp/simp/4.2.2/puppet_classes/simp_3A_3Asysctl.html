@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp::sysctl
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp::sysctl";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp::sysctl</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp::sysctl</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/sysctl.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Sets sysctl settings that are useful from a general ‘modern system’
+point of view.</p>
+
+<p>There are also items in this list that are particularly useful for
+general system security.</p>
+
+<p>See the kernel documentation for the functionality of each variable.</p>
+
+<p>Performance Related Settings
+Security Related Settings:
+Does not apply to RHEL 7 systems:</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>net__netfilter__nf_conntrack_max</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>655360</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__unix__max_dgram_qlen</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>50</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__neigh__default__gc_thresh3</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2048</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__neigh__default__gc_thresh2</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1024</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__neigh__default__gc_thresh1</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>32</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__neigh__default__proxy_qlen</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>92</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__neigh__default__unres_qlen</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>6</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_rmem</span>
+      
+      
+        <span class='type'>(<tt>Array[Integer,3,3]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[4096,98304,16777216]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_wmem</span>
+      
+      
+        <span class='type'>(<tt>Array[Integer,3,3]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[4096,65535,16777216]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_fin_timeout</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>30</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_rfc1337</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_keepalive_time</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>3600</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_mtu_probing</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,2]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_no_metrics_save</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__core__rmem_max</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>16777216</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__core__wmem_max</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>16777216</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__core__optmem_max</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>20480</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__core__netdev_max_backlog</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2048</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__core__somaxconn</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2048</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_tw_reuse</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fs__suid_dumpable</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kernel__core_pattern</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/var/core/%u_%g_%p_%t_%h_%e.core&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If you change this, make sure you create the leading directories!</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kernel__core_pipe_limit</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kernel__core_uses_pid</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kernel__dmesg_restrict</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kernel__exec_shield</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kernel__panic</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kernel__randomize_va_space</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,2]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kernel__sysrq</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__all__accept_redirects</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__all__accept_source_route</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__all__log_martians</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__all__rp_filter</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,2]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__all__secure_redirects</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__all__send_redirects</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__default__accept_redirects</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__default__accept_source_route</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__default__rp_filter</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,2]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__default__secure_redirects</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__conf__default__send_redirects</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__icmp_echo_ignore_broadcasts</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__icmp_ignore_bogus_error_responses</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_challenge_ack_limit</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2147483647</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_max_syn_backlog</span>
+      
+      
+        <span class='type'>(<tt>Integer[1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>4096</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv4__tcp_syncookies</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__all__accept_redirects</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__all__autoconf</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__all__forwarding</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__accept_ra</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__accept_ra_defrtr</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__accept_ra_pinfo</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__accept_ra_rtr_pref</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__accept_redirects</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__autoconf</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__dad_transmits</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__max_addresses</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>net__ipv6__conf__default__router_solicitations</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>core_dumps</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, enable core dumps on the system.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>core_dump_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/var/core&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Directory to place core dumps</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::pam&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>SIMP catalyst for enabling PAM management
+As set, meets CCE-27033-0</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipv6</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Set to <code>false</code> to disable IPv6 on your system via <code>sysctl</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/sysctl.pp', line 83</span>
+
+class simp::sysctl (
+  Integer[0]           $net__netfilter__nf_conntrack_max               = 655360,
+  Integer[0]           $net__unix__max_dgram_qlen                      = 50,
+  Integer[0]           $net__ipv4__neigh__default__gc_thresh3          = 2048,
+  Integer[0]           $net__ipv4__neigh__default__gc_thresh2          = 1024,
+  Integer[0]           $net__ipv4__neigh__default__gc_thresh1          = 32,
+  Integer[0]           $net__ipv4__neigh__default__proxy_qlen          = 92,
+  Integer[0]           $net__ipv4__neigh__default__unres_qlen          = 6,
+  Array[Integer,3,3]   $net__ipv4__tcp_rmem                            = [4096,98304,16777216],
+  Array[Integer,3,3]   $net__ipv4__tcp_wmem                            = [4096,65535,16777216],
+  Integer[0]           $net__ipv4__tcp_fin_timeout                     = 30,
+  Integer[0,1]         $net__ipv4__tcp_rfc1337                         = 1,
+  Integer[0]           $net__ipv4__tcp_keepalive_time                  = 3600,
+  Integer[0,2]         $net__ipv4__tcp_mtu_probing                     = 1,
+  Integer[0,1]         $net__ipv4__tcp_no_metrics_save                 = 0,
+  Integer[0]           $net__core__rmem_max                            = 16777216,
+  Integer[0]           $net__core__wmem_max                            = 16777216,
+  Integer[0]           $net__core__optmem_max                          = 20480,
+  Integer[0]           $net__core__netdev_max_backlog                  = 2048,
+  Integer[0]           $net__core__somaxconn                           = 2048,
+  Integer[0,1]         $net__ipv4__tcp_tw_reuse                        = 1,
+  Integer[0,1]         $fs__suid_dumpable                              = 0,          # CCE-27044-7
+  String               $kernel__core_pattern                           = &#39;/var/core/%u_%g_%p_%t_%h_%e.core&#39;,
+  Integer[0]           $kernel__core_pipe_limit                        = 0,
+  Integer[0,1]         $kernel__core_uses_pid                          = 1,
+  Integer[0,1]         $kernel__dmesg_restrict                         = 1,          # CCE-27366-4
+  Integer[0,1]         $kernel__exec_shield                            = 1,          # CCE-27007-4
+  Integer[0]           $kernel__panic                                  = 10,
+  Integer[0,2]         $kernel__randomize_va_space                     = 2,          # CCE-26999-3
+  Integer[0]           $kernel__sysrq                                  = 0,
+  Integer[0,1]         $net__ipv4__conf__all__accept_redirects         = 0,          # CCE-27027-2
+  Integer[0,1]         $net__ipv4__conf__all__accept_source_route      = 0,          # CCE-27037-1
+  Integer[0,1]         $net__ipv4__conf__all__log_martians             = 1,          # CCE-27066-0
+  Integer[0,2]         $net__ipv4__conf__all__rp_filter                = 1,          # CCE-26979-5
+  Integer[0,1]         $net__ipv4__conf__all__secure_redirects         = 0,          # CCE-26854-0
+  Integer[0,1]         $net__ipv4__conf__all__send_redirects           = 0,          # CCE-27004-1
+  Integer[0,1]         $net__ipv4__conf__default__accept_redirects     = 0,          # CCE-27015-7
+  Integer[0,1]         $net__ipv4__conf__default__accept_source_route  = 0,          # CCE-26983-7
+  Integer[0,2]         $net__ipv4__conf__default__rp_filter            = 1,          # CCE-26915-9
+  Integer[0,1]         $net__ipv4__conf__default__secure_redirects     = 0,          # CCE-26831-8
+  Integer[0,1]         $net__ipv4__conf__default__send_redirects       = 0,          # CCE-27001-7
+  Integer[0,1]         $net__ipv4__icmp_echo_ignore_broadcasts         = 1,          # CCE-26883-9
+  Integer[0,1]         $net__ipv4__icmp_ignore_bogus_error_responses   = 1,          # CCE-26993-6
+  Integer[0]           $net__ipv4__tcp_challenge_ack_limit             = 2147483647, # CVE-2016-5696 mitigation
+  Integer[1]           $net__ipv4__tcp_max_syn_backlog                 = 4096,
+  Integer[0,1]         $net__ipv4__tcp_syncookies                      = 1,          # CCE-27053-8
+  Integer[0,1]         $net__ipv6__conf__all__accept_redirects         = 0,
+  Integer[0,1]         $net__ipv6__conf__all__autoconf                 = 0,
+  Integer[0,1]         $net__ipv6__conf__all__forwarding               = 0,
+  Integer[0,1]         $net__ipv6__conf__default__accept_ra            = 0,          # CCE-27164-3
+  Integer[0,1]         $net__ipv6__conf__default__accept_ra_defrtr     = 0,          # SSG network_ipv6_limit_requests (No CCEs available at this time)
+  Integer[0,1]         $net__ipv6__conf__default__accept_ra_pinfo      = 0,          # SSG network_ipv6_limit_requests (No CCEs available at this time)
+  Integer[0,1]         $net__ipv6__conf__default__accept_ra_rtr_pref   = 0,          # SSG network_ipv6_limit_requests (No CCEs available at this time)
+  Integer[0,1]         $net__ipv6__conf__default__accept_redirects     = 0,          # CCE-27166-8
+  Integer[0,1]         $net__ipv6__conf__default__autoconf             = 0,          # SSG network_ipv6_limit_requests (No CCEs available at this time)
+  Integer[0,1]         $net__ipv6__conf__default__dad_transmits        = 0,          # SSG network_ipv6_limit_requests (No CCEs available at this time)
+  Integer[0]           $net__ipv6__conf__default__max_addresses        = 1,          # SSG network_ipv6_limit_requests (No CCEs available at this time)
+  Integer[0,1]         $net__ipv6__conf__default__router_solicitations = 0,          # SSG network_ipv6_limit_requests (No CCEs available at this time)
+
+  Boolean              $core_dumps                                     = false,
+  Stdlib::AbsolutePath $core_dump_dir                                  = &#39;/var/core&#39;,
+  Boolean              $pam                                            = simplib::lookup(&#39;simp_options::pam&#39;, { &#39;default_value&#39; =&gt; false }),
+  Optional[Boolean]    $ipv6                                           = undef
+) {
+
+  simplib::assert_metadata( $module_name )
+
+  validate_sysctl_value(&#39;kernel.core_pattern&#39;,$kernel__core_pattern)
+
+  case $::operatingsystem {
+    &#39;RedHat&#39;,&#39;CentOS&#39;: {
+      # Performance Related Settings
+      sysctl {
+        &#39;net.unix.max_dgram_qlen&#39;           : value =&gt; $net__unix__max_dgram_qlen;
+        &#39;net.ipv4.neigh.default.gc_thresh3&#39; : value =&gt; $net__ipv4__neigh__default__gc_thresh3;
+        &#39;net.ipv4.neigh.default.gc_thresh2&#39; : value =&gt; $net__ipv4__neigh__default__gc_thresh2;
+        &#39;net.ipv4.neigh.default.gc_thresh1&#39; : value =&gt; $net__ipv4__neigh__default__gc_thresh1;
+        &#39;net.ipv4.neigh.default.proxy_qlen&#39; : value =&gt; $net__ipv4__neigh__default__proxy_qlen;
+        &#39;net.ipv4.neigh.default.unres_qlen&#39; : value =&gt; $net__ipv4__neigh__default__unres_qlen;
+        &#39;net.ipv4.tcp_rmem&#39;                 : value =&gt; join($net__ipv4__tcp_rmem,&#39; &#39;);
+        &#39;net.ipv4.tcp_wmem&#39;                 : value =&gt; join($net__ipv4__tcp_wmem,&#39; &#39;);
+        &#39;net.ipv4.tcp_fin_timeout&#39;          : value =&gt; $net__ipv4__tcp_fin_timeout;
+        &#39;net.ipv4.tcp_rfc1337&#39;              : value =&gt; $net__ipv4__tcp_rfc1337;
+        &#39;net.ipv4.tcp_keepalive_time&#39;       : value =&gt; $net__ipv4__tcp_keepalive_time;
+        &#39;net.ipv4.tcp_mtu_probing&#39;          : value =&gt; $net__ipv4__tcp_mtu_probing;
+        &#39;net.ipv4.tcp_no_metrics_save&#39;      : value =&gt; $net__ipv4__tcp_no_metrics_save;
+        &#39;net.core.rmem_max&#39;                 : value =&gt; $net__core__rmem_max;
+        &#39;net.core.wmem_max&#39;                 : value =&gt; $net__core__wmem_max;
+        &#39;net.core.optmem_max&#39;               : value =&gt; $net__core__optmem_max;
+        &#39;net.core.netdev_max_backlog&#39;       : value =&gt; $net__core__netdev_max_backlog;
+        &#39;net.core.somaxconn&#39;                : value =&gt; $net__core__somaxconn;
+        &#39;net.ipv4.tcp_tw_reuse&#39;             : value =&gt; $net__ipv4__tcp_tw_reuse
+      }
+
+      # This may not exist until additional packages are present
+      sysctl { &#39;net.netfilter.nf_conntrack_max&#39;:
+        value  =&gt; $net__netfilter__nf_conntrack_max,
+        silent =&gt; true
+      }
+
+      # Security Related Settings
+      sysctl {
+        &#39;fs.suid_dumpable&#39;                                 : value =&gt; $fs__suid_dumpable;
+        &#39;kernel.core_pattern&#39;                              : value =&gt; $kernel__core_pattern;
+        &#39;kernel.core_pipe_limit&#39;                           : value =&gt; $kernel__core_pipe_limit;
+        &#39;kernel.core_uses_pid&#39;                             : value =&gt; $kernel__core_uses_pid;
+        &#39;kernel.dmesg_restrict&#39;                            : value =&gt; $kernel__dmesg_restrict;
+        &#39;kernel.panic&#39;                                     : value =&gt; $kernel__panic;
+        &#39;kernel.randomize_va_space&#39;                        : value =&gt; $kernel__randomize_va_space;
+        &#39;kernel.sysrq&#39;                                     : value =&gt; $kernel__sysrq;
+        &#39;net.ipv4.conf.all.accept_redirects&#39;               : value =&gt; $net__ipv4__conf__all__accept_redirects;
+        &#39;net.ipv4.conf.all.accept_source_route&#39;            : value =&gt; $net__ipv4__conf__all__accept_source_route;
+        &#39;net.ipv4.conf.all.log_martians&#39;                   : value =&gt; $net__ipv4__conf__all__log_martians;
+        &#39;net.ipv4.conf.all.rp_filter&#39;                      : value =&gt; $net__ipv4__conf__all__rp_filter;
+        &#39;net.ipv4.conf.all.secure_redirects&#39;               : value =&gt; $net__ipv4__conf__all__secure_redirects;
+        &#39;net.ipv4.conf.all.send_redirects&#39;                 : value =&gt; $net__ipv4__conf__all__send_redirects;
+        &#39;net.ipv4.conf.default.accept_redirects&#39;           : value =&gt; $net__ipv4__conf__default__accept_redirects;
+        &#39;net.ipv4.conf.default.accept_source_route&#39;        : value =&gt; $net__ipv4__conf__default__accept_source_route;
+        # Done since we&#39;re applying heavy IPTables rules.
+        &#39;net.ipv4.conf.default.rp_filter&#39;                  : value =&gt; $net__ipv4__conf__default__rp_filter;
+        &#39;net.ipv4.conf.default.secure_redirects&#39;           : value =&gt; $net__ipv4__conf__default__secure_redirects;
+        &#39;net.ipv4.conf.default.send_redirects&#39;             : value =&gt; $net__ipv4__conf__default__send_redirects;
+        &#39;net.ipv4.icmp_echo_ignore_broadcasts&#39;             : value =&gt; $net__ipv4__icmp_echo_ignore_broadcasts;
+        &#39;net.ipv4.icmp_ignore_bogus_error_responses&#39;       : value =&gt; $net__ipv4__icmp_ignore_bogus_error_responses;
+        &#39;net.ipv4.tcp_challenge_ack_limit&#39;                 : value =&gt; $net__ipv4__tcp_challenge_ack_limit;
+        &#39;net.ipv4.tcp_max_syn_backlog&#39;                     : value =&gt; $net__ipv4__tcp_max_syn_backlog;
+        &#39;net.ipv4.tcp_syncookies&#39;                          : value =&gt; $net__ipv4__tcp_syncookies;
+      }
+
+      if $core_dumps {
+        file { $core_dump_dir:
+          ensure =&gt; &#39;directory&#39;,
+          owner  =&gt; &#39;root&#39;,
+          group  =&gt; &#39;root&#39;,
+          mode   =&gt; &#39;0640&#39;,
+          before =&gt; [
+          Sysctl[&#39;kernel.core_pattern&#39;],
+          Sysctl[&#39;kernel.core_uses_pid&#39;],
+          ]
+        }
+      }
+      if ($pam and !$core_dumps) {
+        include &#39;::pam&#39;
+
+        pam::limits::rule { &#39;prevent_core&#39;:
+          domains =&gt; [&#39;*&#39;],
+          type    =&gt; &#39;hard&#39;,
+          item    =&gt; &#39;core&#39;,
+          value   =&gt; 0,
+          order   =&gt; 100
+        }
+      }
+
+      if ( $::operatingsystem in [&#39;RedHat&#39;,&#39;CentOS&#39;] ) and ( $::operatingsystemmajrelease == &#39;6&#39; ) {
+        sysctl { &#39;kernel.exec-shield&#39;: value =&gt; $kernel__exec_shield }
+      }
+
+      if $ipv6.is_a(Undef) {
+        $_disable_ipv6 = 1
+      }
+      else {
+        $_disable_ipv6 = $ipv6 ? { true =&gt; 0, false =&gt; 1 }
+        sysctl { &#39;net.ipv6.conf.all.disable_ipv6&#39;: value =&gt; $_disable_ipv6 }
+      }
+
+      if $facts[&#39;ipv6_enabled&#39;] and ( $_disable_ipv6 == 0 ) {
+        sysctl {
+          &#39;net.ipv6.conf.all.accept_redirects&#39;         : value =&gt; $net__ipv6__conf__all__accept_redirects;
+          &#39;net.ipv6.conf.all.autoconf&#39;                 : value =&gt; $net__ipv6__conf__all__autoconf;
+          &#39;net.ipv6.conf.all.forwarding&#39;               : value =&gt; $net__ipv6__conf__all__forwarding;
+          &#39;net.ipv6.conf.default.accept_ra&#39;            : value =&gt; $net__ipv6__conf__default__accept_ra;
+          &#39;net.ipv6.conf.default.accept_ra_defrtr&#39;     : value =&gt; $net__ipv6__conf__default__accept_ra_defrtr;
+          &#39;net.ipv6.conf.default.accept_ra_pinfo&#39;      : value =&gt; $net__ipv6__conf__default__accept_ra_pinfo;
+          &#39;net.ipv6.conf.default.accept_ra_rtr_pref&#39;   : value =&gt; $net__ipv6__conf__default__accept_ra_rtr_pref;
+          &#39;net.ipv6.conf.default.accept_redirects&#39;     : value =&gt; $net__ipv6__conf__default__accept_redirects;
+          &#39;net.ipv6.conf.default.autoconf&#39;             : value =&gt; $net__ipv6__conf__default__autoconf;
+          &#39;net.ipv6.conf.default.dad_transmits&#39;        : value =&gt; $net__ipv6__conf__default__dad_transmits;
+          &#39;net.ipv6.conf.default.max_addresses&#39;        : value =&gt; $net__ipv6__conf__default__max_addresses;
+          &#39;net.ipv6.conf.default.router_solicitations&#39; : value =&gt; $net__ipv6__conf__default__router_solicitations;
+        }
+      }
+    }
+    default : {
+      fail(&#39;Only RedHat and CentOS are currently supported by &quot;simp::sysctl&quot;&#39;)
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-openscap"><img src="https://travis-ci.org/simp/pupmod-simp-openscap.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#this-is-a-simp-module">Overview</a></li>
+  <li><a href="#module-description">Module Description - A Puppet module for managing openscap</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with pupmod-simp-openscap</a>
+    <ul>
+      <li><a href="#what-simp-openscap-affects">What pupmod-simp-openscap affects</a></li>
+      <li><a href="#setup-requirements">Setup requirements</a></li>
+      <li><a href="#beginning-with-openscap">Beginning with openscap</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+<p>This module is a component of the
+<a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>,
+a compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they can be submitted to our
+<a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+
+<p>Please read our <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">Contribution Guide</a>
+and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">developer wiki</a>.</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but it
+can be used independently:
+* When included within the SIMP ecosystem, security compliance settings will be
+managed from the Puppet server.
+* In the future, all SIMP-managed security subsystems will be disabled by
+default and must be explicitly opted into by administrators.  Please review
+<em>simp/simp_options</em> for details.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>This module sets up <a href="https://www.open-scap.org/">openscap</a> and allows you to
+schedule and log openscap runs.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-simp-openscap-affects">What simp openscap affects</h3>
+
+<p><em>simp/openscap</em> will manage:</p>
+
+<ul>
+  <li>openscap-utils and scap-security-guide packages</li>
+</ul>
+
+<p><em>simp/openscap::schedule</em> will manage:</p>
+
+<ul>
+  <li>A cron job for openscap runs</li>
+  <li>A logging directory for openscap (Default: /var/log/openscap)</li>
+</ul>
+
+<h3 id="setup-requirements">Setup Requirements</h3>
+
+<p>The module can support logrotate if <em>simp/logrotate</em> is used. Otherwise, no
+additional setup is required.</p>
+
+<h3 id="beginning-with-openscap">Beginning with openscap</h3>
+
+<p>You can install openscap by:</p>
+
+<p><code>puppet
+include 'openscap'
+</code></p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="i-want-to-install-openscap-with-default-logging">I want to install openscap with default logging</h3>
+
+<p>The following will run a cron job on Monday at 1:30 AM and log to
+/var/log/openscap:</p>
+
+<p><code>puppet
+class { 'openscap':
+  enable_schedule =&gt; true,
+}
+</code></p>
+
+<p>OR</p>
+
+<p><code>puppet
+include 'openscap::schedule'
+</code></p>
+
+<h3 id="i-have-a-particular-scap-profile-i-want-to-use">I have a particular SCAP profile I want to use</h3>
+
+<p><code>puppet
+class { 'openscap::schedule':
+  scap_profile =&gt; 'xccdf_org.ssgproject.content_profile_stig-rhel7-server-upstream',
+}
+</code></p>
+
+<h3 id="i-want-to-log-daily-at-a-set-time">I want to log daily at a set time</h3>
+
+<p><code>puppet
+class { 'openscap::schedule':
+  minute  =&gt; 00,
+  hour    =&gt; 22,
+  weekday =&gt; '*',
+}
+</code></p>
+
+<h3 id="i-want-to-log-on-the-first-and-fifteenth-day-of-the-month">I want to log on the first and fifteenth day of the month</h3>
+
+<p><code>puppet
+class { 'openscap::schedule':
+  monthday =&gt; '1,15',
+}
+</code></p>
+
+<h3 id="i-want-to-log-to-a-different-directory">I want to log to a different directory</h3>
+
+<p><code>puppet
+class { 'openscap::schedule':
+  logdir =&gt; '/opt/scaplogs',
+}
+</code></p>
+
+<h2 id="reference">Reference</h2>
+
+<h3 id="public-classes">Public Classes</h3>
+<ul>
+  <li><a href="#openscap">‘openscap’</a>: Main Class</li>
+  <li><a href="#openscapschedule">‘openscap::schedule’</a>: Sets a schedule for openscap to run
+a check on your systems.</li>
+</ul>
+
+<h3 id="openscap"><code>openscap</code></h3>
+
+<h4 id="parameters">Parameters</h4>
+
+<h5 id="enableschedule">enable_schedule</h5>
+<p>Includes the base <code>openscap::schedule</code> class.
+  * Valid Options: true or false.
+  * Default: false</p>
+
+<h3 id="openscapschedule"><code>openscap::schedule</code></h3>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<h5 id="scapprofile">scap_profile</h5>
+<p>The name of the profile with the content.
+  * Valid Options:</p>
+
+<pre class="code ruby"><code class="ruby">```
+Valid RHEL/CentOS 6 Choices:
+  * xccdf_org.ssgproject.content_profile_test
+  * xccdf_org.ssgproject.content_profile_CS2
+  * xccdf_org.ssgproject.content_profile_common
+  * xccdf_org.ssgproject.content_profile_server
+  * xccdf_org.ssgproject.content_profile_stig-rhel6-server-upstream
+  * xccdf_org.ssgproject.content_profile_usgcb-rhel6-server
+  * xccdf_org.ssgproject.content_profile_rht-ccp
+  * xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS
+  * xccdf_org.ssgproject.content_profile_C2S
+
+Valid RHEL/CentOS 7 Choice:
+  * xccdf_org.ssgproject.content_profile_test
+  * xccdf_org.ssgproject.content_profile_rht-ccp
+  * xccdf_org.ssgproject.content_profile_common
+  * xccdf_org.ssgproject.content_profile_stig-rhel7-server-upstream
+```
+</code></pre>
+
+<ul>
+  <li>Default: <code>xccdf_org.ssgproject.content_profile_stig-rhel${::operatingsystemmajrelease}-server-upstream</code></li>
+</ul>
+
+<h5 id="ssgbasedir">ssg_base_dir</h5>
+<p>The starting directory for all SSG content. Change this if you want to
+install your own SSG profiles.
+  * Valid Options: Absolute Path.
+  * Default: <code>/usr/share/xml/scap/ssg/content</code></p>
+
+<h5 id="ssgdatastream">ssg_data_stream</h5>
+<p>The data stream XML file to use for your system scan. This must be a file
+under $ssg_base_dir.
+  * Valid Options: String ending in .xml.
+  * Default: <code>ssg-rhel${::operatingsystemmajrelease}-ds.xml</code></p>
+
+<h5 id="fetchremoteresource">fetch_remote_resource</h5>
+<p>If true, download remote content referenced by XCCDF.
+  * Valid Options: true or false.
+  * Default: <code>false</code>.</p>
+
+<h5 id="logdir">logdir</h5>
+<p>Specifies output location.
+  * Valid Options: Absolute Path.
+  * Default: <code>/var/log/openscap</code></p>
+
+<h5 id="logrotate">logrotate</h5>
+<p>If true, use <code>simp/logrotate</code> to rotate the output logs.
+  * Valid Options: true or false.
+  * Default: value of <code>simp_options::logrotate</code> or false.</p>
+
+<h5 id="minute">minute</h5>
+<p>Minute setting for logging cronjob.
+  * Valid Options: see cron resource type.
+  * Default: <code>30</code>.</p>
+
+<h5 id="hour">hour</h5>
+<p>Hour setting for logging cronjob.
+  * Valid Options: see cron resource type.
+  * Default: <code>1</code>.</p>
+
+<h5 id="monthday">monthday</h5>
+<p>Day of Month setting for logging cronjob.
+  * Valid Options: see cron resource type.
+  * Default: <code>'*'</code>.</p>
+
+<h5 id="month">month</h5>
+<p>Month setting for logging cronjob.
+  * Valid Options: see cron resource type.
+  * Default: <code>'*'</code>.</p>
+
+<h5 id="weekday">weekday</h5>
+<p>Weekday setting for logging cronjob.
+  * Valid Options: see cron resource type.
+  * Default: <code>1</code>.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This module is only designed to work in RHEL or CentOS 6 and 7. Any other
+operating systems have not been tested and results cannot be guaranteed.</p>
+
+<h1 id="development">Development</h1>
+
+<p>Please see the
+<a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">SIMP Contribution Guidelines</a>.</p>
+
+<p>General developer documentation can be found on
+<a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">Confluence</a>.
+Visit the project homepage on <a href="https://simp-project.com">GitHub</a>,
+chat with us on our <a href="https://simp-project.hipchat.com/">HipChat</a>,
+and look at our issues on  <a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

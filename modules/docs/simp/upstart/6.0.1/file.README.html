@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-upstart"><img src="https://travis-ci.org/simp/pupmod-simp-upstart.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h1 id="module">Module</h1>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+<ol>
+  <li><a href="#module-description">Module Description - What the module does and why it is useful</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with upstart</a>
+    <ul>
+      <li><a href="#what-upstart-affects">What upstart affects</a></li>
+      <li><a href="#setup-requirements">Setup requirements</a></li>
+      <li><a href="#beginning-with-upstart">Beginning with upstart</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+  <li><a href="#acceptance-tests">Acceptance Tests</a></li>
+</ol>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>Upstart is an event-based replacement for the /sbin/init daemon which handles
+starting of tasks and services during boot, stopping them during shutdown and
+supervising them while the system is running.</p>
+
+<p>This class allows for configuration of upstart init files. The main class will
+ensure that /etc/init has proper permissions and disable ctrl+alt+del restarts
+by default.</p>
+
+<p><code>upstart::job</code> allows you to manage upstart jobs in /etc/init.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>Include <code>SIMP/upstart</code> in your modulepath.</p>
+
+<h3 id="what-upstart-affects">What upstart affects</h3>
+
+<p>This module will manage the /etc/init directory, and any additional jobs created
+by <code>upstart::job</code></p>
+
+<h3 id="begging-with-upstart">Begging with upstart</h3>
+
+<p>To ensure the proper permissions on /etc/init and disable ctrl+alt+delete
+restart, just include the main class in your manifest.</p>
+
+<p><code>puppet
+include upstart
+</code></p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="i-want-to-re-enable-ctrlaltdelete-restarts">I want to re-enable ctrl+alt+delete restarts</h3>
+
+<p><code>puppet
+class{'upstart':
+  disable_ctrl_alt_del =&gt; false,
+}
+</code></p>
+
+<h3 id="i-want-to-run-a-script-at-restart-on-any-run-level">I want to run a script at restart on any run-level</h3>
+
+<p><code>puppet
+upstart::job { 'myjob':
+  main_process_type =&gt; 'script',
+  main_process      =&gt; template('myprofile/script'),
+  start_on          =&gt; 'runlevel [0123456]',
+  description       =&gt; 'Used to run my process'
+}
+</code></p>
+
+<h3 id="i-have-a-simple-command-i-want-to-run-on-runlevel-5">I have a simple command I want to run on runlevel 5</h3>
+
+<p><code>puppet
+upstart::job { 'myjob':
+  main_process_type =&gt; 'script',
+  main_process      =&gt; '/bin/foo --opt -xyz foo bar',
+  start_on          =&gt; 'runlevel [5]',
+  description       =&gt; 'Used to foo xyz options on foo and bar',
+}
+</code></p>
+
+<h2 id="reference">Reference</h2>
+
+<h3 id="public-classes">Public Classes</h3>
+<ul>
+  <li><a href="https://github.com/simp/pupmod-simp-upstart/blob/master/manifests/init.pp">upstart</a>: Manages /etc/init and controls the ctrl+alt+delete job.</li>
+</ul>
+
+<h3 id="defined-types">Defined Types</h3>
+<ul>
+  <li><a href="https://github.com/simp/pupmod-simp-upstart/blob/master/manifests/job.pp">upstart::job</a>: Manages upstart jobs</li>
+</ul>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>SIMP Puppet modules are generally intended to be used on a Red Hat Enterprise
+Linux-compatible distribution.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Please read our <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">Contribution Guide</a>
+and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">Developer Wiki</a></p>
+
+<p>If you find any issues, they can be submitted to our
+<a href="https://simp-project.atlassian.net">JIRA</a>.</p>
+
+<h2 id="acceptance-tests">Acceptance tests</h2>
+
+<p>To run the system tests, you need <code>Vagrant</code> installed.</p>
+
+<p>You can then run the following to execute the acceptance tests:</p>
+
+<p><code>shell
+   bundle exec rake beaker:suites
+</code></p>
+
+<p>Some environment variables may be useful:</p>
+
+<p><code>shell
+   BEAKER_debug=true
+   BEAKER_provision=no
+   BEAKER_destroy=no
+   BEAKER_use_fixtures_dir_for_modules=yes
+</code></p>
+
+<ul>
+  <li><code>BEAKER_debug</code>: show the commands being run on the STU and their output.</li>
+  <li><code>BEAKER_destroy=no</code>: prevent the machine destruction after the tests
+finish so you can inspect the state.</li>
+  <li><code>BEAKER_provision=no</code>: prevent the machine from being recreated.  This can
+save a lot of time while you’re writing the tests.</li>
+  <li><code>BEAKER_use_fixtures_dir_for_modules=yes</code>: cause all module dependencies
+to be loaded from the <code>spec/fixtures/modules</code> directory, based on the
+contents of <code>.fixtures.yml</code>. The contents of this directory are usually
+populated by <code>bundle exec rake spec_prep</code>. This can be used to run
+acceptance tests to run on isolated networks.</li>
+</ul>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

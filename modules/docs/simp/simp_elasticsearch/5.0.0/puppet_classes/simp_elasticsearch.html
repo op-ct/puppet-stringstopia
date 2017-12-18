@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp_elasticsearch
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp_elasticsearch";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp_elasticsearch</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp_elasticsearch</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-i97n36/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class integrates the elastic-elasticsearch module with
+the configuration settings recommended for SIMP systems.</p>
+
+<p>Please use the portions that make sense for your environment.</p>
+
+<p>The classes are separated in such a way as to be usable individually where
+possible.</p>
+
+<p>At this time, it is NOT possible to encrypt data across the ES transport
+mechanism. The http interface is optionally fronted with Apache and encrypted
+that way.</p>
+
+<p>We are planning to move to add IPSec support in the future so that the
+transport layer can be optionally protected internally.</p>
+
+<p>Currently, an IPTables rules are created for both ES API and cluster
+communications.  We will be moving to use ipset in the future for
+optimization.</p>
+
+<h1 id="set-up-an-es-instance-that-will-only-run-on-this-server">Set up an ES instance that will only run on this server.</h1>
+
+<p>class { ‘simp_elasticsearch’: cluster_name =&gt; ‘single’ }</p>
+
+<h1 id="set-up-an-es-instance-that-will-act-as-part-of-a-larger-cluster">Set up an ES instance that will act as part of a larger cluster.</h1>
+
+<p>class { ‘simp_elasticsearch’:
+  cluster_name  =&gt; ‘multi’,
+  unicast_hosts =&gt; {
+   ‘first.cluster.host:9300’,
+   ‘second.cluster.host:9300’,
+   ‘third.cluster.host:9300’,
+  },
+}</p>
+
+<p>In addition to the class definitions listed in the EL7 examples,
+the following hieradata setting is required to ensure the
+correct version of JAVA is installed:</p>
+
+<p>java::package : ‘java-1.8.0-openjdk-devel’</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Local ES instance EL7</p>
+</div></p>
+      
+      <pre class="example code"><code></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'><p>Clustered ES instance EL7</p>
+</div></p>
+      
+      <pre class="example code"><code></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'><p>ES instance on EL6</p>
+</div></p>
+      
+      <pre class="example code"><code></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>cluster_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><em>Required</em> The name of the cluster that this
+node will be joining.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>node_name</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Host</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$facts[&#39;fqdn&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An arbitrary, unique name for this node.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>bind_host</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Host</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$facts[&#39;ipaddress&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The IP address to which to bind the ES cluster
+communications service.</p>
+
+<p>@note When set to 127.0.0.1 no cluster communication with external
+  nodes is possible.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>http_bind_host</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Host</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;127.0.0.1&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The IP address to which to bind the ES http
+service used for ES API communications.</p>
+
+<p>@note For the most secure http configuration, leave this set to
+  127.0.0.1, set http_listen_port to a value different from
+  http_port, and set http_method_acl with appropriate
+  authentication and/or command restrictions.  This will proxy
+  http interactions received on the http_listen_port into the
+  ES engine on http_port, after applying the authentication
+  and/or command restrictions specified in http_method_acl.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>http_listen_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>9200</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port to which secure, external ES
+API requests should be made. The Apache service will
+authenticate requests on this port and then proxy them to
+http_port on http_bind_host.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>http_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>9199</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port used for http API requests into the ES engine.</p>
+
+<p>@note This will <em>not</em> be exposed directly through iptables unless
+  set to http_listen_port.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>http_timeout</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Default timeout (in seconds) to use when accessing
+Elasticsearch APIs.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>http_method_acl</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>This controls the remote accesses allowed to
+ES. This is quite complex and you should check the documentation carefully
+prior to proceeding.</p>
+
+<p>@see simp_elasticsearch::apache option ‘method_acl’</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/var/elasticsearch&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path where the data should be stored.  You
+will need to create all parent directories, this module will not do it for
+you.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>min_master_nodes</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The number of master nodes that consitutes
+an operational cluster.</p>
+
+<p>@note If fewer than 3 unicast hosts are specified below, this will default
+  to 1.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>unicast_hosts</span>
+      
+      
+        <span class='type'>(<tt>Array[Simplib::Host::Port]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&quot;${facts[&#39;fqdn&#39;]}:9300&quot;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>You must specify all of your hosts here.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>init_defaults</span>
+      
+      
+        <span class='type'>(<tt>Hash[Pattern['^[A-Z,_]+$'],Any]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options that will be passed directly into
+the sysconfig file for the elasticsearch service.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>jna_tmpdir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/var/lib/elasticsearch/tmp&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>JNA tmpdir to be used in lieu of /tmp.  Cannot be on a
+noexec filesystem.  Directory will be created and configured, but
+you must ensure the parent directory exists and is accessible to
+the ES user.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>jvm_options</span>
+      
+      
+        <span class='type'>(<tt>Array[Pattern['^-']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>JVM options to be persisted to /etc/elasticsearch/jvm.options.
+Anything passed in via this array will be appended to the default options.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>es_config</span>
+      
+      
+        <span class='type'>(<tt>Data</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options as required by the ‘elasticsearch’
+module.  If you specify your own hash, then it will be merged with the
+default.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>file_rolling_type</span>
+      
+      
+        <span class='type'>(<tt>Enum['dailyRollingFile',
+    'rollingFile']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;dailyRollingFile&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Configuration for the file appender rotation.
+It can be ‘dailyRollingFile’ to rotate by name or ‘rollingFile’ to
+to rotate by name by size.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>daily_rolling_date_pattern</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;&quot;\&#39;.\&#39;yyyy-MM-dd&quot;&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>File pattern for the file appender
+log when file_rolling_type is ‘dailyRollingFile’.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rolling_file_max_backup_index</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Max number of logs to store when
+file_rolling_type is ‘rollingFile’.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rolling_file_max_file_size</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;10MB&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Max log file size when file_rolling_type
+is ‘rollingFile’.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_httpd</span>
+      
+      
+        <span class='type'>(<tt>Variant[Boolean,Enum['conf']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to manage the httpd configuration
+on this system.</p>
+
+<p>May be One of <code>true</code>, <code>false</code>, or ‘conf’
+  * true  =&gt; Manage the entire web stack.
+  * false =&gt; Manage nothing.
+  * conf  =&gt; Just drop the configuration file into /etc/httpd/conf.d
+    note:  conf assumes you have apache installed and that Service[‘httpd’] exists
+           somewhere in the catalog.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_on_change</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to automatically restart ES whenever the
+configuration, package, or plugins change. This may be undesireable in
+highly available environments.  If all other restart_* parameters are
+left unset, the value of restart_on_change is used for all other
+restart_*_change defaults.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_config_change</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to automatically restart ES
+whenever the configuration changes. Disabling automatic restarts on
+config changes may be desired in an environment where you need to
+ensure restarts occur in a controlled/rolling manner rather than
+during a Puppet run.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_package_change</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to automatically restart ES
+whenever the package (or package version) for ES changes.  Disabling
+automatic restarts on package changes may be desired in an
+environment where you need to ensure restarts occur in a
+controlled/rolling manner rather than during a Puppet run.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_plugin_change</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to automatically restart ES
+whenever plugins are installed or removed.  Disabling automatic
+restarts on plugin changes may be desired in an environment where
+you need to ensure restarts occur in a controlled/rolling manner
+rather than during a Puppet run.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>firewall</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::firewall&#39;, { &#39;default_value&#39; =&gt; false})</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to use iptables for ES http connections
+and cluster communications.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>spawn_default_instance</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set, create a default ES instance,
+named for the cluster, on the system.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-i97n36/manifests/init.pp', line 170</span>
+
+class simp_elasticsearch (
+  String                          $cluster_name,
+  Simplib::Host                   $node_name              = $facts[&#39;fqdn&#39;],
+  Simplib::Host                   $bind_host              = $facts[&#39;ipaddress&#39;],
+  Simplib::Host                   $http_bind_host         = &#39;127.0.0.1&#39;,
+  Simplib::Port                   $http_listen_port       = 9200,
+  Simplib::Port                   $http_port              = 9199,
+  Integer                         $http_timeout           = 10,
+  Hash                            $http_method_acl        = {},
+  Stdlib::AbsolutePath            $data_dir               = &#39;/var/elasticsearch&#39;,
+  Integer[0]                      $min_master_nodes       = 2,
+  Array[Simplib::Host::Port]      $unicast_hosts          = [&quot;${facts[&#39;fqdn&#39;]}:9300&quot;],
+  Hash[Pattern[&#39;^[A-Z,_]+$&#39;],Any] $init_defaults          = {},
+  Stdlib::AbsolutePath            $jna_tmpdir             = &#39;/var/lib/elasticsearch/tmp&#39;,
+  Array[Pattern[&#39;^-&#39;]]            $jvm_options            = [],
+  Enum[&#39;dailyRollingFile&#39;,
+    &#39;rollingFile&#39;]                $file_rolling_type             = &#39;dailyRollingFile&#39;,
+  String                          $daily_rolling_date_pattern    = &#39;&quot;\&#39;.\&#39;yyyy-MM-dd&quot;&#39;,
+  Integer                         $rolling_file_max_backup_index = 1,
+  String                          $rolling_file_max_file_size    = &#39;10MB&#39;,
+  Data                            $es_config              = {},
+  Variant[Boolean,Enum[&#39;conf&#39;]]   $manage_httpd           = true,
+  Boolean                         $restart_on_change      = true,
+  Optional[Boolean]               $restart_config_change  = undef,
+  Optional[Boolean]               $restart_package_change = undef,
+  Optional[Boolean]               $restart_plugin_change  = undef,
+  Boolean                         $firewall               = simplib::lookup(&#39;simp_options::firewall&#39;, { &#39;default_value&#39; =&gt; false}),
+  Boolean                         $spawn_default_instance = true,
+) {
+  include &#39;::simp_elasticsearch::defaults&#39;
+  include &#39;::pam::limits&#39;
+
+  if !empty($es_config) {
+    $_config = deep_merge($::simp_elasticsearch::defaults::base_config,$es_config)
+  }
+  else {
+    $_config = $::simp_elasticsearch::defaults::base_config
+  }
+
+
+  if $spawn_default_instance {
+    $default_instance_name = simp_elasticsearch::systemd_escape($cluster_name)
+    include &#39;::simp_elasticsearch::default_instance&#39;
+
+    Class[&#39;simp_elasticsearch&#39;] -&gt; Class[&#39;simp_elasticsearch::default_instance&#39;]
+    $_service_name = &quot;elasticsearch-${default_instance_name}.service&quot;
+  }
+  else {
+    $_service_name = &#39;elasticsearch.service&#39;
+  }
+
+
+  include &#39;::java&#39;
+
+  # TODO: Figure out how to move this into a single include!
+  class { &#39;elasticsearch&#39;:
+    config                        =&gt; $_config,
+    autoupgrade                   =&gt; true,
+    status                        =&gt; &#39;enabled&#39;,
+    init_defaults                 =&gt; $init_defaults,
+    jvm_options                   =&gt; concat(
+      $::simp_elasticsearch::defaults::jvm_options_defaults,
+      $jvm_options
+    ),
+    datadir                       =&gt; &quot;${data_dir}/data&quot;,
+    restart_on_change             =&gt; $restart_on_change,
+    restart_config_change         =&gt; $restart_config_change,
+    restart_package_change        =&gt; $restart_package_change,
+    restart_plugin_change         =&gt; $restart_plugin_change,
+    file_rolling_type             =&gt; $file_rolling_type,
+    daily_rolling_date_pattern    =&gt; $daily_rolling_date_pattern,
+    rolling_file_max_backup_index =&gt; $rolling_file_max_backup_index,
+    rolling_file_max_file_size    =&gt; $rolling_file_max_file_size,
+    api_host                      =&gt; $http_bind_host,
+    api_port                      =&gt; $http_port,
+    api_timeout                   =&gt; $http_timeout
+  }
+
+  Class[&#39;java&#39;] -&gt; Class[&#39;elasticsearch&#39;]
+
+  # Tweak elasticsearch installation for SIMP
+  include &#39;::simp_elasticsearch::config&#39;
+
+  Class[&#39;elasticsearch&#39;] -&gt; Class[&#39;simp_elasticsearch::config&#39;]
+
+  if $firewall {
+    include &#39;::iptables&#39;
+
+    iptables_rule { &#39;elasticsearch_allow_cluster&#39;:
+      first   =&gt; true,
+      content =&gt; simp_elasticsearch::iptables_format($_config[&#39;discovery&#39;][&#39;zen&#39;][&#39;ping&#39;][&#39;unicast&#39;][&#39;hosts&#39;])
+    }
+  }
+
+  if $manage_httpd or $manage_httpd == &#39;conf&#39; {
+    class { &#39;simp_elasticsearch::simp_apache&#39;:
+      manage_httpd =&gt; $manage_httpd,
+      listen       =&gt; $http_listen_port,
+      proxy_port   =&gt; $_config[&#39;http&#39;][&#39;port&#39;],
+      method_acl   =&gt; $http_method_acl,
+    }
+  }
+
+  if $manage_httpd {
+    # Allow remote connections
+    if $firewall {
+      if !empty($http_method_acl) {
+        $_macl_limits = $http_method_acl[&#39;limits&#39;]
+        if defined(&#39;$_macl_limits&#39;) and !empty($_macl_limits) {
+          $_macl_hosts = $_macl_limits[&#39;hosts&#39;]
+          if defined(&#39;$_macl_hosts&#39;) and !empty($_macl_hosts) {
+            iptables::listen::tcp_stateful{ &#39;elasticsearch_allow_remote&#39;:
+              trusted_nets =&gt; keys($_macl_hosts),
+              dports       =&gt; [ $http_listen_port ]
+            }
+          }
+        }
+      }
+    }
+  }
+
+  # Make sure elasticsearch user can spawn up to 2048 threads
+  if ($facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;] &lt; &#39;7&#39;) {
+    # see man page for limits.conf
+    pam::limits::rule { &#39;es_nproc&#39;:
+      domains =&gt; [ $::elasticsearch::elasticsearch_user ],
+      item    =&gt; &#39;nproc&#39;,
+      value   =&gt; 2048,
+    }
+  }
+  else {
+    # see man page for systemd.unit
+    $_systemd_opts_dir = &quot;/etc/systemd/system/${_service_name}.d&quot;
+    file { $_systemd_opts_dir:
+      ensure =&gt; directory,
+      owner  =&gt; &#39;root&#39;,
+      group  =&gt; &#39;root&#39;,
+      mode   =&gt; &#39;0644&#39;,
+    }
+
+    file { &quot;${_systemd_opts_dir}/opts.conf&quot;:
+      ensure  =&gt; file,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;root&#39;,
+      mode    =&gt; &#39;0644&#39;,
+      content =&gt; file(&quot;${module_name}/opts.conf&quot;),
+      require =&gt; File[$_systemd_opts_dir]
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

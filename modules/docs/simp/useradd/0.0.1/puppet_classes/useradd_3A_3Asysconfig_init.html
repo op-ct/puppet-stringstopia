@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: useradd::sysconfig_init
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::useradd::sysconfig_init";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (u)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">useradd::sysconfig_init</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: useradd::sysconfig_init</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1pwrh3s/manifests/sysconfig_init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Allow for the configuration of /etc/sysconfig/init</p>
+
+<p>See /usr/share/doc/initscripts-<version>/sysconfig.txt for variable
+  definitions.</version></p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>bootup</span>
+      
+      
+        <span class='type'>(<tt>Useradd::Bootup</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;color&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>res_col</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>60</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>move_to_col</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;\&quot;echo -en \\\\033[\${RES_COL}G\&quot;&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>setcolor_success</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;\&quot;echo -en \\\\033[0;32m\&quot;&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>setcolor_failure</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;\&quot;echo -en \\\\033[0;31m\&quot;&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>setcolor_warning</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;\&quot;echo -en \\\\033[0;33m\&quot;&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>setcolor_normal</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;\&quot;echo -en \\\\033[0;39m\&quot;&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>single_user_login</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/sbin/sulogin&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>loglvl</span>
+      
+      
+        <span class='type'>(<tt>Integer[1,8]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>3</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>prompt</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>autoswap</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1pwrh3s/manifests/sysconfig_init.pp', line 18</span>
+
+class useradd::sysconfig_init (
+  Useradd::Bootup      $bootup            = &#39;color&#39;,
+  Integer              $res_col           = 60,
+  String               $move_to_col       = &quot;\&quot;echo -en \\\\033[\${RES_COL}G\&quot;&quot;,
+  String               $setcolor_success  = &quot;\&quot;echo -en \\\\033[0;32m\&quot;&quot;,
+  String               $setcolor_failure  = &quot;\&quot;echo -en \\\\033[0;31m\&quot;&quot;,
+  String               $setcolor_warning  = &quot;\&quot;echo -en \\\\033[0;33m\&quot;&quot;,
+  String               $setcolor_normal   = &quot;\&quot;echo -en \\\\033[0;39m\&quot;&quot;,
+  Stdlib::AbsolutePath $single_user_login = &#39;/sbin/sulogin&#39;,
+  Integer[1,8]         $loglvl            = 3,
+  Boolean              $prompt            = false,
+  Boolean              $autoswap          = false,
+) {
+
+  file { &#39;/etc/sysconfig/init&#39;:
+    ensure  =&gt; &#39;file&#39;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0644&#39;,
+    content =&gt; template(&#39;useradd/etc/sysconfig/init.erb&#39;)
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

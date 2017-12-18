@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: freeradius::v3::modules::ldap
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::freeradius::v3::modules::ldap";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (f)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">freeradius::v3::modules::ldap</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: freeradius::v3::modules::ldap</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-h1d6hb/manifests/v3/modules/ldap.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>== Class: freeradius::v3::modules::ldap</p>
+
+<p>Set up the LDAP module configuration.</p>
+
+<p>== Parameters</p>
+
+<p>== Authors</p>
+
+<ul>
+  <li>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></li>
+</ul>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>base_dn</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>app_pki_key</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::freeradius::config::app_pki_key</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path and name of the private SSL key file</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>app_pki_cert</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::freeradius::config::app_pki_cert</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path and name of the public SSL certificate</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>app_pki_ca_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::freeradius::config::app_pki_ca_dir</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path to the CA.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base_filter</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;(objectclass=radiusprofile)&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_scope</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_attribute_identifier</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;radiusClientIdentifier&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_attribute_secret</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;radiusClientSecret&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_attribute_shortname</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_attribute_nas_type</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_attribute_virtual_server</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>client_attribute_require_message_authenticator</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_profile</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filter</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;(uid=%{%{Stripped-User-Name}:-%{User-Name}})&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group_scope</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group_name_attribute</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;cn&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group_membership_filter</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;(|(&amp;(objectClass=GroupOfNames)(member=%{control:Ldap-UserDn}))(&amp;(objectClass=GroupOfUniqueNames)(uniquemember=%{control:Ldap-UserDn})))&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group_membership_attribute</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;radiusGroupName&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If this does not contain a value then Group Membership Checking will not
+be enabled.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group_cacheable_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group_cacheable_dn</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>identity</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::bind_dn&#39;, { &#39;default_value&#39; =&gt; &quot;cn=hostAuth,ou=Hosts,%{hiera(&#39;simp_options::ldap::base_dn&#39;)}&quot;, &#39;value_type&#39; =&gt; String })</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_connections_number</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;5&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_debug</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;4&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_timelimit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;3&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options_chase_referrals</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options_idle</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;60&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options_interval</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;3&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options_net_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;1&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options_probes</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;3&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options_rebind</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::bind_pw&#39;, { &#39;value_type&#39;    =&gt; String })</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pool_start</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;5&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pool_min</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;4&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pool_max</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;10&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pool_spare</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;3&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pool_uses</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;0&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pool_lifetime</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;0&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pool_idle_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;60&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>port</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;389&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>profile_attribute</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>random_file</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/dev/urandom&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>require_cert</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;demand&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>start_tls</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user_access_attribute</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user_access_positive</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user_scope</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;nil&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>server</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::uri&#39;, { &#39;default_value&#39;     =&gt; [&quot;ldap://%{hiera(&#39;simp_options::puppet::server&#39;)}&quot;], &#39;value_type&#39; =&gt; Array[String] })</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_base_dn</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::base_dn&#39;, { &#39;value_type&#39;    =&gt; String })</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-h1d6hb/manifests/v3/modules/ldap.pp', line 71</span>
+
+class freeradius::v3::modules::ldap (
+  $ldap_base_dn                                   = simplib::lookup(&#39;simp_options::ldap::base_dn&#39;, { &#39;value_type&#39;    =&gt; String }),
+  $app_pki_ca_dir                                 = $::freeradius::config::app_pki_ca_dir,
+  $app_pki_cert                                   = $::freeradius::config::app_pki_cert,
+  $app_pki_key                                    = $::freeradius::config::app_pki_key,
+  $base_filter                                    = &#39;(objectclass=radiusprofile)&#39;,
+  $client_scope                                   = &#39;nil&#39;,
+  $client_attribute_identifier                    = &#39;radiusClientIdentifier&#39;,
+  $client_attribute_secret                        = &#39;radiusClientSecret&#39;,
+  $client_attribute_shortname                     = &#39;nil&#39;,
+  $client_attribute_nas_type                      = &#39;nil&#39;,
+  $client_attribute_virtual_server                = &#39;nil&#39;,
+  $client_attribute_require_message_authenticator = &#39;nil&#39;,
+  $default_profile                                = &#39;nil&#39;,
+  $filter                                         = &#39;(uid=%{%{Stripped-User-Name}:-%{User-Name}})&#39;,
+  $group_scope                                    = &#39;nil&#39;,
+  $group_name_attribute                           = &#39;cn&#39;,
+  $group_membership_filter                        = &#39;(|(&amp;(objectClass=GroupOfNames)(member=%{control:Ldap-UserDn}))(&amp;(objectClass=GroupOfUniqueNames)(uniquemember=%{control:Ldap-UserDn})))&#39;,
+  $group_membership_attribute                     = &#39;radiusGroupName&#39;,
+  $group_cacheable_name                           = false,
+  $group_cacheable_dn                             = false,
+  $identity                                       = simplib::lookup(&#39;simp_options::ldap::bind_dn&#39;, { &#39;default_value&#39; =&gt; &quot;cn=hostAuth,ou=Hosts,%{hiera(&#39;simp_options::ldap::base_dn&#39;)}&quot;, &#39;value_type&#39; =&gt; String }),
+  $ldap_connections_number                        = &#39;5&#39;,
+  $ldap_debug                                     = &#39;nil&#39;,
+  $ldap_timeout                                   = &#39;4&#39;,
+  $ldap_timelimit                                 = &#39;3&#39;,
+  $options_chase_referrals                        = false,
+  $options_idle                                   = &#39;60&#39;,
+  $options_interval                               = &#39;3&#39;,
+  $options_net_timeout                            = &#39;1&#39;,
+  $options_probes                                 = &#39;3&#39;,
+  $options_rebind                                 = false,
+  $password                                       = simplib::lookup(&#39;simp_options::ldap::bind_pw&#39;, { &#39;value_type&#39;    =&gt; String }),
+  $pool_start                                     = &#39;5&#39;,
+  $pool_min                                       = &#39;4&#39;,
+  $pool_max                                       = &#39;10&#39;,
+  $pool_spare                                     = &#39;3&#39;,
+  $pool_uses                                      = &#39;0&#39;,
+  $pool_lifetime                                  = &#39;0&#39;,
+  $pool_idle_timeout                              = &#39;60&#39;,
+  $port                                           = &#39;389&#39;,
+  $profile_attribute                              = &#39;nil&#39;,
+  $random_file                                    = &#39;/dev/urandom&#39;,
+  $require_cert                                   = &#39;demand&#39;,
+  $start_tls                                      = true,
+  $user_access_attribute                          = &#39;nil&#39;,
+  $user_access_positive                           = &#39;nil&#39;,
+  $user_scope                                     = &#39;nil&#39;,
+  $server                                         = simplib::lookup(&#39;simp_options::ldap::uri&#39;, { &#39;default_value&#39;     =&gt; [&quot;ldap://%{hiera(&#39;simp_options::puppet::server&#39;)}&quot;], &#39;value_type&#39; =&gt; Array[String] })
+) {
+
+  file { &#39;/etc/raddb/mods-enabled/ldap&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;radiusd&#39;,
+    mode    =&gt; &#39;0640&#39;,
+    content =&gt; template(&#39;freeradius/3/modules/ldap.erb&#39;),
+    notify  =&gt; Service[&#39;radiusd&#39;]
+  }
+
+  #validate_absolute_path($app_pki_ca)
+  #validate_absolute_path($app_pki_key)
+  #validate_absolute_path($random_file)
+  if $user_scope != &#39;nil&#39; {
+    validate_array_member($user_scope, [&#39;base&#39;,&#39;one&#39;,&#39;sub&#39;,&#39;children&#39;])
+  }
+  if $group_scope != &#39;nil&#39; {
+    validate_array_member($group_scope, [&#39;base&#39;,&#39;one&#39;,&#39;sub&#39;,&#39;children&#39;])
+  }
+  if $client_scope != &#39;nil&#39; {
+    validate_array_member($client_scope, [&#39;base&#39;,&#39;one&#39;,&#39;sub&#39;,&#39;children&#39;])
+  }
+  #validate_bool($group_cacheable_name)
+  #validate_bool($group_cacheable_dn)
+  #validate_bool($options_chase_referrals)
+  #validate_bool($options_rebind)
+  #validate_bool($start_tls)
+  #validate_integer($ldap_connections_number)
+  #validate_integer($ldap_timeout)
+  #validate_integer($ldap_timelimit)
+  #validate_integer($options_idle)
+  #validate_integer($options_interval)
+  #validate_integer($options_net_timeout)
+  #validate_integer($options_probes)
+  #validate_integer($pool_start)
+  #validate_integer($pool_min)
+  #validate_integer($pool_max)
+  #validate_integer($pool_spare)
+  #validate_integer($pool_uses)
+  #validate_integer($pool_lifetime)
+  #validate_integer($pool_idle_timeout)
+  #validate_port($port)
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

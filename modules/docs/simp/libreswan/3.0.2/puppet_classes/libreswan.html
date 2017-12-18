@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: libreswan
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::libreswan";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (l)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">libreswan</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: libreswan</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>::libreswan::params</dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1c6y6w8/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Module ‘libreswan’ installs and configures libreswan to provide IPsec
+tunnels. It is very important you read the documentation that comes with
+libreswan before attempting to use this module.</p>
+
+<p>https://libreswan.org</p>
+
+<hr />
+<p>libreswan is designed to install and configure the ipsec service from libreswan.
+It will also configure and maintain the NSS database used by ipsec if you have
+chosen to let simp manage your PKI certificates.</p>
+
+<p>To add and start tunnels that will be managed by the ipsec service see the manifest
+libreswan::add_connection.
+—</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but
+it can be used independently:</p>
+
+<ul>
+  <li>
+    <p>When included within the SIMP ecosystem,
+security compliance settings will be managed from the Puppet server.</p>
+  </li>
+  <li>
+    <p>If used independently, all SIMP-managed security subsystems are disabled by
+default, and must be explicitly opted into by administrators. Please review
+the simp global catalysts for more details.</p>
+  </li>
+</ul>
+
+<p>permitted acccess explicitly for ipsec communication</p>
+
+<p>allowed to be used by ipsec.</p>
+
+<ul>
+  <li>See the libreswan doumentation https://libreswan.org/man/ipsec.conf.5.html
+for more information regarding these variables.
+Any variable set to undefined will not appear in the configuration
+file and will default to the value set by libreswan. Those set will
+appear in the configuration file but can be over written using the
+hiera yaml files.</li>
+</ul>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>service_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::libreswan::params::service_name</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the ipsec service.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::libreswan::params::package_name</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the libreswan package.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>trusted_nets</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Netlist</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::trusted_nets&#39;, {&#39;default_value&#39; =&gt; [&#39;127.0.0.1/32&#39;] })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A whitelist of subnetworks (in CIDR notataion) with</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>firewall</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::firewall&#39;, {&#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to add appropriate rules to
+allow ipsec traffic to the SIMP-controlled firewall</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fips</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::fips&#39;, {&#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether server is in FIPS mode.  Affects digest algorithms</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pki</span>
+      
+      
+        <span class='type'>(<tt>Variant[Boolean,Enum['simp']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::pki&#39;, {&#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul>
+  <li>If ‘simp’, include SIMP’s pki module and use pki::copy to manage
+application certs in /etc/pki/simp_apps/libreswan/x509</li>
+  <li>If true, do <em>not</em> include SIMP’s pki module, but still use pki::copy
+to manage certs in /etc/pki/simp_apps/libreswan/x509</li>
+  <li>If false, do not include SIMP’s pki module and do not use pki::copy
+to manage certs.  You will need to appropriately assign a subset of:
+    <ul>
+      <li>app_pki_dir</li>
+      <li>app_pki_key</li>
+      <li>app_pki_cert</li>
+      <li>app_pki_ca</li>
+      <li>app_pki_ca_dir</li>
+    </ul>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>haveged</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::haveged&#39;, {&#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to use haveged to ensure adequate entropy</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nssdb_password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>passgen(&#39;nssdb_password&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Password for the NSS database used by ipsec</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>myid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>protostack</span>
+      
+      
+        <span class='type'>(<tt>Enum['netkey','klips','mast']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;netkey&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>interfaces</span>
+      
+      
+        <span class='type'>(<tt>Optional[Libreswan::Interfaces]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>listen</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::IP]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ikeport</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>500</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nflog_all</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nat_ikeport</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>4500</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keep_alive</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>virtual_private</span>
+      
+      
+        <span class='type'>(<tt>Libreswan::VirtualPrivate</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&#39;%v4:10.0.0.0/8&#39;,&#39;%v4:192.168.0.0/16&#39;,&#39;%v4:172.16.0.0/12&#39;]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>myvendorid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nhelpers</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plutofork</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>crlcheckinterval</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>strictcrlpolicy</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ocsp_enable</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ocsp_strict</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ocsp_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ocsp_uri</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Uri]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ocsp_trustname</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>syslog</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>klipsdebug</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;none&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plutodebug</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;none&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>uniqueids</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plutorestartoncrash</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logfile</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logappend</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logtime</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ddos_mode</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['busy',
+    'unlimited','auto']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ddos_ike_treshold</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dumpdir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/var/run/pluto&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>statsbin</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ipsecdir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/ipsec.d&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The directory to store all ipsec configuration information.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secretsfile</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/ipsec.secrets&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>perpeerlog</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>perpeerlogdir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/var/log/pluto/peer&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fragicmp</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hidetos</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['yes','no']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>overridemtu</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_certs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>https://github.com/simp/pupmod-simp-libreswan/graphs/contributors</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1c6y6w8/manifests/init.pp', line 106</span>
+
+class libreswan (
+  String                          $service_name            = $::libreswan::params::service_name,
+  String                          $package_name            = $::libreswan::params::package_name,
+  Simplib::Netlist                $trusted_nets            = simplib::lookup(&#39;simp_options::trusted_nets&#39;, {&#39;default_value&#39; =&gt; [&#39;127.0.0.1/32&#39;] }),
+  Boolean                         $firewall                = simplib::lookup(&#39;simp_options::firewall&#39;, {&#39;default_value&#39; =&gt; false }),
+  Boolean                         $fips                    = simplib::lookup(&#39;simp_options::fips&#39;, {&#39;default_value&#39; =&gt; false }),
+  Boolean                         $use_certs               = true,
+  Variant[Boolean,Enum[&#39;simp&#39;]]   $pki                     = simplib::lookup(&#39;simp_options::pki&#39;, {&#39;default_value&#39; =&gt; false }),
+  Boolean                         $haveged                 = simplib::lookup(&#39;simp_options::haveged&#39;, {&#39;default_value&#39; =&gt; false }),
+  String                          $nssdb_password          = passgen(&#39;nssdb_password&#39;),
+  # Possible Values in ipsec.conf file
+  Optional[String]                $myid                    = undef,
+  Enum[&#39;netkey&#39;,&#39;klips&#39;,&#39;mast&#39;]   $protostack              = &#39;netkey&#39;,
+  Optional[Libreswan::Interfaces] $interfaces              = undef,
+  Optional[Simplib::IP]           $listen                  = undef,
+  Simplib::Port                   $ikeport                 = 500,
+  Optional[Integer]               $nflog_all               = undef,
+  Simplib::Port                   $nat_ikeport             = 4500,
+  Optional[Integer]               $keep_alive              = undef,
+#
+  Libreswan::VirtualPrivate       $virtual_private         = [&#39;%v4:10.0.0.0/8&#39;,&#39;%v4:192.168.0.0/16&#39;,&#39;%v4:172.16.0.0/12&#39;],
+  Optional[String]                $myvendorid              = undef,
+  Optional[Integer]               $nhelpers                = undef,
+#seedbits
+#secctx-attr-type
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $plutofork               = undef,
+  Optional[Integer]               $crlcheckinterval        = undef,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $strictcrlpolicy         = undef,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $ocsp_enable             = undef,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $ocsp_strict             = undef,
+  Optional[Integer]               $ocsp_timeout            = undef,
+  Optional[Simplib::Uri]          $ocsp_uri                = undef,
+  Optional[String]                $ocsp_trustname          = undef,
+  Optional[String]                $syslog                  = undef,
+  String                          $klipsdebug              = &#39;none&#39;,
+  String                          $plutodebug              = &#39;none&#39;,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $uniqueids               = undef,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $plutorestartoncrash     = undef,
+  Optional[Stdlib::Absolutepath]  $logfile                 = undef,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $logappend               = undef,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $logtime                 = undef,
+  Optional[Enum[&#39;busy&#39;,
+    &#39;unlimited&#39;,&#39;auto&#39;]]          $ddos_mode               = undef,
+  Optional[Integer]               $ddos_ike_treshold       = undef,  # incorrect spelling in libreswan 3.1.5 source code verified
+#max-halfopen-ike
+#shuntlifetime
+#xfrmlifetime
+  Stdlib::Absolutepath            $dumpdir                 = &#39;/var/run/pluto&#39;,
+  Optional[String]                $statsbin                = undef,
+  Stdlib::Absolutepath            $ipsecdir                = &#39;/etc/ipsec.d&#39;,
+  Stdlib::Absolutepath            $secretsfile             = &#39;/etc/ipsec.secrets&#39;,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $perpeerlog              = undef,
+  Stdlib::Absolutepath            $perpeerlogdir           = &#39;/var/log/pluto/peer&#39;,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $fragicmp                = undef,
+  Optional[Enum[&#39;yes&#39;,&#39;no&#39;]]      $hidetos                 = undef,
+  Optional[Integer]               $overridemtu             = undef,
+
+) inherits ::libreswan::params {
+
+  # set the token for the NSS database.
+  if $fips or $facts[&#39;fips_enabled&#39;] {
+    $token = &#39;NSS FIPS 140-2 Certificate DB&#39; }
+  else {
+    $token = &#39;NSS Certificate DB&#39;
+  }
+
+  if $haveged {
+    include &#39;::haveged&#39;
+
+    Class[ &#39;::haveged&#39; ] -&gt; Class[ &#39;::libreswan::service&#39; ]
+  }
+
+  $nsspassword = &quot;${ipsecdir}/nsspassword&quot;
+
+  contain &#39;::libreswan::install&#39;
+  contain &#39;::libreswan::config&#39;
+  contain &#39;::libreswan::service&#39;
+
+  Class[ &#39;::libreswan::install&#39; ] -&gt; Class[ &#39;::libreswan::config&#39;  ]
+  Class[ &#39;::libreswan::config&#39;  ] ~&gt; Class[ &#39;::libreswan::service&#39; ]
+
+  if $firewall {
+    contain &#39;::libreswan::config::firewall&#39;
+
+    Class[ &#39;::libreswan::config::firewall&#39; ] ~&gt; Class[ &#39;::libreswan::service&#39;  ]
+  }
+
+  if $pki {
+    contain &#39;::libreswan::config::pki&#39;
+    contain &#39;::libreswan::config::pki::nsspki&#39;
+
+    Class[ &#39;::libreswan::config::pki&#39; ] ~&gt; Class[ &#39;::libreswan::config::pki::nsspki&#39; ]
+    Class[ &#39;::libreswan::config::pki::nsspki&#39; ] ~&gt; Class[ &#39;::libreswan::service&#39; ]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

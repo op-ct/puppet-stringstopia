@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp_openldap::server
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp_openldap::server";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp_openldap::server</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp_openldap::server</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>::simp_openldap</dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-15br0z8/manifests/server.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Set up an OpenLDAP server</p>
+
+<p>It installs the server if not already installed and bootstraps it if
+necessary.</p>
+
+<p>You can quickly reset the entire server by removing all files from
+<code>/var/lib/ldap/db/*</code> and then re-runing puppet. Note that this will erase
+the contents of your database, so you will want to use <code>slapcat</code> to save
+any data that you may require later for restoration.</p>
+
+<p>If you need to re-bootstrap, you also must remove the file
+<code>/etc/openldap/puppet_bootstrapped.lock</code> since this is in place as a
+protective measure.</p>
+
+<p>Please look at the <code>simp_openldap::server::access</code> stanzas below so that
+you can understand how to modify the access controls via puppet.</p>
+
+<p>The default access settings start at <code>1000</code> and go through <code>3000</code> except
+for a default entry at <code>100000</code> that allows users to read everything and
+then denies access. These are spread this far apart so that you can easily
+override and/or circumvent them to your site specifications.</p>
+
+<p><strong>NOTE:</strong> To get the bootstrap to run again, you must remove the lock file at
+<code>/etc/openldap/puppet_bootstrapped.lock</code> <em>and</em> remove the database files in
+<code>/var/lib/ldap/db/*</code>.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>schema_sync</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Synchronize all schemas from <code>$schema_source</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>schema_source</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;puppet:///modules/${module_name}/etc/openldap/schema&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The location from which to download the schemas</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allow_sync</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Provide the ability for other hosts to use LDAP synchronization as clients
+to this server</p>
+
+<ul>
+  <li>Class variables will need to be set according to the
+<code>simp_openldap::slapo::syncprov</code> class requirements</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sync_dn</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::sync_dn&#39;, { &#39;default_value&#39; =&gt; &quot;cn=LDAPSync,ou=Hosts,${::simp_openldap::base_dn}&quot; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The DN that is allowed to synchronize from the LDAP server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_ppolicy</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Include the default password policy overlay</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_tcpwrappers</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, enable tcpwrappers for slapd.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tcpwrappers</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::tcpwrappers&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-15br0z8/manifests/server.pp', line 51</span>
+
+class simp_openldap::server (
+  Boolean $schema_sync   = true,
+  String  $schema_source = &quot;puppet:///modules/${module_name}/etc/openldap/schema&quot;,
+  Boolean $allow_sync    = true,
+  String  $sync_dn       = simplib::lookup(&#39;simp_options::ldap::sync_dn&#39;, { &#39;default_value&#39; =&gt; &quot;cn=LDAPSync,ou=Hosts,${::simp_openldap::base_dn}&quot; }),
+  Boolean $use_ppolicy   = true,
+  Boolean $tcpwrappers   = simplib::lookup(&#39;simp_options::tcpwrappers&#39;, { &#39;default_value&#39; =&gt; false })
+) inherits ::simp_openldap {
+
+  include &#39;::simp_openldap::client&#39;
+  contain &#39;::simp_openldap::server::install&#39;
+
+  if $allow_sync {
+    contain &#39;::simp_openldap::slapo::syncprov&#39;
+
+    Class[&#39;simp_openldap::server::install&#39;] -&gt; Class[&#39;simp_openldap::slapo::syncprov&#39;]
+  }
+
+  if $use_ppolicy {
+    contain &#39;::simp_openldap::slapo::ppolicy&#39;
+
+    Class[&#39;simp_openldap::server::install&#39;] -&gt; Class[&#39;simp_openldap::slapo::ppolicy&#39;]
+  }
+
+  # This needs to come after ppolicy and syncprov since some templates
+  # use the values.
+  contain &#39;::simp_openldap::server::conf&#39;
+
+  Class[&#39;simp_openldap::server::install&#39;] ~&gt; Class[&#39;simp_openldap::server::service&#39;]
+  Class[&#39;simp_openldap::server::conf&#39;] ~&gt; Class[&#39;simp_openldap::server::service&#39;]
+
+  file { &#39;/etc/openldap&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;ldap&#39;,
+    recurse =&gt; true,
+    require =&gt; Class[&#39;simp_openldap::server::install&#39;]
+  }
+
+  file { &#39;/var/lib/ldap/DB_CONFIG&#39;:
+    ensure  =&gt; &#39;symlink&#39;,
+    target  =&gt; &#39;/etc/openldap/DB_CONFIG&#39;,
+    require =&gt; Class[&#39;simp_openldap::server::install&#39;]
+  }
+
+  if $schema_sync {
+    file { &#39;/etc/openldap/schema&#39;:
+      ensure  =&gt; &#39;directory&#39;,
+      force   =&gt; true,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;ldap&#39;,
+      mode    =&gt; &#39;0644&#39;,
+      recurse =&gt; true,
+      source  =&gt; $schema_source,
+      require =&gt; Class[&#39;simp_openldap::server::install&#39;]
+    }
+  }
+  else {
+    file { &#39;/etc/openldap/schema&#39;:
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;ldap&#39;,
+      mode    =&gt; &#39;0644&#39;,
+      recurse =&gt; true,
+      require =&gt; Class[&#39;simp_openldap::server::install&#39;]
+    }
+  }
+
+  file { [ &#39;/var/lib/ldap&#39;, &#39;/var/lib/ldap/db&#39;, &#39;/var/lib/ldap/logs&#39; ]:
+    ensure  =&gt; &#39;directory&#39;,
+    owner   =&gt; &#39;ldap&#39;,
+    group   =&gt; &#39;ldap&#39;,
+    mode    =&gt; &#39;0660&#39;,
+    require =&gt; Class[&#39;simp_openldap::server::install&#39;]
+  }
+
+  file { &#39;/var/log/slapd.log&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0600&#39;,
+    require =&gt; Class[&#39;simp_openldap::server::install&#39;]
+  }
+
+  file { &#39;/usr/local/sbin/ldap_bootstrap_check.sh&#39;:
+    ensure  =&gt; &#39;file&#39;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0750&#39;,
+    content =&gt; file(&quot;${module_name}/usr/local/sbin/ldap_bootstrap_check.sh&quot;),
+    require =&gt; [
+      File[&#39;/var/lib/ldap/DB_CONFIG&#39;],
+      File[&#39;/var/lib/ldap/db&#39;],
+      File[&#39;/var/lib/ldap/logs&#39;],
+      File[&#39;/etc/openldap/slapd.conf&#39;],
+      File[&#39;/etc/openldap/default.ldif&#39;],
+      File[&#39;/etc/openldap/schema&#39;]
+    ]
+  }
+
+  group { &#39;ldap&#39;:
+    ensure    =&gt; &#39;present&#39;,
+    allowdupe =&gt; false,
+    gid       =&gt; 55,
+    require   =&gt; Class[&#39;simp_openldap::server::install&#39;]
+  }
+
+  user { &#39;ldap&#39;:
+    ensure     =&gt; &#39;present&#39;,
+    allowdupe  =&gt; false,
+    uid        =&gt; 55,
+    gid        =&gt; 55,
+    home       =&gt; &#39;/var/lib/ldap&#39;,
+    membership =&gt; &#39;inclusive&#39;,
+    shell      =&gt; &#39;/sbin/nologin&#39;,
+    require    =&gt; Class[&#39;simp_openldap::server::install&#39;],
+    notify     =&gt; Class[&#39;simp_openldap::server::service&#39;]
+  }
+
+  # This adds the default entries to LDAP in a wide spacing for other users
+  # to usefully add their own materials.
+  simp_openldap::server::access { &#39;simp_userpassword_access&#39;:
+    what    =&gt;  &#39;attrs=userPassword&#39;,
+    content =&gt; &quot;
+      by dn.exact=\&quot;${sync_dn}\&quot; read
+      by dn.exact=\&quot;${::simp_openldap::bind_dn}\&quot; auth
+      by anonymous auth
+      by self write
+      by * none&quot;,
+    order   =&gt; 1000
+  }
+
+  # Yes, we know that allowing &#39;self&#39; to write shadowLastChange is a
+  # potential security issue. However, if you leave the default
+  # password policy in place then this is completely mitigated and,
+  # if you find a discrepancy, someone was trying to do bad things
+  # on your system.
+  simp_openldap::server::access { &#39;simp_shadowlastchange_access&#39;:
+    what    =&gt; &#39;attrs=shadowLastChange&#39;,
+    content =&gt; &quot;
+      by dn.exact=\&quot;${sync_dn}\&quot; read
+      by dn.exact=\&quot;${::simp_openldap::bind_dn}\&quot; read
+      by anonymous auth
+      by self write
+      by * none&quot;,
+    order   =&gt; 2000
+  }
+
+  simp_openldap::server::access { &#39;simp_loginshell_access&#39;:
+    what    =&gt; &#39;attrs=loginShell&#39;,
+    content =&gt; &quot;
+      by self write
+      by * read
+      by * none&quot;,
+    order   =&gt; 3000
+  }
+
+  # The following two items really need to be last and act as an example of
+  # calling out items that work on the same &#39;what&#39; option.
+  simp_openldap::server::access { &#39;simp_default_user_access&#39;:
+    what   =&gt; &#39;*&#39;,
+    who    =&gt; &#39;users&#39;,
+    access =&gt; &#39;read&#39;,
+    order  =&gt; 100000
+  }
+
+  simp_openldap::server::access { &#39;simp_default_user_reject&#39;:
+    what   =&gt; &#39;*&#39;,
+    who    =&gt; &#39;*&#39;,
+    access =&gt; &#39;none&#39;,
+    order  =&gt; 100001
+  }
+
+  # Add a user that is allowed to authenticate to bind to the system
+  # for host use. Make sure that all entries are available to that
+  # user.
+  simp_openldap::server::limits { &#39;hostAuth&#39;:
+    who    =&gt; $::simp_openldap::bind_dn,
+    limits =&gt; [
+      &#39;size.soft=unlimited&#39;,
+      &#39;size.hard=unlimited&#39;,
+      &#39;size.prtotal=unlimited&#39;
+    ]
+  }
+
+  if $tcpwrappers {
+    include &#39;::tcpwrappers&#39;
+
+    tcpwrappers::allow { &#39;slapd&#39;:
+      pattern =&gt; &#39;ALL&#39;,
+      order   =&gt; 1
+    }
+  }
+
+  contain &#39;::simp_openldap::server::service&#39;
+
+  if $::simp_openldap::pki {
+    Pki::Copy[&#39;openldap&#39;] ~&gt; Class[&#39;simp_openldap::server::service&#39;]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: tpm::ima::policy
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::tpm::ima::policy";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (t)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">tpm::ima::policy</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: tpm::ima::policy</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1jvc9cn/manifests/ima/policy.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Manage IMA Policy</p>
+
+<ul>
+  <li>The term ‘watch’, as used here, means both IMA policy fields dont_measure
+and dont_appraise. Both lines will be dropped for each entry here.</li>
+</ul>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>manage</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable policy management</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_proc</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of procfs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_sysfs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of sysfs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_debugfs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of debugfs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_tmpfs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of tmpfs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_ramfs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of ramfs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_securityfs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of securityfs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_devpts</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of /dev/pts
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_binfmtfs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of binfmtfs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_selinux</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of selinux fs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_nfs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of nfs
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_cgroup</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable IMA hashing of cgroup
+filesystems, as noted by the kernel magic documentation above.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_initrc_var_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context initrc_var_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_rpm_var_cache_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context rpm_var_cache_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_puppet_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context puppet_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_auditd_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context auditd_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_auth_cache_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context auth_cache_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_fsadm_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context fsadm_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_rsync_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context rsync_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_getty_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context getty_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_nscd_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context nscd_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_cron_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context cron_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_lastlog_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context lastlog_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_var_log_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context var_log_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_wtmp_t</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, don’t watch selinux
+context wtmp_t</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dont_watch_list</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of selinux contexts that shouldn’t be
+watched, merged with all of the parameters above</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>measure_root_read_files</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Monitor all files opened by root</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>measure_file_mmap</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Monitor all files mmapped executable in file_mmap</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>measure_bprm_check</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Monitor all executables in bprm_check</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>measure_module_check</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>appraise_fowner</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Appraises all files owned by root</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://wiki.gentoo.org/wiki/Integrity_Measurement_Architecture" target="_parent" title="https://wiki.gentoo.org/wiki/Integrity_Measurement_Architecture">https://wiki.gentoo.org/wiki/Integrity_Measurement_Architecture</a></li>
+    
+      <li>documentation Documentation/ABI/testing/ima_policy</li>
+    
+      <li><a href="https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/Documentation/ABI/testing/ima_policy?id=refs/tags/v3.10.103" target="_parent" title="https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/Documentation/ABI/testing/ima_policy?id=refs/tags/v3.10.103">https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/Documentation/ABI/testing/ima_policy?id=refs/tags/v3.10.103</a></li>
+    
+  </ul>
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Nick Miller <a href="mailto:nick.miller@onyxpoint.com">nick.miller@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1jvc9cn/manifests/ima/policy.pp', line 73</span>
+
+class tpm::ima::policy (
+  Boolean $manage = false,
+
+  # magic filesystems, default settings
+  Boolean $dont_watch_proc       = true,
+  Boolean $dont_watch_sysfs      = true,
+  Boolean $dont_watch_debugfs    = true,
+  Boolean $dont_watch_tmpfs      = true,
+  Boolean $dont_watch_ramfs      = true,
+  Boolean $dont_watch_securityfs = true,
+  # magic, additional settings
+  Boolean $dont_watch_devpts     = true,
+  Boolean $dont_watch_binfmtfs   = true,
+  Boolean $dont_watch_selinux    = true,
+  Boolean $dont_watch_nfs        = true,
+  Boolean $dont_watch_cgroup     = true,
+
+  # selinux contexts
+  Boolean $dont_watch_initrc_var_log_t = true,
+  Boolean $dont_watch_rpm_var_cache_t  = true,
+  Boolean $dont_watch_puppet_log_t     = true,
+  Boolean $dont_watch_auditd_log_t     = true,
+  Boolean $dont_watch_auth_cache_t     = true,
+  Boolean $dont_watch_fsadm_log_t      = true,
+  Boolean $dont_watch_rsync_log_t      = true,
+  Boolean $dont_watch_getty_log_t      = true,
+  Boolean $dont_watch_nscd_log_t       = true,
+  Boolean $dont_watch_cron_log_t       = true,
+  Boolean $dont_watch_lastlog_t        = true,
+  Boolean $dont_watch_var_log_t        = true,
+  Boolean $dont_watch_wtmp_t           = true,
+  Array[String] $dont_watch_list = [],
+
+  # other defaults
+  Boolean $measure_root_read_files = true,
+  Boolean $measure_file_mmap       = true,
+  Boolean $measure_bprm_check      = true,
+  Boolean $measure_module_check    = true,
+  Boolean $appraise_fowner         = true,
+){
+
+  # magic reference is in Kernel documentation Documentation/ABI/testing/ima_policy
+  $magic_hash = {
+    &#39;0x9fa0&#39;     =&gt; $dont_watch_proc,
+    &#39;0x62656572&#39; =&gt; $dont_watch_sysfs,
+    &#39;0x64626720&#39; =&gt; $dont_watch_debugfs,
+    &#39;0x01021994&#39; =&gt; $dont_watch_tmpfs,
+    &#39;0x858458f6&#39; =&gt; $dont_watch_ramfs,
+    &#39;0x73636673&#39; =&gt; $dont_watch_securityfs,
+    &#39;0x1cd1&#39;     =&gt; $dont_watch_devpts,
+    &#39;0x42494e4d&#39; =&gt; $dont_watch_binfmtfs,
+    &#39;0xf97cff8c&#39; =&gt; $dont_watch_selinux,
+    &#39;0x6969&#39;     =&gt; $dont_watch_nfs,
+    &#39;0x27e0eb&#39;   =&gt; $dont_watch_cgroup,
+  }
+
+  $sel_hash = {
+    initrc_var_log_t =&gt; $dont_watch_initrc_var_log_t,
+    rpm_var_cache_t  =&gt; $dont_watch_rpm_var_cache_t,
+    puppet_log_t     =&gt; $dont_watch_puppet_log_t,
+    auditd_log_t     =&gt; $dont_watch_auditd_log_t,
+    auth_cache_t     =&gt; $dont_watch_auth_cache_t,
+    fsadm_log_t      =&gt; $dont_watch_fsadm_log_t,
+    rsync_log_t      =&gt; $dont_watch_rsync_log_t,
+    getty_log_t      =&gt; $dont_watch_getty_log_t,
+    nscd_log_t       =&gt; $dont_watch_nscd_log_t,
+    cron_log_t       =&gt; $dont_watch_cron_log_t,
+    lastlog_t        =&gt; $dont_watch_lastlog_t,
+    var_log_t        =&gt; $dont_watch_var_log_t,
+    wtmp_t           =&gt; $dont_watch_wtmp_t,
+  }
+
+  if $manage {
+    file { &#39;/etc/ima&#39;:
+      ensure =&gt; directory,
+      mode   =&gt; &#39;0750&#39;,
+    }
+
+    file { &#39;/etc/ima/policy.conf&#39;:
+      ensure  =&gt; file,
+      mode    =&gt; &#39;0640&#39;,
+      content =&gt; template(&#39;tpm/ima_policy.conf.erb&#39;),
+      require =&gt; File[&#39;/etc/ima&#39;],
+      notify  =&gt; Exec[&#39;load_ima_policy&#39;]
+    }
+
+    exec { &#39;load_ima_policy&#39;:
+      command =&gt; &#39;cat /etc/ima/policy.conf &gt; /sys/kernel/security/ima/policy&#39;,
+      unless  =&gt; &#39;grep ima_reboot `puppet config print vardir`/reboot_notifications.json&#39;,
+      path    =&gt; &#39;/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin&#39;,
+      require =&gt; File[&#39;/etc/ima/policy.conf&#39;],
+    }
+
+    if member($facts[&#39;init_systems&#39;], &#39;systemd&#39;) {
+      file { &#39;/usr/lib/systemd/system/import_ima_rules.service&#39;:
+        ensure =&gt; file,
+        mode   =&gt; &#39;0644&#39;,
+        source =&gt; &#39;puppet:///modules/tpm/import_ima_rules.service&#39;
+      }
+      service { &#39;import_ima_rules.service&#39;:
+        ensure  =&gt; running,
+        enable  =&gt; true,
+        require =&gt; File[&#39;/usr/lib/systemd/system/import_ima_rules.service&#39;]
+      }
+    }
+    else {
+      file { &#39;/etc/init.d/import_ima_rules&#39;:
+        ensure =&gt; file,
+        mode   =&gt; &#39;0755&#39;,
+        source =&gt; &#39;puppet:///modules/tpm/import_ima_rules&#39;
+      }
+      service { &#39;import_ima_rules&#39;:
+        ensure  =&gt; stopped,
+        enable  =&gt; true,
+        require =&gt; File[&#39;/etc/init.d/import_ima_rules&#39;]
+      }
+    }
+  }
+  else {
+    if member($facts[&#39;init_systems&#39;], &#39;systemd&#39;) {
+      file { &#39;/usr/lib/systemd/system/import_ima_rules.service&#39;:
+        ensure =&gt; absent,
+      }
+      service { &#39;import_ima_rules.service&#39;:
+        ensure =&gt; stopped,
+        enable =&gt; false,
+      }
+    }
+    else {
+      file { &#39;/etc/init.d/import_ima_rules&#39;:
+        ensure =&gt; absent,
+      }
+      service { &#39;import_ima_rules&#39;:
+        ensure =&gt; stopped,
+        enable =&gt; false,
+      }
+    }
+  }
+
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

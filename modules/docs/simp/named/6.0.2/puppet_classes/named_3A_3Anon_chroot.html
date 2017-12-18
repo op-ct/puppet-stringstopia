@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: named::non_chroot
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::named::non_chroot";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (n)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">named::non_chroot</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: named::non_chroot</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-a6ojts/manifests/non_chroot.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class configures named for execution on a system using selinux.
+It pulls all config files from rsync.</p>
+
+<p>It is meant to be called from named directly.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>bind_dns_rsync</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::named::bind_dns_rsync</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The target under #
+/var/simp/environments/environment/rsync/os/maj_version/bind_dns
+from which to fetch all BIND DNS content.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rsync_source</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;bind_dns_${::named::bind_dns_rsync}_${::environment}_${facts[&#39;os&#39;][&#39;name&#39;]}_${facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]}/named&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rsync_server</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::named::rsync_server</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rsync_timeout</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Compat::Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::named::rsync_timeout</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Kendall Moore <a href="mailto:kmoore@keywcorp.com">kmoore@keywcorp.com</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Chris Tessmer &lt;chris.tessmer@onyxpoint.com</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-a6ojts/manifests/non_chroot.pp', line 15</span>
+
+class named::non_chroot (
+  String                  $bind_dns_rsync = $::named::bind_dns_rsync,
+  String                  $rsync_source   = &quot;bind_dns_${::named::bind_dns_rsync}_${::environment}_${facts[&#39;os&#39;][&#39;name&#39;]}_${facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]}/named&quot;,
+  String                  $rsync_server   = $::named::rsync_server,
+  Stdlib::Compat::Integer $rsync_timeout  = $::named::rsync_timeout
+){
+  assert_private()
+
+  include &#39;::rsync&#39;
+
+  $_rsync_user = &quot;bind_dns_${::named::bind_dns_rsync}_rsync_${::environment}_${facts[&#39;os&#39;][&#39;name&#39;]}_${facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;]}&quot;
+
+  if ( str2bool($::selinux_enforced) != true ) {
+    fail( &#39;named::non_chroot must be used with selinux!&#39;)
+  }
+
+  validate_net_list($rsync_server)
+
+  file { &#39;/etc/named.conf&#39;:
+    ensure  =&gt; &#39;file&#39;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;named&#39;,
+    mode    =&gt; &#39;0640&#39;,
+    notify  =&gt; Rsync[&#39;named_etc&#39;],
+    require =&gt; Package[&#39;bind&#39;]
+  }
+
+  file { &#39;/var/named&#39;:
+    ensure  =&gt; &#39;directory&#39;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;named&#39;,
+    mode    =&gt; &#39;0750&#39;,
+    notify  =&gt; Rsync[&#39;named&#39;],
+    require =&gt; Package[&#39;bind&#39;]
+  }
+
+  rsync { &#39;named&#39;:
+    user     =&gt; $_rsync_user,
+    password =&gt; passgen($_rsync_user),
+    source   =&gt; &quot;${rsync_source}/var/named&quot;,
+    target   =&gt; &#39;/var&#39;,
+    server   =&gt; $rsync_server,
+    timeout  =&gt; $rsync_timeout,
+    notify   =&gt; Class[&#39;named::service&#39;]
+  }
+
+  rsync { &#39;named_etc&#39;:
+    user     =&gt; $_rsync_user,
+    password =&gt; passgen($_rsync_user),
+    source   =&gt; &quot;${rsync_source}/etc/*&quot;,
+    target   =&gt; &#39;/etc&#39;,
+    server   =&gt; $rsync_server,
+    timeout  =&gt; $rsync_timeout,
+    notify   =&gt; Class[&#39;named::service&#39;]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

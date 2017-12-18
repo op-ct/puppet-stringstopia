@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="https://img.shields.io/:license-apache-blue.svg" alt="License" /></a>
+<a href="https://bestpractices.coreinfrastructure.org/projects/73"><img src="https://bestpractices.coreinfrastructure.org/projects/73/badge" alt="CII Best Practices" /></a>
+<a href="https://forge.puppetlabs.com/simp/auditd"><img src="https://img.shields.io/puppetforge/v/simp/auditd.svg" alt="Puppet Forge" /></a>
+<a href="https://forge.puppetlabs.com/simp/auditd"><img src="https://img.shields.io/puppetforge/dt/simp/auditd.svg" alt="Puppet Forge Downloads" /></a>
+<a href="https://travis-ci.org/simp/pupmod-simp-auditd"><img src="https://travis-ci.org/simp/pupmod-simp-auditd.svg" alt="Build Status" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#module-description">Module Description - What the module does and why it is useful</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with auditd</a>
+    <ul>
+      <li><a href="#what-dummy-affects">What auditd affects</a></li>
+      <li><a href="#setup-requirements">Setup requirements</a></li>
+      <li><a href="#beginning-with-dummy">Beginning with auditd</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a>
+    <ul>
+      <li><a href="#acceptance-tests">Acceptance Tests - Beaker env variables</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>This module manages the Audit daemon, kernel parameters, and related subsystems.</p>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+<p>This module is a component of the <a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management
+Platform</a>, a compliance
+management framework built on Puppet.</p>
+
+<p>If you find any issues, they can be submitted to our <a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+
+<p>Please read our <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">Contribution Guide</a>
+and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">developer wiki</a>.</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but it can be used independently:
+* When included within the SIMP ecosystem, security compliance settings will be
+  managed from the Puppet server.
+* In the future, all SIMP-managed security subsystems will be disabled by
+  default and must be explicitly opted into by administrators.  Please review
+  <code>simp_options</code> for details.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>You can use this module for the management of all components of auditd
+including configuration, service management, kernel parameters, and custom rule
+sets.</p>
+
+<p>By default, a rule set is provided that should meet a reasonable set of
+operational goals for most environments.</p>
+
+<p>The <code>audit</code> kernel parameter may optionally be managed independently of the
+rest of the module using the <code>::auditd::config::grub</code> class.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-auditd-affects">What auditd affects</h3>
+
+<ul>
+  <li>The <code>audit</code> kernel parameter
+    <ul>
+      <li>NOTE: This will be applied to <em>all</em> kernels in your standard grub configuration</li>
+    </ul>
+  </li>
+  <li>The auditd service</li>
+  <li>The audid configuration in /etc/auditd.conf</li>
+  <li>The auditd rules in /etc/audit/rules.d</li>
+  <li>The audispd configuration in /etc/audisp/audispd.conf</li>
+  <li>The audispd <code>syslog</code> configuration in /etc/audisp/plugins.d/syslog.conf</li>
+</ul>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="basic-usage">Basic Usage</h3>
+
+<p>```puppet
+# Set up auditd with the default settings
+# A message will be printed indicating that you need to reboot for this option
+# to take full effect at each Puppet run until you reboot your system.</p>
+
+<p>include ‘::auditd’
+```</p>
+
+<h3 id="disabling-auditd">Disabling Auditd</h3>
+
+<p>auditd::at_boot : false</p>
+
+<h4 id="changing-key-values">Changing Key Values</h4>
+<p>```puppet
+# To override the default values included in the module, you can either
+# include new values for the keys at the time that the classes are declared:</p>
+
+<p>class { ‘::auditd’:
+  ignore_failures =&gt; true,
+  log_group       =&gt; ‘root’,
+  flush           =&gt; ‘INCREMENTAL’
+}</p>
+
+<h1 id="or-for-a-subclass">or, for a subclass:</h1>
+
+<p>class { ‘::auditd::config::audisp’: 
+  max_restarts =&gt; 10,
+  name_format  =&gt; ‘USER’
+}
+```</p>
+
+<h4 id="manifest">Manifest</h4>
+
+<p>```puppet
+# Be aware that, on a SIMP system, svckill will disable the actual audit daemon
+# if you do not manage it. Otherwise, you need to do this independently if
+# necessary.</p>
+
+<p>include ‘::auditd’
+```</p>
+
+<h2 id="reference">Reference</h2>
+
+<h3 id="classes">Classes</h3>
+
+<h4 id="public-classes">Public Classes</h4>
+<ul>
+  <li><code>auditd</code></li>
+  <li><code>auditd::config</code></li>
+  <li><code>auditd::config::audisp</code></li>
+  <li><code>auditd::config::grub</code></li>
+  <li><code>auditd::config::audisp::syslog</code></li>
+  <li><code>auditd::config::audit_profiles::simp</code></li>
+</ul>
+
+<h4 id="private-classes">Private Classes</h4>
+<ul>
+  <li><code>auditd::install</code></li>
+  <li><code>auditd::service</code></li>
+  <li><code>auditd::config::audisp_service</code></li>
+  <li><code>auditd::config::logging</code></li>
+</ul>
+
+<h4 id="defined-types">Defined Types</h4>
+<ul>
+  <li><code>auditd::rule</code></li>
+</ul>
+
+<h2 id="parameters">Parameters</h2>
+
+<h3 id="auditd">auditd</h3>
+
+<p>This is the main class for the auditd module.</p>
+
+<h5 id="adminspaceleft"><code>admin_space_left</code>:</h5>
+<p>Description
+  * Valid Options: Integer
+  * Default: 50</p>
+
+<h5 id="adminspaceleftaction"><code>admin_space_left_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: ‘SUSPEND’</li>
+</ul>
+
+<h5 id="actionmailacct"><code>action_mail_acct</code>:</h5>
+
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default: ‘root’</li>
+</ul>
+
+<h5 id="atboot"><code>at_boot</code>:</h5>
+
+<p>If true, enable auditing at boot time.
+  * Valid Options: Boolean
+  * Default: true</p>
+
+<h5 id="buffersize"><code>buffer_size</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer</li>
+  <li>Default: 16384</li>
+</ul>
+
+<h5 id="defaultauditprofile"><code>default_audit_profile</code>:</h5>
+
+<p>Sets the default audit rules of the system to the given profile.
+  * Valid Types: ‘simp’, Boolean
+  * Default: ‘simp’</p>
+
+<h5 id="diskerroraction"><code>disk_error_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::DiskErrorAction</li>
+  <li>Default: ‘SUSPEND’</li>
+</ul>
+
+<h5 id="diskfullaction"><code>disk_full_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::DiskFullAction</li>
+  <li>Default: ‘SUSPEND’</li>
+</ul>
+
+<h5 id="dispatcher"><code>dispatcher</code>:</h5>
+
+<ul>
+  <li>Valid Options: Stdlib::Absolutepath</li>
+  <li>Default: ‘/sbin/audispd’</li>
+</ul>
+
+<h5 id="dispqos"><code>disp_qos</code>:</h5>
+
+<ul>
+  <li>Valid Options: ‘lossy’,’lossless’</li>
+  <li>Default: ‘lossy’</li>
+</ul>
+
+<h5 id="enable"><code>enable</code>:</h5>
+
+<p>If true, auditing is enabled.
+  * Valid Options: Boolean
+  * Default: true</p>
+
+<h5 id="failuremode"><code>failure_mode</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 1</li>
+</ul>
+
+<h5 id="flush"><code>flush</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::Flush</li>
+  <li>Default: ‘INCREMENTAL’</li>
+</ul>
+
+<h5 id="freq"><code>freq</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 20</li>
+</ul>
+
+<h5 id="ignorefailures"><code>ignore_failures</code>:</h5>
+
+<ul>
+  <li>Valid Options: Boolean</li>
+  <li>Default: true</li>
+</ul>
+
+<h5 id="immutable"><code>immutable</code>:</h5>
+
+<p>Determines if the configuration should be immutable. Be aware that if configuration is set to immutable, you will not be able to change audit rules without rebooting.
+  * Valid Options: Boolean
+  * Default: false</p>
+
+<h5 id="lname"><code>lname</code>:</h5>
+
+<p>This parameter is an alias for the <code>name</code> variable in the man pages. Because $name is reserved in the Puppet language, $lname is used to represent the <code>name</code> key in auditd.conf.
+  * Valid Options: String
+  * Default: $facts[‘fqdn’]</p>
+
+<h5 id="loggroup"><code>log_group</code>:</h5>
+
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default: ‘root’</li>
+</ul>
+
+<h5 id="logformat"><code>log_format</code>:</h5>
+
+<ul>
+  <li>Valid Types: ‘RAW’,’NOLOG’</li>
+  <li>Default: ‘RAW’</li>
+</ul>
+
+<h5 id="logfile"><code>log_file</code>:</h5>
+
+<ul>
+  <li>Valid Options: Stdlib::Absolutepath</li>
+  <li>Default: ‘/var/log/audit/audit.log’</li>
+</ul>
+
+<h5 id="maxlogfileaction"><code>max_log_file_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::DiskFullAction</li>
+  <li>Default: ‘ROTATE’</li>
+</ul>
+
+<h5 id="maxlogfile"><code>max_log_file</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 24</li>
+</ul>
+
+<h5 id="nameformat"><code>name_format</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::NameFormat</li>
+  <li>Default: ‘USER’</li>
+</ul>
+
+<h5 id="numlogs"><code>num_logs</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 5</li>
+</ul>
+
+<h5 id="packagename"><code>package_name</code>:</h5>
+
+<p>Name of the auditd package.
+  * Valid Options: String
+  * Default: audit (Redhat OS family)</p>
+
+<h5 id="packageensure"><code>package_ensure</code>:</h5>
+
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default: ‘latest’</li>
+</ul>
+
+<h5 id="priorityboost"><code>priority_boost</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 3</li>
+</ul>
+
+<h5 id="rate"><code>rate</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 0</li>
+</ul>
+
+<h5 id="rootauditlevel"><code>root_audit_level</code>:</h5>
+
+<p>Determines the level of auditing for su-root activity. Be aware that setting this to values higher than <code>basic</code> my overwhelm or system / log server. Options can be <code>basic</code>, <code>aggressive</code>, <code>insane</code>. (Basic: Safe, should not follow program execution outside of base app; Aggressive: adds execve; Insane: Adds fork, vfork, write, chown, creat, link, mkdir, rmdir)
+  * Valid Types: ‘basic’,’aggressive’,’insane’
+  * Default: ‘basic’</p>
+
+<h5 id="spaceleftaction"><code>space_left_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::SpaceLeftAction</li>
+  <li>Default: ‘SUSPEND’</li>
+</ul>
+
+<h5 id="spaceleft"><code>space_left</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 75</li>
+</ul>
+
+<h5 id="servicename"><code>service_name</code>:</h5>
+
+<p>Name of the auditd service
+  * Valid Options: String
+  * Default: auditd (Redhat OS family)</p>
+
+<h5 id="syslog"><code>syslog</code>:</h5>
+
+<p>If true, set up audispd to send logs via syslog.
+  * Valid Options: Boolean
+  * Default: Lookup simp_options::syslog, if <code>simp_options</code> not present on system, default to false.</p>
+
+<h5 id="uidmin"><code>uid_min</code>:</h5>
+
+<p>Minimum UID for human users of the system. Logs generated by users lower than this number will be ignored unless $absolute is set to first in <code>auditd::add_rule</code>
+  * Valid Options: Integer[0]
+  * Default: $facts[‘uid_min’]</p>
+
+<h3 id="auditdconfig">auditd::config</h3>
+
+<p><code>auditd::config</code> sets values in the auditd.conf file (usually found at <code>/etc/audit/auditd.conf</code>). There is also space here for declaring a default set of audit rules (via the default_audit_profile option). Parameters listed below that have no description have a one-to-one correspondance with the documentation in the auditd man pages. Specifically see pages 5 (auditd.conf) and 8 (auditctl). Parameters warranting further explanation are appended with a description.</p>
+
+<h5 id="logfile-1"><code>log_file</code>:</h5>
+
+<ul>
+  <li>Valid Options: Stdlib::Absolutepath</li>
+  <li>Default: ‘/var/log/audit/audit.log’</li>
+</ul>
+
+<h5 id="logformat-1"><code>log_format</code>:</h5>
+
+<ul>
+  <li>Valid Types: ‘RAW’,’NOLOG’</li>
+  <li>Default: ‘RAW’</li>
+</ul>
+
+<h5 id="loggroup-1"><code>log_group</code>:</h5>
+
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default: ‘root’</li>
+</ul>
+
+<h5 id="priorityboost-1"><code>priority_boost</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 3</li>
+</ul>
+
+<h5 id="flush-1"><code>flush</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::Flush</li>
+  <li>Default: ‘INCREMENTAL’</li>
+</ul>
+
+<h5 id="freq-1"><code>freq</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 20</li>
+</ul>
+
+<h5 id="numlogs-1"><code>num_logs</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 5</li>
+</ul>
+
+<h5 id="dispqos-1"><code>disp_qos</code>:</h5>
+
+<ul>
+  <li>Valid Types: ‘lossy’,’lossless’</li>
+  <li>Default: ‘lossy’</li>
+</ul>
+
+<h5 id="dispatcher-1"><code>dispatcher</code>:</h5>
+
+<ul>
+  <li>Valid Options: Stdlib::Absolutepath</li>
+  <li>Default: ‘/sbin/audispid’</li>
+</ul>
+
+<h5 id="nameformat-1"><code>name_format</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::NameFormat</li>
+  <li>Default: ‘User’</li>
+</ul>
+
+<h5 id="lname-1"><code>lname</code>:</h5>
+
+<p>This parameter is an alias for the <code>name</code> variable in the man pages. Because $name is reserved in the Puppet language, $lname is used to represent the <code>name</code> key in auditd.conf.
+  * Valid Options: String
+  * Default: $facts[‘fqdn’]</p>
+
+<h5 id="maxlogfileaction-1"><code>max_log_file_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::DiskFullAction</li>
+  <li>Default: ‘ROTATE’</li>
+</ul>
+
+<h5 id="maxlogfile-1"><code>max_log_file</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 24</li>
+</ul>
+
+<h5 id="spaceleft-1"><code>space_left</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default: 75</li>
+</ul>
+
+<h5 id="spaceleftaction-1"><code>space_left_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::SpaceLeftAction</li>
+  <li>Default: ‘SYSLOG’</li>
+</ul>
+
+<h5 id="actionmailacct-1"><code>action_mail_acct</code>:</h5>
+
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default: ‘root’</li>
+</ul>
+
+<h5 id="adminspaceleft-1"><code>admin_space_left</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer</li>
+  <li>Default: 50</li>
+</ul>
+
+<h5 id="adminspaceleftaction-1"><code>admin_space_left_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::SpaceLeftAction</li>
+  <li>Default: ‘SUSPEND’</li>
+</ul>
+
+<h5 id="diskfullaction-1"><code>disk_full_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::DiskFullAction</li>
+  <li>Default: ‘SUSPEND’</li>
+</ul>
+
+<h5 id="diskerroraction-1"><code>disk_error_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::DiskErrorAction</li>
+  <li>Default: ‘SUSPEND’</li>
+</ul>
+
+<h5 id="defaultauditprofile-1"><code>default_audit_profile</code>:</h5>
+
+<ul>
+  <li>Valid Types: ‘simp’, Boolean</li>
+  <li>Default: ‘simp’</li>
+</ul>
+
+<h3 id="auditdconfigaudisp">auditd::config::audisp</h3>
+
+<p>All parameters in this class are documented on page 5 of audispd.conf’s man page. The execption is the $specific_name parameter, which maps to the audispd.conf <code>name</code> variable.</p>
+
+<h5 id="qdepth"><code>q_depth</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer</li>
+  <li>Default: 160</li>
+</ul>
+
+<h5 id="overflowaction"><code>overflow_action</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::OverflowAction</li>
+  <li>Default: ‘SYSLOG’</li>
+</ul>
+
+<h5 id="priorityboost-2"><code>priority_boost</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer</li>
+  <li>Default: 4</li>
+</ul>
+
+<h5 id="maxrestarts"><code>max_restarts</code>:</h5>
+
+<ul>
+  <li>Valid Options: Integer</li>
+  <li>Default: 10</li>
+</ul>
+
+<h5 id="nameformat-2"><code>name_format</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::NameFormat</li>
+  <li>Default: ‘USER’</li>
+</ul>
+
+<h5 id="specificname"><code>specific_name</code>:</h5>
+
+<p>maps to <code>name</code> in audispd.conf, because $name is restricted in Puppet.
+  * Valid Options: String
+  * Default: $facts[‘fqdn’]</p>
+
+<h3 id="auditdconfiggrub">auditd::config::grub</h3>
+
+<p>The <code>auditd::config::grub</code> class controls if auditing is enabled at boot time.</p>
+
+<h5 id="enable-1"><code>enable</code>:</h5>
+
+<p>If true, audit at boot is enabled.
+  * Valid Options: Boolean
+  * Default: true</p>
+
+<h3 id="auditdconfigaudispsyslog">auditd::config::audisp::syslog</h3>
+
+<p>The <code>auditd::config::audisp::syslog</code> class utilizes rsyslog to send audit records to a remote logging server. <strong>This class REQUIRES the <code>pupmod-simp-rsyslog</code> module to be installed</strong>. It is suggested that you read the headers in the manifest for this class if you intend to leverage this functionality.</p>
+
+<h5 id="dropauditlogs"><code>drop_audit_logs</code>:</h5>
+
+<ul>
+  <li>Valid Options: Boolean</li>
+  <li>Default: true</li>
+</ul>
+
+<h5 id="priority"><code>priority</code>:</h5>
+
+<ul>
+  <li>Valid Options: Auditd::LogPriority</li>
+  <li>Default:</li>
+</ul>
+
+<h5 id="facility"><code>facility</code>:</h5>
+
+<p>‘LOG_INFO’
+  * Valid Options: Auditd::LogFacility
+  * Default: ‘LOG_LOCAL5’</p>
+
+<h3 id="auditdconfigauditprofilessimp">auditd::config::audit_profiles::simp</h3>
+
+<p>The <code>auditd::config::audit_profiles::simp</code> class is a set of audit rules that are configure to meet the general goals for SIMP. If you are running a SIMP system, you should be able to just use this profile to set appropriate defaults for many configuration options. The parameters available in this class are listed here, but because they have almost all have a one-to-one relationship with existing documentation for auditd, they are not documented here. You can find types and defaults for the params of this class in the manifest which defines it.</p>
+
+<h5 id="logfile-2"><code>log_file</code></h5>
+<p>##### <code>num_logs</code>
+##### <code>ignore_failures</code>
+##### <code>buffer_size</code>
+##### <code>failure_mode</code>
+##### <code>rate</code>
+##### <code>immutable</code>
+##### <code>root_audit_level</code>
+##### <code>uid_min</code>
+##### <code>ignore_crond</code>
+##### <code>ignore_errors</code>
+##### <code>ignore_anonymous</code>
+##### <code>ignore_system_services</code>
+##### <code>audit_unsuccessful_file_operations</code>
+##### <code>audit_unsuccessful_file_operations_tag</code>
+##### <code>audit_chown</code>
+##### <code>audit_chown_tag</code>
+##### <code>audit_chmod</code>
+##### <code>audit_chmod_tag</code>
+##### <code>audit_attr</code>
+##### <code>audit_attr_tag</code>
+##### <code>audit_su_root_activity</code>
+##### <code>audit_su_root_activity_tag</code>
+##### <code>audit_suid_sgid</code>
+##### <code>audit_suid_sgid_tag</code>
+##### <code>audit_kernel_modules</code>
+##### <code>audit_kernel_modules_tag</code>
+##### <code>audit_time</code>
+##### <code>audit_time_tag</code>
+##### <code>audit_locale</code>
+##### <code>audit_locale_tag</code>
+##### <code>audit_mount</code>
+##### <code>audit_mount_tag</code>
+##### <code>audit_umask</code>
+##### <code>audit_umask_tag</code>
+##### <code>audit_local_account</code>
+##### <code>audit_local_account_tag</code>
+##### <code>audit_selinux_policy</code>
+##### <code>audit_selinux_policy_tag</code>
+##### <code>audit_login_files</code>
+##### <code>audit_login_files_tag</code>
+##### <code>audit_session_files</code>
+##### <code>audit_session_files_tag</code>
+##### <code>audit_sudoers</code>
+##### <code>audit_sudoers_tag</code>
+##### <code>audit_grub</code>
+##### <code>audit_grub_tag</code>
+##### <code>audit_cfg_sys</code>
+##### <code>audit_cfg_sys_tag</code>
+##### <code>audit_cfg_cron</code>
+##### <code>audit_cfg_cron_tag</code>
+##### <code>audit_cfg_shell</code>
+##### <code>audit_cfg_shell_tag</code>
+##### <code>audit_cfg_pam</code>
+##### <code>audit_cfg_pam_tag</code>
+##### <code>audit_cfg_security</code>
+##### <code>audit_cfg_security_tag</code>
+##### <code>audit_cfg_services</code>
+##### <code>audit_cfg_services_tag</code>
+##### <code>audit_cfg_xinetd</code>
+##### <code>audit_cfg_xinetd_tag</code>
+##### <code>audit_yum</code>
+##### <code>audit_yum_tag</code>
+##### <code>audit_ptrace</code>
+##### <code>audit_ptrace_tag</code>
+##### <code>audit_personality</code>
+##### <code>audit_personality_tag</code></p>
+
+<h3 id="auditdrule-defined-type">auditd::rule (defined type)</h3>
+
+<h5 id="absolute"><code>absolute</code>:</h5>
+
+<p>When set to true, ensures rules are added absolutely first or last depending on $first
+  * Valid Options: Boolean
+  * Default: false</p>
+
+<h5 id="content"><code>content</code>:</h5>
+
+<p>The content of the rule to be added
+  * Valid Options: String
+  * Default: undef</p>
+
+<h5 id="first"><code>first</code>:</h5>
+
+<p>When set to true, prepend your custom rules. Otherwise, append. See $absolute
+  * Valid Options: Boolean
+  * Default: false</p>
+
+<h5 id="name"><code>name</code>:</h5>
+
+<p>The unique identifier for this rule.
+  * Valid Options: Boolean
+  * Default: false</p>
+
+<h1 id="limitations">Limitations</h1>
+
+<p>SIMP Puppet modules are generally intended to be used on a Redhat Enterprise Linux-compatible distribution such as EL6 and EL7.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Please see the <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">SIMP Contribution Guidelines</a>.</p>
+
+<h3 id="acceptance-tests">Acceptance tests</h3>
+
+<p>To run the system tests, you need <a href="https://www.vagrantup.com/">Vagrant</a> installed. Then, run:</p>
+
+<p><code>shell
+bundle exec rake beaker:suites
+</code></p>
+
+<p>Some environment variables may be useful:</p>
+
+<p><code>shell
+BEAKER_debug=true
+BEAKER_provision=no
+BEAKER_destroy=no
+BEAKER_use_fixtures_dir_for_modules=yes
+</code></p>
+
+<ul>
+  <li><code>BEAKER_debug</code>: show the commands being run on the STU and their output.</li>
+  <li><code>BEAKER_destroy=no</code>: prevent the machine destruction after the tests finish so you can inspect the state.</li>
+  <li><code>BEAKER_provision=no</code>: prevent the machine from being recreated. This can save a lot of time while you’re writing the tests.</li>
+  <li><code>BEAKER_use_fixtures_dir_for_modules=yes</code>: cause all module dependencies to be loaded from the <code>spec/fixtures/modules</code> directory, based on the contents of <code>.fixtures.yml</code>.  The contents of this directory are usually populated by <code>bundle exec rake spec_prep</code>.  This can be used to run acceptance tests to run on isolated networks.</li>
+</ul>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

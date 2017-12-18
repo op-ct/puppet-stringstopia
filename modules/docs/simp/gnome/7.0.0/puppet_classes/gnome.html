@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: gnome
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::gnome";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (g)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">gnome</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: gnome</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-rz2cax/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Installs basic packages for gnome environment.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>set_banner</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, set the banner seen at the login screen.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>banner</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The banner to set if $set_banner is true.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>configure</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If false, no Gnome settings will be touched.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gconf_hash</span>
+      
+      
+        <span class='type'>(<tt>Gnome::Gconf</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Settings specific to gconf and Gnome 2.
+@see data/common.yaml:76</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dconf_hash</span>
+      
+      
+        <span class='type'>(<tt>Gnome::Dconf</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Settings specific to dconf and Gnome 3.
+@see data/common.yaml:33
+@see https://wiki.gnome.org/Projects/dconf/SystemAdministrators</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dconf_profile_hierarchy</span>
+      
+      
+        <span class='type'>(<tt>Gnome::Dconfdb</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Dconf db priority
+@see https://help.gnome.org/admin/system-admin-guide/stable/dconf.html.en
+@see https://wiki.gnome.org/Projects/dconf/SystemAdministrators</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>packages</span>
+      
+      
+        <span class='type'>(<tt>Hash[String,Optional[Hash]]</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash of packages to be installed on the system. The ensure
+value can be set in the hash of each package, like the example below:</p>
+
+<p><code>
+{ 'gedit' =&gt; { 'ensure' =&gt; '3.14.3' } }
+</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_ensure</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::package_ensure&#39;, { &#39;default_value&#39; =&gt; &#39;installed&#39; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The SIMP global catalyst to set the default <code>ensure</code> settings
+for packages managed wit this module. Will be overwitten by $packages.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-rz2cax/manifests/init.pp', line 24</span>
+
+class gnome (
+  Boolean $configure,
+  Gnome::Gconf $gconf_hash,
+  Gnome::Dconf $dconf_hash,
+  Gnome::Dconfdb $dconf_profile_hierarchy,
+  Hash[String,Optional[Hash]] $packages,
+  String $package_ensure = simplib::lookup(&#39;simp_options::package_ensure&#39;, { &#39;default_value&#39; =&gt; &#39;installed&#39; })
+) {
+
+  include &#39;gnome::install&#39;
+
+  if $configure {
+    include &#39;gnome::config&#39;
+    Class[&#39;gnome::install&#39;] -&gt; Class[&#39;gnome::config&#39;]
+  }
+
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

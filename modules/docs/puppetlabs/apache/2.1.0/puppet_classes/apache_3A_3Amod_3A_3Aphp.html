@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: apache::mod::php
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::apache::mod::php";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">apache::mod::php</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: apache::mod::php</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="apache_3A_3Aparams.html" title="puppet_classes::apache::params (puppet_class)">apache::params</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod/php.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>package_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_ensure</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>extensions</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&#39;.php&#39;]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>content</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>template</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;apache/mod/php.conf.erb&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>source</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>root_group</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::root_group</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>php_version</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::php_version</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod/php.pp', line 1</span>
+
+class apache::mod::php (
+  $package_name     = undef,
+  $package_ensure   = &#39;present&#39;,
+  $path             = undef,
+  Array $extensions = [&#39;.php&#39;],
+  $content          = undef,
+  $template         = &#39;apache/mod/php.conf.erb&#39;,
+  $source           = undef,
+  $root_group       = $::apache::params::root_group,
+  $php_version      = $::apache::params::php_version,
+) inherits apache::params {
+
+  include ::apache
+  $mod = &quot;php${php_version}&quot;
+
+  if defined(Class[&#39;::apache::mod::prefork&#39;]) {
+    Class[&#39;::apache::mod::prefork&#39;]-&gt;File[&quot;${mod}.conf&quot;]
+  }
+  elsif defined(Class[&#39;::apache::mod::itk&#39;]) {
+    Class[&#39;::apache::mod::itk&#39;]-&gt;File[&quot;${mod}.conf&quot;]
+  }
+  else {
+    fail(&#39;apache::mod::php requires apache::mod::prefork or apache::mod::itk; please enable mpm_module =&gt; \&#39;prefork\&#39; or mpm_module =&gt; \&#39;itk\&#39; on Class[\&#39;apache\&#39;]&#39;)
+  }
+
+  if $source and ($content or $template != &#39;apache/mod/php.conf.erb&#39;) {
+    warning(&#39;source and content or template parameters are provided. source parameter will be used&#39;)
+  } elsif $content and $template != &#39;apache/mod/php.conf.erb&#39; {
+    warning(&#39;content and template parameters are provided. content parameter will be used&#39;)
+  }
+
+  $manage_content = $source ? {
+    undef   =&gt; $content ? {
+      undef   =&gt; template($template),
+      default =&gt; $content,
+    },
+    default =&gt; undef,
+  }
+
+  # Determine if we have a package
+  $mod_packages = $::apache::mod_packages
+  if $package_name {
+    $_package_name = $package_name
+  } elsif has_key($mod_packages, $mod) { # 2.6 compatibility hack
+    $_package_name = $mod_packages[$mod]
+  } elsif has_key($mod_packages, &#39;phpXXX&#39;) { # 2.6 compatibility hack
+    $_package_name = regsubst($mod_packages[&#39;phpXXX&#39;], &#39;XXX&#39;, $php_version)
+  } else {
+    $_package_name = undef
+  }
+
+  $_lib = &quot;libphp${php_version}.so&quot;
+  $_php_major = regsubst($php_version, &#39;^(\d+)\..*$&#39;, &#39;\1&#39;)
+
+  if $::operatingsystem == &#39;SLES&#39; {
+      ::apache::mod { $mod:
+        package        =&gt; $_package_name,
+        package_ensure =&gt; $package_ensure,
+        lib            =&gt; &#39;mod_php5.so&#39;,
+        id             =&gt; &quot;php${_php_major}_module&quot;,
+        path           =&gt; &quot;${::apache::lib_path}/mod_php5.so&quot;,
+      }
+    } else {
+      ::apache::mod { $mod:
+        package        =&gt; $_package_name,
+        package_ensure =&gt; $package_ensure,
+        lib            =&gt; $_lib,
+        id             =&gt; &quot;php${_php_major}_module&quot;,
+        path           =&gt; $path,
+      }
+
+    }
+
+
+  include ::apache::mod::mime
+  include ::apache::mod::dir
+  Class[&#39;::apache::mod::mime&#39;] -&gt; Class[&#39;::apache::mod::dir&#39;] -&gt; Class[&#39;::apache::mod::php&#39;]
+
+  # Template uses $extensions
+  file { &quot;${mod}.conf&quot;:
+    ensure  =&gt; file,
+    path    =&gt; &quot;${::apache::mod_dir}/${mod}.conf&quot;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; $root_group,
+    mode    =&gt; $::apache::file_mode,
+    content =&gt; $manage_content,
+    source  =&gt; $source,
+    require =&gt; [
+      Exec[&quot;mkdir ${::apache::mod_dir}&quot;],
+    ],
+    before  =&gt; File[$::apache::mod_dir],
+    notify  =&gt; Class[&#39;apache::service&#39;],
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

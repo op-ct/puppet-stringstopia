@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: nfs::server::export
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::nfs::server::export";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (n)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">nfs::server::export</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: nfs::server::export</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1t3lv4c/manifests/server/export.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Defined Type to set up the <code>/etc/exports</code> file</p>
+
+<p>Be careful! The name of these mounts must be unique, but the only unique
+combination is mountpoint + client.  Therefore, you can actually have
+duplicate entries.</p>
+
+<p>NFS will function fine with this but the <strong>last</strong> duplicate entry in the file
+will win!</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>export_path</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The path on the filesystem to export</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>clients</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>NFS export-compatible clients to which the export should be served.</p>
+
+<ul>
+  <li>The entry will be repeated for each client</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>comment</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A comment to be added to the entry</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>insecure</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Do not require that requests originate on a Port less than <code>1024</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rw</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Allow both reads and writes on this volume</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>async</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Allow the NFS server to reply to request before changes have been committed
+to stable storage</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>no_wdelay</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Disable write delays</p>
+
+<ul>
+  <li>Has no effect if <code>$async</code> is set</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nohide</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Disable hiding of subordinate filesystems</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>crossmnt</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Allow clients to access all filesystems mounted on a filesystem marked with
+<code>crossmnt</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subtree_check</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable subtree checking</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>insecure_locks</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Do not require authentication of locking requests</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mountpoint</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Stdlib::Absolutepath,Boolean]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Require this path to be successfully mounted on disk</p>
+
+<ul>
+  <li>If a <code>Boolean</code>, require the export path to be successfully mounted</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fsid</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A specific ID for the exported filesystem</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nordirplus</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Disable <code>READDIRPLUS</code> request handling on <code>NFSv3</code> clients</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>refer</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Pattern['^/.+@.+$']]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of alternate locations for the filesystem</p>
+
+<ul>
+  <li>
+    <p>This should be in the form specified by the man page:
+<code>path@host[+host]</code></p>
+  </li>
+  <li>
+    <p>There will be <strong>minimal</strong> validation and they will be joined by <code>:</code></p>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sec</span>
+      
+      
+        <span class='type'>(<tt>Array[Enum['none','sys','krb5','krb5i','krb5p']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&#39;sys&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Security flavors, in order of preference</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>no_root_squash</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Disable root squashing</p>
+
+<ul>
+  <li>This should only be done if you <em>really</em> know what you are doing!</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>all_squash</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Map all uids and gids to the <code>anonymous</code> user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>anonuid</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>65534</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Explicity set the <code>UID</code> of the <code>anonymous</code> user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>anongid</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>65534</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Explicity set the <code>GID</code> of the <code>anonymous</code> user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A custom set of options</p>
+
+<ul>
+  <li>If set, all other options will be ignored</li>
+  <li><code>$mountpoint</code> and <code>$client</code> must still be set</li>
+  <li>Do <em>not</em> include the parenthesis if you are writing a custom options
+string.</li>
+</ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>exports(5)</li>
+    
+  </ul>
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1t3lv4c/manifests/server/export.pp', line 97</span>
+
+define nfs::server::export (
+  Stdlib::Absolutepath                             $export_path,
+  Array[String]                                    $clients,
+  Optional[String]                                 $comment        = undef,
+  Boolean                                          $insecure       = false,
+  Boolean                                          $rw             = false,
+  Boolean                                          $async          = false,
+  Boolean                                          $no_wdelay      = false,
+  Boolean                                          $nohide         = false,
+  Boolean                                          $crossmnt       = false,
+  Boolean                                          $subtree_check  = false,
+  Boolean                                          $insecure_locks = false,
+  Optional[Variant[Stdlib::Absolutepath,Boolean]]  $mountpoint     = undef,
+  Optional[String]                                 $fsid           = undef,
+  Boolean                                          $nordirplus     = false,
+  Optional[Array[Pattern[&#39;^/.+@.+$&#39;]]]             $refer          = undef,
+  Array[Enum[&#39;none&#39;,&#39;sys&#39;,&#39;krb5&#39;,&#39;krb5i&#39;,&#39;krb5p&#39;]] $sec            = [&#39;sys&#39;],
+  Boolean                                          $no_root_squash = false,
+  Boolean                                          $all_squash     = false,
+  Simplib::Port                                    $anonuid        = 65534,
+  Simplib::Port                                    $anongid        = 65534,
+  Optional[String]                                 $custom         = undef
+) {
+  include &#39;::nfs::server&#39;
+
+  $_name = inline_template(&#39;&lt;%= @name.gsub(&quot;/&quot;,&quot;|&quot;) -%&gt;&#39;)
+
+  concat::fragment { &quot;nfs_${_name}_export&quot;:
+    target  =&gt; &#39;/etc/exports&#39;,
+    content =&gt; template(&quot;${module_name}/server/export.erb&quot;)
+  }
+
+  # We have to do this if we have a &#39;sec=sys&#39; situation on EL7+
+  if (&#39;sys&#39; in $sec) {
+    if ($facts[&#39;os&#39;][&#39;family&#39;] == &#39;RedHat&#39;) {
+      if ($facts[&#39;os&#39;][&#39;name&#39;] in [&#39;RedHat&#39;,&#39;CentOS&#39;]) {
+        if ($facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;] &gt; &#39;6&#39;) {
+          ensure_resource(&#39;selboolean&#39;, &#39;nfsd_anon_write&#39;,
+            {
+              persistent =&gt; true,
+              value      =&gt; &#39;on&#39;
+            }
+          )
+        }
+      }
+      else {
+        fail(&quot;OS &#39;${facts[&#39;os&#39;][&#39;name&#39;]}&#39; not supported by &#39;${module_name}&#39;&quot;)
+      }
+    }
+    else {
+      fail(&quot;OS Family &#39;${facts[&#39;os&#39;][&#39;family&#39;]}&#39; not supported by ${module_name}&quot;)
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

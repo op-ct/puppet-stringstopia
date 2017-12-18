@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: pupmod::master::simp_auth
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::pupmod::master::simp_auth";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">pupmod::master::simp_auth</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: pupmod::master::simp_auth</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qm3iul/manifests/master/simp_auth.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Add SIMP-specific entries to PuppetServer’s auth.conf</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>auth_conf_path</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/puppetlabs/puppetserver/conf.d/auth.conf&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type:    Stdlib::AbsolutePath
+Default: /etc/puppetlabs/puppetserver/conf.d/auth.conf
+The location to the puppet master’s auth.conf</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>legacy_cacerts_all</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type:    Boolean
+Default: true
+If enabled, allow access to the PKI cacerts from the legacy <code>pki</code> module from all hosts</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>legacy_mcollective_all</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type:    Boolean
+Default: true
+If enabled, allow access to the mcollective cacerts from the legacy <code>pki</code> module from all hosts</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>legacy_pki_keytabs_from_host</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type:    Boolean
+Default: true
+If enabled, allow access to each host’s own kerberos keytabs from the legacy location</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pki_cacerts_all</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type:    Boolean
+Default: true
+If enabled, allow access to the cacerts from the <code>pki_files</code> module from all hosts</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pki_mcollective_all</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type:    Boolean
+Default: true
+If enabled, allow access to the mcollective PKI from the <code>pki_files</code> module from all hosts</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keydist_from_host</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type:    Boolean
+Default: true
+If enabled, allow access to each host’s own certs from the <code>pki_files</code> module</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb5_keytabs_from_host</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type:    Boolean
+Default: true
+If enabled, allow access to each host’s own kerberos keytabs from the <code>pki_files</code> module</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>server_distribution</span>
+      
+      
+        <span class='type'>(<tt>Simplib::ServerDistribution</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::puppet::server_distribution&#39;, { &#39;default_value&#39; =&gt; &#39;PC1&#39; } )</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qm3iul/manifests/master/simp_auth.pp', line 43</span>
+
+class pupmod::master::simp_auth (
+  Simplib::ServerDistribution $server_distribution          = simplib::lookup(&#39;simp_options::puppet::server_distribution&#39;, { &#39;default_value&#39; =&gt; &#39;PC1&#39; } ),
+  Stdlib::AbsolutePath        $auth_conf_path               = &#39;/etc/puppetlabs/puppetserver/conf.d/auth.conf&#39;,
+  Boolean                     $legacy_cacerts_all           = false,
+  Boolean                     $legacy_mcollective_all       = false,
+  Boolean                     $legacy_pki_keytabs_from_host = false,
+  Boolean                     $pki_cacerts_all              = true,
+  Boolean                     $pki_mcollective_all          = true,
+  Boolean                     $keydist_from_host            = true,
+  Boolean                     $krb5_keytabs_from_host       = true,
+) {
+
+  $_master_service = $server_distribution ? {
+    &#39;PE&#39;    =&gt; &#39;pe-puppetserver&#39;,
+    default =&gt; &#39;puppetserver&#39;,
+  }
+
+  # translates the parameter, which is a boolean, to the ensure parameter for the define
+  $bool2ensure = {
+    true  =&gt; &#39;present&#39;,
+    false =&gt; &#39;absent&#39;
+  }
+
+  puppet_authorization::rule { &#39;Allow access to the PKI cacerts from the legacy pki module from all hosts&#39;:
+    ensure               =&gt; $bool2ensure[$legacy_cacerts_all],
+    match_request_path   =&gt; &#39;^/puppet/v3/file_(metadata|content)/modules/pki/keydist/cacerts&#39;,
+    match_request_type   =&gt; &#39;regex&#39;,
+    match_request_method =&gt; [&#39;get&#39;],
+    allow                =&gt; &#39;*&#39;,
+    sort_order           =&gt; 400,
+    path                 =&gt; $auth_conf_path,
+    notify               =&gt; Service[$_master_service],
+  }
+
+  puppet_authorization::rule { &#39;Allow access to the mcollective cacerts from the legacy pki module from all hosts&#39;:
+    ensure               =&gt; $bool2ensure[$legacy_mcollective_all],
+    match_request_path   =&gt; &#39;^/puppet/v3/file_(metadata|content)/modules/pki/keydist/mcollective&#39;,
+    match_request_type   =&gt; &#39;regex&#39;,
+    match_request_method =&gt; [&#39;get&#39;],
+    allow                =&gt; &#39;*&#39;,
+    sort_order           =&gt; 420,
+    path                 =&gt; $auth_conf_path,
+    notify               =&gt; Service[$_master_service],
+  }
+
+  puppet_authorization::rule { &#39;Allow access to each hosts own kerberos keytabs from the legacy location&#39;:
+    ensure               =&gt; $bool2ensure[$legacy_pki_keytabs_from_host],
+    match_request_path   =&gt; &#39;^/puppet/v3/file_(metadata|content)/modules/pki_files/keytabs/([^/]+)&#39;,
+    match_request_type   =&gt; &#39;regex&#39;,
+    match_request_method =&gt; [&#39;get&#39;],
+    allow                =&gt; &#39;$2&#39;,
+    sort_order           =&gt; 450,
+    path                 =&gt; $auth_conf_path,
+    notify               =&gt; Service[$_master_service],
+  }
+
+  puppet_authorization::rule { &#39;Allow access to the cacerts from the pki_files module from all hosts&#39;:
+    ensure               =&gt; $bool2ensure[$pki_cacerts_all],
+    match_request_path   =&gt; &#39;^/puppet/v3/file_(metadata|content)/modules/pki_files/keydist/cacerts&#39;,
+    match_request_type   =&gt; &#39;regex&#39;,
+    match_request_method =&gt; [&#39;get&#39;],
+    allow                =&gt; &#39;*&#39;,
+    sort_order           =&gt; 410,
+    path                 =&gt; $auth_conf_path,
+    notify               =&gt; Service[$_master_service],
+  }
+
+  puppet_authorization::rule { &#39;Allow access to the mcollective PKI from the pki_files module from all hosts&#39;:
+    ensure               =&gt; $bool2ensure[$pki_mcollective_all],
+    match_request_path   =&gt; &#39;^/puppet/v3/file_(metadata|content)/modules/pki_files/keydist/mcollective&#39;,
+    match_request_type   =&gt; &#39;regex&#39;,
+    match_request_method =&gt; [&#39;get&#39;],
+    allow                =&gt; &#39;*&#39;,
+    sort_order           =&gt; 430,
+    path                 =&gt; $auth_conf_path,
+    notify               =&gt; Service[$_master_service],
+  }
+
+  puppet_authorization::rule { &#39;Allow access to each hosts own certs from the pki_files module&#39;:
+    ensure               =&gt; $bool2ensure[$keydist_from_host],
+    match_request_path   =&gt; &#39;^/puppet/v3/file_(metadata|content)/modules/pki_files/keydist/([^/]+)&#39;,
+    match_request_type   =&gt; &#39;regex&#39;,
+    match_request_method =&gt; [&#39;get&#39;],
+    allow                =&gt; &#39;$2&#39;,
+    sort_order           =&gt; 440,
+    path                 =&gt; $auth_conf_path,
+    notify               =&gt; Service[$_master_service],
+  }
+
+  puppet_authorization::rule { &#39;Allow access to each hosts own kerberos keytabs from the krb5_files module&#39;:
+    ensure               =&gt; $bool2ensure[$krb5_keytabs_from_host],
+    match_request_path   =&gt; &#39;^/puppet/v3/file_(metadata|content)/modules/krb5_files/keytabs/([^/]+)&#39;,
+    match_request_type   =&gt; &#39;regex&#39;,
+    match_request_method =&gt; [&#39;get&#39;],
+    allow                =&gt; &#39;$2&#39;,
+    sort_order           =&gt; 460,
+    path                 =&gt; $auth_conf_path,
+    notify               =&gt; Service[$_master_service],
+  }
+
+  # The puppet-agent package drops off this file for some reason, and it comes
+  # as root:root. The puppetserver attempts to read this file because it exists,
+  # and can&#39;t because of the permissions (puppetserver runs as puppet:puppet).
+  # Back it up to preserve custom content on upgrade, and blow it away.
+  file { &#39;/etc/puppetlabs/puppet/auth.conf&#39;:
+    ensure =&gt; absent,
+    backup =&gt; true,
+    notify =&gt; Service[$_master_service]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

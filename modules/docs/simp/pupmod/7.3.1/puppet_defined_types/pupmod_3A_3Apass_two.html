@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: pupmod::pass_two
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::pupmod::pass_two";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">pupmod::pass_two</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: pupmod::pass_two</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qm3iul/manifests/pass_two.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>namevar</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$name</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>server_distribution</span>
+      
+      
+        <span class='type'>(<tt>Simplib::ServerDistribution</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;PC1&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>confdir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/puppetlabs/puppet&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>firewall</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pe_classlist</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>lookup(&#39;pupmod::pe_classlist&#39;)</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pupmod_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Host]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;1.2.3.4&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pupmod_ca_server</span>
+      
+      
+        <span class='type'>(<tt>Variant[Simplib::Host,Enum['$server']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;$server&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pupmod_ca_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>8141</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pupmod_report</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pupmod_masterport</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>8140</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>at manifests/init.pp:244</li>
+    
+  </ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qm3iul/manifests/pass_two.pp', line 2</span>
+
+define pupmod::pass_two (
+  String $namevar = $name,
+  Simplib::ServerDistribution $server_distribution = &#39;PC1&#39;,
+  Stdlib::AbsolutePath $confdir = &#39;/etc/puppetlabs/puppet&#39;,
+  Optional[Boolean] $firewall = undef,
+  Hash $pe_classlist = lookup(&#39;pupmod::pe_classlist&#39;),
+  Optional[Simplib::Host] $pupmod_server = &#39;1.2.3.4&#39;,
+  Variant[Simplib::Host,Enum[&#39;$server&#39;]] $pupmod_ca_server = &#39;$server&#39;,
+  Simplib::Port $pupmod_ca_port = 8141,
+  Boolean $pupmod_report = false,
+  Simplib::Port $pupmod_masterport = 8140,
+) {
+  if (defined(Class[&#39;puppet_enterprise&#39;])) {
+    $_server_distribution = &#39;PE&#39;
+  } else {
+    $_server_distribution = $server_distribution
+  }
+
+
+  # These are agent specific variables, that only apply on PC1 systems:
+
+  if ($_server_distribution == &#39;PC1&#39;) {
+    pupmod::conf { &#39;server&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;server&#39;,
+      value   =&gt; $pupmod_server,
+    }
+
+    pupmod::conf { &#39;ca_server&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;ca_server&#39;,
+      value   =&gt; $pupmod_ca_server,
+    }
+
+    pupmod::conf { &#39;masterport&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;masterport&#39;,
+      value   =&gt; $pupmod_masterport,
+    }
+
+    pupmod::conf { &#39;ca_port&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;ca_port&#39;,
+      value   =&gt; $pupmod_ca_port,
+
+    }
+    pupmod::conf { &#39;report&#39;:
+      section =&gt; &#39;agent&#39;,
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;report&#39;,
+      value   =&gt; $pupmod_report,
+    }
+  }
+
+  $_conf_group = &#39;puppet&#39;
+
+  # These two maps allow the user and service specifications to occur purely in data
+  # and can be included /only/ if the node is classified into the applicable groups.
+  # this is necessary as a LEI install of PE has several seperate, independent
+  # roles that can be applied, not just master|agent.
+  #
+  # This also prevents us from passing the burden onto the user to classify
+  # their nodes with two classes, one for SIMP, and one for PE.
+  #
+  # For safety that means that releases of SIMP are only supported on specified PE
+  # releases. We need to have a matrix of supported versions.
+  if ($_server_distribution == &#39;PE&#39;) {
+    $available = $pe_classlist.map |$class, $data| {
+      if (defined(Class[$class])) {
+        $data[&#39;users&#39;]
+      }
+    }
+
+    $notify_resources = $pe_classlist.map |$class, $data| {
+      if (defined(Class[$class])) {
+        if ($data[&#39;services&#39;] != undef) {
+          # lint:ignore:variable_scope
+          $data[&#39;services&#39;].map |$service| { Service[$service] }
+          # lint:endignore
+          }
+      }
+    }
+    $group_notify = unique(flatten(delete_undef_values($notify_resources)))
+    $group_members = unique(flatten(delete_undef_values($available)))
+  } else {
+    $group_notify = undef
+    $group_members = undef
+  }
+
+  # All of those functions are required to make this &#39;safe&#39; and
+  # idempotent.
+  group { $_conf_group:
+    ensure    =&gt; &#39;present&#39;,
+    allowdupe =&gt; false,
+    gid       =&gt; &#39;52&#39;,
+    tag       =&gt; &#39;firstrun&#39;,
+    notify    =&gt; $group_notify,
+    members   =&gt; $group_members,
+  }
+
+  # We cannot assume that every user is
+  # going to read the SIMP docs before they attempt to classify a
+  # class, and we also cannot assume they know what would happen
+  # if pupmod::master and puppet_enterprise::profile::master
+  # are applied at the same time.
+  #
+  # Hell, I don&#39;t even know what would happen. But it would be bad
+  # Very, very bad.
+  if (defined(Class[&#39;puppet_enterprise::profile::master&#39;])) {
+    if (defined(Class[&#39;pupmod::master&#39;])) {
+      fail(&#39;pupmod::master is NOT supported on PE masters. Please remove the pupmod::master classification from hiera or the puppet console before proceeding&#39;)
+    } else {
+      class { &#39;pupmod::master::sysconfig&#39;:
+        server_distribution =&gt; &#39;PE&#39;,
+        service             =&gt; &#39;pe-puppetserver&#39;,
+        user                =&gt; &#39;pe-puppet&#39;,
+      }
+    }
+  }
+  if (defined(Class[&#39;pupmod::master&#39;])) {
+    class { &#39;pupmod::master::simp_auth&#39;:
+      server_distribution =&gt; $_server_distribution
+    }
+  }
+
+  if ($_server_distribution == &#39;PC1&#39;) {
+    $shared_mode = &#39;0640&#39;
+  } elsif ($_server_distribution == &#39;PE&#39;) {
+    $shared_mode = undef
+  }
+  file { $confdir:
+    ensure =&gt; &#39;directory&#39;,
+    owner  =&gt; &#39;root&#39;,
+    group  =&gt; $_conf_group,
+    mode   =&gt; $shared_mode
+  }
+
+  file { &quot;${confdir}/puppet.conf&quot;:
+    ensure =&gt; &#39;file&#39;,
+    owner  =&gt; &#39;root&#39;,
+    group  =&gt; $_conf_group,
+    mode   =&gt; $shared_mode
+  }
+
+  if ($_server_distribution == &#39;PE&#39;) {
+    $pe_classlist.each |String $class, Hash $data| {
+      if (defined(Class[$class])) {
+        if ($data[&#39;configure_access&#39;] == true) {
+          pam::access::rule { &quot;Add rule for ${class}&quot;: users =&gt; $data[&#39;users&#39;], origins =&gt; [&#39;ALL&#39;], comment =&gt;  &#39;fix for init scripts that use su&#39; }
+        }
+      }
+    }
+  }
+
+  # Generate firewall rules on a per-class basis.
+  # Basically, only when a node is classified with a role will we poke
+  # a hole in the firewall for it
+  #
+  # Only create tcp rules since that&#39;s all puppet uses. But support it
+  # in the data model anyway
+  if ($firewall) {
+    if ($_server_distribution == &#39;PE&#39;) {
+      $pe_classlist.each |String $class, Hash $data| {
+        if (defined(Class[$class])) {
+          $rules = $data[&#39;firewall_rules&#39;]
+          if ($rules != undef) {
+            $rules.each |Hash $data| {
+              case ($data[&#39;proto&#39;]) {
+                &#39;tcp&#39; : {
+                  iptables::listen::tcp_stateful { &quot;${class} - ${data[&#39;proto&#39;]} - ${data[&#39;port&#39;]}&quot;:
+                    dports =&gt; $data[&#39;port&#39;],
+                  }
+                }
+                default: {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="grafana">grafana</h1>
+
+<p><a href="https://travis-ci.org/voxpupuli/puppet-grafana"><img src="https://travis-ci.org/voxpupuli/puppet-grafana.png?branch=master" alt="Build Status" /></a>
+<a href="https://coveralls.io/github/voxpupuli/puppet-grafana"><img src="https://coveralls.io/repos/github/voxpupuli/puppet-grafana/badge.svg?branch=master" alt="Code Coverage" /></a>
+<a href="https://forge.puppetlabs.com/puppet/grafana"><img src="https://img.shields.io/puppetforge/v/puppet/grafana.svg" alt="Puppet Forge" /></a>
+<a href="https://forge.puppetlabs.com/puppet/grafana"><img src="https://img.shields.io/puppetforge/dt/puppet/grafana.svg" alt="Puppet Forge - downloads" /></a>
+<a href="https://forge.puppetlabs.com/puppet/grafana"><img src="https://img.shields.io/puppetforge/e/puppet/grafana.svg" alt="Puppet Forge - endorsement" /></a>
+<a href="https://forge.puppetlabs.com/puppet/grafana"><img src="https://img.shields.io/puppetforge/f/puppet/grafana.svg" alt="Puppet Forge - scores" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#module-description">Module Description</a></li>
+  <li><a href="#setup">Setup</a>
+    <ul>
+      <li><a href="#beginning-with-grafana">Beginning with Grafana</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage</a>
+    <ul>
+      <li><a href="#classes-and-defined-types">Classes and Defined Types</a></li>
+      <li><a href="#advanced-usage">Advanced usage</a></li>
+    </ul>
+  </li>
+  <li><a href="#limitations">Limitations</a></li>
+  <li><a href="#copyright-and-license">Copyright and License</a></li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>This module installs Grafana, a dashboard and graph editor for Graphite,
+InfluxDB and OpenTSDB.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>Version 2.x of this module is designed to work with version 2.x of Grafana.
+If you would like to continue to use Grafana 1.x, please use version 1.x of
+this module.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>This module will:</p>
+
+<ul>
+  <li>Install Grafana using your preferred method: package (default), Docker
+container, or tar archive</li>
+  <li>Allow you to override the version of Grafana to be installed, and / or the
+package source</li>
+  <li>Perform basic configuration of Grafana</li>
+</ul>
+
+<h3 id="beginning-with-grafana">Beginning with Grafana</h3>
+
+<p>To install Grafana with the default parameters:</p>
+
+<p><code>puppet
+    class { 'grafana': }
+</code></p>
+
+<p>This assumes that you want to install Grafana using the ‘package’ method. To
+establish customized parameters:</p>
+
+<p><code>puppet
+    class { 'grafana':
+      install_method  =&gt; 'docker',
+    }
+</code></p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="classes-and-defined-types">Classes and Defined Types</h3>
+
+<h4 id="class-grafana">Class: <code>grafana</code></h4>
+
+<p>The Grafana module’s primary class, <code>grafana</code>, guides the basic setup of Grafana
+on your system.</p>
+
+<p><code>puppet
+    class { 'grafana': }
+</code></p>
+
+<p><strong>Parameters within <code>grafana</code>:</strong></p>
+
+<h5 id="archivesource"><code>archive_source</code></h5>
+
+<p>The download location of a tarball to use with the ‘archive’ install method.
+Defaults to the URL of the latest version of Grafana available at the time of
+module release.</p>
+
+<h5 id="cfglocation"><code>cfg_location</code></h5>
+
+<p>Configures the location to which the Grafana configuration is written. The
+default location is ‘/etc/grafana/grafana.ini’.</p>
+
+<h5 id="cfg"><code>cfg</code></h5>
+
+<p>Manages the Grafana configuration file. Grafana comes with its own default
+settings in a different configuration file (/opt/grafana/current/conf/defaults.ini),
+therefore this module does not supply any defaults.</p>
+
+<p>This parameter only accepts a hash as its value. Keys with hashes as values will
+generate sections, any other values are just plain values. The example below will
+result in…</p>
+
+<p><code>puppet
+    class { 'grafana':
+      cfg =&gt; {
+        app_mode =&gt; 'production',
+        server   =&gt; {
+          http_port     =&gt; 8080,
+        },
+        database =&gt; {
+          type          =&gt; 'sqlite3',
+          host          =&gt; '127.0.0.1:3306',
+          name          =&gt; 'grafana',
+          user          =&gt; 'root',
+          password      =&gt; '',
+        },
+        users    =&gt; {
+          allow_sign_up =&gt; false,
+        },
+      },
+    }
+</code></p>
+
+<p>…the following Grafana configuration:</p>
+
+<p>```ini
+# This file is managed by Puppet, any changes will be overwritten</p>
+
+<p>app_mode = production</p>
+
+<p>[server]
+http_port = 8080</p>
+
+<p>[database]
+type = sqlite3
+host = 127.0.0.1:3306
+name = grafana
+user = root
+password =</p>
+
+<p>[users]
+allow_sign_up = false
+```</p>
+
+<p>Some minor notes:</p>
+
+<ul>
+  <li>If you want empty values, just use an empty string.</li>
+  <li>Keys that contains dots (like auth.google) need to be quoted.</li>
+  <li>The order of the keys in this hash is the same as they will be written to the
+configuration file. So settings that do not fall under a section will have to
+come before any sections in the hash.</li>
+</ul>
+
+<h4 id="ldapcfg"><code>ldap_cfg</code></h4>
+
+<h5 id="toml-note">TOML note</h5>
+
+<p>This option <strong>requires</strong> the <a href="https://github.com/toml-lang/toml">toml</a> gem. Either
+install the gem using puppet’s native gem provider,
+<a href="https://forge.puppetlabs.com/puppetlabs/puppetserver_gem">puppetserver_gem</a>,
+<a href="https://forge.puppetlabs.com/puppetlabs/pe_gem">pe_gem</a>,
+<a href="https://forge.puppetlabs.com/puppetlabs/pe_puppetserver_gem">pe_puppetserver_gem</a>,
+or manually using one of the following:</p>
+
+<p><code>
+  # apply or puppet-master
+  gem install toml
+  # PE apply
+  /opt/puppet/bin/gem install toml
+  # AIO or PE puppetserver
+  /opt/puppet/bin/puppetserver gem install toml
+</code></p>
+
+<h5 id="cfg-note">cfg note</h5>
+
+<p>This option by itself is not sufficient to enable LDAP configuration as it must
+be enabled in the main configuration file. Enable it in cfg with:</p>
+
+<p><code>
+'auth.ldap' =&gt; {
+  enabled     =&gt; 'true',
+  config_file =&gt; '/etc/grafana/ldap.toml',
+},
+</code></p>
+
+<h4 id="integer-note">Integer note</h4>
+
+<p>Puppet may convert integers into strings while parsing the hash and converting
+into toml. This can be worked around by appending 0 to an integer.</p>
+
+<p>Example:</p>
+
+<p><code>
+port =&gt; 636+0,
+</code></p>
+
+<p>Manages the Grafana LDAP configuration file. This hash is directly translated
+into the corresponding TOML file, allowing for full flexibility in generating
+the configuration.</p>
+
+<p>See the <a href="http://docs.grafana.org/v2.1/installation/ldap/">LDAP documentation</a>
+for more information.</p>
+
+<h4 id="example-ldap-config">Example LDAP config</h4>
+
+<p><code>
+ldap_cfg =&gt; {
+  servers =&gt; [
+    { host            =&gt; 'ldapserver1.domain1.com',
+      port            =&gt; 636+0,
+      use_ssl         =&gt; true,
+      search_filter   =&gt; '(sAMAccountName=%s)',
+      search_base_dns =&gt; [ 'dc=domain1,dc=com' ],
+      bind_dn         =&gt; 'user@domain1.com',
+      bind_password   =&gt; 'passwordhere',
+    },
+  ],
+  'servers.attributes' =&gt; {
+    name      =&gt; 'givenName',
+    surname   =&gt; 'sn',
+    username  =&gt; 'sAMAccountName',
+    member_of =&gt; 'memberOf',
+    email     =&gt; 'email',
+  }
+},
+</code></p>
+
+<h5 id="containercfg"><code>container_cfg</code></h5>
+
+<p>Boolean to control whether a configuration file should be generated when using
+the ‘docker’ install method. If ‘true’, use the ‘cfg’ and ‘cfg_location’
+parameters to control creation of the file. Defaults to false.</p>
+
+<h5 id="containerparams"><code>container_params</code></h5>
+
+<p>A hash of parameters to use when creating the Docker container. For use with the
+‘docker’ install method. Refer to documentation of the ‘docker::run’ resource in
+the <a href="https://github.com/garethr/garethr-docker">garethr-docker</a> module for details
+of available parameters. Defaults to:</p>
+
+<p><code>puppet
+container_params =&gt; {
+  'image' =&gt; 'grafana/grafana:latest',
+  'ports' =&gt; '3000:3000'
+}
+</code></p>
+
+<h5 id="datadir"><code>data_dir</code></h5>
+
+<p>The directory Grafana will use for storing its data. Defaults to ‘/var/lib/grafana’.</p>
+
+<h5 id="installdir"><code>install_dir</code></h5>
+
+<p>The installation directory to be used with the ‘archive’ install method. Defaults
+to ‘/usr/share/grafana’.</p>
+
+<h5 id="installmethod"><code>install_method</code></h5>
+
+<p>Controls which method to use for installing Grafana. Valid options are: ‘archive’,
+‘docker’, ‘repo’ and ‘package’. The default is ‘package’. If you wish to use the
+‘docker’ installation method, you will need to include the ‘docker’ class in your
+node’s manifest / profile. If you wish to use the ‘repo’ installation method, you
+can control whether the official Grafana repositories will be used. See
+<code>manage_package_repo</code> below for details.</p>
+
+<h5 id="managepackagerepo"><code>manage_package_repo</code></h5>
+
+<p>Boolean. When using the ‘repo’ installation method, controls whether the official
+Grafana repositories are enabled on your host. If true, the official Grafana
+repositories will be enabled. If false, the module assumes you are managing your
+own package repository and will not set one up for you. Defaults to true.</p>
+
+<h5 id="packagename"><code>package_name</code></h5>
+
+<p>The name of the package managed with the ‘package’ install method. Defaults to
+‘grafana’.</p>
+
+<h5 id="packagesource"><code>package_source</code></h5>
+
+<p>The download location of a package to be used with the ‘package’ install method.
+Defaults to the URL of the latest version of Grafana available at the time of
+module release.</p>
+
+<h5 id="rpmiteration"><code>rpm_iteration</code></h5>
+
+<p>Used when installing Grafana from package (‘package’ or ‘repo’ install methods)
+on Red Hat based systems. Defaults to ‘1’. It should not be necessary to change
+this in most cases.</p>
+
+<h5 id="servicename"><code>service_name</code></h5>
+
+<p>The name of the service managed with the ‘archive’ and ‘package’ install methods.
+Defaults to ‘grafana-server’.</p>
+
+<h5 id="version"><code>version</code></h5>
+
+<p>The version of Grafana to install and manage. Defaults to the latest version of
+Grafana available at the time of module release.</p>
+
+<h3 id="advanced-usage">Advanced usage</h3>
+
+<p>The archive install method will create the user and a “command line” service by
+default. There are no extra parameters to manage user/service for archive.
+However, both check to see if they are defined before defining. This way you can
+create your own user and service with your own specifications. (sort of overriding)
+The service can be a bit tricky, in this example below, the class
+sensu_install::grafana::service creates a startup script and a service‘grafana-server’:</p>
+
+<p>Example:</p>
+
+<p>```puppet
+    user { ‘grafana’:
+      ensure   =&gt; present,
+      uid      =&gt; ‘1234’,
+    }
+    -&gt;
+    class { ‘grafana’:
+      install_method  =&gt; ‘archive’,
+    }</p>
+
+<pre class="code ruby"><code class="ruby">include sensu_install::grafana::service
+
+# run your service after install/config but before grafana::service
+Class[::grafana::install]
+-&gt;
+Class[sensu_install::grafana::service]
+-&gt;
+Class[::grafana::service]
+</code></pre>
+
+<p>```</p>
+
+<h4 id="custom-types-and-providers">Custom Types and Providers</h4>
+
+<p>The module includes two custom types: <code>grafana_dashboard</code> and <code>grafana_datasource</code></p>
+
+<h5 id="grafanadashboard"><code>grafana_dashboard</code></h5>
+
+<p>In order to use the dashboard resource, add the following to your manifest:</p>
+
+<p><code>puppet
+grafana_dashboard { 'example_dashboard':
+  grafana_url       =&gt; 'http://localhost:3000',
+  grafana_user      =&gt; 'admin',
+  grafana_password  =&gt; '5ecretPassw0rd',
+  content           =&gt; template('path/to/exported/file.json'),
+}
+</code></p>
+
+<p><code>content</code> must be valid JSON, and is parsed before imported.
+<code>grafana_user</code> and <code>grafana_password</code> are optional, and required when
+authentication is enabled in Grafana.</p>
+
+<h5 id="grafanadatasource"><code>grafana_datasource</code></h5>
+
+<p>In order to use the datasource resource, add the following to your manifest:</p>
+
+<p><code>puppet
+grafana_datasource { 'influxdb':
+  grafana_url       =&gt; 'http://localhost:3000',
+  grafana_user      =&gt; 'admin',
+  grafana_password  =&gt; '5ecretPassw0rd',
+  type              =&gt; 'influxdb',
+  url               =&gt; 'http://localhost:8086',
+  user              =&gt; 'admin',
+  password          =&gt; '1nFlux5ecret',
+  database          =&gt; 'graphite',
+  access_mode       =&gt; 'proxy',
+  is_default        =&gt; true,
+  json_data         =&gt; template('path/to/additional/config.json'),
+}
+</code></p>
+
+<p>Available types are: influxdb, elasticsearch, graphite, kairosdb, opentsdb, prometheus</p>
+
+<p>Access mode determines how Grafana connects to the datasource, either <code>direct</code>
+from the browser, or <code>proxy</code> to send requests via grafana.</p>
+
+<p>Authentication is optional, as is <code>database</code>; additional <code>json_data</code> can be
+provided to allow custom configuration options.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This module has been tested on Ubuntu 14.04, using each of the ‘archive’, ‘docker’
+and ‘package’ installation methods. Other configurations should work with minimal,
+if any, additional effort.</p>
+
+<h2 id="copyright-and-license">Copyright and License</h2>
+
+<p>Copyright (C) 2015 Bill Fraser</p>
+
+<p>Bill can be contacted at: fraser@pythian.com</p>
+
+<p>Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Puppet::Util::SettingValue
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Puppet::Util::SettingValue";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Util.html" title="Puppet::Util (module)">Util</a></span></span>
+     &raquo; 
+    <span class="title">SettingValue</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Puppet::Util::SettingValue
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Puppet::Util::SettingValue</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This class can work with a list of subsettings inside
+an ini file setting string to add, remove, extract and set their values.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_subsetting-instance_method" title="#add_subsetting (instance method)">#<strong>add_subsetting</strong>(subsetting, subsetting_value, use_exact_match = :false, insert_type = :end, insert_value = nil)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Add a new subsetting item to the list of existing items if such item is not already there.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_subsetting-instance_method" title="#find_subsetting (instance method)">#<strong>find_subsetting</strong>(subsetting, use_exact_match = :false)  &#x21d2; Integer<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Find the first subsetting item matching the given name, or, if the exact match is set, equal to the given name and return its array index value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_subsetting_value-instance_method" title="#get_subsetting_value (instance method)">#<strong>get_subsetting_value</strong>(subsetting, use_exact_match = :false)  &#x21d2; nil, ... </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the value of the given subsetting item.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_value-instance_method" title="#get_value (instance method)">#<strong>get_value</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the resulting setting value by joining all the subsettings, separator and quote characters.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(setting_value, subsetting_separator = &#39; &#39;, default_quote_char = &#39;&#39;, key_val_separator = &#39;&#39;)  &#x21d2; SettingValue </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The constructor method subsettings in the setting_value string.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#item_value-instance_method" title="#item_value (instance method)">#<strong>item_value</strong>(subsetting, subsetting_value)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The actual value of the subsetting item.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#match_subsetting%3F-instance_method" title="#match_subsetting? (instance method)">#<strong>match_subsetting?</strong>(item, subsetting, use_exact_match = :false)  &#x21d2; true, false </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Check if the subsetting item matches the given name.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_subsetting-instance_method" title="#remove_subsetting (instance method)">#<strong>remove_subsetting</strong>(subsetting, use_exact_match = :false)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Remove all the subsetting items that match the given subsetting name.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unquote_setting_value-instance_method" title="#unquote_setting_value (instance method)">#<strong>unquote_setting_value</strong>(setting_value)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>If the setting value is quoted, the quotes are removed and the unquoted string and the quoting character are returned.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_subsetting-instance_method" title="#update_subsetting (instance method)">#<strong>update_subsetting</strong>(subsetting, subsetting_value, use_exact_match = :false)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Update all matching items in the settings list to the new values.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(setting_value, subsetting_separator = &#39; &#39;, default_quote_char = &#39;&#39;, key_val_separator = &#39;&#39;)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Util::SettingValue (class)">SettingValue</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The constructor method
+subsettings in the setting_value string.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>setting_value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The initial setting value</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subsetting_separator</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39; &#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The character is used to separate</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_quote_char</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Quote the setting string with this character.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_setting_value'>setting_value</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting_separator'>subsetting_separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_default_quote_char'>default_quote_char</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_key_val_separator'>key_val_separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@setting_value</span> <span class='op'>=</span> <span class='id identifier rubyid_setting_value'>setting_value</span>
+  <span class='ivar'>@subsetting_separator</span> <span class='op'>=</span> <span class='id identifier rubyid_subsetting_separator'>subsetting_separator</span>
+  <span class='ivar'>@quote_char</span> <span class='op'>=</span> <span class='id identifier rubyid_default_quote_char'>default_quote_char</span>
+  <span class='ivar'>@key_val_separator</span> <span class='op'>=</span> <span class='id identifier rubyid_key_val_separator'>key_val_separator</span>
+  <span class='ivar'>@subsetting_items</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@setting_value</span>
+    <span class='id identifier rubyid_unquoted'>unquoted</span><span class='comma'>,</span> <span class='id identifier rubyid_quote_char'>quote_char</span> <span class='op'>=</span> <span class='id identifier rubyid_unquote_setting_value'>unquote_setting_value</span><span class='lparen'>(</span><span class='id identifier rubyid_setting_value'>setting_value</span><span class='rparen'>)</span>
+    <span class='ivar'>@quote_char</span> <span class='op'>=</span> <span class='id identifier rubyid_quote_char'>quote_char</span> <span class='kw'>unless</span> <span class='id identifier rubyid_quote_char'>quote_char</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='comment'># an item can contain escaped separator
+</span>    <span class='ivar'>@subsetting_items</span> <span class='op'>=</span> <span class='id identifier rubyid_unquoted'>unquoted</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>(?:(?:[^\\</span><span class='embexpr_beg'>#{</span><span class='ivar'>@subsetting_separator</span><span class='embexpr_end'>}</span><span class='tstring_content'>]|\\.)+)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_map!'>map!</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_subsetting-instance_method">
+  
+    #<strong>add_subsetting</strong>(subsetting, subsetting_value, use_exact_match = :false, insert_type = :end, insert_value = nil)  &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Add a new subsetting item to the list of existing items
+if such item is not already there.
+It will be appended to the name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>subsetting</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the subsetting to add.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subsetting_value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The value of the subsetting.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_exact_match</span>
+      
+      
+        <span class='type'>(<tt>:true</tt>, <tt>:false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Should the full name match be used?</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>insert_type</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:end</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>insert_value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resulting subsettings list.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_subsetting'>add_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting_value'>subsetting_value</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='op'>=</span><span class='symbol'>:false</span><span class='comma'>,</span> <span class='id identifier rubyid_insert_type'>insert_type</span><span class='op'>=</span><span class='symbol'>:end</span><span class='comma'>,</span> <span class='id identifier rubyid_insert_value'>insert_value</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='id identifier rubyid_find_subsetting'>find_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='rparen'>)</span>
+
+  <span class='comment'># update the existing values if the subsetting is found in the list
+</span>  <span class='kw'>return</span> <span class='id identifier rubyid_update_subsetting'>update_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting_value'>subsetting_value</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span>
+
+  <span class='id identifier rubyid_new_item'>new_item</span> <span class='op'>=</span> <span class='id identifier rubyid_item_value'>item_value</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting_value'>subsetting_value</span><span class='rparen'>)</span>
+
+  <span class='kw'>case</span> <span class='id identifier rubyid_insert_type'>insert_type</span>
+    <span class='kw'>when</span> <span class='symbol'>:start</span>
+      <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_unshift'>unshift</span><span class='lparen'>(</span><span class='id identifier rubyid_new_item'>new_item</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='symbol'>:end</span>
+      <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_new_item'>new_item</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='symbol'>:before</span>
+      <span class='id identifier rubyid_before_index'>before_index</span> <span class='op'>=</span> <span class='id identifier rubyid_find_subsetting'>find_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_insert_value'>insert_value</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_before_index'>before_index</span>
+        <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_before_index'>before_index</span><span class='comma'>,</span> <span class='id identifier rubyid_new_item'>new_item</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_new_item'>new_item</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='symbol'>:after</span>
+      <span class='id identifier rubyid_after_index'>after_index</span> <span class='op'>=</span> <span class='id identifier rubyid_find_subsetting'>find_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_insert_value'>insert_value</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_after_index'>after_index</span>
+        <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_after_index'>after_index</span> <span class='op'>+</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_new_item'>new_item</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_new_item'>new_item</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='symbol'>:index</span>
+      <span class='id identifier rubyid_before_index'>before_index</span> <span class='op'>=</span> <span class='id identifier rubyid_insert_value'>insert_value</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='id identifier rubyid_before_index'>before_index</span> <span class='op'>=</span> <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='kw'>if</span> <span class='id identifier rubyid_before_index'>before_index</span> <span class='op'>&gt;</span> <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+      <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_before_index'>before_index</span><span class='comma'>,</span> <span class='id identifier rubyid_new_item'>new_item</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_new_item'>new_item</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@subsetting_items</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_subsetting-instance_method">
+  
+    #<strong>find_subsetting</strong>(subsetting, use_exact_match = :false)  &#x21d2; <tt>Integer</tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Find the first subsetting item matching the given name,
+or, if the exact match is set, equal to the given name
+and return its array index value. Returns nil if not found.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>subsetting</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the subsetting to search.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_exact_match</span>
+      
+      
+        <span class='type'>(<tt>:true</tt>, <tt>:false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Look for the full string match?</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+143
+144
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 143</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_subsetting'>find_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='op'>=</span><span class='symbol'>:false</span><span class='rparen'>)</span>
+  <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+    <span class='id identifier rubyid_match_subsetting?'>match_subsetting?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_subsetting_value-instance_method">
+  
+    #<strong>get_subsetting_value</strong>(subsetting, use_exact_match = :false)  &#x21d2; <tt>nil</tt>, ... 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the value of the given subsetting item.
+If the exact match is used the value will be true
+if the item is found.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>subsetting</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the subsetting to add.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_exact_match</span>
+      
+      
+        <span class='type'>(<tt>:true</tt>, <tt>:false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Should the full name match be used?</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>nil</tt>, <tt>true</tt>, <tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 64</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_subsetting_value'>get_subsetting_value</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='op'>=</span><span class='symbol'>:false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='id identifier rubyid_find_subsetting'>find_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='rparen'>)</span>
+  <span class='comment'># the item is not found in the list
+</span>  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_index'>index</span>
+  <span class='comment'># the exact match is set and the item is found, the value should be true
+</span>  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span> <span class='op'>==</span> <span class='symbol'>:true</span>
+  <span class='id identifier rubyid_item'>item</span> <span class='op'>=</span> <span class='ivar'>@subsetting_items</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>+</span> <span class='ivar'>@key_val_separator</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_value-instance_method">
+  
+    #<strong>get_value</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the resulting setting value by joining all the
+subsettings, separator and quote characters.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_value'>get_value</span>
+  <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span> <span class='ivar'>@subsetting_separator</span>
+  <span class='ivar'>@quote_char</span> <span class='op'>+</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>+</span> <span class='ivar'>@quote_char</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="item_value-instance_method">
+  
+    #<strong>item_value</strong>(subsetting, subsetting_value)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The actual value of the subsetting item.
+It’s built from the subsetting name, its value and the separator
+string if present.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>subsetting</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The subsetting name</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subsetting_value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The value of the subsetting</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_value'>item_value</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting_value'>subsetting_value</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='ivar'>@key_val_separator</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_subsetting_value'>subsetting_value</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="match_subsetting?-instance_method">
+  
+    #<strong>match_subsetting?</strong>(item, subsetting, use_exact_match = :false)  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Check if the subsetting item matches the given name.
+If the exact match is set the entire item is matched,
+and only the item name and separator string if not.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>item</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The item value to check against the subsetting name.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subsetting</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The subsetting name.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_exact_match</span>
+      
+      
+        <span class='type'>(<tt>:true</tt>, <tt>:false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Look for the full string match?</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158
+159
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 156</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_match_subsetting?'>match_subsetting?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='op'>=</span><span class='symbol'>:false</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span> <span class='op'>==</span> <span class='symbol'>:true</span>
+    <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span> <span class='op'>+</span> <span class='ivar'>@key_val_separator</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_subsetting-instance_method">
+  
+    #<strong>remove_subsetting</strong>(subsetting, use_exact_match = :false)  &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Remove all the subsetting items that match
+the given subsetting name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>subsetting</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The subsetting name to remove.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_exact_match</span>
+      
+      
+        <span class='type'>(<tt>:true</tt>, <tt>:false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Look for the full string match?</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resulting subsettings list.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+169
+170
+171
+172
+173</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 169</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_subsetting'>remove_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='op'>=</span><span class='symbol'>:false</span><span class='rparen'>)</span>
+  <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+    <span class='id identifier rubyid_match_subsetting?'>match_subsetting?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="unquote_setting_value-instance_method">
+  
+    #<strong>unquote_setting_value</strong>(setting_value)  &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>If the setting value is quoted, the quotes are
+removed and the unquoted string and the quoting
+character are returned.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>setting_value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The input value</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The unquoted string and the quoting character</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unquote_setting_value'>unquote_setting_value</span><span class='lparen'>(</span><span class='id identifier rubyid_setting_value'>setting_value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_quote_char'>quote_char</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_setting_value'>setting_value</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_setting_value'>setting_value</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_quote_char'>quote_char</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_setting_value'>setting_value</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_setting_value'>setting_value</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_quote_char'>quote_char</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_quote_char'>quote_char</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_unquoted'>unquoted</span> <span class='op'>=</span> <span class='id identifier rubyid_setting_value'>setting_value</span><span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_setting_value'>setting_value</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>-</span> <span class='int'>2</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_unquoted'>unquoted</span> <span class='op'>=</span> <span class='id identifier rubyid_setting_value'>setting_value</span>
+  <span class='kw'>end</span>
+
+  <span class='lbracket'>[</span><span class='id identifier rubyid_unquoted'>unquoted</span><span class='comma'>,</span> <span class='id identifier rubyid_quote_char'>quote_char</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_subsetting-instance_method">
+  
+    #<strong>update_subsetting</strong>(subsetting, subsetting_value, use_exact_match = :false)  &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Update all matching items in the settings list to the new values.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>subsetting</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the subsetting to add.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>subsetting_value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The value of the subsetting.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_exact_match</span>
+      
+      
+        <span class='type'>(<tt>:true</tt>, <tt>:false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>:false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Should the full name match be used?</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resulting subsettings list.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/setting_value.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_subsetting'>update_subsetting</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting_value'>subsetting_value</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='op'>=</span><span class='symbol'>:false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_item'>new_item</span> <span class='op'>=</span> <span class='id identifier rubyid_item_value'>item_value</span><span class='lparen'>(</span><span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting_value'>subsetting_value</span><span class='rparen'>)</span>
+  <span class='ivar'>@subsetting_items</span><span class='period'>.</span><span class='id identifier rubyid_map!'>map!</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_match_subsetting?'>match_subsetting?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span> <span class='id identifier rubyid_subsetting'>subsetting</span><span class='comma'>,</span> <span class='id identifier rubyid_use_exact_match'>use_exact_match</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_new_item'>new_item</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_item'>item</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

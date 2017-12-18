@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-stunnel"><img src="https://travis-ci.org/simp/pupmod-simp-stunnel.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#this-is-a-simp-module">Overview</a></li>
+  <li><a href="#module-description">Module Description - A Puppet module for managing stunnel</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with pupmod-simp-stunnel</a>
+    <ul>
+      <li><a href="#what-simp-stunnel-affects">What pupmod-simp-stunnel affects</a></li>
+      <li><a href="#setup-requirements">Setup requirements</a></li>
+      <li><a href="#beginning-with-stunnel">Beginning with stunnel</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+<p>This module is a component of the
+<a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>,
+a compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they can be submitted to our
+<a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+
+<p>Please read our <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">Contribution Guide</a>
+and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">developer wiki</a>.</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but it
+can be used independently:
+* When included within the SIMP ecosystem, security compliance settings will be
+managed from the Puppet server.
+* In the future, all SIMP-managed security subsystems will be disabled by
+default and must be explicitly opted into by administrators.  Please review
+<em>simp/simp_options</em> for details.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>This module sets up <a href="https://www.stunnel.org/index.html">stunnel</a> and allows the creation of stunnel connections for
+services.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-simp-stunnel-affects">What simp stunnel affects</h3>
+
+<p><em>simp/stunnel</em> will manage:</p>
+
+<ul>
+  <li>The latest version of stunnel</li>
+  <li>Ensure the service is running</li>
+  <li>The stunnel user</li>
+  <li>/etc/stunnel/stunnel.conf,</li>
+  <li>/etc/rc.d/init.d/stunnel</li>
+  <li>A stunnel chroot directory</li>
+  <li>If $firewall is set to true, will manage the <em>simp/iptables</em> firewall
+settings required for stunnel.</li>
+</ul>
+
+<h3 id="setup-requirements">Setup Requirements</h3>
+
+<p><em>simp/stunnel</em> requires the <em>simp/rsync</em> module to add a service-based stunnel
+connection.</p>
+
+<h3 id="beginning-with-stunnel">Beginning with stunnel</h3>
+
+<p>You can set up stunnel on a node by:</p>
+
+<p><code>puppet
+include stunnel
+</code></p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="i-want-to-add-a-connection-to-the-stunnel-server">I want to add a connection to the stunnel server</h3>
+
+<p><code>puppet
+stunnel::connection { 'rsync':
+  connect =&gt; ['stunnel.server.int:8730'],
+  accept  =&gt; '127.0.0.1:873'
+}
+</code></p>
+
+<h3 id="i-want-to-build-a-connection-on-the-stunnel-server">I want to build a connection on the stunnel server</h3>
+
+<p><code>puppet
+stunnel::connection { 'rsync':
+  client  =&gt; false,
+  connect =&gt; ['873'],
+  accept  =&gt; '8730'
+}
+</code></p>
+
+<h2 id="reference">Reference</h2>
+
+<h3 id="public-classes">Public Classes</h3>
+<ul>
+  <li><a href="#stunnel"><code>stunnel</code></a>: Main Class</li>
+  <li><a href="#stunnelconnection"><code>stunnel::connection</code></a>: Creates an Stunnel connection on client or server</li>
+  <li><a href="#stunnelconfig"><code>stunnel::config</code></a>: Configures Stunnel</li>
+  <li><a href="#stunnelservice"><code>stunnel::service</code></a>: Manages Stunnel Service</li>
+</ul>
+
+<h3 id="private-classes">Private Classes</h3>
+<ul>
+  <li><code>stunnel::install</code>: Installs Stunnel Packages</li>
+</ul>
+
+<h3 id="stunnel"><code>stunnel</code></h3>
+
+<h4 id="parameters">Parameters</h4>
+
+<h5 id="pki">pki:</h5>
+
+<p>Toggle for Managing Certificates.
+  * Valid Options: Boolean or simp.
+  * Default: <code>false</code>.</p>
+
+<ul>
+  <li>Options:
+```
+    <ul>
+      <li>
+        <p>If ‘simp’, include SIMP’s pki module and use pki::copy to manage
+application certs in /etc/pki/simp_apps/stunnel/x509</p>
+      </li>
+      <li>
+        <p>If true, do <em>not</em> include SIMP’s pki module, but still use pki::copy
+to manage certs in /etc/pki/simp_apps/stunnel/x509</p>
+      </li>
+      <li>
+        <p>If false, do not include SIMP’s pki module and do not use pki::copy
+to manage certs.  You will need to appropriately assign a subset of:</p>
+        <ul>
+          <li>app_pki_dir</li>
+          <li>app_pki_key</li>
+          <li>app_pki_cert</li>
+          <li>app_pki_ca</li>
+          <li>app_pki_ca_dir
+```</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="apppkiexternalsource">app_pki_external_source:</h5>
+
+<p>If pki is set to simp, this is the directory from which certs will be copied
+via pki::copy.
+  * Valid Options: String containing a directory.
+  * Default: <code>/etc/pki/simp/x509</code></p>
+
+<h5 id="apppkidir">app_pki_dir:</h5>
+
+<p>Controls the source of certs in the chroot, and the basepath of $app_pki_key,
+$app_pki_cert, $app_pki_ca, $app_pki_ca_dir, and $app_pki_crl.
+  * Valid Options: String containing a directory.
+  * Default: <code>/etc/pki/simp_apps/stunnel/x509</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+Even when using a chroot, stunnel needs the certs to reside **outside** of the chroot path
+```
+</code></pre>
+
+<h5 id="apppkikey">app_pki_key:</h5>
+
+<p>Path and name of the private SSL key file.
+  * Valid Options: String containing a certificate file location.
+  * Default: <code>${app_pki_dir}/private/${facts['fqdn']}.pem</code>.</p>
+
+<h5 id="apppkicert">app_pki_cert:</h5>
+
+<p>Path and name of the public SSL certificate.
+  * Valid Options: String containing a certificate file location.
+  * Default: <code>${app_pki_dir}/public/${facts['fqdn']}.pub</code>.</p>
+
+<h5 id="apppkicadir">app_pki_ca_dir:</h5>
+
+<p>Directory external from the stunnel chroot to copy the CA certificates from.
+This should be the full path to a directory containing hashed versions of the CA
+certificates.
+  * Valid Options: String containing a directory.
+  * Default: <code>${app_pki_dir}/cacerts</code></p>
+
+<h5 id="apppkicrl">app_pki_crl:</h5>
+
+<p>Directory external from the stunnel chroot to copy the Certificate Revocation
+  List from.
+  * Valid Options: String containg a directory.
+  * Default: <code>${app_pki_dir}/crl</code></p>
+
+<h5 id="setuid">setuid:</h5>
+
+<p>The user stunnel should run as.
+  * Valid Options: String.
+  * Default: <code>stunnel</code></p>
+
+<h5 id="setgid">setgid:</h5>
+
+<p>The group stunnel should run as.
+  * Valid Options: String.
+  * Default: <code>stunnel</code></p>
+
+<h5 id="syslog">syslog:</h5>
+
+<p>Whether or not to log to syslog.
+  * Valid Options: Boolean.
+  * Default: <code>simp_options</code> or <code>false</code>.</p>
+
+<h5 id="fips">fips:</h5>
+
+<p>Set the fips global option.
+  * Valid Options: Boolean.
+  * Default: <code>simp_options</code> or <code>false</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+This has no effect on EL &lt; 7 due to stunnel not accepting the fips option in
+that version of stunnel.
+```
+</code></pre>
+
+<h5 id="haveged">haveged:</h5>
+
+<p>Include the SIMP <code>haveged</code> module to assist with entropy
+generation.
+  * Valid Options: Boolean.
+  * Default: simp_options or false.</p>
+
+<h3 id="stunnelconnection"><code>stunnel::connection</code></h3>
+
+<h5 id="name">name:</h5>
+
+<p>The service name.
+  * Valid Options: String.</p>
+
+<h5 id="connect">connect:</h5>
+
+<p>Address and port to which to <strong>forward</strong> connections.
+  * Valid Options: Array of ports.</p>
+
+<pre class="code ruby"><code class="ruby">```NOTE
+* For a client, this is the port of the stunnel server
+
+* For the stunnel server, this is the listening port of the tunneled
+  service
+
+* Just a port indicates that you wish to listen on all interfaces
+
+Examples:
+    * [&#39;my.server:3000&#39;,&#39;my.server2:3001&#39;]
+    * [&#39;my.server:3000&#39;]
+    * [&#39;3000&#39;]
+```
+</code></pre>
+
+<h5 id="accept">accept:</h5>
+
+<p>Address and port upon which to <strong>accept</strong> connections.
+  * Valid Options: Array of Ports.</p>
+
+<pre class="code ruby"><code class="ruby">```
+* For a client, this is generally &#39;localhost&#39;
+
+* For a server, it should be whichever external address is appropriate
+
+* If this is omitted, then connections are accepted on all addresses
+
+Examples:
+    * &#39;1.2.3.4:3000&#39;
+    * &#39;3000&#39;
+```
+</code></pre>
+
+<h5 id="client">client:</h5>
+
+<p>Indicates that this connection is a client connection.
+  * Valid Options: true or false.
+  * Default: <code>true</code>.</p>
+
+<h5 id="failover">failover:</h5>
+
+<p>The failover strategy for multiple connect targets.
+  * Valid Options: rr and prio .
+  * Default: <code>rr</code>.</p>
+
+<h5 id="sni">sni:</h5>
+
+<p>See the ‘sni’ option documentation in <code>stunnel(8)</code>.
+  * Valid Options: String.
+  * Default: <code>undef</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+This option is only valid on EL 7+
+```
+</code></pre>
+
+<h5 id="apppkikey-1">app_pki_key:</h5>
+
+<p>Path and name of the private SSL key file.
+  * Valid Options: String containing a directory.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="apppkicert-1">app_pki_cert:</h5>
+
+<p>Path and name of the public SSL certificate.
+  * Valid Options: String containing a directory.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="apppkicacert">app_pki_cacert:</h5>
+
+<p>Path to the OpenSSL compatible CA certificates.
+  * Valid Options: String containing a directory.
+  * Default: <code>/etc/pki/simp_apps/stunnel/</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+This path is relative to the chroot path if set and is expected to be
+a directory
+```
+</code></pre>
+
+<h5 id="apppkicrl-1">app_pki_crl:</h5>
+
+<p>Path to the OpenSSL compatible CRL directory.
+  * Valid Options: String containing a directory.
+  * Default: <code>/etc/pki/simp_apps/stunnel/</code>.</p>
+
+<h5 id="opensslciphersuite">openssl_cipher_suite:</h5>
+
+<p>OpenSSL compatible array of ciphers to allow on the
+system.
+  * Valid Options: Array.
+  * Default: <code>['HIGH','SSLv2']</code>.</p>
+
+<h5 id="curve">curve:</h5>
+
+<p>The ECDH curve name to use. To get a list of supported curves use:
+<code>openssl ecparam -list_curves</code> on your client.
+  * Valid Options: String.
+  * Default: <code>undef</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+This option is only valid on EL 7+
+```
+</code></pre>
+
+<h5 id="sslversion">ssl_version:</h5>
+
+<p>Dictate the SSL version that can be used on the system.
+  * Valid Options: String containing the SSL version.
+  * Default: <code>undef</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+This default, combined with the default &#39;$ciphers&#39;, will only negotiate at
+TLSv1. or higher
+```
+</code></pre>
+
+<h5 id="options">options:</h5>
+
+<p>The OpenSSL library options.
+  * Valid Options: Array.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="verify">verify:</h5>
+
+<p>Level of mutual authentication to perform.
+  * Valid Options: Integer.
+  * Default: <code>2</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+RHEL 6 Options:
+  * level 1 - verify peer certificate if present
+  * level 2 - verify peer certificate
+  * level 3 - verify peer with locally installed certificate
+  * default - no verify
+RHEL 7 Options:
+  * level 0 - Request and ignore peer certificate.
+  * level 1 - Verify peer certificate if present.
+  * level 2 - Verify peer certificate.
+  * level 3 - Verify peer with locally installed certificate.
+  * level 4 - Ignore CA chain and only verify peer certificate.
+  * default - No verify
+```
+</code></pre>
+
+<h5 id="ocsp">ocsp:</h5>
+
+<p>The OCSP responder to use for certificate validation.
+  * Valid Options: URI.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="ocspflags">ocsp_flags:</h5>
+
+<p>The OCSP server flags.
+  * Valid Options: Array.
+  * Default: <code>[]</code>.</p>
+
+<h5 id="local">local:</h5>
+
+<p>The outgoing IP to which to bind.
+  * Valid Options: IP Address.
+  * Default: <code>undef</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+By default, stunnel binds to all interfaces
+```
+</code></pre>
+
+<h5 id="protocol">protocol:</h5>
+
+<p>The application protocol to negotiate SSL.
+  * Valid Options: String.
+  * Default: <code>undef</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+RHEL/CentOS 6:  [cifs|connect|imap|nntp|pgsql|pop3|smtp]
+RHEL/CentOS 7+: [cifs|connect|imap|nntp|pgsql|pop3|proxy|smtp]
+```
+</code></pre>
+
+<h5 id="protocolauthentication">protocol_authentication:</h5>
+
+<p>Authentication type for protocol negotiations.
+  * Valid Options: basic or NTLM.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="protocolhost">protocol_host:</h5>
+
+<p>The destination address for protocol negotiations.
+  * Valid Options: String.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="protocolpassword">protocol_password:</h5>
+
+<p>The password for protocol negotiations.
+  * Valid Options: String.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="protocolusername">protocol_username:</h5>
+
+<p>The username for protocol negotiations.
+  * Valid Options: String.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="delay">delay:</h5>
+
+<p>Delay DNS lookup for <code>connect</code> option.
+  * Valid Options: true or false.
+  * Default: <code>false</code>.</p>
+
+<h5 id="enginenum">engine_num:</h5>
+
+<p>The engine number from which to read the private key.
+  * Valid Options: undef.
+  * Default: <code>undef</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+This option is only supported on RHEL/CentOS 7+
+```
+</code></pre>
+
+<h5 id="pty">pty:</h5>
+
+<p>Reserve and assign a pty to a program that is run by stunnel inetd-style
+using the <code>exec</code> option.
+  * Valid Options: true or false.
+  * Default: <code>false</code>.</p>
+
+<h5 id="renegotiation">renegotiation:</h5>
+
+<p>Support SSL renegotiation.
+  * Valid Options: true or false.
+  * Default: <code>true</code>.</p>
+
+<h5 id="reset">reset:</h5>
+
+<p>Attempt to use TCP <code>RST</code> flag to indicate an error.
+  * Valid Options: true or false.
+  * Default: <code>true</code>.</p>
+
+<h5 id="retry">retry:</h5>
+
+<p>Reconnect a <code>connect+exec</code> session after it has been disconnected.
+  * Valid Options: true or false.
+  * Default: <code>false</code>.</p>
+
+<h5 id="sessioncachesize">session_cache_size:</h5>
+
+<p>The maximum number of internal session cache entries.
+  * Valid Options: Integer.
+  * Default: <code>undef</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+Set to 0 for unlimited (**not advised**)
+
+This option is only valid on EL 7+
+```
+</code></pre>
+
+<h5 id="sessioncachetimeout">session_cache_timeout:</h5>
+
+<p>The number of seconds to keep cached SSL sessions.
+  * Valid Options: Integer.
+  * Default: <code>undef</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+Corresponds to the session_timeout variable in EL 6
+```
+</code></pre>
+
+<h5 id="stack">stack:</h5>
+
+<p>Thread stack size in <strong>bytes</strong>.
+  * Valid Options: Integer.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="timeoutbusy">timeout_busy:</h5>
+
+<p>Time to wait for expected data in <strong>seconds</strong>.
+  * Valid Options: Integer.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="timeoutclose">timeout_close:</h5>
+
+<p>Time to wait for close notify in <strong>seconds</strong>.
+  * Valid Options: Integer.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="timeoutconnect">timeout_connect:</h5>
+
+<p>Time to wait for a remote host connection in <strong>seconds</strong>.
+  * Valid Options: Integer.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="timeoutidle">timeout_idle:</h5>
+
+<p>Time to keep an idle connection in <strong>seconds</strong>.
+  * Valid Options: Integer.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="trustednets">trusted_nets:</h5>
+
+<p>Set this if you don’t want to allow all IP addresses to access
+this connection. This value only works properly for servers.
+  * Valid Options: CIDR Address.
+  * Default: <code>127.0.0.1</code>.</p>
+
+<h5 id="firewall">firewall:</h5>
+
+<p>Include the SIMP <code>iptables</code> module to manage the firewall.
+  * Valid Options: true or false.
+  * Default: <code>false</code>.</p>
+
+<h5 id="tcpwrappers">tcpwrappers:</h5>
+
+<p>Include the SIMP <code>tcpwrappers</code> module to manage tcpwrappers.
+  * Valid Options: true or false.
+  * Default: <code>false</code>.</p>
+
+<h3 id="stunnelconfig">stunnel::config</h3>
+
+<h4 id="parameters-1">Parameters</h4>
+
+<h5 id="chroot">chroot:</h5>
+
+<p>The location of the chroot jail.
+  * Valid Options: Absolute Path.
+  * Default: <code>/var/stunnel</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+Do NOT make this anything under var/run
+```
+</code></pre>
+
+<h5 id="pki-1">pki:</h5>
+
+<p>If <code>simp</code>, include SIMP’s <code>pki</code> module and use <code>pki::copy</code> to manage
+application certs in <code>/etc/pki/simp_apps/stunnel/x509</code>.
+  * Valid Options: simp, true or false.
+  * Default: <code>$::stunnel::pki</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+* If true: do *not* include SIMP&#39;s pki module, but still use
+  pki::copy to manage certs in /etc/pki/simp_apps/stunnel/x509
+
+* If false, do not include SIMP&#39;s pki module and do not use
+  pki::copy to manage certs. You will need to appropriately assign a
+  subset of:
+    * app_pki_dir
+    * app_pki_key
+    * app_pki_cert
+    * app_pki_ca_dir
+```
+</code></pre>
+
+<h5 id="apppkiexternalsource-1">app_pki_external_source:</h5>
+
+<p>If pki = <code>simp</code> or <code>true</code>, this is the directory from which certs. will be
+copied, via <code>pki::copy</code>.
+  * Valid Options: Absolute Path.
+  * Default: <code>$::stunnel::app_pki_external_source</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+If pki = false, this variable has no effect.
+```
+</code></pre>
+
+<h5 id="apppkidir-1">app_pki_dir:</h5>
+
+<p>The source of certs in the chroot, and the basepath of
+<code>$app_pki_key</code>, <code>$app_pki_cert</code>, <code>$app_pki_ca</code>, <code>$app_pki_ca_dir</code>, and
+<code>$app_pki_crl</code>.
+  * Valid Options: Absolute Path.
+  * Default: <code>$::stunnel::app_pki_dir</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+Even when using a chroot, stunnel needs the certs to reside outside of the
+chroot path.
+```
+</code></pre>
+
+<h5 id="apppkikey-2">app_pki_key:</h5>
+
+<p>Path and name of the private SSL key file.
+  * Valid Options: Absolute Path.
+  * Default: <code>$::stunnel::app_pki_key</code>.</p>
+
+<h5 id="apppkicert-2">app_pki_cert:</h5>
+
+<p>Path and name of the public SSL certificate.
+  * Valid Options: Absolute Path.
+  * Default: <code>$::stunnel::app_pki_cert</code>.</p>
+
+<h5 id="apppkicadir-1">app_pki_ca_dir:</h5>
+
+<p>Since stunnel runs in a chroot, you need to copy the appropriate CA
+certificates in from an external source.
+  * Valid Options: Absolute Path.
+  * Default: <code>$::stunnel::app_pki_ca_dir</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+This should be the full path to a directory containing **hashed**
+versions of the CA certificates.
+```
+</code></pre>
+
+<h5 id="apppkicrl-2">app_pki_crl:</h5>
+
+<p>Since stunnel runs in a chroot, you need to copy the appropriate CRL in from
+an external source.
+  * Valid Options: Absolute Path.
+  * Default: <code>$::stunnel::app_pki_crl</code>.</p>
+
+<h5 id="pid">pid:</h5>
+
+<p>The PID file, relative to the chroot jail.
+  * Valid Options: String.
+  * Default: <code>/var/run/stunnel/stunnel.pid</code>.</p>
+
+<h5 id="setuid-1">setuid:</h5>
+
+<p>The user stunnel should run as.
+  * Valid Options: String.
+  * Default: <code>$::stunnel::setuid</code>.</p>
+
+<h5 id="setgid-1">setgid:</h5>
+
+<p>The group stunnel should run as.
+  * Valid Options: String.
+  * Default: <code>$::stunnel::setgid</code>.</p>
+
+<h5 id="stunneldebug">stunnel_debug:</h5>
+
+<p>The debug level for logging.
+  * Valid Options: String&gt;.
+  * Default: <code>err</code>.</p>
+
+<h5 id="syslog-1">syslog:</h5>
+
+<p>Enable logging to syslog.
+  * Valid Options: true or false.
+  * Default: <code>$::stunnel::syslog</code>.</p>
+
+<h5 id="compression">compression:</h5>
+
+<p>The compression type to use for this service.
+  * Valid Options: <code>zlib</code> or <code>rle</code>.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="egd">egd:</h5>
+
+<p>The path to the Entropy Gathering Daemon socket used to feed the OpenSSL
+Random Number Generator.
+  * Valid Options: String.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="engine">engine:</h5>
+
+<p>If <code>$egd</code> is set, sets the Hardware Engine to be used.
+  * Valid Options: String.
+  * Default: <code>auto</code>.</p>
+
+<h5 id="enginectrl">engine_ctrl:</h5>
+
+<p>If <code>$egd</code> is set, sets the Hardware Engine Control parameters.
+  * Valid Options: String.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="fips-1">fips:</h5>
+
+<p>Set the <code>fips</code> global option.
+  * Valid Options: true or false.
+  * Default: <code>$::stunnel::fips</code>.</p>
+
+<pre class="code ruby"><code class="ruby">```
+We don&#39;t enable FIPS mode by default since we want to be able to use
+TLS1.2
+
+This has no effect on EL &lt; 7 due to stunnel not accepting the fips option in
+that version of stunnel
+```
+</code></pre>
+
+<h5 id="output">output:</h5>
+
+<p>The path to a log output file to use.
+  * Valid Options: Absolute Path.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="rndbytes">rnd_bytes:</h5>
+
+<p>The number of bytes to read from the random seed file.
+  * Valid Options: Integer.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="rndfile">rnd_file:</h5>
+<p>The path to the random seed data file.
+  * Valid Options: Absolute Path.
+  * Default: <code>undef</code>.</p>
+
+<h5 id="rndoverwrite">rnd_overwrite:</h5>
+<p>Overwrite the random seed file with new random data.
+  * Valid Options: true or false.
+  * Default: <code>false</code>.</p>
+
+<h5 id="socketoptions">socket_options:</h5>
+
+<p>Places <code>socket = </code> options at the end of the stunnel config file.
+  * Valid Options: Array.
+  * Default: <code>[]</code>.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This module is only designed to work in RHEL or CentOS 6 and 7. Any other
+operating systems have not been tested and results cannot be guaranteed.</p>
+
+<h1 id="development">Development</h1>
+
+<p>Please see the
+<a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">SIMP Contribution Guidelines</a>.</p>
+
+<p>General developer documentation can be found on
+<a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">Confluence</a>.
+Visit the project homepage on <a href="https://simp-project.com">GitHub</a>,
+chat with us on our <a href="https://simp-project.hipchat.com/">HipChat</a>,
+and look at our issues on  <a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: apache::mod::worker
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::apache::mod::worker";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">apache::mod::worker</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: apache::mod::worker</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod/worker.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>== Class: apache::mod::worker</p>
+
+<p>=== Parameters</p>
+
+<p>[<em>startservers</em>]
+  (optional) The number of child server processes created on startup
+  Defaults is ‘2’</p>
+
+<p>[<em>maxclients</em>]
+  (optional) The max number of simultaneous requests that will be served.
+  This is the old name and is still supported. The new name is
+  MaxRequestWorkers as of 2.3.13.
+  Default is ‘150’</p>
+
+<p>[<em>minsparethreads</em>]
+  (optional) Minimum number of idle threads to handle request spikes.
+  Default is ‘25’</p>
+
+<p>[<em>maxsparethreads</em>]
+  (optional) Maximum number of idle threads.
+  Default is ‘75’</p>
+
+<p>[<em>threadsperchild</em>]
+  (optional) The number of threads created by each child process.
+  Default is ‘25’</p>
+
+<p>[<em>maxrequestsperchild</em>]
+  (optional) Limit on the number of connectiojns an individual child server
+  process will handle. This is the old name and is still supported. The new
+  name is MaxConnectionsPerChild as of 2.3.9+.
+  Default is ‘0’</p>
+
+<p>[<em>serverlimit</em>]
+  (optional) With worker, use this directive only if your MaxRequestWorkers
+  and ThreadsPerChild settings require more than 16 server processes
+  (default). Do not set the value of this directive any higher than the
+  number of server processes required by what you may want for
+  MaxRequestWorkers and ThreadsPerChild.
+  Default is ‘25’</p>
+
+<p>[<em>threadlimit</em>]
+  (optional) This directive sets the maximum configured value for
+  ThreadsPerChild for the lifetime of the Apache httpd process.
+  Default is ‘64’</p>
+
+<p>[<em>listenbacklog</em>]
+   (optional) Maximum length of the queue of pending connections.
+   Defaults is ‘511’</p>
+
+<p>[<em>apache_version</em>]
+  (optional)
+  Default is $::apache::apache_version</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>startservers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;2&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maxclients</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;150&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>minsparethreads</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;25&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maxsparethreads</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;75&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>threadsperchild</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;25&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maxrequestsperchild</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;0&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>serverlimit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;25&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>threadlimit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;64&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>listenbacklog</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;511&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>apache_version</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod/worker.pp', line 55</span>
+
+class apache::mod::worker (
+  $startservers        = &#39;2&#39;,
+  $maxclients          = &#39;150&#39;,
+  $minsparethreads     = &#39;25&#39;,
+  $maxsparethreads     = &#39;75&#39;,
+  $threadsperchild     = &#39;25&#39;,
+  $maxrequestsperchild = &#39;0&#39;,
+  $serverlimit         = &#39;25&#39;,
+  $threadlimit         = &#39;64&#39;,
+  $listenbacklog       = &#39;511&#39;,
+  $apache_version      = undef,
+) {
+  include ::apache
+  $_apache_version = pick($apache_version, $apache::apache_version)
+
+  if defined(Class[&#39;apache::mod::event&#39;]) {
+    fail(&#39;May not include both apache::mod::worker and apache::mod::event on the same node&#39;)
+  }
+  if defined(Class[&#39;apache::mod::itk&#39;]) {
+    fail(&#39;May not include both apache::mod::worker and apache::mod::itk on the same node&#39;)
+  }
+  if defined(Class[&#39;apache::mod::peruser&#39;]) {
+    fail(&#39;May not include both apache::mod::worker and apache::mod::peruser on the same node&#39;)
+  }
+  if defined(Class[&#39;apache::mod::prefork&#39;]) {
+    fail(&#39;May not include both apache::mod::worker and apache::mod::prefork on the same node&#39;)
+  }
+  File {
+    owner =&gt; &#39;root&#39;,
+    group =&gt; $::apache::params::root_group,
+    mode  =&gt; $::apache::file_mode,
+  }
+
+  # Template uses:
+  # - $startservers
+  # - $maxclients
+  # - $minsparethreads
+  # - $maxsparethreads
+  # - $threadsperchild
+  # - $maxrequestsperchild
+  # - $serverlimit
+  # - $threadLimit
+  # - $listenbacklog
+  file { &quot;${::apache::mod_dir}/worker.conf&quot;:
+    ensure  =&gt; file,
+    content =&gt; template(&#39;apache/mod/worker.conf.erb&#39;),
+    require =&gt; Exec[&quot;mkdir ${::apache::mod_dir}&quot;],
+    before  =&gt; File[$::apache::mod_dir],
+    notify  =&gt; Class[&#39;apache::service&#39;],
+  }
+
+  case $::osfamily {
+    &#39;redhat&#39;: {
+
+      if versioncmp($_apache_version, &#39;2.4&#39;) &gt;= 0 {
+        ::apache::mpm{ &#39;worker&#39;:
+          apache_version =&gt; $_apache_version,
+        }
+      }
+      else {
+        file_line { &#39;/etc/sysconfig/httpd worker enable&#39;:
+          ensure  =&gt; present,
+          path    =&gt; &#39;/etc/sysconfig/httpd&#39;,
+          line    =&gt; &#39;HTTPD=/usr/sbin/httpd.worker&#39;,
+          match   =&gt; &#39;#?HTTPD=/usr/sbin/httpd.worker&#39;,
+          require =&gt; Package[&#39;httpd&#39;],
+          notify  =&gt; Class[&#39;apache::service&#39;],
+        }
+      }
+    }
+
+    &#39;debian&#39;, &#39;freebsd&#39;: {
+      ::apache::mpm{ &#39;worker&#39;:
+        apache_version =&gt; $_apache_version,
+      }
+    }
+    &#39;Suse&#39;: {
+      ::apache::mpm { &#39;worker&#39;:
+        apache_version =&gt; $apache_version,
+        lib_path       =&gt; &#39;/usr/lib64/apache2-worker&#39;,
+      }
+    }
+
+    &#39;gentoo&#39;: {
+      ::portage::makeconf { &#39;apache2_mpms&#39;:
+        content =&gt; &#39;worker&#39;,
+      }
+    }
+    default: {
+      fail(&quot;Unsupported osfamily ${::osfamily}&quot;)
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

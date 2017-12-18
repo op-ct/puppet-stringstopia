@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: pupmod
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::pupmod";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">pupmod</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: pupmod</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="pupmod_3A_3Aparams.html" title="puppet_classes::pupmod::params (puppet_class)">pupmod::params</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Inherited by:</dt>
+    <dd>
+      
+      <span class='object_link'><a href="pupmod_3A_3Amaster_3A_3Asysconfig.html" title="puppet_classes::pupmod::master::sysconfig (puppet_class)">pupmod::master::sysconfig</a></span><br/>
+      
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qm3iul/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>A class for managing Puppet configurations.</p>
+
+<p>This is mainly a stub class for hooking other classes along the way
+with a small bit of logic to flex the system toward being a Puppet
+master or client.</p>
+
+<p>All parameters are, by default, written to the [main] config block
+of the configuration file. Selective options may be written to their
+respective components as necessary for deconfliction.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ca_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::puppet::ca_port&#39;, { &#39;default_value&#39; =&gt; 8141 })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port where the remote CA should be contacted.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ca_server</span>
+      
+      
+        <span class='type'>(<tt>Variant[Simplib::Host,Enum['$server']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::puppet::ca&#39;, { &#39;default_value&#39; =&gt; &#39;$server&#39; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The puppet CA from which to obtain your system certificates.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppet_server</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Host</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::puppet::server&#39;, { &#39;default_value&#39; =&gt; &quot;puppet.${facts[&#39;domain&#39;]}&quot; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The puppet master from which to retrieve your configuration.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>server_distribution</span>
+      
+      
+        <span class='type'>(<tt>Simplib::ServerDistribution</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::puppet::server_distribution&#39;, { &#39;default_value&#39; =&gt; &#39;PC1&#39; } )</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The server distribution used. This changes the configuration based on whether
+we are using PC1 or PE</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ca_crl_pull_interval</span>
+      
+      
+        <span class='type'>(<tt>Optional</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>NOTE: This parameter is deprecated and thorw a warning if specified.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>certname</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Host</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$facts[&#39;fqdn&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The puppet environment name of the system.</p>
+
+<p>See http://docs.puppetlabs.com/references/latest/configuration.html for
+additional details.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>classfile</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;$vardir/classes.txt&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the puppet class file.</p>
+
+<p>See http://docs.puppetlabs.com/references/latest/configuration.html for
+additional details.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>confdir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::puppet_config[&#39;confdir&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the puppet configuration directory.</p>
+
+<p>See http://docs.puppetlabs.com/references/latest/configuration.html for
+additional details.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>daemonize</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to daemonize the Puppet agent.</p>
+
+<p>SIMP systems do not, by default, daemonize their agents so that the
+consumed resources can be freed for other uses and so that the cron
+job can maintain a safe system state over time.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>enable_puppet_master</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to make the system a puppetmaster.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>listen</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to listen for incoming connections to the puppet
+agent.</p>
+
+<p>Given the ability to run puppet remotely via SSH, MCollective, or
+many other means, we will not open this by default. If you decide to
+enable it, don’t forget to add an associated IPTables rule.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logdir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::puppet_config[&#39;logdir&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the puppet log directory.</p>
+
+<p>See http://docs.puppetlabs.com/references/latest/configuration.html for
+additional details.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>masterport</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>8140</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port where the Puppet Master should be contacted.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>report</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to send reports to the report server. This is
+disabled by default to allow users to reduce network load unless
+reports are required.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rundir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::puppet_config[&#39;rundir&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the puppet run status directory.</p>
+
+<p>See http://docs.puppetlabs.com/references/latest/configuration.html for
+additional details.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>runinterval</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1800</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The number of seconds between puppet runs.
+Has no effect on the client cron job.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>splay</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to splay the puppet runs.</p>
+
+<p>This is done by default to add some randomization to client system
+runs on large systems.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>splaylimit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>srv_domain</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Host</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$facts[&#39;domain&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The domain to search when using SRV records.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssldir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::puppet_config[&#39;ssldir&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the puppet ssl directory.</p>
+
+<p>See http://docs.puppetlabs.com/references/latest/configuration.html for
+additional details.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>syslogfacility</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Syslog::Facility</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;local6&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The Syslog facility to use when outputting messages from puppet.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_srv_records</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether the server will search for SRV records in DNS for the current domain.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>haveged</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::haveged&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, include haveged to assist with entropy generation.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fips</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::fips&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, enable fips mode</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>vardir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::puppet_config[&#39;vardir&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The directory where puppet will store all of its ‘variable’ data.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mock</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, disable all code.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>firewall</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::firewall&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not firewall rules should be created</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pe_classlist</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Hash of pe classes and assorted metadata.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_ensure</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::package_ensure&#39; , { &#39;default_value&#39; =&gt; &#39;installed&#39;})</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>String used to specify ‘latest’, ‘installed’, or a specific version of the puppet-agent package</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>digest_algorithm</span>
+      
+      
+        <span class='type'>(<tt>Enum['md5','sha256']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;sha256&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>environmentpath</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::puppet_config[&#39;environmentpath&#39;]</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qm3iul/manifests/init.pp', line 133</span>
+
+class pupmod (
+  Variant[Simplib::Host,Enum[&#39;$server&#39;]] $ca_server            = simplib::lookup(&#39;simp_options::puppet::ca&#39;, { &#39;default_value&#39; =&gt; &#39;$server&#39; }),
+  Simplib::Port                          $ca_port              = simplib::lookup(&#39;simp_options::puppet::ca_port&#39;, { &#39;default_value&#39; =&gt; 8141 }),
+  Simplib::Host                          $puppet_server        = simplib::lookup(&#39;simp_options::puppet::server&#39;, { &#39;default_value&#39; =&gt; &quot;puppet.${facts[&#39;domain&#39;]}&quot; }),
+  Simplib::ServerDistribution            $server_distribution  = simplib::lookup(&#39;simp_options::puppet::server_distribution&#39;, { &#39;default_value&#39; =&gt; &#39;PC1&#39; } ),
+  Optional                               $ca_crl_pull_interval = undef,
+  Simplib::Host                          $certname             = $facts[&#39;fqdn&#39;],
+  String                                 $classfile            = &#39;$vardir/classes.txt&#39;,
+  Stdlib::AbsolutePath                   $confdir              = $::pupmod::params::puppet_config[&#39;confdir&#39;],
+  Boolean                                $daemonize            = false,
+  Enum[&#39;md5&#39;,&#39;sha256&#39;]                   $digest_algorithm     = &#39;sha256&#39;,
+  Boolean                                $enable_puppet_master = false,
+  Stdlib::AbsolutePath                   $environmentpath      = $::pupmod::params::puppet_config[&#39;environmentpath&#39;],
+  Boolean                                $listen               = false,
+  Stdlib::AbsolutePath                   $logdir               = $::pupmod::params::puppet_config[&#39;logdir&#39;],
+  Simplib::Port                          $masterport           = 8140,
+  Boolean                                $report               = false,
+  Stdlib::AbsolutePath                   $rundir               = $::pupmod::params::puppet_config[&#39;rundir&#39;],
+  Integer                                $runinterval          = 1800,
+  Boolean                                $splay                = false,
+  Optional[Integer]                      $splaylimit           = undef,
+  Simplib::Host                          $srv_domain           = $facts[&#39;domain&#39;],
+  Stdlib::AbsolutePath                   $ssldir               = $::pupmod::params::puppet_config[&#39;ssldir&#39;],
+  Simplib::Syslog::Facility              $syslogfacility       = &#39;local6&#39;,
+  Boolean                                $use_srv_records      = false,
+  Stdlib::AbsolutePath                   $vardir               = $::pupmod::params::puppet_config[&#39;vardir&#39;],
+  Boolean                                $haveged              = simplib::lookup(&#39;simp_options::haveged&#39;, { &#39;default_value&#39; =&gt; false }),
+  Boolean                                $fips                 = simplib::lookup(&#39;simp_options::fips&#39;, { &#39;default_value&#39; =&gt; false }),
+  Boolean                                $firewall             = simplib::lookup(&#39;simp_options::firewall&#39;, { &#39;default_value&#39; =&gt; false }),
+  Hash                                   $pe_classlist         = {},
+  String                                 $package_ensure       = simplib::lookup(&#39;simp_options::package_ensure&#39; , { &#39;default_value&#39; =&gt; &#39;installed&#39;}),
+  Boolean                                $mock                 = false
+) inherits pupmod::params {
+  unless ($mock == true) {
+    # These regexes match absolute paths or paths that begin with an existing
+    # puppet configuration variable, like $vardir
+    validate_re($classfile,&#39;^(\$(?!/)|/).+&#39;)
+    validate_re($confdir,&#39;^(\$(?!/)|/).+&#39;)
+    validate_re($environmentpath,&#39;^(\$(?!/)|/).+&#39;)
+    validate_re($logdir,&#39;^(\$(?!/)|/).+&#39;)
+    validate_re($rundir,&#39;^(\$(?!/)|/).+&#39;)
+
+    if $ca_crl_pull_interval {
+      deprecation(&#39;pupmod::ca_crl_pull_interval&#39;, &#39;pupmod::ca_crl_pull_interval is deprecated, the CRL cron job has been removed.&#39;)
+    }
+
+    if $haveged {
+      include &#39;::haveged&#39;
+    }
+
+    if $enable_puppet_master {
+      include &#39;pupmod::master&#39;
+    }
+    package { &#39;puppet-agent&#39;: ensure =&gt; $package_ensure }
+
+    if $daemonize {
+      cron { &#39;puppetagent&#39;: ensure =&gt; &#39;absent&#39; }
+
+      # This has been designed to explicitly be the antithesis of the
+      # cron in the &#39;false&#39; statement above.
+      #
+      # Anything else is wholly irrelevant, since it&#39;s puppet checking
+      # on itself while it&#39;s running.
+      service { &#39;puppet&#39;:
+        ensure     =&gt; &#39;running&#39;,
+        enable     =&gt; true,
+        hasrestart =&gt; true,
+        hasstatus  =&gt; false,
+        status     =&gt; &#39;/usr/bin/test `/bin/ps --no-headers -fC puppetd,&quot;puppet agent&quot; | /usr/bin/wc -l` -ge 1 -a ! `/bin/ps --no-headers -fC puppetd,&quot;puppet agent&quot; | /bin/grep -c &quot;no-daemonize&quot;` -ge 1&#39;,
+        subscribe  =&gt; File[&quot;${confdir}/puppet.conf&quot;]
+      }
+    }
+    else {
+      include &#39;pupmod::agent::cron&#39;
+    }
+
+    pupmod::conf { &#39;agent_daemonize&#39;:
+      section =&gt; &#39;agent&#39;,
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;daemonize&#39;,
+      value   =&gt; $daemonize
+    }
+
+    # This takes some explaining. You may be asking yourself:
+    # Dear god? why? The short answer is, to make the UX for
+    # PE better, we need to make no assumptions about the
+    # amount of configuration the user has done before trying
+    # to lay SIMP on top of PE.
+    #
+    # Therefore, we have to inspect the catalog to see which PE
+    # classes are included, and tailor our configuration
+    # accordingly.
+    #
+    # To do this we have to use defined(). But this has an inherent
+    # race condition if you use it in a normal class, as if this class
+    # is evaluated before the class you are checking, you
+    # will get an erroneous false result.
+    #
+    # The workaround is to take advantage of the fact that the puppet
+    # catalog compiler takes multiple passes, a first pass for most
+    # classes to be evaluated, and a second pass for resource collection
+    # staetments. Basically by creating a virtual defined type and realizing
+    # it immediately, we &#39;throw&#39; any puppet code in the defined type into the
+    # next pass of the compiler.
+    #
+    # Disgusting? yes. Necessary? unfortunately. This will have to be re-evaluated
+    # for every major puppet release.
+
+    @pupmod::pass_two { &#39;main&#39;:
+      server_distribution =&gt; $server_distribution,
+      confdir             =&gt; $confdir,
+      firewall            =&gt; $firewall,
+      pe_classlist        =&gt; $pe_classlist,
+      pupmod_server       =&gt; $puppet_server,
+      pupmod_ca_server    =&gt; $ca_server,
+      pupmod_masterport   =&gt; $masterport,
+      pupmod_ca_port      =&gt; $ca_port,
+      pupmod_report       =&gt; $report,
+    }
+    Pupmod::Pass_two &lt;| |&gt;
+
+    pupmod::conf { &#39;splay&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;splay&#39;,
+      value   =&gt; $splay
+    }
+
+    if !empty($splaylimit) {
+      pupmod::conf { &#39;splaylimit&#39;:
+        confdir =&gt; $confdir,
+        setting =&gt; &#39;splaylimit&#39;,
+        value   =&gt; $splaylimit
+      }
+    }
+
+    pupmod::conf { &#39;syslogfacility&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;syslogfacility&#39;,
+      value   =&gt; $syslogfacility
+    }
+
+    pupmod::conf { &#39;srv_domain&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;srv_domain&#39;,
+      value   =&gt; $srv_domain
+    }
+
+    pupmod::conf { &#39;certname&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;certname&#39;,
+      value   =&gt; $certname
+    }
+
+    pupmod::conf { &#39;vardir&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;vardir&#39;,
+      value   =&gt; $vardir
+    }
+
+    pupmod::conf { &#39;classfile&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;classfile&#39;,
+      value   =&gt; $classfile
+    }
+
+    pupmod::conf { &#39;confdir&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;confdir&#39;,
+      value   =&gt; $confdir,
+    }
+
+    pupmod::conf { &#39;logdir&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;logdir&#39;,
+      value   =&gt; $logdir
+    }
+
+    pupmod::conf { &#39;rundir&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;rundir&#39;,
+      value   =&gt; $rundir
+    }
+
+    pupmod::conf { &#39;runinterval&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;runinterval&#39;,
+      value   =&gt; $runinterval
+    }
+
+    pupmod::conf { &#39;ssldir&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;ssldir&#39;,
+      value   =&gt; $ssldir
+    }
+
+    pupmod::conf { &#39;stringify_facts&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;stringify_facts&#39;,
+      value   =&gt; false
+    }
+
+    pupmod::conf { &#39;digest_algorithm&#39;:
+      confdir =&gt; $confdir,
+      setting =&gt; &#39;digest_algorithm&#39;,
+      value   =&gt; $digest_algorithm
+    }
+
+    # This is to allow the hosts to boot faster.  It should probably be
+    # re-worked.
+    file { &#39;/etc/sysconfig/puppet&#39;:
+      ensure  =&gt; &#39;file&#39;,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;root&#39;,
+      mode    =&gt; &#39;0644&#39;,
+      content =&gt; &quot;PUPPET_EXTRA_OPTS=&#39;--daemonize&#39;\n&quot;
+    }
+
+    # Changing SELinux booleans on a minor update is a horrible idea.
+    if ( $::operatingsystem in [&#39;RedHat&#39;,&#39;CentOS&#39;] ) and ( $::operatingsystemmajrelease &lt; &#39;7&#39; ) {
+      $puppet_agent_sebool = &#39;puppet_manage_all_files&#39;
+    }
+    else {
+      $puppet_agent_sebool = &#39;puppetagent_manage_all_files&#39;
+    }
+    if $::selinux_current_mode and $::selinux_current_mode != &#39;disabled&#39; {
+      selboolean { $puppet_agent_sebool :
+        persistent =&gt; true,
+        value      =&gt; &#39;on&#39;
+      }
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: swap
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::swap";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">swap</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: swap</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-pfiwh6/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Set the swappiness of the system either by a cron job or as an absolute value.</p>
+
+<p>The cron job is run every 5 minutes by default. Using the cron job doesn’t
+really make a lot of sense unless it is run reasonably often. Therefore, only
+minute steps are supported per crontab(5).</p>
+
+<p>An absolute value setting will always override the cron job.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>dynamic_script</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>swappiness</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cron_step</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,59]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>5</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maximum</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,100]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>30</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>median</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,100]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>minimum</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,100]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>5</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>min_swappiness</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,100]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>5</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>low_swappiness</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,100]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>20</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>high_swappiness</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,100]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>40</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_swappiness</span>
+      
+      
+        <span class='type'>(<tt>Integer[0,100]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>80</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-pfiwh6/manifests/init.pp', line 38</span>
+
+class swap (
+  Boolean        $dynamic_script  = true,
+  Integer        $swappiness      = 0,
+  Integer[0,59]  $cron_step       = 5,
+  Integer[0,100] $maximum         = 30,
+  Integer[0,100] $median          = 10,
+  Integer[0,100] $minimum         = 5,
+  Integer[0,100] $min_swappiness  = 5,
+  Integer[0,100] $low_swappiness  = 20,
+  Integer[0,100] $high_swappiness = 40,
+  Integer[0,100] $max_swappiness  = 80
+) {
+
+  if $dynamic_script {
+    # NOTE: This script is handy for keeping things alive in environments where
+    #       memory availability can fluctuate quite low.  You should read it!
+    file { &#39;/usr/local/sbin/dynamic_swappiness.rb&#39;:
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;root&#39;,
+      mode    =&gt; &#39;0755&#39;,
+      content =&gt; template(&#39;swap/dynamic_swappiness.erb&#39;)
+    }
+    # NOTE: One reason cron runs this is because in extreme cases, the Puppet
+    #       agent won&#39;t be able to run until the swappiness is adjusted.
+    cron { &#39;dynamic_swappiness&#39;:
+      user    =&gt; &#39;root&#39;,
+      minute  =&gt; &quot;*/${cron_step}&quot;,
+      command =&gt; &#39;/usr/local/sbin/dynamic_swappiness.rb&#39;,
+      require =&gt; File[&#39;/usr/local/sbin/dynamic_swappiness.rb&#39;]
+    }
+  }
+  else {
+    sysctl { &#39;vm.swappiness&#39;:
+      value  =&gt; $swappiness
+    }
+    cron { &#39;dynamic_swappiness&#39;:
+      ensure =&gt; absent
+    }
+  }
+
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

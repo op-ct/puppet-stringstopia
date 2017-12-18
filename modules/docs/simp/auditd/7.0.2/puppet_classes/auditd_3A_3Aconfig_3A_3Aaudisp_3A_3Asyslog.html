@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: auditd::config::audisp::syslog
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::auditd::config::audisp::syslog";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">auditd::config::audisp::syslog</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: auditd::config::audisp::syslog</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-16i6hpm/manifests/config/audisp/syslog.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class utilizes rsyslog to send all audit records to syslog.</p>
+
+<p>This capability is most useful for forwarding audit records to
+remote servers as syslog messages, since these records are already
+persisted locally in audit logs.  For most sites, however, using
+this capability for all audit records can quickly overwhelm host
+and/or network resources, especially if the messages are forwarded
+to multiple remote syslog servers or (inadvertently) persisted
+locally. Site-specific, rsyslog actions to implement filtering will
+likely be required to reduce this message traffic.</p>
+
+<p>As a precaution, to prevent the above overload scenario, this class,
+by default, inserts a rsyslog action to drop these messages, prior to
+forwarding to remote syslog servers or writing to local syslog files.
+You can disable this drop behavior via configuration, but are strongly
+advised to apply appropriate syslog message filtering before doing so.
+We also recommend you ensure any forwarded, audit messages are
+encrypted using the stunnel module, due to the nature of the
+information carried by these messages.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>drop_audit_logs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>When set to false, auditd records will be forwarded to remote
+servers and/or written to local syslog files, as directed by the
+site rsyslog configuration.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>priority</span>
+      
+      
+        <span class='type'>(<tt>Auditd::LogPriority</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;LOG_INFO&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The syslog priority for all audit record messages.
+This value is used in the /etc/audisp/plugins.d/syslog.conf file.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>facility</span>
+      
+      
+        <span class='type'>(<tt>Auditd::LogFacility</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;LOG_LOCAL5&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The syslog facility for all audit record messages. This value is
+used in the /etc/audisp/plugins.d/syslog.conf file.  For the older
+auditd versions used by CentOS6 and CentOS7, must be an empty string,
+LOG_LOCAL0, LOG_LOCAL1, LOG_LOCAL2, LOG_LOCAL3, LOG_LOCAL4, LOG_LOCAL5,
+LOG_LOCAL6, or LOG_LOCAL7. An empty string results in LOG_USER and
+is the ONLY mechanism to specify that facility. No other facilities
+are allowed.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-16i6hpm/manifests/config/audisp/syslog.pp', line 39</span>
+
+class auditd::config::audisp::syslog (
+  Boolean             $drop_audit_logs = true,
+  Auditd::LogPriority $priority        = &#39;LOG_INFO&#39;,
+  Auditd::LogFacility $facility        = &#39;LOG_LOCAL5&#39;
+) {
+  include &#39;::rsyslog&#39;
+  include &#39;::auditd::config::audisp_service&#39;
+
+  if $drop_audit_logs {
+    # This will prevent audit records from being forwarded to remote
+    # servers and/or written to local syslog files, but you still have
+    # access to the records in the local audit log files.
+    rsyslog::rule::drop { &#39;audispd&#39;:
+      rule   =&gt; &#39;$programname == \&#39;audispd\&#39;&#39;
+    }
+  }
+
+  file { &#39;/etc/audisp/plugins.d/syslog.conf&#39;:
+    content =&gt; &quot;\
+active = yes
+direction = out
+path = builtin_syslog
+type = builtin
+args = ${priority} ${facility}
+format = string
+&quot;
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

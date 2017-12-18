@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: ssh::client::host_config_entry
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::ssh::client::host_config_entry";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">ssh::client::host_config_entry</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: ssh::client::host_config_entry</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-5vukdg/manifests/client/host_config_entry.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Creates a host entry to ssh_config</p>
+
+<p>GSSAPI may be used.</p>
+
+<p>the client’s GSSAPI credentials will force the rekeying of the ssh connection.</p>
+
+<p>trusted to securely canonicalize the name of the host being connected to.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Adding default entry</p>
+</div></p>
+      
+      <pre class="example code"><code>
+ssh::client::host_config_entry { &#39;*&#39;:
+  gssapiauthentication =&gt; true,
+  forwardx11trusted    =&gt; true&#39;
+}</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>address_family</span>
+      
+      
+        <span class='type'>(<tt>Enum['any', 'inet', 'inet6']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;any&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The IP Address family to use when connecting.
+Valid options: ‘any’, ‘inet’, ‘inet6’.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>batchmode</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set to true, passphrase/password querying will
+be disabled. This option is useful in scripts and other batch jobs where no
+user is present to supply the password.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>bindaddress</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Host]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Use the specified address on the local machine as
+the source address of the connection. Only useful on systems with more than
+one address. Note that this option does not work if UsePrivilegedPort is set
+to false.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>challengeresponseauthentication</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to use
+challenge-response authentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>checkhostip</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If this flag is set to true, ssh will
+additionally check the host IP address in the known_hosts file. This allows
+ssh to detect if a host key changed due to DNS spoofing and will add
+addresses of destination hosts to ~/.ssh/known_hosts in the process,
+regardless of the setting of StrictHostKeyChecking.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cipher</span>
+      
+      
+        <span class='type'>(<tt>Enum['blowfish', '3des', 'des']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;3des&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the cipher to use for encrypting the session
+in protocol version 1. Valid Options: ‘blowfish’, ‘3des’, ‘des’.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ciphers</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the ciphers allowed for protocol version 2 in
+order of preference. When unset, a strong set of ciphers is
+automatically selected by this class, taking into account whether
+the server is in FIPS mode.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>clearallforwardings</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies that all local, remote, and
+dynamic port forwardings specified in the configuration files or on the
+command line be cleared.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>compression</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to use compression.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>compressionlevel</span>
+      
+      
+        <span class='type'>(<tt>Integer[1,9]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>6</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the compression level to use if
+compression is enabled.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>connectionattempts</span>
+      
+      
+        <span class='type'>(<tt>Integer[1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the number of tries (one per
+second) to make before exiting.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>connecttimeout</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the timeout (in seconds) used when
+connecting to the SSH server, instead of using the default system TCP
+timeout.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>controlmaster</span>
+      
+      
+        <span class='type'>(<tt>Enum['yes','no','ask']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;no&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enables the sharing of multiple sessions over a
+single network connection.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>controlpath</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Stdlib::Absolutepath, Enum['none']]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specify the path to the control socket used for
+connection sharing as set by controlmaster.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dynamicforward</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Simplib::Port, Simplib::Host::Port]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies that a TCP port on the local machine
+be forwarded over the secure channel, and the application protocol is then
+used to determine where to connect to from the remote machine.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>enablesshkeysign</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Setting this option to true enables the use
+of the helper program ssh-keysign during HostbasedAuthentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>escapechar</span>
+      
+      
+        <span class='type'>(<tt>Pattern[/^[[:graph:]]$/, /^\^[[:alpha:]]$/, /^none$/]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;~&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Sets the default escape character. Must be a single character.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>exitonforwardfailure</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether ssh should terminate
+the connection if it cannot set up all requested dynamic, tunnel, local, and
+remote port forwardings.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>forwardagent</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether the connection to the
+authentication agent (if any) will be forwarded to the remote machine.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>forwardx11</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether X11 connections will be
+automatically redirected over the secure channel and DISPLAY set.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>forwardx11trusted</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set to true, remote X11 clients will
+have full access to the original X11 display.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gatewayports</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether remote hosts are allowed to
+connect to local forwarded ports.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>globalknownhostsfile</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Stdlib::Absolutepath]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies one or more files to use for
+the global host key database.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gssapiauthentication</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether user authentication
+based on GSSAPI is allowed.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gssapidelegatecredentials</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Forward credentials to the server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gssapikeyexchange</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether key exchange based on</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gssapirenewalforcesrekey</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set to true then renewal of</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gssapitrustdns</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Set to true to indicate that the DNS is</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hashknownhosts</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Indicates that SSH should hash host names and
+addresses when they are added to known hosts.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hostbasedauthentication</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to try rhosts
+based authentication with public key authentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hostkeyalgorithms</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&#39;ssh-rsa&#39;,&#39;ssh-dss&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the host key algorithms that the
+client wants to use in order of preference.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hostkeyalias</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies an alias that should be used instead of
+the real host name when looking up or saving the host key in the host key
+database files.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hostname</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Host]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the real hostname to log into.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>identitiesonly</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies that ssh should only use the
+authentication identity and certificate files explicitly configured in the
+ssh_config files or passed on the ssh command-line, even if ssh-agent or
+a PKCS11Provider offers more identities.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>identityfile</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies a file from which the user’s DSA,
+ECDSA, Ed25519 or RSA authentication identity is read.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kbdinteractiveauthentication</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to use
+keyboard-interactive authentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kbdinteractivedevices</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the list of methods to use in
+keyboard-interactive authentication. Multiple method names must be
+comma-separated.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>localcommand</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies a command to execute on the local
+machine after successfully connecting to the server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>localforward</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies that a TCP port on the local machine be
+forwarded over the secure channel to the specified host and port from the
+remote machine. The first argument must be [bind_address:]port and the
+second argument must be host:hostport.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>macs</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the MAC (message authentication code) algorithms
+in order of preference.  When unset, a strong set of algorithms is
+automatically selected by this class, taking into account whether
+the server is in FIPS mode.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssh_loglevel</span>
+      
+      
+        <span class='type'>(<tt>Ssh::Sysloglevel</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;INFO&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Gives the verbosity level that is used when
+logging messages. Valid options: ‘QUIET’, ‘FATAL’, ‘ERROR’, ‘INFO’,
+‘VERBOSE’, ‘DEBUG’, ‘DEBUG1’, ‘DEBUG2’, and ‘DEBUG3’.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nohostauthenticationforlocalhost</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>This option can be used if
+the home directory is shared across machines. In this case localhost will
+refer to a different machine on each of the machines and the user will get
+many warnings about changed host keys. However, this option disables host
+authentication for localhost.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>numberofpasswordprompts</span>
+      
+      
+        <span class='type'>(<tt>Integer[1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>3</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the number of password
+prompts before giving up.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passwordauthentication</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to use password
+authentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>permitlocalcommand</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Allow local command execution via the
+LocalCommand option or using the !command escape sequence.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>22</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the port number to connect on the remote host.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>preferredauthentications</span>
+      
+      
+        <span class='type'>(<tt>Array[Ssh::Authentications]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;publickey&#39;,
+                                                                                              &#39;hostbased&#39;,
+                                                                                              &#39;keyboard-interactive&#39;,
+                                                                                              &#39;password&#39; ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the order in which the
+client should try authentication methods. The order will be determined from
+the start of the array to the end of the array. Default:
+[‘publickey’,’hostbased’,’keyboard-interactive’,’password’]</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>protocol</span>
+      
+      
+        <span class='type'>(<tt>Variant[Integer[1,2], Enum['2,1']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the protocol versions SSH should support.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxycommand</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the command to use to connect to the
+server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pubkeyauthentication</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to try public key
+authentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rekeylimit</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the maximum amount of data that may be
+transmitted before the session key is renegotiated, optionally followed a
+maximum amount of time that may pass before the session key is renegotiated.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>remoteforward</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies that a TCP port on the remote machine
+be forwarded over the secure channel to the specified host and port from the
+local machine.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rhostsrsaauthentication</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to try rhosts based
+authentication with RSA host authentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rsaauthentication</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to try RSA Authentication.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sendenv</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;LANG&#39;,
+                                                                                              &#39;LC_CTYPE&#39;,
+                                                                                              &#39;LC_NUMERIC&#39;,
+                                                                                              &#39;LC_TIME&#39;,
+                                                                                              &#39;LC_COLLATE&#39;,
+                                                                                              &#39;LC_MONETARY&#39;,
+                                                                                              &#39;LC_MESSAGES&#39;,
+                                                                                              &#39;LC_PAPER&#39;,
+                                                                                              &#39;LC_NAME&#39;,
+                                                                                              &#39;LC_ADDRESS&#39;,
+                                                                                              &#39;LC_TELEPHONE&#39;,
+                                                                                              &#39;LC_MEASUREMENT&#39;,
+                                                                                              &#39;LC_IDENTIFICATION&#39;,
+                                                                                              &#39;LC_ALL&#39; ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies what variables from the local environ
+should be sent to the server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>serveralivecountmax</span>
+      
+      
+        <span class='type'>(<tt>Integer[1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>3</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Sets the number of server alive messages
+(see below) which may be sent without ssh receiving any messages back from
+the server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>serveraliveinterval</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Sets a timeout interval in seconds after
+which if no data has been received from the server. The default is 0,
+indicating that these messages will not be sent to the server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>smartcarddevice</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies which smartcard device to use.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stricthostkeychecking</span>
+      
+      
+        <span class='type'>(<tt>Enum['yes','no','ask']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;ask&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set to yes, ssh will never
+automatically add host keys to the known_hosts file, and refuses to connect
+to hosts whose keys have changed.  If this flag is set to “ask”, new host
+keys will be added to the user known host files only after the user has
+confirmed that is what they really want to do, and ssh will refuse to
+connect to hosts whose host key has changed. Valid Options: ‘yes’, ‘no’,
+‘ask’</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tcpkeepalive</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether the system should send TCP
+keepalive messages to the other side.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tunnel</span>
+      
+      
+        <span class='type'>(<tt>Enum['yes','no','point-to-point','ethernet']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;yes&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If ‘yes’, request device forwarding between the client and
+server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tunneldevice</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the devices to open on the client and
+the server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>useprivilegedport</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to use a privileged port
+for outgoing connections.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the user to log in as.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>userknownhostsfile</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[Stdlib::Absolutepath]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies one or more files to use for the
+user host key database, separated by whitespace.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>verifyhostkeydns</span>
+      
+      
+        <span class='type'>(<tt>Enum['yes','no','ask']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;no&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies whether to verify the remote key
+using DNS and SSHFP resource records.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>visualhostkey</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If this flag is set to true, an ASCII art
+representation of the remote host key fingerprint is printed in addition to
+the fingerprint string at login and for unknown host keys.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>xauthlocation</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/usr/bin/xauth&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Specifies the full pathname of the xauth
+program.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-5vukdg/manifests/client/host_config_entry.pp', line 245</span>
+
+define ssh::client::host_config_entry (
+  Enum[&#39;any&#39;, &#39;inet&#39;, &#39;inet6&#39;]                          $address_family                   = &#39;any&#39;,
+  Boolean                                               $batchmode                        = false,
+  Optional[Simplib::Host]                               $bindaddress                      = undef,
+  Boolean                                               $challengeresponseauthentication  = true,
+  Boolean                                               $checkhostip                      = true,
+  Enum[&#39;blowfish&#39;, &#39;3des&#39;, &#39;des&#39;]                       $cipher                           = &#39;3des&#39;,
+  Optional[Array[String]]                               $ciphers                          = undef,
+  Boolean                                               $clearallforwardings              = false,
+  Boolean                                               $compression                      = true,
+  Integer[1,9]                                          $compressionlevel                 = 6,
+  Integer[1]                                            $connectionattempts               = 1,
+  Integer[0]                                            $connecttimeout                   = 0,
+  Enum[&#39;yes&#39;,&#39;no&#39;,&#39;ask&#39;]                                $controlmaster                    = &#39;no&#39;,
+  Optional[Variant[Stdlib::Absolutepath, Enum[&#39;none&#39;]]] $controlpath                      = undef,
+  Optional[Variant[Simplib::Port, Simplib::Host::Port]] $dynamicforward                   = undef,
+  Boolean                                               $enablesshkeysign                 = false,
+  Pattern[/^[[:graph:]]$/, /^\^[[:alpha:]]$/, /^none$/] $escapechar                       = &#39;~&#39;,
+  Boolean                                               $exitonforwardfailure             = false,
+  Boolean                                               $forwardagent                     = false,
+  Boolean                                               $forwardx11                       = false,
+  Boolean                                               $forwardx11trusted                = false,
+  Boolean                                               $gatewayports                     = false,
+  Optional[Array[Stdlib::Absolutepath]]                 $globalknownhostsfile             = undef,
+  Boolean                                               $gssapiauthentication             = false,
+  Boolean                                               $gssapikeyexchange                = false,
+  Boolean                                               $gssapidelegatecredentials        = false,
+  Boolean                                               $gssapirenewalforcesrekey         = false,
+  Boolean                                               $gssapitrustdns                   = false,
+  Boolean                                               $hashknownhosts                   = true,
+  Boolean                                               $hostbasedauthentication          = false,
+  Array[String]                                         $hostkeyalgorithms                = [&#39;ssh-rsa&#39;,&#39;ssh-dss&#39;],
+  Optional[String]                                      $hostkeyalias                     = undef,
+  Optional[Simplib::Host]                               $hostname                         = undef,
+  Boolean                                               $identitiesonly                   = false,
+  Optional[String]                                      $identityfile                     = undef,
+  Boolean                                               $kbdinteractiveauthentication     = true,
+  Optional[Array[String]]                               $kbdinteractivedevices            = undef,
+  Optional[String]                                      $localcommand                     = undef,
+  Optional[String]                                      $localforward                     = undef,
+  Optional[Array[String]]                               $macs                             = undef,
+  Ssh::Sysloglevel                                      $ssh_loglevel                     = &#39;INFO&#39;,
+  Boolean                                               $nohostauthenticationforlocalhost = false,
+  Integer[1]                                            $numberofpasswordprompts          = 3,
+  Boolean                                               $passwordauthentication           = true,
+  Boolean                                               $permitlocalcommand               = false,
+  Simplib::Port                                         $port                             = 22,
+  Array[Ssh::Authentications]                           $preferredauthentications         = [ &#39;publickey&#39;,
+                                                                                              &#39;hostbased&#39;,
+                                                                                              &#39;keyboard-interactive&#39;,
+                                                                                              &#39;password&#39; ],
+  Variant[Integer[1,2], Enum[&#39;2,1&#39;]]                    $protocol                         = 2,
+  Optional[String]                                      $proxycommand                     = undef,
+  Boolean                                               $pubkeyauthentication             = true,
+  Optional[String]                                      $rekeylimit                       = undef,
+  Optional[String]                                      $remoteforward                    = undef,
+  Boolean                                               $rhostsrsaauthentication          = false,
+  Boolean                                               $rsaauthentication                = true,
+  Array[String]                                         $sendenv                          = [ &#39;LANG&#39;,
+                                                                                              &#39;LC_CTYPE&#39;,
+                                                                                              &#39;LC_NUMERIC&#39;,
+                                                                                              &#39;LC_TIME&#39;,
+                                                                                              &#39;LC_COLLATE&#39;,
+                                                                                              &#39;LC_MONETARY&#39;,
+                                                                                              &#39;LC_MESSAGES&#39;,
+                                                                                              &#39;LC_PAPER&#39;,
+                                                                                              &#39;LC_NAME&#39;,
+                                                                                              &#39;LC_ADDRESS&#39;,
+                                                                                              &#39;LC_TELEPHONE&#39;,
+                                                                                              &#39;LC_MEASUREMENT&#39;,
+                                                                                              &#39;LC_IDENTIFICATION&#39;,
+                                                                                              &#39;LC_ALL&#39; ],
+  Integer[1]                                            $serveralivecountmax              = 3,
+  Integer[0]                                            $serveraliveinterval              = 0,
+  Optional[String]                                      $smartcarddevice                  = undef,
+  Enum[&#39;yes&#39;,&#39;no&#39;,&#39;ask&#39;]                                $stricthostkeychecking            = &#39;ask&#39;,
+  Boolean                                               $tcpkeepalive                     = true,
+  Enum[&#39;yes&#39;,&#39;no&#39;,&#39;point-to-point&#39;,&#39;ethernet&#39;]          $tunnel                           = &#39;yes&#39;,
+  Optional[String]                                      $tunneldevice                     = undef,
+  Boolean                                               $useprivilegedport                = false,
+  Optional[String]                                      $user                             = undef,
+  Optional[Array[Stdlib::Absolutepath]]                 $userknownhostsfile               = undef,
+  Enum[&#39;yes&#39;,&#39;no&#39;,&#39;ask&#39;]                                $verifyhostkeydns                 = &#39;no&#39;,
+  Boolean                                               $visualhostkey                    = false,
+  Stdlib::Absolutepath                                  $xauthlocation                    = &#39;/usr/bin/xauth&#39;
+) {
+  include &#39;::ssh::client::params&#39;
+  include &#39;::ssh::client&#39;
+
+  if $macs and !empty($macs) {
+    $_macs = $macs
+  }
+  else {
+    if $::ssh::client::fips or $facts[&#39;fips_enabled&#39;] {
+      $_macs = $::ssh::client::params::fips_macs
+    }
+    else {
+      $_macs = $::ssh::client::params::macs
+    }
+  }
+  if $ciphers and !empty($ciphers) {
+    $_ciphers = $ciphers
+  }
+  else {
+    if $::ssh::client::fips or $facts[&#39;fips_enabled&#39;] {
+      $_ciphers = $::ssh::client::params::fips_ciphers
+    }
+    else {
+      $_ciphers = $::ssh::client::params::ciphers
+    }
+  }
+
+  if $::ssh::client::fips or $facts[&#39;fips_enabled&#39;] {
+    $_protocol = 2
+    $_cipher = undef
+  }
+  elsif $protocol == 2 {
+    $_protocol = $protocol
+    $_cipher = undef
+  }
+  else {
+    $_protocol = $protocol
+    $_cipher = $cipher
+  }
+
+  $_name = ssh_format_host_entry_for_sorting($name)
+
+  concat::fragment { &quot;ssh_config_${_name}&quot;:
+    target  =&gt; &#39;/etc/ssh/ssh_config&#39;,
+    content =&gt; template(&quot;${module_name}/ssh_config.erb&quot;)
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

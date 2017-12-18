@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-libreswan"><img src="https://travis-ci.org/simp/pupmod-simp-libreswan.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#module-description">Module Description - What the module does and why it is useful</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with ipsec</a>
+    <ul>
+      <li><a href="#what-ipsec-affects">What ipsec affects</a></li>
+      <li><a href="#setup-requirements">Setup requirements</a></li>
+      <li><a href="#beginning-with-ipsec">Beginning with ipsec</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a>
+    <ul>
+      <li><a href="#acceptance-tests">Acceptance Tests - Beaker env variables</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>This module installs and configures Libreswan, an implementation of the VPN protocol, which supports IPSEC and IKE.</p>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+
+<p>This module is a component of the <a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>, a compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they can be submitted to our <a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+
+<p>Please read our <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">Contribution Guide</a> and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">developer wiki</a>.</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but it can be used independently:
+* When included within the SIMP ecosystem, security compliance settings will be managed from the Puppet server.
+* If used independently, all SIMP-managed security subsystems are disabled by default and must be explicitly opted into by administrators.  Please review the the <code>client_nets</code>, <code>simp_firewall</code>, <code>nssdb_password</code>, and
+ <code>use_*</code> parameters in <code>manifests/init.pp</code> for details.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>This module installs the libreswan IPSEC service. IPSEC is Internet Protocol SECurity. It uses strong cryptography to provide both authentication and encryption services.</p>
+
+<p>This module installs the most recently RedHat approved version of libreswan, currently  3.15.
+It will configure the IPSEC deamon using the most up to date defaults and, if you are using SIMP, manage your certificates. Connections can be managed through the puppet modules or by hand.</p>
+
+<h2 id="beginning-with-ipsec">Beginning with ipsec</h2>
+<p>Before installing pupmod-simp-libreswan make sure you read the <a href="https://libreswan.org/wiki/Introduction">libreswan documentation</a> thouroughly. After reading the introduction select the <a href="https://libreswan.org/wiki/Main_Page#User_Documentation">Main Wiki Page</a> link to get to the user documentation.</p>
+
+<p>All ipsec.conf options can be found on the manpage “man ipsec.conf”</p>
+
+<h2 id="setup">Setup</h2>
+<ul>
+  <li>Ensure the libreswan and NSS packages are available.</li>
+</ul>
+
+<p>Before installing pupmod-simp-libreswan make sure you read the libreswan documentation thouroughly.  It is located at https://libreswan.org/wiki/Introduction. After reading the introduction select the Main Wiki Page link to get to the user documentation:
+https://libreswan.org/wiki/Main_Page#User_Documentation</p>
+
+<h3 id="defaults">Defaults</h3>
+<ul>
+  <li>IPSEC configuration file: <code>/etc/ipsec.conf</code></li>
+  <li>Configuration directory: <code>/etc/ipsec.d/</code></li>
+  <li>NSS database (containing peer certs and the CA):<code> /etc/ipsec.d/[key4.db,cert9.db,pkcs11.txt]</code></li>
+  <li>Policy files (clear, private): <code>/etc/ipsec.d/policies/</code></li>
+  <li>Secrets files (secret or key used by ipsec): <code>/etc/ipsec.d/*.secrets</code></li>
+  <li>Connection files (tunnel configurations): <code>/etc/ipsec.d/*.conf</code></li>
+  <li>Log file: <code>/var/log/secure</code></li>
+  <li>Libreswan starts an “ipsec” service, but it is listed as “pluto” in the process list.</li>
+</ul>
+
+<h3 id="configure-the-ipsec-service">Configure the IPSEC service</h3>
+<p>Add the following to hiera:
+```yaml
+—
+simp_options::pki: true
+simp_options::trusted_nets : <desired client="" nets=""></desired></p>
+
+<p>classes:
+  - ‘libreswan’
+```</p>
+
+<p>Make sure that you have all Certificate Authorities needed loaded into SIMP.  If the side you are connecting to
+uses a different CA from yours, make sure you load their CA into your CA listing in PKI.  (See the SIMP
+documentation to see how to do this.)</p>
+
+<p>You can verify the contents of the nss database with:
+<code>bash
+certutil -L -d sql:/etc/ipsec.d/
+</code></p>
+
+<h3 id="setting-up-an-ipsec-connection">Setting up an IPSEC connection.</h3>
+
+<p>To add a connection via puppet, create a definition file under the site manifest.  A simple VPN tunnel host to host example is given here, named <code>ipsec_tunnel1.pp</code>:</p>
+
+<p>```ruby
+class site::ipsectunnel1 {
+  include ‘libreswan’</p>
+
+<p>libreswan::connection{ ‘default’:
+    leftcert =&gt; “$fqdn”,
+    left   =&gt; “$ipaddress”
+    leftrsasigkey     =&gt; ‘%cert’,
+    leftsendcert      =&gt; ‘always’,
+    authby  =&gt; ‘rsasig’
+  }</p>
+
+<p>libreswan::connection{ ‘outgoing’ :
+     right  =&gt; ‘<the IP="" Address="" of="" the="" client="" you="" are="" connecting="" to.="">'
+     rightrsasigkey     =&gt; '%cert',
+     notify =&gt; Service['ipsec'],
+     auto =&gt; 'start'
+  }</the></p>
+
+<p>}</p>
+
+<p>```
+This will add two files to the <code>ipsec</code> directory, <code>default.conf</code> and <code>outgoing.conf</code>.  These are the connection files that will be read by the ipsec daemon and run.</p>
+
+<p><strong>NOTE</strong>: If you delete a connection from the site manifest, it will not know to delete it from
+the directory.  You will need to remove it manually.</p>
+
+<h2 id="reference">Reference</h2>
+<p>|Module                   | Purpose |
+|————————-|———|
+| <code>ipsec</code>                     | Sets up parameters for the system and calls installation and configuration modules and maintains most dependancied beween them. Configures IPSEC to point to a specific NSS database then initiates calls to NSS routines to set up the nss database. |
+| <code>ipsec::install</code>            | Installs the libreswan module and copies scripts to needed by other modules to local system. |
+| <code>ipsec::config</code>             | Sets up ipsec directories and configures <code>ipsec.conf</code> file |
+| <code>ipsec::config::firewall</code>   | Configures the firewall setting for ipsec |
+| <code>ipsec::service</code>            | Sets up the ipsec service on the system. |
+| <code>ipsec::config::pki</code>        | Copies the certificates localy for use with ipsec. |
+| <code>ipsec::nsspki</code>             | Call NSS to load certs for ipsec use. |
+| <code>ipsec::nss::init_db</code>       | Sets up a local copy of NSS database and sets up files used to access it. |
+| <code>ipsec::nss::loadcerts</code>     | Actually load the certificates to the NSS database. |
+| <code>ipsec::connection</code>         | defines connections for IPSEC. |</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>Currently this has only been tested with Centos 6 and 7.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Please see the <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">SIMP Contribution Guidelines</a>.</p>
+
+<h3 id="acceptance-tests">Acceptance tests</h3>
+
+<p><strong>**  Section Not Complete **</strong>
+To run the system tests, you need <a href="https://www.vagrantup.com/">Vagrant</a> installed. Then, run:</p>
+
+<p><code>shell
+bundle exec rake acceptance
+</code></p>
+
+<p>Some environment variables may be useful:</p>
+
+<p><code>shell
+BEAKER_debug=true
+BEAKER_provision=no
+BEAKER_destroy=no
+BEAKER_use_fixtures_dir_for_modules=yes
+</code></p>
+
+<ul>
+  <li><code>BEAKER_debug</code>: show the commands being run on the STU and their output.</li>
+  <li><code>BEAKER_destroy=no</code>: prevent the machine destruction after the tests finish so you can inspect the state.</li>
+  <li><code>BEAKER_provision=no</code>: prevent the machine from being recreated. This can save a lot of time while you’re writing the tests.</li>
+  <li><code>BEAKER_use_fixtures_dir_for_modules=yes</code>: cause all module dependencies to be loaded from the <code>spec/fixtures/modules</code> directory, based on the contents of <code>.fixtures.yml</code>.  The contents of this directory are usually populated by <code>bundle exec rake spec_prep</code>.  This can be used to run acceptance tests to run on isolated networks.</li>
+</ul>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

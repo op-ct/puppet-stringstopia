@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-acpid"><img src="https://travis-ci.org/simp/pupmod-simp-acpid.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-6.0-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-6.0-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#description">Description</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with acpid</a>
+    <ul>
+      <li><a href="#what-acpid-affects">What acpid affects</a></li>
+      <li><a href="#beginning-with-acpid">Beginning with acpid</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a>
+    <ul>
+      <li><a href="#acceptance-tests">Acceptance Tests - Beaker env variables</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="description">Description</h2>
+
+<p>This module installs the <code>acpid</code> package and ensures the service is running.</p>
+
+<h3 id="this-is-a-simp-module">This is a SIMP module</h3>
+<p>This module is a component of the <a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>, a compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they can be submitted to our <a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+
+<p>Please read our <a href="http://simp-doc.readthedocs.io/en/stable/contributors_guide/index.html">Contribution Guide</a></p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but it can be used independently:
+* When included within the SIMP ecosystem, security compliance settings will be managed from the Puppet server.
+* If used independently, all SIMP-managed security subsystems are disabled by default and must be explicitly opted into by administrators.  Please review the simp_options module for details.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-acpid-affects">What acpid affects</h3>
+
+<ul>
+  <li>installs the <code>acpid</code> package</li>
+  <li>manages the <code>acpid</code> and <code>haldaemon</code> services</li>
+</ul>
+
+<h3 id="beginning-with-acpid">Beginning with acpid</h3>
+
+<p>To use this module, just include the class:
+<code>puppet
+include 'acpid'
+</code></p>
+
+<h2 id="usage">Usage</h2>
+
+<p>You can optioally pin the version of the <code>acpid</code> package by specifying the <code>$ensure</code> variable when calling the class:</p>
+
+<p><code>puppet
+class { 'acpid':
+  ensure =&gt; 'latest'
+}
+</code></p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>SIMP Puppet modules are generally intended for use on Red Hat Enterprise Linux and compatible distributions, such as CentOS. Please see the <a href="./metadata.json"><code>metadata.json</code> file</a> for the most up-to-date list of supported operating systems, Puppet versions, and module dependencies.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Please see the <a href="http://simp-doc.readthedocs.io/en/stable/contributors_guide/index.html">SIMP Contribution Guidelines</a>.</p>
+
+<h3 id="acceptance-tests">Acceptance tests</h3>
+
+<p>This module includes <a href="https://github.com/puppetlabs/beaker">Beaker</a> acceptance tests using the SIMP <a href="https://github.com/simp/rubygem-simp-beaker-helpers">Beaker Helpers</a>.  By default the tests use <a href="https://www.vagrantup.com/">Vagrant</a> with <a href="https://www.virtualbox.org">VirtualBox</a> as a back-end; Vagrant and VirtualBox must both be installed to run these tests without modification. To execute the tests run the following:</p>
+
+<p><code>shell
+bundle install
+bundle exec rake beaker:suites
+</code></p>
+
+<p>Please refer to the <a href="https://github.com/simp/rubygem-simp-beaker-helpers/blob/master/README.md">SIMP Beaker Helpers documentation</a> for more information.</p>
+
+<p>Some environment variables may be useful:</p>
+
+<p><code>shell
+BEAKER_debug=true
+BEAKER_provision=no
+BEAKER_destroy=no
+BEAKER_use_fixtures_dir_for_modules=yes
+</code></p>
+
+<ul>
+  <li><code>BEAKER_debug</code>: show the commands being run on the STU and their output.</li>
+  <li><code>BEAKER_destroy=no</code>: prevent the machine destruction after the tests finish so you can inspect the state.</li>
+  <li><code>BEAKER_provision=no</code>: prevent the machine from being recreated. This can save a lot of time while you’re writing the tests.</li>
+  <li><code>BEAKER_use_fixtures_dir_for_modules=yes</code>: cause all module dependencies to be loaded from the <code>spec/fixtures/modules</code> directory, based on the contents of <code>.fixtures.yml</code>.  The contents of this directory are usually populated by <code>bundle exec rake spec_prep</code>.  This can be used to run acceptance tests to run on isolated networks.</li>
+</ul>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

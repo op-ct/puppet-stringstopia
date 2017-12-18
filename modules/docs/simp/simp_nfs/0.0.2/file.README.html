@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-simp_nfs"><img src="https://travis-ci.org/simp/pupmod-simp-simp_nfs.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-6.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-6.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#description">Description</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with simp_nfs</a>
+    <ul>
+      <li><a href="#what-simp_nfs-affects">What simp_nfs affects</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a>
+    <ul>
+      <li><a href="#acceptance-tests">Acceptance Tests - Beaker env variables</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="description">Description</h2>
+
+<p>This module is a <a href="https://simp-project.com">SIMP</a> Puppet profile for setting up
+common NFS configurations as supported by the SIMP ecosystem</p>
+
+<h3 id="this-is-a-simp-module">This is a SIMP module</h3>
+
+<p>This module is a component of the <a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>, a
+compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they may be submitted to our <a href="https://simp-project.atlassian.net/">bug tracker</a>.</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but
+it can be used independently:</p>
+
+<ul>
+  <li>When included within the SIMP ecosystem, security compliance settings will
+be managed from the Puppet server.</li>
+  <li>If used independently, all SIMP-managed security subsystems are disabled by
+default and must be explicitly opted into by administrators.  Please review
+the parameters in
+<a href="https://github.com/simp/pupmod-simp-simp_options"><code>simp/simp_options</code></a> for
+details.</li>
+</ul>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-simpnfs-affects">What simp_nfs affects</h3>
+
+<p>This module provides commonly used configurations for NFS server and client
+systems.</p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="serve-nfs-home-directories-over-stunnel">Serve NFS Home Directories over Stunnel</h3>
+
+<p>To export home directories for your users, over an Stunnel encrypted
+connection, use the following code and Hiera data:</p>
+
+<p><code>ruby
+include 'simp_nfs'
+</code></p>
+
+<h2 id="yaml">```yaml</h2>
+<p>simp_options::stunnel: true
+simp_nfs::export_home_dirs: true
+```</p>
+
+<h3 id="mount-nfs-home-directories">Mount NFS Home Directories</h3>
+
+<p>To mount your exported home directories, over an Stunnel encrypted connection,
+use the following code and Hiera data:</p>
+
+<p><code>ruby
+include 'simp_nfs'
+</code></p>
+
+<h2 id="yaml-1">```yaml</h2>
+<p>simp_options::stunnel: true
+simp_nfs::home_dir_server : <your NFS="" server="" IP="" or="" Hostname="">
+```</your></p>
+
+<h2 id="reference">Reference</h2>
+
+<p>See the <a href="https://github.com/simp/pupmod-simp-simp_nfs/tree/master/docs/index.html">API Documentation</a> for full details.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This is a SIMP Profile. It will not expose <strong>all</strong> options of the underlying
+modules, only the ones that are conducive to a supported SIMP infrastructure.
+If you need to do things that this module does not cover, you may need to
+create your own profile or inherit this profile and extend it to meet your
+needs.</p>
+
+<p>SIMP Puppet modules are generally intended for use on Red Hat Enterprise Linux
+and compatible distributions, such as CentOS. Please see the
+<a href="./metadata.json"><code>metadata.json</code> file</a> for the most up-to-date list of
+supported operating systems, Puppet versions, and module dependencies.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Please read our <a href="http://simp-doc.readthedocs.io/en/stable/contributors_guide/index.html">Contribution Guide</a>.</p>
+
+<h3 id="acceptance-tests">Acceptance tests</h3>
+
+<p>This module includes <a href="https://github.com/puppetlabs/beaker">Beaker</a> acceptance
+tests using the SIMP <a href="https://github.com/simp/rubygem-simp-beaker-helpers">Beaker Helpers</a>.
+By default the tests use <a href="https://www.vagrantup.com/">Vagrant</a> with
+<a href="https://www.virtualbox.org">VirtualBox</a> as a back-end; Vagrant and VirtualBox
+must both be installed to run these tests without modification. To execute the
+tests run the following:</p>
+
+<p><code>shell
+bundle install
+bundle exec rake beaker:suites
+</code></p>
+
+<p>Please refer to the <a href="https://github.com/simp/rubygem-simp-beaker-helpers/blob/master/README.md">SIMP Beaker Helpers documentation</a>
+for more information.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Puppet::Util::IniFile
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Puppet::Util::IniFile";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (I)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Util.html" title="Puppet::Util (module)">Util</a></span></span>
+     &raquo; 
+    <span class="title">IniFile</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Puppet::Util::IniFile
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Puppet::Util::IniFile</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb<span class="defines">,<br />
+  /tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file/section.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="IniFile/Section.html" title="Puppet::Util::IniFile::Section (class)">Section</a></span>
+    
+  
+</p>
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_settings-instance_method" title="#get_settings (instance method)">#<strong>get_settings</strong>(section_name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_value-instance_method" title="#get_value (instance method)">#<strong>get_value</strong>(section_name, setting)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(path, key_val_separator = &#39; = &#39;, section_prefix = &#39;[&#39;, section_suffix = &#39;]&#39;)  &#x21d2; IniFile </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of IniFile.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_setting-instance_method" title="#remove_setting (instance method)">#<strong>remove_setting</strong>(section_name, setting)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#save-instance_method" title="#save (instance method)">#<strong>save</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#section_names-instance_method" title="#section_names (instance method)">#<strong>section_names</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#section_regex-instance_method" title="#section_regex (instance method)">#<strong>section_regex</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_value-instance_method" title="#set_value (instance method)">#<strong>set_value</strong>(section_name, setting, value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(path, key_val_separator = &#39; = &#39;, section_prefix = &#39;[&#39;, section_suffix = &#39;]&#39;)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Util::IniFile (class)">IniFile</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of IniFile</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb', line 8</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_key_val_separator'>key_val_separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> = </span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_section_prefix'>section_prefix</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_section_suffix'>section_suffix</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>]</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_k_v_s'>k_v_s</span> <span class='op'>=</span> <span class='id identifier rubyid_key_val_separator'>key_val_separator</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s+$</span><span class='regexp_end'>/</span></span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_key_val_separator'>key_val_separator</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+
+  <span class='ivar'>@section_prefix</span> <span class='op'>=</span> <span class='id identifier rubyid_section_prefix'>section_prefix</span>
+  <span class='ivar'>@section_suffix</span> <span class='op'>=</span> <span class='id identifier rubyid_section_suffix'>section_suffix</span>
+
+  <span class='cvar'>@@SECTION_REGEX</span> <span class='op'>=</span> <span class='id identifier rubyid_section_regex'>section_regex</span>
+  <span class='cvar'>@@SETTING_REGEX</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(\s*)([^#;\s]|[^#;\s].*?[^\s</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k_v_s'>k_v_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>])(\s*</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k_v_s'>k_v_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>[ \t]*)(.*)\s*$</span><span class='regexp_end'>/</span></span>
+  <span class='cvar'>@@COMMENTED_SETTING_REGEX</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(\s*)[#;]+(\s*)(.*?[^\s</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k_v_s'>k_v_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>])(\s*</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k_v_s'>k_v_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>[ \t]*)(.*)\s*$</span><span class='regexp_end'>/</span></span>
+
+  <span class='ivar'>@path</span> <span class='op'>=</span> <span class='id identifier rubyid_path'>path</span>
+  <span class='ivar'>@key_val_separator</span> <span class='op'>=</span> <span class='id identifier rubyid_key_val_separator'>key_val_separator</span>
+  <span class='ivar'>@section_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@sections_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='ivar'>@path</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_parse_file'>parse_file</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get_settings-instance_method">
+  
+    #<strong>get_settings</strong>(section_name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_settings'>get_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_section'>section</span> <span class='op'>=</span> <span class='ivar'>@sections_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_setting_names'>setting_names</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_result'>result</span><span class='comma'>,</span> <span class='id identifier rubyid_setting'>setting</span><span class='op'>|</span>
+    <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting'>setting</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_get_value'>get_value</span><span class='lparen'>(</span><span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_value-instance_method">
+  
+    #<strong>get_value</strong>(section_name, setting)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_value'>get_value</span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='comma'>,</span> <span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='ivar'>@sections_hash</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='ivar'>@sections_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_get_value'>get_value</span><span class='lparen'>(</span><span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_setting-instance_method">
+  
+    #<strong>remove_setting</strong>(section_name, setting)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_setting'>remove_setting</span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='comma'>,</span> <span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_section'>section</span> <span class='op'>=</span> <span class='ivar'>@sections_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_has_existing_setting?'>has_existing_setting?</span><span class='lparen'>(</span><span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='comment'># If the setting is found, we have some work to do.
+</span>    <span class='comment'># First, we remove the line from our array of lines:
+</span>    <span class='id identifier rubyid_remove_line'>remove_line</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span>
+
+    <span class='comment'># Then, we need to tell the setting object to remove
+</span>    <span class='comment'># the setting from its state:
+</span>    <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_remove_existing_setting'>remove_existing_setting</span><span class='lparen'>(</span><span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span>
+
+    <span class='comment'># Finally, we need to update all of the start/end line
+</span>    <span class='comment'># numbers for all of the sections *after* the one that
+</span>    <span class='comment'># was modified.
+</span>    <span class='id identifier rubyid_section_index'>section_index</span> <span class='op'>=</span> <span class='ivar'>@section_names</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_decrement_section_line_numbers'>decrement_section_line_numbers</span><span class='lparen'>(</span><span class='id identifier rubyid_section_index'>section_index</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="save-instance_method">
+  
+    #<strong>save</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb', line 121</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='ivar'>@path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_fh'>fh</span><span class='op'>|</span>
+
+    <span class='ivar'>@section_names</span><span class='period'>.</span><span class='id identifier rubyid_each_index'>each_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
+      <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='ivar'>@section_names</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span>
+
+      <span class='id identifier rubyid_section'>section</span> <span class='op'>=</span> <span class='ivar'>@sections_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+
+      <span class='comment'># We need a buffer to cache lines that are only whitespace
+</span>      <span class='id identifier rubyid_whitespace_buffer'>whitespace_buffer</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+
+      <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_is_new_section?'>is_new_section?</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='op'>!</span> <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_is_global?'>is_global?</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_fh'>fh</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='embexpr_beg'>#{</span><span class='ivar'>@section_prefix</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='ivar'>@section_suffix</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>if</span> <span class='op'>!</span> <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_is_new_section?'>is_new_section?</span>
+        <span class='comment'># don&#39;t add empty sections
+</span>        <span class='kw'>if</span> <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>and</span> <span class='op'>!</span> <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_is_global?'>is_global?</span>
+          <span class='kw'>next</span>
+        <span class='kw'>end</span>
+
+        <span class='comment'># write all of the pre-existing settings
+</span>        <span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_start_line'>start_line</span><span class='op'>..</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_end_line'>end_line</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line_num'>line_num</span><span class='op'>|</span>
+          <span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_lines'>lines</span><span class='lbracket'>[</span><span class='id identifier rubyid_line_num'>line_num</span><span class='rbracket'>]</span>
+
+          <span class='comment'># We buffer any lines that are only whitespace so that
+</span>          <span class='comment'># if they are at the end of a section, we can insert
+</span>          <span class='comment'># any new settings *before* the final chunk of whitespace
+</span>          <span class='comment'># lines.
+</span>          <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\s*$</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_whitespace_buffer'>whitespace_buffer</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
+          <span class='kw'>else</span>
+            <span class='comment'># If we get here, we&#39;ve found a non-whitespace line.
+</span>            <span class='comment'># We&#39;ll flush any cached whitespace lines before we
+</span>            <span class='comment'># write it.
+</span>            <span class='id identifier rubyid_flush_buffer_to_file'>flush_buffer_to_file</span><span class='lparen'>(</span><span class='id identifier rubyid_whitespace_buffer'>whitespace_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_fh'>fh</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_fh'>fh</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+      <span class='comment'># write new settings, if there are any
+</span>      <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_additional_settings'>additional_settings</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+        <span class='id identifier rubyid_fh'>fh</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_indentation'>indentation</span> <span class='op'>||</span> <span class='int'>0</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='ivar'>@key_val_separator</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_whitespace_buffer'>whitespace_buffer</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>0</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_flush_buffer_to_file'>flush_buffer_to_file</span><span class='lparen'>(</span><span class='id identifier rubyid_whitespace_buffer'>whitespace_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_fh'>fh</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='comment'># We get here if there were no blank lines at the end of the
+</span>        <span class='comment'># section.
+</span>        <span class='comment'>#
+</span>        <span class='comment'># If we are adding a new section with a new setting,
+</span>        <span class='comment'># and if there are more sections that come after this one,
+</span>        <span class='comment'># we&#39;ll write one blank line just so that there is a little
+</span>        <span class='comment'># whitespace between the sections.
+</span>        <span class='comment'>#if (section.end_line.nil? &amp;&amp;
+</span>        <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_is_new_section?'>is_new_section?</span> <span class='op'>&amp;&amp;</span>
+            <span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_additional_settings'>additional_settings</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+            <span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span> <span class='op'>&lt;</span> <span class='ivar'>@section_names</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_fh'>fh</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="section_names-instance_method">
+  
+    #<strong>section_names</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_section_names'>section_names</span>
+  <span class='ivar'>@section_names</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="section_regex-instance_method">
+  
+    #<strong>section_regex</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_section_regex'>section_regex</span>
+  <span class='comment'># Only put in prefix/suffix if they exist
+</span>  <span class='comment'># Also, if the prefix is &#39;&#39;, the negated
+</span>  <span class='comment'># set match should be a match all instead.
+</span>  <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>^\s*</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='ivar'>@section_prefix</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>(</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>if</span> <span class='ivar'>@section_prefix</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[^</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='ivar'>@section_prefix</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>]</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*)</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='ivar'>@section_suffix</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_r_string'>r_string</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\s*$</span><span class='tstring_end'>&#39;</span></span>
+  <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_r_string'>r_string</span><span class='embexpr_end'>}</span><span class='regexp_end'>/</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_value-instance_method">
+  
+    #<strong>set_value</strong>(section_name, setting, value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-2h0mni/lib/puppet/util/ini_file.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_value'>set_value</span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='comma'>,</span> <span class='id identifier rubyid_setting'>setting</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='lparen'>(</span><span class='ivar'>@sections_hash</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_add_section'>add_section</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="IniFile/Section.html" title="Puppet::Util::IniFile::Section (class)">Section</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="IniFile/Section.html#initialize-instance_method" title="Puppet::Util::IniFile::Section#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_section'>section</span> <span class='op'>=</span> <span class='ivar'>@sections_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rbracket'>]</span>
+
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_has_existing_setting?'>has_existing_setting?</span><span class='lparen'>(</span><span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_update_line'>update_line</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_setting'>setting</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_update_existing_setting'>update_existing_setting</span><span class='lparen'>(</span><span class='id identifier rubyid_setting'>setting</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_find_commented_setting'>find_commented_setting</span><span class='lparen'>(</span><span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_setting'>setting</span><span class='rparen'>)</span>
+    <span class='comment'># So, this stanza is a bit of a hack.  What we&#39;re trying
+</span>    <span class='comment'># to do here is this: for settings that don&#39;t already
+</span>    <span class='comment'># exist, we want to take a quick peek to see if there
+</span>    <span class='comment'># is a commented-out version of them in the section.
+</span>    <span class='comment'># If so, we&#39;d prefer to add the setting directly after
+</span>    <span class='comment'># the commented line, rather than at the end of the section.
+</span>
+    <span class='comment'># If we get here then we found a commented line, so we
+</span>    <span class='comment'># call &quot;insert_inline_setting_line&quot; to update the lines array
+</span>    <span class='id identifier rubyid_insert_inline_setting_line'>insert_inline_setting_line</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='comma'>,</span> <span class='id identifier rubyid_section'>section</span><span class='comma'>,</span> <span class='id identifier rubyid_setting'>setting</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+
+    <span class='comment'># Then, we need to tell the setting object that we hacked
+</span>    <span class='comment'># in an inline setting
+</span>    <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_insert_inline_setting'>insert_inline_setting</span><span class='lparen'>(</span><span class='id identifier rubyid_setting'>setting</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+
+    <span class='comment'># Finally, we need to update all of the start/end line
+</span>    <span class='comment'># numbers for all of the sections *after* the one that
+</span>    <span class='comment'># was modified.
+</span>    <span class='id identifier rubyid_section_index'>section_index</span> <span class='op'>=</span> <span class='ivar'>@section_names</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='id identifier rubyid_section_name'>section_name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_increment_section_line_numbers'>increment_section_line_numbers</span><span class='lparen'>(</span><span class='id identifier rubyid_section_index'>section_index</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_section'>section</span><span class='period'>.</span><span class='id identifier rubyid_set_additional_setting'>set_additional_setting</span><span class='lparen'>(</span><span class='id identifier rubyid_setting'>setting</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

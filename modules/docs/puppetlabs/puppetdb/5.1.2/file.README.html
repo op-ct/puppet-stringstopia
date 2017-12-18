@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="puppetdb">puppetdb</h1>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview - What is the PuppetDB module?</a></li>
+  <li><a href="#module-description">Module Description - What does the module do?</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with PuppetDB module</a></li>
+  <li><a href="#upgrading">Upgrading - Guide for upgrading from older revisions of this module</a></li>
+  <li><a href="#usage">Usage - The classes and parameters available for configuration</a></li>
+  <li><a href="#implementation">Implementation - An under-the-hood peek at what the module is doing</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+  <li><a href="#release-notes">Release Notes - Notes on the most recent updates to the module</a></li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>By guiding puppetdb setup and configuration with a Puppet master, the PuppetDB
+module provides fast, streamlined access to data on puppetized infrastructure.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>The PuppetDB module provides a quick way to get started using PuppetDB, an open
+source inventory resource service that manages storage and retrieval of
+platform-generated data. The module will install PostgreSQL and PuppetDB if you
+don’t have them, as well as set up the connection to Puppet master. The module
+will also provide a dashboard you can use to view the current state of your
+system.</p>
+
+<p>For more information about PuppetDB
+<a href="http://docs.puppetlabs.com/puppetdb/">please see the official PuppetDB documentation.</a></p>
+
+<h2 id="setup">Setup</h2>
+
+<p><strong>What PuppetDB affects:</strong></p>
+
+<ul>
+  <li>package/service/configuration files for PuppetDB</li>
+  <li>package/service/configuration files for PostgreSQL (optional, but set as default)</li>
+  <li>Puppet master’s runtime (via plugins)</li>
+  <li>Puppet master’s configuration
+    <ul>
+      <li><strong>note</strong>: Using the <code>puppetdb::master::config</code> class will cause your
+routes.yaml file to be overwritten entirely (see <strong>Usage</strong> below for options
+and more information )</li>
+    </ul>
+  </li>
+  <li>system firewall (optional)</li>
+  <li>listened-to ports</li>
+</ul>
+
+<p><strong>Introductory Questions</strong></p>
+
+<p>To begin using PuppetDB, you’ll have to make a few decisions:</p>
+
+<ul>
+  <li>Which database back-end should I use?
+    <ul>
+      <li>PostgreSQL (default) or our embedded database</li>
+      <li>Embedded database
+        <ul>
+          <li><strong>note:</strong> We suggest using the embedded database only for experimental
+environments rather than production, as it does not scale well and can
+cause difficulty in migrating to PostgreSQL.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Should I run the database on the same node that I run PuppetDB on?</li>
+  <li>Should I run PuppetDB on the same node that I run my master on?</li>
+</ul>
+
+<p>The answers to those questions will be largely dependent on your answers to
+questions about your Puppet environment:</p>
+
+<ul>
+  <li>How many nodes are you managing?</li>
+  <li>What kind of hardware are you running on?</li>
+  <li>Is your current load approaching the limits of your hardware?</li>
+</ul>
+
+<p>Depending on your answers to all of the questions above, you will likely fall
+under one of these set-up options:</p>
+
+<ol>
+  <li><a href="#single-node-setup">Single Node (Testing and Development)</a></li>
+  <li><a href="#multiple-node-setup">Multiple Node (Recommended)</a></li>
+</ol>
+
+<h3 id="single-node-setup">Single Node Setup</h3>
+
+<p>This approach assumes you will use our default database (PostgreSQL) and run
+everything (PostgreSQL, PuppetDB, Puppet master) all on the same node. This
+setup will be great for a testing or experimental environment. In this case,
+your manifest will look like:</p>
+
+<pre class="code ruby"><code class="ruby">node &lt;hostname&gt; {
+  # Configure puppetdb and its underlying database
+  class { &#39;puppetdb&#39;: }
+  # Configure the Puppet master to use puppetdb
+  class { &#39;puppetdb::master::config&#39;: }
+}
+</code></pre>
+
+<p>You can provide some parameters for these classes if you’d like more control,
+but that is literally all that it will take to get you up and running with the
+default configuration.</p>
+
+<h3 id="multiple-node-setup">Multiple Node Setup</h3>
+
+<p>This approach is for those who prefer not to install PuppetDB on the same node
+as the Puppet master. Your environment will be easier to scale if you are able
+to dedicate hardware to the individual system components. You may even choose to
+run the puppetdb server on a different node from the PostgreSQL database that it
+uses to store its data. So let’s have a look at what a manifest for that
+scenario might look like:</p>
+
+<p><strong>This is an example of a very basic 3-node setup for PuppetDB.</strong></p>
+
+<pre class="code ruby"><code class="ruby">$master_host = &#39;master.example.lan&#39;
+$puppetdb_host = &#39;puppetdb.example.lan&#39;
+$postgres_host = &#39;postgres.example.lan&#39;
+node $master_host {
+  # Here we configure the Puppet master to use PuppetDB,
+  # telling it the hostname of the PuppetDB node
+  class { &#39;puppetdb::master::config&#39;:
+    puppetdb_server =&gt; $puppetdb_host,
+  }
+}
+node $postgres_host {
+  # Here we install and configure PostgreSQL and the PuppetDB
+  # database instance, and tell PostgreSQL that it should
+  # listen for connections to the `$postgres_host`
+  class { &#39;puppetdb::database::postgresql&#39;:
+    listen_addresses =&gt; $postgres_host,
+  }
+}
+node $puppetdb_host {
+  # Here we install and configure PuppetDB, and tell it where to
+  # find the PostgreSQL database.
+  class { &#39;puppetdb::server&#39;:
+    database_host =&gt; $postgres_host,
+  }
+}
+</code></pre>
+
+<p>This should be all it takes to get a 3-node, distributed installation of
+PuppetDB up and running. Note that, if you prefer, you could easily move two of
+these classes to a single node and end up with a 2-node setup instead.</p>
+
+<h3 id="beginning-with-puppetdb">Beginning with PuppetDB</h3>
+
+<p>Whether you choose a single node development setup or a multi-node setup, a
+basic setup of PuppetDB will cause: PostgreSQL to install on the node if it’s
+not already there; PuppetDB postgres database instance and user account to be
+created; the postgres connection to be validated and, if successful, PuppetDB to
+be installed and configured; PuppetDB connection to be validated and, if
+successful, the Puppet master config files to be modified to use PuppetDB; and
+the Puppet master to be restarted so that it will pick up the config changes.</p>
+
+<p>If your logging level is set to INFO or finer, you should start seeing
+PuppetDB-related log messages appear in both your Puppet master log and your
+puppetdb log as subsequent agent runs occur.</p>
+
+<p>If you’d prefer to use PuppetDB’s embedded database rather than PostgreSQL, have
+a look at the database parameter on the puppetdb class:</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb&#39;:
+  database =&gt; &#39;embedded&#39;,
+}
+</code></pre>
+
+<p>The embedded database can be useful for testing and very small production
+environments, but it is not recommended for production environments since it
+consumes a great deal of memory as your number of nodes increase.</p>
+
+<h3 id="cross-node-dependencies">Cross-node Dependencies</h3>
+
+<p>It is worth noting that there are some cross-node dependencies, which means that
+the first time you add the module’s configurations to your manifests, you may
+see a few failed puppet runs on the affected nodes.</p>
+
+<p>PuppetDB handles cross-node dependencies by taking a sort of “eventual
+consistency” approach. There’s nothing that the module can do to control the
+order in which your nodes check in, but the module can check to verify that the
+services it depends on are up and running before it makes configuration
+changes–so that’s what it does.</p>
+
+<p>When your Puppet master node checks in, it will validate the connectivity to the
+puppetdb server before it applies its changes to the Puppet master config files.
+If it can’t connect to puppetdb, then the puppet run will fail and the previous
+config files will be left intact. This prevents your master from getting into a
+broken state where all incoming puppet runs fail because the master is
+configured to use a puppetdb server that doesn’t exist yet. The same strategy is
+used to handle the dependency between the puppetdb server and the postgres
+server.</p>
+
+<p>Hence the failed puppet runs. These failures should be limited to 1 failed run
+on the puppetdb node, and up to 2 failed runs on the Puppet master node. After
+that, all of the dependencies should be satisfied and your puppet runs should
+start to succeed again.</p>
+
+<p>You can also manually trigger puppet runs on the nodes in the correct order
+(Postgres, PuppetDB, Puppet master), which will avoid any failed runs.</p>
+
+<h2 id="upgrading">Upgrading</h2>
+
+<h3 id="upgrading-from-4x-to-5x">Upgrading from 4.x to 5.x</h3>
+
+<p>Significant parameter changes are listed below:</p>
+
+<ul>
+  <li>The PuppetDB module defaults to Puppet 4 pathing and assumes <code>puppetserver</code>
+is the master service by default</li>
+  <li>The PuppetDB module manages Postgres repos by default. To turn this behavior
+off, set <code>manage_package_repo</code> to <code>false</code>.</li>
+  <li>To specify a specific version of PuppetDB to manage, you’ll need to use the
+<code>puppetdb::globals</code> class to set the version of PuppetDB you’re using
+explicitly. The ability to configure the version in the <code>puppetdb::server</code> and
+<code>puppetdb</code> class have been removed.</li>
+</ul>
+
+<p>For example if your config looked like this before:</p>
+
+<pre class="code ruby"><code class="ruby">class {&#39;puppetdb&#39;:
+    puppetdb_version =&gt; &#39;3.2.4-1.el7&#39;,
+}
+class { &#39;puppetdb::master::config&#39;: }
+</code></pre>
+
+<p>and you’d still like to use the module with PuppetDB 3.2.4, all you’d have to
+change would be:</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb::globals&#39;:
+    version =&gt; &#39;3.2.4-1.el7&#39;,
+}
+class { &#39;puppetdb&#39; : }
+class { &#39;puppetdb::master::config&#39; : }
+</code></pre>
+
+<p>The <code>globals</code> class above takes into account the following PuppetDB 3 and Puppet
+4 related changes:
+    * The <code>puppetdb::master:puppetdb_conf</code> class has added a <code>$legacy_terminus</code>
+      to support the PuppetDB 2.x terminus configuration.
+    * The default <code>test_url</code> for the <code>PuppetDBConnValidator</code> has also been
+      chaged to <code>/pdb/meta/v1/version</code> but will default to <code>/v3/version</code> when
+      using a PuppetDB 2.x version.
+    * The configuration pathing for Puppet and PuppetDB has changed with Puppet
+      4 and PuppetDB 3, using PuppetDB 2.x or older assumes the old
+      configuration pathing.</p>
+
+<p>See the CHANGELOG file for more detailed information on changes for each release.</p>
+
+<h3 id="upgrading-from-3x-to-4x">Upgrading from 3.x to 4.x</h3>
+
+<p>For this release, all dependency versions have been bumped to their latest.
+Significant parameter changes are listed below:</p>
+
+<ul>
+  <li>The PuppetDB module now only supports Puppet 3.7.1 or later</li>
+  <li><code>puppetlabs/postgresql</code> 4.0.0 or later is now required</li>
+  <li><code>puppetlabs/inifile</code> 1.1.3 or later is now required</li>
+  <li><code>puppetlabs/firewall</code> 1.1.3 or later is now required</li>
+  <li><code>puppetlabs/stdlib</code> 4.2.2 or later is now required</li>
+  <li>The parameter <code>manage_firewall</code> for the class <code>puppetdb::database::postgresql</code>
+has now been removed, since the PostgreSQL module no longer supports this.</li>
+  <li>The parameter <code>open_postgres_port</code> for the class <code>puppetdb</code> has also been
+removed, due to PostgreSQL changes.</li>
+</ul>
+
+<p>See the CHANGELOG file for more detailed information on changes for each release.</p>
+
+<h3 id="upgrading-from-2x-to-3x">Upgrading from 2.x to 3.x</h3>
+
+<p>For this release a major dependency has changed. The module
+<code>pupppetlabs/postgresql</code> must now be version 3.x. Upgrading the module should
+upgrade the <code>puppetlabs/postgresql</code> module for you, but if another module has a
+fixed dependency that module will have to be fixed before you can continue.</p>
+
+<p>Some other changes include:</p>
+
+<ul>
+  <li>The parameter <code>manage_redhat_firewall</code> for the class <code>puppetdb</code> has now been
+removed completely in favor of <code>open_postgres_port</code> and
+<code>open_ssl_listen_port</code>.</li>
+  <li>The parameter <code>manage_redhat_firewall</code> for the class
+<code>puppetdb::database::postgresql</code>, has now been renamed to <code>manage_firewall</code>.</li>
+  <li>The parameter <code>manage_redhat_firewall</code> for the class <code>puppetdb::server</code> has
+now been removed completely in favor of <code>open_listen_port</code> and
+<code>open_ssl_listen_port</code>.</li>
+  <li>The internal class: <code>puppetdb::database::postgresql_db</code> has been removed. If
+you were using this, it is now defunct.</li>
+  <li>The class <code>puppetdb::server::firewall</code> has been marked as private, do not use
+it directly.</li>
+  <li>The class <code>puppetdb::server::jetty_ini</code> and <code>puppetdb::server::database_ini</code>
+have been marked as private, do not use it directly.</li>
+</ul>
+
+<h3 id="upgrading-from-1x-to-2x">Upgrading from 1.x to 2.x</h3>
+
+<p>A major dependency has been changed, so now when you upgrade to 2.0 the
+dependency <code>cprice404/inifile</code> has been replaced with <code>puppetlabs/inifile</code>. This
+may interfere with other modules as they may depend on the old
+<code>cprice404/inifile</code> instead, so upgrading should be done with caution. Check
+that your other modules use the newer <code>puppetlabs/inifile</code> module as
+interoperation with the old <code>cprice404/inifile</code> module will no longer be
+supported by this module.</p>
+
+<p>Depending on how you install your modules, changing the dependency may require
+manual intervention. Double check your modules contain the newer
+<code>puppetlabs/inifile</code> after installing this latest module.</p>
+
+<p>Otherwise, all existing parameters from 1.x should still work correctly.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>PuppetDB supports a large number of configuration options for both configuring
+the puppetdb service and connecting that service to the Puppet master.</p>
+
+<h3 id="puppetdbglobals">puppetdb::globals</h3>
+
+<p>The <code>puppetdb::globals</code> class is intended to provide similar functionality to
+the <code>postgresql::globals</code> class in the <code>puppetlabs-postgresql</code> module by
+exposing a top-level entry-point into the module so that we can properly set
+defaults for the <code>puppetdb::params</code> class based on the version of <code>puppetdb</code> you
+are using. This setting defaults to <code>present</code>.</p>
+
+<p>You must declare the class to use it:</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb::globals&#39;: }
+</code></pre>
+
+<p><strong>Parameters within <code>puppetdb::globals</code>:</strong></p>
+
+<h4 id="version"><code>version</code></h4>
+
+<p>The version of the <code>puppetdb</code> package that should be installed. You may specify
+an explicit version number, ‘present’, or ‘latest’ (defaults to ‘present’).</p>
+
+<h3 id="puppetdb-1">puppetdb</h3>
+
+<p>The <code>puppetdb</code> class is intended as a high-level abstraction (sort of an
+‘all-in-one’ class) to help simplify the process of getting your puppetdb server
+up and running. It wraps the slightly-lower-level classes <code>puppetdb::server</code> and
+<code>puppetdb::database::*</code>, and it’ll get you up and running with everything you
+need (including database setup and management) on the server side. For maximum
+configurability, you may choose not to use this class. You may prefer to use the
+<code>puppetdb::server</code> class directly, or manage your puppetdb setup on your own.</p>
+
+<p>You must declare the class to use it:</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb&#39;: }
+</code></pre>
+
+<p><strong>Parameters within <code>puppetdb</code>:</strong></p>
+
+<h4 id="listenaddress"><code>listen_address</code></h4>
+
+<p>The address that the web server should bind to for HTTP requests. Defaults to
+<code>localhost</code>. Set to <code>0.0.0.0</code> to listen on all addresses.</p>
+
+<h4 id="listenport"><code>listen_port</code></h4>
+
+<p>The port on which the puppetdb web server should accept HTTP requests. Defaults
+to <code>8080</code>.</p>
+
+<h4 id="disablecleartext"><code>disable_cleartext</code></h4>
+
+<p>If true, the puppetdb web server will only serve HTTPS and not HTTP requests (defaults to false).</p>
+
+<h4 id="openlistenport"><code>open_listen_port</code></h4>
+
+<p>If <code>true</code>, open the <code>http_listen_port</code> on the firewall. Defaults to <code>false</code>.</p>
+
+<h4 id="ssllistenaddress"><code>ssl_listen_address</code></h4>
+
+<p>The address that the web server should bind to for HTTPS requests. Defaults to
+<code>0.0.0.0</code> to listen on all addresses.</p>
+
+<h4 id="ssllistenport"><code>ssl_listen_port</code></h4>
+
+<p>The port on which the puppetdb web server should accept HTTPS requests. Defaults
+to <code>8081</code>.</p>
+
+<h4 id="disablessl"><code>disable_ssl</code></h4>
+
+<p>If <code>true</code>, the puppetdb web server will only serve HTTP and not HTTPS requests.
+Defaults to <code>false</code>.</p>
+
+<h4 id="openssllistenport"><code>open_ssl_listen_port</code></h4>
+
+<p>If true, open the <code>ssl_listen_port</code> on the firewall. Defaults to <code>true</code>.</p>
+
+<h4 id="sslprotocols"><code>ssl_protocols</code></h4>
+
+<p>Specify the supported SSL protocols for PuppetDB (e.g. TLSv1, TLSv1.1, TLSv1.2.)</p>
+
+<h3 id="managedbserver"><code>manage_dbserver</code></h3>
+
+<p>If true, the PostgreSQL server will be managed by this module. Defaults to <code>true</code>.</p>
+
+<h4 id="database"><code>database</code></h4>
+
+<p>Which database backend to use; legal values are <code>postgres</code> (default) or
+<code>embedded</code>. The <code>embedded</code> db can be used for very small installations or for
+testing, but is not recommended for use in production environments. For more
+info, see the <a href="http://docs.puppetlabs.com/puppetdb/">puppetdb docs</a>.</p>
+
+<h4 id="databasehost"><code>database_host</code></h4>
+
+<p>Hostname to use for the database connection. For single case installations this
+should be left as the default. Defaults to <code>localhost</code>, ignored for <code>embedded</code>
+database.</p>
+
+<h4 id="databaseport"><code>database_port</code></h4>
+
+<p>The port that the database server listens on. Defaults to <code>5432</code>, ignored for
+<code>embedded</code> database.</p>
+
+<h4 id="databaseusername"><code>database_username</code></h4>
+
+<p>The name of the database user to connect as. Defaults to <code>puppetdb</code>, ignored for
+<code>embedded</code> database.</p>
+
+<h4 id="databasepassword"><code>database_password</code></h4>
+
+<p>The password for the database user. Defaults to <code>puppetdb</code>, ignored for
+<code>embedded</code> database.</p>
+
+<h4 id="databasename"><code>database_name</code></h4>
+
+<p>The name of the database instance to connect to. Defaults to <code>puppetdb</code>, ignored
+for <code>embedded</code> database.</p>
+
+<h4 id="databasessl-deprecated"><code>database_ssl</code> (DEPRECATED)</h4>
+
+<p>If true, PuppetDB will use SSL to connect to the postgres database. Defaults to
+<code>false</code>, ignored for <code>embedded</code> database. Setting up proper trust- and keystores has to
+be managed outside of the PuppetDB module.</p>
+
+<p>This parameter is deprecated and will be retired in a future release. Please use
+the <code>jdbc_ssl_properties</code> parameter with the value <code>?ssl=true</code>.</p>
+
+<h4 id="jdbcsslproperties"><code>jdbc_ssl_properties</code></h4>
+
+<p>The text to append to the JDBC connection URI. This should begin with a ‘?’
+character. For example, to use SSL for the PostgreSQL connection, set this
+parameter’s value to <code>?ssl=true</code>.</p>
+
+<p>This setting is only available when using PostgreSQL; when using HyperSQL (the
+<code>embedded</code> database), it does nothing.</p>
+
+<h4 id="databasevalidate"><code>database_validate</code></h4>
+
+<p>If true, the module will attempt to connect to the database using the specified
+settings and fail if it is not able to do so. Defaults to <code>true</code>.</p>
+
+<h4 id="databaseembeddedpath"><code>database_embedded_path</code></h4>
+
+<p><em>Embedded Database Only</em> Changes the path location for the HSQLDB database. Does
+ not provide migration for old data, so if you change this value and you have an
+ existing database you will need to manually move the content also. (defaults to
+ package default for 2.x release).</p>
+
+<h4 id="nodettl"><code>node_ttl</code></h4>
+
+<p>The length of time a node can go without receiving any new data before it’s
+automatically deactivated. (defaults to ‘0’, which disables auto-deactivation).
+This option is supported in PuppetDB &gt;= 1.1.0.</p>
+
+<h4 id="nodepurgettl"><code>node_purge_ttl</code></h4>
+
+<p>The length of time a node can be deactivated before it’s deleted from the
+database. (defaults to ‘0’, which disables purging). This option is supported in
+PuppetDB &gt;= 1.2.0.</p>
+
+<h4 id="reportttl"><code>report_ttl</code></h4>
+
+<p>The length of time reports should be stored before being deleted. (defaults to
+<code>7d</code>, which is a 7-day period). This option is supported in PuppetDB &gt;= 1.1.0.</p>
+
+<h4 id="gcinterval"><code>gc_interval</code></h4>
+
+<p>This controls how often (in minutes) to compact the database. The compaction
+process reclaims space and deletes unnecessary rows. If not supplied, the
+default is every 60 minutes. This option is supported in PuppetDB &gt;= 0.9.</p>
+
+<h4 id="logslowstatements"><code>log_slow_statements</code></h4>
+
+<p>This sets the number of seconds before an SQL query is considered “slow.” Slow
+SQL queries are logged as warnings, to assist in debugging and tuning. Note
+PuppetDB does not interrupt slow queries; it simply reports them after they
+complete.</p>
+
+<p>The default value is <code>10</code> seconds. A value of 0 will disable logging of slow
+queries. This option is supported in PuppetDB &gt;= 1.1.</p>
+
+<h4 id="connmaxage"><code>conn_max_age</code></h4>
+
+<p>The maximum time (in minutes) for a pooled connection to remain unused before
+it is closed off.</p>
+
+<p>If not supplied, we default to <code>60</code> minutes. This option is supported in PuppetDB &gt;= 1.1.</p>
+
+<h4 id="connkeepalive"><code>conn_keep_alive</code></h4>
+
+<p>This sets the time (in minutes) for a connection to remain idle before sending
+a test query to the DB. This is useful to prevent a DB from timing out
+connections on its end.</p>
+
+<p>If not supplied, we default to 45 minutes. This option is supported in PuppetDB &gt;= 1.1.</p>
+
+<h4 id="connlifetime"><code>conn_lifetime</code></h4>
+
+<p>The maximum time (in minutes) a pooled connection should remain open. Any
+connections older than this setting will be closed off. Connections currently in
+use will not be affected until they are returned to the pool.</p>
+
+<p>If not supplied, we won’t terminate connections based on their age alone. This
+option is supported in PuppetDB &gt;= 1.4.</p>
+
+<h4 id="puppetdbpackage"><code>puppetdb_package</code></h4>
+
+<p>The PuppetDB package name in the package manager. Defaults to <code>present</code>.</p>
+
+<h4 id="puppetdbservice"><code>puppetdb_service</code></h4>
+
+<p>The name of the PuppetDB service. Defaults to <code>puppetdb</code>.</p>
+
+<h4 id="puppetdbservicestatus"><code>puppetdb_service_status</code></h4>
+
+<p>Sets whether the service should be <code>running </code> or <code>stopped</code>. When set to <code>stopped</code> the
+service doesn’t start on boot either. Valid values are <code>true</code>, <code>running</code>,
+<code>false</code>, and <code>stopped</code>.</p>
+
+<h4 id="confdir"><code>confdir</code></h4>
+
+<p>The PuppetDB configuration directory. Defaults to <code>/etc/puppetdb/conf.d</code>.</p>
+
+<h4 id="javaargs"><code>java_args</code></h4>
+
+<p>Java VM options used for overriding default Java VM options specified in
+PuppetDB package. Defaults to <code>{}</code>. See
+<a href="http://docs.puppetlabs.com/puppetdb/1.1/configure.html">PuppetDB Configuration</a>
+to get more details about the current defaults.</p>
+
+<p>For example, to set <code>-Xmx512m -Xms256m</code> options use:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='lbrace'>{</span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-Xmx</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>512m</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-Xms</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>256m</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+<span class='rbrace'>}</span>
+</code></pre>
+
+<h4 id="mergedefaultjavaargs"><code>merge_default_java_args</code></h4>
+
+<p>Sets whether the provided java args should be merged with the defaults, or
+should override the defaults. This setting is necessary if any of the defaults
+are to be removed. Defaults to true. If <code>false</code>, the <code>java_args</code> in the PuppetDB
+init config file will reflect only what is passed via the <code>java_args</code> param.</p>
+
+<h4 id="maxthreads"><code>max_threads</code></h4>
+
+<p>Jetty option to explicitly set <code>max-threads</code>. Defaults to <code>undef</code>, so the
+PuppetDB-Jetty default is used.</p>
+
+<h4 id="readdatabase"><code>read_database</code></h4>
+
+<p>Which database backend to use for the read database. Only supports
+<code>postgres</code> (default). This option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readdatabasehost"><code>read_database_host</code></h4>
+<p><em>This parameter must be set to enable the PuppetDB read-database.</em></p>
+
+<p>The hostname or IP address of the read database server. Defaults to <code>undef</code>.
+The default is to use the regular database for reads and writes. This option is
+supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readdatabaseport"><code>read_database_port</code></h4>
+
+<p>The port that the read database server listens on. Defaults to <code>5432</code>. This
+option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readdatabaseusername"><code>read_database_username</code></h4>
+
+<p>The name of the read database user to connect as. Defaults to <code>puppetdb</code>. This
+option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readdatabasepassword"><code>read_database_password</code></h4>
+
+<p>The password for the read database user. Defaults to <code>puppetdb</code>. This option is
+supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readdatabasename"><code>read_database_name</code></h4>
+
+<p>The name of the read database instance to connect to. Defaults to <code>puppetdb</code>.
+This option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readdatabasessl"><code>read_database_ssl</code></h4>
+
+<p>If true, PuppetDB will use SSL to connect to the postgres read database
+(defaults to false). Setting up proper trust- and keystores has to be managed
+outside of the PuppetDB module. This option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readlogslowstatements"><code>read_log_slow_statements</code></h4>
+
+<p>This sets the number of seconds before an SQL query to the read database is
+considered “slow.” Slow SQL queries are logged as warnings, to assist in
+debugging and tuning. Note PuppetDB does not interrupt slow queries; it simply
+reports them after they complete.</p>
+
+<p>The default value is 10 seconds. A value of 0 will disable logging of slow
+queries. This option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readconnmaxage"><code>read_conn_max_age</code></h4>
+
+<p>The maximum time (in minutes) for a pooled read database connection to remain
+unused before it is closed off.</p>
+
+<p>If not supplied, we default to 60 minutes. This option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readconnkeepalive"><code>read_conn_keep_alive</code></h4>
+
+<p>This sets the time (in minutes) for a read database connection to remain idle
+before sending a test query to the DB. This is useful to prevent a DB from
+timing out connections on its end.</p>
+
+<p>If not supplied, we default to 45 minutes. This option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="readconnlifetime"><code>read_conn_lifetime</code></h4>
+
+<p>The maximum time (in minutes) a pooled read database connection should remain
+open. Any connections older than this setting will be closed off. Connections
+currently in use will not be affected until they are returned to the pool.</p>
+
+<p>If not supplied, we won’t terminate connections based on their age alone. This
+option is supported in PuppetDB &gt;= 1.6.</p>
+
+<h4 id="ssldir"><code>ssl_dir</code></h4>
+
+<p>Base directory for PuppetDB SSL configuration. Defaults to <code>/etc/puppetdb/ssl</code>
+or <code>/etc/puppetlabs/puppetdb/ssl</code> for FOSS and PE respectively.</p>
+
+<h4 id="sslsetcertpaths"><code>ssl_set_cert_paths</code></h4>
+
+<p>A switch to enable or disable the management of SSL certificates in your
+<code>jetty.ini</code> configuration file.</p>
+
+<h4 id="sslcertpath"><code>ssl_cert_path</code></h4>
+
+<p>Path to your SSL certificate for populating <code>jetty.ini</code>.</p>
+
+<h4 id="sslkeypath"><code>ssl_key_path</code></h4>
+
+<p>Path to your SSL key for populating <code>jetty.ini</code>.</p>
+
+<h4 id="sslcacertpath"><code>ssl_ca_cert_path</code></h4>
+
+<p>Path to your SSL CA for populating <code>jetty.ini</code>.</p>
+
+<h4 id="ssldeploycerts"><code>ssl_deploy_certs</code></h4>
+
+<p>A boolean switch to enable or disable the management of SSL keys in your
+<code>ssl_dir</code>. Default is <code>false</code>.</p>
+
+<h4 id="sslkey"><code>ssl_key</code></h4>
+
+<p>Contents of your SSL key, as a string.</p>
+
+<h4 id="sslcert"><code>ssl_cert</code></h4>
+
+<p>Contents of your SSL certificate, as a string.</p>
+
+<h4 id="sslcacert"><code>ssl_ca_cert</code></h4>
+
+<p>Contents of your SSL CA certificate, as a string.</p>
+
+<h4 id="managefirewall"><code>manage_firewall</code></h4>
+
+<p>If <code>true</code>, puppet will manage your iptables rules for PuppetDB via the
+<a href="https://forge.puppetlabs.com/puppetlabs/firewall">puppetlabs-firewall</a> class.</p>
+
+<h4 id="commandthreads"><code>command_threads</code></h4>
+
+<p>The number of command processing threads to use. Defaults to <code>undef</code>, using the
+PuppetDB built-in default.</p>
+
+<h4 id="storeusage"><code>store_usage</code></h4>
+
+<p>The amount of disk space (in MB) to allow for persistent message storage.
+Defaults to <code>undef</code>, using the PuppetDB built-in default.</p>
+
+<h4 id="tempusage"><code>temp_usage</code></h4>
+
+<p>The amount of disk space (in MB) to allow for temporary message storage.
+Defaults to <code>undef</code>, using the PuppetDB built-in default.</p>
+
+<h4 id="certificatewhitelistfile"><code>certificate_whitelist_file</code></h4>
+
+<p>The name of the certificate whitelist file to set up and configure in PuppetDB. Defaults to <code>/etc/puppetdb/certificate-whitelist</code> or <code>/etc/puppetlabs/puppetdb/certificate-whitelist</code> for FOSS and PE respectively.</p>
+
+<h4 id="certificatewhitelist"><code>certificate_whitelist</code></h4>
+
+<p>Array of the X.509 certificate Common Names of clients allowed to connect to PuppetDB. Defaults to empty. Be aware that this permits full access to all Puppet clients to download anything contained in PuppetDB, including the full catalogs of all nodes, which possibly contain sensitive information. Set to <code>[ $::servername ]</code> to allow access only from your (single) Puppet master, which is enough for normal operation. Set to a list of Puppet masters if you have multiple.</p>
+
+<h3 id="puppetdbserver">puppetdb::server</h3>
+
+<p>The <code>puppetdb::server</code> class manages the PuppetDB server independently of the
+underlying database that it depends on. It will manage the PuppetDB package,
+service, config files, etc., but will still allow you to manage the database
+(e.g. PostgreSQL) however you see fit.</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb::server&#39;:
+  database_host =&gt; &#39;pg1.mydomain.com&#39;,
+}
+</code></pre>
+
+<h3 id="puppetdbmasterconfig">puppetdb::master::config</h3>
+
+<p>The <code>puppetdb::master::config</code> class directs your Puppet master to use PuppetDB,
+which means that this class should be used on your Puppet master node. It’ll
+verify that it can successfully communicate with your PuppetDB server, and then
+configure your master to use PuppetDB.</p>
+
+<p>Using this class allows the module to manipulate the puppet configuration files
+puppet.conf and routes.yaml. The puppet.conf changes are supplemental and should
+not affect any of your existing settings, but the routes.yaml file will be
+overwritten entirely. If you have an existing routes.yaml file, you will want to
+take care to use the <code>manage_routes</code> parameter of this class to prevent the module
+from managing that file, and you’ll need to manage it yourself.</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb::master::config&#39;:
+  puppetdb_server =&gt; &#39;my.host.name&#39;,
+  puppetdb_port   =&gt; 8081,
+}
+</code></pre>
+
+<p><strong>Parameters within <code>puppetdb::master::config</code>:</strong></p>
+
+<h4 id="puppetdbserver-1"><code>puppetdb_server</code></h4>
+
+<p>The dns name or ip of the PuppetDB server. Defaults to the hostname of the
+current node, i.e. <code>$::fqdn</code>.</p>
+
+<h4 id="puppetdbport"><code>puppetdb_port</code></h4>
+
+<p>The port that the PuppetDB server is running on. Defaults to <code>8081</code>.</p>
+
+<h4 id="puppetdbdisablessl"><code>puppetdb_disable_ssl</code></h4>
+
+<p>If true, use plain HTTP to talk to PuppetDB. Defaults to the value of
+<code>disable_ssl</code> if PuppetDB is on the same server as the Puppet Master, or else
+false. If you set this, you probably need to set <code>puppetdb_port</code> to match the HTTP
+port of the PuppetDB.</p>
+
+<h4 id="puppetdbsoftwritefailure"><code>puppetdb_soft_write_failure</code></h4>
+
+<p>Boolean to fail in a soft manner if PuppetDB is not accessible for command
+submission Defaults to <code>false</code>.</p>
+
+<h4 id="manageroutes"><code>manage_routes</code></h4>
+
+<p>If <code>true</code>, the module will overwrite the Puppet master’s routes file to
+configure it to use PuppetDB. Defaults to <code>true</code>.</p>
+
+<h4 id="managestoreconfigs"><code>manage_storeconfigs</code></h4>
+
+<p>If <code>true</code>, the module will manage the Puppet master’s storeconfig settings.
+Defaults to <code>true</code>.</p>
+
+<h4 id="managereportprocessor"><code>manage_report_processor</code></h4>
+
+<p>If <code>true</code>, the module will manage the ‘reports’ field in the puppet.conf file to
+enable or disable the PuppetDB report processor. Defaults to <code>false</code>.</p>
+
+<h4 id="manageconfig"><code>manage_config</code></h4>
+
+<p>If <code>true</code>, the module will store values from <code>puppetdb_server</code> and <code>puppetdb_port</code>
+parameters in the PuppetDB configuration file. If <code>false</code>, an existing PuppetDB
+configuration file will be used to retrieve server and port values.</p>
+
+<h4 id="strictvalidation"><code>strict_validation</code></h4>
+
+<p>If <code>true</code>, the module will fail if PuppetDB is not reachable, otherwise it will
+preconfigure PuppetDB without checking.</p>
+
+<h4 id="enablereports"><code>enable_reports</code></h4>
+
+<p>Ignored unless <code>manage_report_processor</code> is <code>true</code>, in which case this setting
+will determine whether or not the PuppetDB report processor is enabled (<code>true</code>)
+or disabled (<code>false</code>) in the puppet.conf file.</p>
+
+<h4 id="puppetconfdir"><code>puppet_confdir</code></h4>
+
+<p>Puppet’s config directory. Defaults to <code>/etc/puppet</code>.</p>
+
+<h4 id="puppetconf"><code>puppet_conf</code></h4>
+
+<p>Puppet’s config file. Defaults to <code>/etc/puppet/puppet.conf</code>.</p>
+
+<h4 id="masterless"><code>masterless</code></h4>
+
+<p>A boolean switch to enable or disable the masterless setup of PuppetDB. Defaults
+to <code>false</code>.</p>
+
+<h4 id="terminuspackage"><code>terminus_package</code></h4>
+
+<p>Name of the package to use that represents the PuppetDB terminus code. Defaults
+to <code>puppetdb-termini</code>, when <code>puppetdb_version</code> is set to <code>&lt;= 2.3.x</code> the default
+changes to <code>puppetdb-terminus</code>.</p>
+
+<h4 id="puppetservicename"><code>puppet_service_name</code></h4>
+
+<p>Name of the service that represents Puppet. You can change this to <code>apache2</code> or
+<code>httpd</code> depending on your operating system, if you plan on having Puppet run
+using Apache/Passenger for example.</p>
+
+<h4 id="puppetdbstartuptimeout"><code>puppetdb_startup_timeout</code></h4>
+
+<p>The maximum amount of time that the module should wait for PuppetDB to start up.
+This is most important during the initial install of PuppetDB (defaults to 15
+seconds).</p>
+
+<h4 id="restartpuppet"><code>restart_puppet</code></h4>
+
+<p>If <code>true</code>, the module will restart the Puppet master when PuppetDB configuration
+files are changed by the module. Defaults to <code>true</code>. If set to <code>false</code>, you
+must restart the service manually in order to pick up changes to the config
+files (other than <code>puppet.conf</code>).</p>
+
+<h3 id="puppetdbdatabasepostgresql">puppetdb::database::postgresql</h3>
+
+<p>The <code>puppetdb::database::postgresql</code> class manages a PostgreSQL server for use
+by PuppetDB. It can manage the PostgreSQL packages and service, as well as
+creating and managing the PuppetDB database and database user accounts.</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb::database::postgresql&#39;:
+  listen_addresses =&gt; &#39;my.postgres.host.name&#39;,
+}
+</code></pre>
+
+<h4 id="listenaddresses"><code>listen_addresses</code></h4>
+
+<p>The <code>listen_address</code> is a comma-separated list of hostnames or IP addresses on
+which the postgres server should listen for incoming connections. This defaults
+to <code>localhost</code>. This parameter maps directly to PostgreSQL’s <code>listen_addresses</code>
+config option. Use a <code>*</code> to allow connections on any accessible address.</p>
+
+<h4 id="databasename-1"><code>database_name</code></h4>
+
+<p>Sets the name of the database. Defaults to <code>puppetdb</code>.</p>
+
+<h4 id="databaseusername-1"><code>database_username</code></h4>
+
+<p>Creates a user for access the database. Defaults to <code>puppetdb</code>.</p>
+
+<h4 id="databasepassword-1"><code>database_password</code></h4>
+
+<p>Sets the password for the database user above. Defaults to <code>puppetdb</code>.</p>
+
+<h4 id="manageserver"><code>manage_server</code></h4>
+
+<p>Conditionally manages the PostgreSQL server via <code>postgresql::server</code>. Defaults
+to <code>true</code>. If set to <code>false</code>, this class will create the database and user via
+<code>postgresql::server::db</code> but not attempt to install or manage the server itself.</p>
+
+<h4 id="testurl"><code>test_url</code></h4>
+
+<p>The URL to use for testing if the PuppetDB instance is running. Defaults to
+<code>/pdb/meta/v1/version</code>.</p>
+
+<h4 id="managepackagerepo"><code>manage_package_repo</code></h4>
+
+<p>If <code>true</code>, the official postgresql.org repo will be added and postgres won’t
+be installed from the regular repository. Defaults to <code>true</code>.</p>
+
+<h4 id="postgresversion"><code>postgres_version</code></h4>
+
+<p>If the postgresql.org repo is installed, you can install several versions of
+postgres. Defaults to <code>9.4</code>, the latest stable version.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<h3 id="resource-overview">Resource overview</h3>
+
+<p>In addition to the classes and variables mentioned above, PuppetDB includes:</p>
+
+<p><strong>puppetdb::master::routes</strong></p>
+
+<p>Configures the Puppet master to use PuppetDB as the facts terminus. <em>WARNING</em>:
+the current implementation simply overwrites your routes.yaml file; if you have
+an existing routes.yaml file that you are using for other purposes, you should
+<em>not</em> use this.</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb::master::routes&#39;:
+  puppet_confdir =&gt; &#39;/etc/puppet&#39;
+}
+</code></pre>
+
+<p>The optional parameter routes can be used to specify a custom route
+configuration. For example to configure routes for masterless puppet.</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb::master::routes&#39;:
+  routes =&gt; {
+    &#39;apply&#39; =&gt; {
+      &#39;facts&#39; =&gt; {
+        &#39;terminus&#39; =&gt; &#39;facter&#39;,
+        &#39;cache&#39;    =&gt; &#39;puppetdb_apply&#39;,
+      }
+    }
+  }
+}
+</code></pre>
+
+<p><strong>puppetdb::master::storeconfigs</strong></p>
+
+<p>Configures the Puppet master to enable storeconfigs and to use PuppetDB as the
+storeconfigs backend.</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;puppetdb::master::storeconfigs&#39;:
+  puppet_conf =&gt; &#39;/etc/puppet/puppet.conf&#39;
+}
+</code></pre>
+
+<p><strong>puppetdb::server::validate_db</strong></p>
+
+<p>Validates that a successful database connection can be established between the
+node on which this resource is run and the specified PuppetDB database instance
+(host/port/user/password/database name).</p>
+
+<pre class="code ruby"><code class="ruby">puppetdb::server::validate_db { &#39;validate my puppetdb database connection&#39;:
+  database_host     =&gt; &#39;my.postgres.host&#39;,
+  database_username =&gt; &#39;mydbuser&#39;,
+  database_password =&gt; &#39;mydbpassword&#39;,
+  database_name     =&gt; &#39;mydbname&#39;,
+}
+</code></pre>
+
+<h3 id="custom-types">Custom Types</h3>
+
+<p><strong>puppetdb_conn_validator</strong></p>
+
+<p>Verifies that a connection can be successfully established between a node and
+the PuppetDB server. Its primary use is as a precondition to prevent
+configuration changes from being applied if the PuppetDB server cannot be
+reached, but it could potentially be used for other purposes such as monitoring.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>Currently, PuppetDB is compatible with:</p>
+
+<pre class="code ruby"><code class="ruby">Puppet Version: 3.7.1+
+</code></pre>
+
+<p>Platforms:
+* EL 5, 6, 7
+* Debian 6, 7
+* Ubuntu 10.04, 12.04, 14.04</p>
+
+<p>Community Maintained Platforms:
+* Archlinux
+* OpenBSD 5.6-current and newer
+* SLES 11 SP1</p>
+
+<h2 id="development">Development</h2>
+
+<p>Puppet Labs modules on the Puppet Forge are open projects, and community
+contributions are essential for keeping them great. We can’t access the huge
+number of platforms and myriad of hardware, software, and deployment
+configurations that Puppet is intended to serve.</p>
+
+<p>We want to keep it as easy as possible to contribute changes so that our modules
+work in your environment. There are a few guidelines that we need contributors
+to follow so that we can have a chance of keeping on top of things.</p>
+
+<p>You can read the complete contribution guide
+<a href="https://docs.puppetlabs.com/contribute.html">on the Puppet Labs documentation website</a></p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp_openldap::server::conf::default_ldif
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp_openldap::server::conf::default_ldif";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp_openldap::server::conf::default_ldif</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp_openldap::server::conf::default_ldif</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-15br0z8/manifests/server/conf/default_ldif.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p><strong>NOTE: THIS IS A <a href="https://github.com/puppetlabs/puppetlabs-stdlib#assert_private">PRIVATE</a> CLASS</strong></p>
+
+<p>This allows for the modification of the default LDIF entries in
+/etc/openldap/default.ldif. It will <em>not</em> modify any active values in a
+running LDAP server.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_min_age</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>86400</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_max_age</span>
+      
+      
+        <span class='type'>(<tt>Integer[1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>15552000</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_in_history</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>24</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_check_quality</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_min_length</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>14</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_expire_warning</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>1209600</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_grace_authn_limit</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>-</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_lockout</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_lockout_duration</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>900</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_max_failure</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>5</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_failure_count_interval</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>900</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_must_change</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_allow_user_change</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ppolicy_pwd_safe_modify</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-15br0z8/manifests/server/conf/default_ldif.pp', line 9</span>
+
+class simp_openldap::server::conf::default_ldif (
+  Integer[0] $ppolicy_pwd_min_age                = 86400,
+  Integer[1] $ppolicy_pwd_max_age                = 15552000,
+  Integer[0] $ppolicy_pwd_in_history             = 24,
+  Integer[0] $ppolicy_pwd_check_quality          = 2,
+  Integer[0] $ppolicy_pwd_min_length             = 14,
+  Integer[0] $ppolicy_pwd_expire_warning         = 1209600,
+  Integer    $ppolicy_pwd_grace_authn_limit      = -1,
+  Boolean    $ppolicy_pwd_lockout                = true,
+  Integer[0] $ppolicy_pwd_lockout_duration       = 900,
+  Integer[0] $ppolicy_pwd_max_failure            = 5,
+  Integer[0] $ppolicy_pwd_failure_count_interval = 900,
+  Boolean    $ppolicy_pwd_must_change            = true,
+  Boolean    $ppolicy_pwd_allow_user_change      = true,
+  Boolean    $ppolicy_pwd_safe_modify            = false
+) {
+
+  assert_private()
+
+  $_suffix = $::simp_openldap::server::conf::suffix
+  $_rootdn = $::simp_openldap::server::conf::rootdn
+  $_syncdn = $::simp_openldap::server::conf::syncdn
+  $_syncpw = $::simp_openldap::server::conf::syncpw
+  $_binddn = $::simp_openldap::server::conf::binddn
+  $_bindpw = $::simp_openldap::server::conf::bindpw
+
+  if (
+    defined(&#39;$::simp_openldap::slapo::ppolicy::_check_password&#39;) and
+    getvar(&#39;::simp_openldap::slapo::ppolicy::_check_password&#39;)
+  ) {
+    $_simp_ppolicy_check_password = getvar(&#39;::simp_openldap::slapo::ppolicy::_check_password&#39;)
+  }
+  else {
+    $_simp_ppolicy_check_password = undef
+  }
+
+  file { &#39;/etc/openldap/default.ldif&#39;:
+    ensure  =&gt; &#39;file&#39;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;ldap&#39;,
+    mode    =&gt; &#39;0640&#39;,
+    content =&gt; template(&quot;${module_name}/etc/openldap/default.ldif.erb&quot;)
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

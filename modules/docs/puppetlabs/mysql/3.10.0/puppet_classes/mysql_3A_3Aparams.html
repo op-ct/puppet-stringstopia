@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: mysql::params
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::mysql::params";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (m)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">mysql::params</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: mysql::params</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Inherited by:</dt>
+    <dd>
+      
+      <span class='object_link'><a href="mysql_3A_3Aclient.html" title="puppet_classes::mysql::client (puppet_class)">mysql::client</a></span><br/>
+      
+      <span class='object_link'><a href="mysql_3A_3Aserver.html" title="puppet_classes::mysql::server (puppet_class)">mysql::server</a></span><br/>
+      
+      <span class='object_link'><a href="mysql_3A_3Abindings.html" title="puppet_classes::mysql::bindings (puppet_class)">mysql::bindings</a></span><br/>
+      
+      <span class='object_link'><a href="mysql_3A_3Abackup_3A_3Amysqldump.html" title="puppet_classes::mysql::backup::mysqldump (puppet_class)">mysql::backup::mysqldump</a></span><br/>
+      
+      <span class='object_link'><a href="mysql_3A_3Abackup_3A_3Axtrabackup.html" title="puppet_classes::mysql::backup::xtrabackup (puppet_class)">mysql::backup::xtrabackup</a></span><br/>
+      
+      <span class='object_link'><a href="mysql_3A_3Abackup_3A_3Amysqlbackup.html" title="puppet_classes::mysql::backup::mysqlbackup (puppet_class)">mysql::backup::mysqlbackup</a></span><br/>
+      
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1yntkpv/manifests/params.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Private class: See README.md.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1yntkpv/manifests/params.pp', line 2</span>
+
+class mysql::params {
+
+  $manage_config_file     = true
+  $purge_conf_dir         = false
+  $restart                = false
+  $root_password          = &#39;UNSET&#39;
+  $install_secret_file    = &#39;/.mysql_secret&#39;
+  $server_package_ensure  = &#39;present&#39;
+  $server_package_manage  = true
+  $server_service_manage  = true
+  $server_service_enabled = true
+  $client_package_ensure  = &#39;present&#39;
+  $client_package_manage  = true
+  $create_root_user       = true
+  $create_root_my_cnf     = true
+  # mysql::bindings
+  $bindings_enable             = false
+  $java_package_ensure         = &#39;present&#39;
+  $java_package_provider       = undef
+  $perl_package_ensure         = &#39;present&#39;
+  $perl_package_provider       = undef
+  $php_package_ensure          = &#39;present&#39;
+  $php_package_provider        = undef
+  $python_package_ensure       = &#39;present&#39;
+  $python_package_provider     = undef
+  $ruby_package_ensure         = &#39;present&#39;
+  $ruby_package_provider       = undef
+  $client_dev_package_ensure   = &#39;present&#39;
+  $client_dev_package_provider = undef
+  $daemon_dev_package_ensure   = &#39;present&#39;
+  $daemon_dev_package_provider = undef
+  $xtrabackup_package_name     = &#39;percona-xtrabackup&#39;
+
+
+  case $::osfamily {
+    &#39;RedHat&#39;: {
+      case $::operatingsystem {
+        &#39;Fedora&#39;: {
+          if versioncmp($::operatingsystemrelease, &#39;19&#39;) &gt;= 0 or $::operatingsystemrelease == &#39;Rawhide&#39; {
+            $provider = &#39;mariadb&#39;
+          } else {
+            $provider = &#39;mysql&#39;
+          }
+        }
+        /^(RedHat|CentOS|Scientific|OracleLinux)$/: {
+          if versioncmp($::operatingsystemmajrelease, &#39;7&#39;) &gt;= 0 {
+            $provider = &#39;mariadb&#39;
+          } else {
+            $provider = &#39;mysql&#39;
+          }
+        }
+        default: {
+          $provider = &#39;mysql&#39;
+        }
+      }
+
+      if $provider == &#39;mariadb&#39; {
+        $client_package_name     = &#39;mariadb&#39;
+        $server_package_name     = &#39;mariadb-server&#39;
+        $server_service_name     = &#39;mariadb&#39;
+        $log_error               = &#39;/var/log/mariadb/mariadb.log&#39;
+        $config_file             = &#39;/etc/my.cnf.d/server.cnf&#39;
+        # mariadb package by default has !includedir set in my.cnf to /etc/my.cnf.d
+        $includedir              = undef
+        $pidfile                 = &#39;/var/run/mariadb/mariadb.pid&#39;
+        $daemon_dev_package_name = &#39;mariadb-devel&#39;
+      } else {
+        $client_package_name     = &#39;mysql&#39;
+        $server_package_name     = &#39;mysql-server&#39;
+        $server_service_name     = &#39;mysqld&#39;
+        $log_error               = &#39;/var/log/mysqld.log&#39;
+        $config_file             = &#39;/etc/my.cnf&#39;
+        $includedir              = &#39;/etc/my.cnf.d&#39;
+        $pidfile                 = &#39;/var/run/mysqld/mysqld.pid&#39;
+        $daemon_dev_package_name = &#39;mysql-devel&#39;
+      }
+
+      $basedir                 = &#39;/usr&#39;
+      $datadir                 = &#39;/var/lib/mysql&#39;
+      $root_group              = &#39;root&#39;
+      $mysql_group             = &#39;mysql&#39;
+      $socket                  = &#39;/var/lib/mysql/mysql.sock&#39;
+      $ssl_ca                  = &#39;/etc/mysql/cacert.pem&#39;
+      $ssl_cert                = &#39;/etc/mysql/server-cert.pem&#39;
+      $ssl_key                 = &#39;/etc/mysql/server-key.pem&#39;
+      $tmpdir                  = &#39;/tmp&#39;
+      # mysql::bindings
+      $java_package_name       = &#39;mysql-connector-java&#39;
+      $perl_package_name       = &#39;perl-DBD-MySQL&#39;
+      $php_package_name        = &#39;php-mysql&#39;
+      $python_package_name     = &#39;MySQL-python&#39;
+      $ruby_package_name       = &#39;ruby-mysql&#39;
+      $client_dev_package_name = undef
+    }
+
+    &#39;Suse&#39;: {
+      case $::operatingsystem {
+        &#39;OpenSuSE&#39;: {
+          if versioncmp( $::operatingsystemmajrelease, &#39;12&#39; ) &gt;= 0 {
+            $client_package_name = &#39;mariadb-client&#39;
+            $server_package_name = &#39;mariadb&#39;
+            # First service start fails if this is set. Runs fine without
+            # it being set, in any case. Leaving it as-is for the mysql.
+            $basedir             = undef
+          } else {
+            $client_package_name = &#39;mysql-community-server-client&#39;
+            $server_package_name = &#39;mysql-community-server&#39;
+            $basedir             = &#39;/usr&#39;
+          }
+        }
+        &#39;SLES&#39;,&#39;SLED&#39;: {
+          if versioncmp($::operatingsystemrelease, &#39;12&#39;) &gt;= 0 {
+            $client_package_name = &#39;mariadb-client&#39;
+            $server_package_name = &#39;mariadb&#39;
+            $basedir             = undef
+          } else {
+            $client_package_name = &#39;mysql-client&#39;
+            $server_package_name = &#39;mysql&#39;
+            $basedir             = &#39;/usr&#39;
+          }
+        }
+        default: {
+          fail(&quot;Unsupported platform: puppetlabs-${module_name} currently doesn&#39;t support ${::operatingsystem}&quot;)
+        }
+      }
+      $config_file         = &#39;/etc/my.cnf&#39;
+      $includedir          = &#39;/etc/my.cnf.d&#39;
+      $datadir             = &#39;/var/lib/mysql&#39;
+      $log_error           = $::operatingsystem ? {
+        /OpenSuSE/         =&gt; &#39;/var/log/mysql/mysqld.log&#39;,
+        /(SLES|SLED)/      =&gt; &#39;/var/log/mysqld.log&#39;,
+      }
+      $pidfile             = $::operatingsystem ? {
+        /OpenSuSE/         =&gt; &#39;/var/run/mysql/mysqld.pid&#39;,
+        /(SLES|SLED)/      =&gt; &#39;/var/lib/mysql/mysqld.pid&#39;,
+      }
+      $root_group          = &#39;root&#39;
+      $mysql_group         = &#39;mysql&#39;
+      $server_service_name = &#39;mysql&#39;
+
+      if $::operatingsystem =~ /(SLES|SLED)/ {
+        if versioncmp( $::operatingsystemmajrelease, &#39;12&#39; ) &gt;= 0 {
+          $socket = &#39;/run/mysql/mysql.sock&#39;
+        } else {
+          $socket = &#39;/var/lib/mysql/mysql.sock&#39;
+        }
+      } else {
+        $socket = &#39;/var/run/mysql/mysql.sock&#39;
+      }
+
+      $ssl_ca              = &#39;/etc/mysql/cacert.pem&#39;
+      $ssl_cert            = &#39;/etc/mysql/server-cert.pem&#39;
+      $ssl_key             = &#39;/etc/mysql/server-key.pem&#39;
+      $tmpdir              = &#39;/tmp&#39;
+      # mysql::bindings
+      $java_package_name   = &#39;mysql-connector-java&#39;
+      $perl_package_name   = &#39;perl-DBD-mysql&#39;
+      $php_package_name    = &#39;apache2-mod_php53&#39;
+      $python_package_name = &#39;python-mysql&#39;
+      $ruby_package_name   = $::operatingsystem ? {
+        /OpenSuSE/         =&gt; &#39;rubygem-mysql&#39;,
+        /(SLES|SLED)/      =&gt; &#39;ruby-mysql&#39;,
+      }
+      $client_dev_package_name = &#39;libmysqlclient-devel&#39;
+      $daemon_dev_package_name = &#39;mysql-devel&#39;
+    }
+
+    &#39;Debian&#39;: {
+      $client_package_name     = &#39;mysql-client&#39;
+      $server_package_name     = &#39;mysql-server&#39;
+
+      $basedir                 = &#39;/usr&#39;
+      $config_file             = &#39;/etc/mysql/my.cnf&#39;
+      $includedir              = &#39;/etc/mysql/conf.d&#39;
+      $datadir                 = &#39;/var/lib/mysql&#39;
+      $log_error               = &#39;/var/log/mysql/error.log&#39;
+      $pidfile                 = &#39;/var/run/mysqld/mysqld.pid&#39;
+      $root_group              = &#39;root&#39;
+      $mysql_group             = &#39;adm&#39;
+      $server_service_name     = &#39;mysql&#39;
+      $socket                  = &#39;/var/run/mysqld/mysqld.sock&#39;
+      $ssl_ca                  = &#39;/etc/mysql/cacert.pem&#39;
+      $ssl_cert                = &#39;/etc/mysql/server-cert.pem&#39;
+      $ssl_key                 = &#39;/etc/mysql/server-key.pem&#39;
+      $tmpdir                  = &#39;/tmp&#39;
+      # mysql::bindings
+      $java_package_name   = &#39;libmysql-java&#39;
+      $perl_package_name   = &#39;libdbd-mysql-perl&#39;
+      $php_package_name    = $::lsbdistcodename ? {
+        &#39;xenial&#39;           =&gt; &#39;php-mysql&#39;,
+        default            =&gt; &#39;php5-mysql&#39;,
+      }
+      $python_package_name = &#39;python-mysqldb&#39;
+      $ruby_package_name   = $::lsbdistcodename ? {
+        &#39;trusty&#39;           =&gt; &#39;ruby-mysql&#39;,
+        &#39;jessie&#39;           =&gt; &#39;ruby-mysql&#39;,
+        &#39;xenial&#39;           =&gt; &#39;ruby-mysql&#39;,
+        default            =&gt; &#39;libmysql-ruby&#39;,
+      }
+      $client_dev_package_name = &#39;libmysqlclient-dev&#39;
+      $daemon_dev_package_name = &#39;libmysqld-dev&#39;
+    }
+
+    &#39;Archlinux&#39;: {
+      $client_package_name = &#39;mariadb-clients&#39;
+      $server_package_name = &#39;mariadb&#39;
+      $basedir             = &#39;/usr&#39;
+      $config_file         = &#39;/etc/mysql/my.cnf&#39;
+      $datadir             = &#39;/var/lib/mysql&#39;
+      $log_error           = &#39;/var/log/mysqld.log&#39;
+      $pidfile             = &#39;/var/run/mysqld/mysqld.pid&#39;
+      $root_group          = &#39;root&#39;
+      $mysql_group         = &#39;mysql&#39;
+      $server_service_name = &#39;mysqld&#39;
+      $socket              = &#39;/var/lib/mysql/mysql.sock&#39;
+      $ssl_ca              = &#39;/etc/mysql/cacert.pem&#39;
+      $ssl_cert            = &#39;/etc/mysql/server-cert.pem&#39;
+      $ssl_key             = &#39;/etc/mysql/server-key.pem&#39;
+      $tmpdir              = &#39;/tmp&#39;
+      # mysql::bindings
+      $java_package_name   = &#39;mysql-connector-java&#39;
+      $perl_package_name   = &#39;perl-dbd-mysql&#39;
+      $php_package_name    = undef
+      $python_package_name = &#39;mysql-python&#39;
+      $ruby_package_name   = &#39;mysql-ruby&#39;
+    }
+
+    &#39;Gentoo&#39;: {
+      $client_package_name = &#39;virtual/mysql&#39;
+      $server_package_name = &#39;virtual/mysql&#39;
+      $basedir             = &#39;/usr&#39;
+      $config_file         = &#39;/etc/mysql/my.cnf&#39;
+      $datadir             = &#39;/var/lib/mysql&#39;
+      $log_error           = &#39;/var/log/mysql/mysqld.err&#39;
+      $pidfile             = &#39;/run/mysqld/mysqld.pid&#39;
+      $root_group          = &#39;root&#39;
+      $mysql_group         = &#39;mysql&#39;
+      $server_service_name = &#39;mysql&#39;
+      $socket              = &#39;/run/mysqld/mysqld.sock&#39;
+      $ssl_ca              = &#39;/etc/mysql/cacert.pem&#39;
+      $ssl_cert            = &#39;/etc/mysql/server-cert.pem&#39;
+      $ssl_key             = &#39;/etc/mysql/server-key.pem&#39;
+      $tmpdir              = &#39;/tmp&#39;
+      # mysql::bindings
+      $java_package_name   = &#39;dev-java/jdbc-mysql&#39;
+      $perl_package_name   = &#39;dev-perl/DBD-mysql&#39;
+      $php_package_name    = undef
+      $python_package_name = &#39;dev-python/mysql-python&#39;
+      $ruby_package_name   = &#39;dev-ruby/mysql-ruby&#39;
+    }
+
+    &#39;FreeBSD&#39;: {
+      $client_package_name = &#39;databases/mysql56-client&#39;
+      $server_package_name = &#39;databases/mysql56-server&#39;
+      $basedir             = &#39;/usr/local&#39;
+      $config_file         = &#39;/usr/local/etc/my.cnf&#39;
+      $includedir          = &#39;/usr/local/etc/my.cnf.d&#39;
+      $datadir             = &#39;/var/db/mysql&#39;
+      $log_error           = &#39;/var/log/mysqld.log&#39;
+      $pidfile             = &#39;/var/run/mysql.pid&#39;
+      $root_group          = &#39;wheel&#39;
+      $mysql_group         = &#39;mysql&#39;
+      $server_service_name = &#39;mysql-server&#39;
+      $socket              = &#39;/var/db/mysql/mysql.sock&#39;
+      $ssl_ca              = undef
+      $ssl_cert            = undef
+      $ssl_key             = undef
+      $tmpdir              = &#39;/tmp&#39;
+      # mysql::bindings
+      $java_package_name   = &#39;databases/mysql-connector-java&#39;
+      $perl_package_name   = &#39;p5-DBD-mysql&#39;
+      $php_package_name    = &#39;php5-mysql&#39;
+      $python_package_name = &#39;databases/py-MySQLdb&#39;
+      $ruby_package_name   = &#39;databases/ruby-mysql&#39;
+      # The libraries installed by these packages are included in client and server packages, no installation required.
+      $client_dev_package_name     = undef
+      $daemon_dev_package_name     = undef
+    }
+
+    &#39;OpenBSD&#39;: {
+      $client_package_name = &#39;mariadb-client&#39;
+      $server_package_name = &#39;mariadb-server&#39;
+      $basedir             = &#39;/usr/local&#39;
+      $config_file         = &#39;/etc/my.cnf&#39;
+      $includedir          = undef
+      $datadir             = &#39;/var/mysql&#39;
+      $log_error           = &quot;/var/mysql/${::hostname}.err&quot;
+      $pidfile             = &#39;/var/mysql/mysql.pid&#39;
+      $root_group          = &#39;wheel&#39;
+      $mysql_group         = &#39;_mysql&#39;
+      $server_service_name = &#39;mysqld&#39;
+      $socket              = &#39;/var/run/mysql/mysql.sock&#39;
+      $ssl_ca              = undef
+      $ssl_cert            = undef
+      $ssl_key             = undef
+      $tmpdir              = &#39;/tmp&#39;
+      # mysql::bindings
+      $java_package_name   = undef
+      $perl_package_name   = &#39;p5-DBD-mysql&#39;
+      $php_package_name    = &#39;php-mysql&#39;
+      $python_package_name = &#39;py-mysql&#39;
+      $ruby_package_name   = &#39;ruby-mysql&#39;
+      # The libraries installed by these packages are included in client and server packages, no installation required.
+      $client_dev_package_name     = undef
+      $daemon_dev_package_name     = undef
+    }
+
+    &#39;Solaris&#39;: {
+      $client_package_name = &#39;database/mysql-55/client&#39;
+      $server_package_name = &#39;database/mysql-55&#39;
+      $basedir             = undef
+      $config_file         = &#39;/etc/mysql/5.5/my.cnf&#39;
+      $datadir             = &#39;/var/mysql/5.5/data&#39;
+      $log_error           = &quot;/var/mysql/5.5/data/${::hostname}.err&quot;
+      $pidfile             = &quot;/var/mysql/5.5/data/${::hostname}.pid&quot;
+      $root_group          = &#39;bin&#39;
+      $server_service_name = &#39;application/database/mysql:version_55&#39;
+      $socket              = &#39;/tmp/mysql.sock&#39;
+      $ssl_ca              = undef
+      $ssl_cert            = undef
+      $ssl_key             = undef
+      $tmpdir              = &#39;/tmp&#39;
+      # mysql::bindings
+      $java_package_name   = undef
+      $perl_package_name   = undef
+      $php_package_name    = &#39;web/php-53/extension/php-mysql&#39;
+      $python_package_name = &#39;library/python/python-mysql&#39;
+      $ruby_package_name   = undef
+      # The libraries installed by these packages are included in client and server packages, no installation required.
+      $client_dev_package_name     = undef
+      $daemon_dev_package_name     = undef
+    }
+
+    default: {
+      case $::operatingsystem {
+        &#39;Amazon&#39;: {
+          $client_package_name = &#39;mysql&#39;
+          $server_package_name = &#39;mysql-server&#39;
+          $basedir             = &#39;/usr&#39;
+          $config_file         = &#39;/etc/my.cnf&#39;
+          $includedir          = &#39;/etc/my.cnf.d&#39;
+          $datadir             = &#39;/var/lib/mysql&#39;
+          $log_error           = &#39;/var/log/mysqld.log&#39;
+          $pidfile             = &#39;/var/run/mysqld/mysqld.pid&#39;
+          $root_group          = &#39;root&#39;
+          $mysql_group         = &#39;mysql&#39;
+          $server_service_name = &#39;mysqld&#39;
+          $socket              = &#39;/var/lib/mysql/mysql.sock&#39;
+          $ssl_ca              = &#39;/etc/mysql/cacert.pem&#39;
+          $ssl_cert            = &#39;/etc/mysql/server-cert.pem&#39;
+          $ssl_key             = &#39;/etc/mysql/server-key.pem&#39;
+          $tmpdir              = &#39;/tmp&#39;
+          # mysql::bindings
+          $java_package_name   = &#39;mysql-connector-java&#39;
+          $perl_package_name   = &#39;perl-DBD-MySQL&#39;
+          $php_package_name    = &#39;php-mysql&#39;
+          $python_package_name = &#39;MySQL-python&#39;
+          $ruby_package_name   = &#39;ruby-mysql&#39;
+          # The libraries installed by these packages are included in client and server packages, no installation required.
+          $client_dev_package_name     = undef
+          $daemon_dev_package_name     = undef
+        }
+
+        default: {
+          fail(&quot;Unsupported platform: puppetlabs-${module_name} currently doesn&#39;t support ${::osfamily} or ${::operatingsystem}&quot;)
+        }
+      }
+    }
+  }
+
+  case $::operatingsystem {
+    &#39;Ubuntu&#39;: {
+      if versioncmp($::operatingsystemmajrelease, &#39;14.10&#39;) &gt; 0 {
+        $server_service_provider = &#39;systemd&#39;
+      } else {
+        $server_service_provider = &#39;upstart&#39;
+      }
+    }
+    default: {
+      $server_service_provider = undef
+    }
+  }
+
+  $default_options = {
+    &#39;client&#39;          =&gt; {
+      &#39;port&#39;          =&gt; &#39;3306&#39;,
+      &#39;socket&#39;        =&gt; $mysql::params::socket,
+    },
+    &#39;mysqld_safe&#39;        =&gt; {
+      &#39;nice&#39;             =&gt; &#39;0&#39;,
+      &#39;log-error&#39;        =&gt; $mysql::params::log_error,
+      &#39;socket&#39;           =&gt; $mysql::params::socket,
+    },
+    &#39;mysqld-5.0&#39;       =&gt; {
+      &#39;myisam-recover&#39; =&gt; &#39;BACKUP&#39;,
+    },
+    &#39;mysqld-5.1&#39;       =&gt; {
+      &#39;myisam-recover&#39; =&gt; &#39;BACKUP&#39;,
+    },
+    &#39;mysqld-5.5&#39;       =&gt; {
+      &#39;myisam-recover&#39; =&gt; &#39;BACKUP&#39;,
+    },
+    &#39;mysqld-5.6&#39;              =&gt; {
+      &#39;myisam-recover-options&#39; =&gt; &#39;BACKUP&#39;,
+    },
+    &#39;mysqld-5.7&#39;              =&gt; {
+      &#39;myisam-recover-options&#39; =&gt; &#39;BACKUP&#39;,
+    },
+    &#39;mysqld&#39;                  =&gt; {
+      &#39;basedir&#39;               =&gt; $mysql::params::basedir,
+      &#39;bind-address&#39;          =&gt; &#39;127.0.0.1&#39;,
+      &#39;datadir&#39;               =&gt; $mysql::params::datadir,
+      &#39;expire_logs_days&#39;      =&gt; &#39;10&#39;,
+      &#39;key_buffer_size&#39;       =&gt; &#39;16M&#39;,
+      &#39;log-error&#39;             =&gt; $mysql::params::log_error,
+      &#39;max_allowed_packet&#39;    =&gt; &#39;16M&#39;,
+      &#39;max_binlog_size&#39;       =&gt; &#39;100M&#39;,
+      &#39;max_connections&#39;       =&gt; &#39;151&#39;,
+      &#39;pid-file&#39;              =&gt; $mysql::params::pidfile,
+      &#39;port&#39;                  =&gt; &#39;3306&#39;,
+      &#39;query_cache_limit&#39;     =&gt; &#39;1M&#39;,
+      &#39;query_cache_size&#39;      =&gt; &#39;16M&#39;,
+      &#39;skip-external-locking&#39; =&gt; true,
+      &#39;socket&#39;                =&gt; $mysql::params::socket,
+      &#39;ssl&#39;                   =&gt; false,
+      &#39;ssl-ca&#39;                =&gt; $mysql::params::ssl_ca,
+      &#39;ssl-cert&#39;              =&gt; $mysql::params::ssl_cert,
+      &#39;ssl-key&#39;               =&gt; $mysql::params::ssl_key,
+      &#39;ssl-disable&#39;           =&gt; false,
+      &#39;thread_cache_size&#39;     =&gt; &#39;8&#39;,
+      &#39;thread_stack&#39;          =&gt; &#39;256K&#39;,
+      &#39;tmpdir&#39;                =&gt; $mysql::params::tmpdir,
+      &#39;user&#39;                  =&gt; &#39;mysql&#39;,
+    },
+    &#39;mysqldump&#39;             =&gt; {
+      &#39;max_allowed_packet&#39;  =&gt; &#39;16M&#39;,
+      &#39;quick&#39;               =&gt; true,
+      &#39;quote-names&#39;         =&gt; true,
+    },
+    &#39;isamchk&#39;      =&gt; {
+      &#39;key_buffer_size&#39; =&gt; &#39;16M&#39;,
+    },
+  }
+
+  ## Additional graceful failures
+  if $::osfamily == &#39;RedHat&#39; and $::operatingsystemmajrelease == &#39;4&#39; and $::operatingsystem != &#39;Amazon&#39; {
+    fail(&quot;Unsupported platform: puppetlabs-${module_name} only supports RedHat 5.0 and beyond&quot;)
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

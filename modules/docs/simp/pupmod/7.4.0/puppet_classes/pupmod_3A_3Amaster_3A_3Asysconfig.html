@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: pupmod::master::sysconfig
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::pupmod::master::sysconfig";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">pupmod::master::sysconfig</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: pupmod::master::sysconfig</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="pupmod.html" title="puppet_classes::pupmod (puppet_class)">pupmod</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qm3iul/manifests/master/sysconfig.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class provides the sysconfig settings for the puppetserver daemon.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>java_bin</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/usr/bin/java&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type: Absolute Path
+Default: ‘/usr/bin/java’</p>
+
+<p>The path to the java executable that the Puppet server should use on the
+system.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>java_start_memory</span>
+      
+      
+        <span class='type'>(<tt>Optional[Pupmod::Memory]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type: Integer followed by one of ‘k’, ‘m’, or ‘g’ for kilobytes, megabytes,
+      and gigabytes respectively.
+Default: ‘2g’</p>
+
+<p>The amount of memory to allocate on service startup.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>java_max_memory</span>
+      
+      
+        <span class='type'>(<tt>Pupmod::Memory</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;50%&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type: Integer followed by one of ‘%’, ‘k’, ‘m’, or ‘g’ for a percentage of
+      total memory, kilobytes, megabytes, and gigabytes respectively.
+Default: ‘50%’</p>
+
+<p>The maximum amount of memory to allocate within the system.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>java_temp_dir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::AbsolutePath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type: Absolute Path
+Default: ‘$::pupmod::vardir/pserver_tmp’</p>
+
+<p>The temporary directory to be used for periodic executables. This should not
+be /tmp, /var/tmp, or /dev/shm on SIMP systems due to the default disabling
+of exec on those spaces.</p>
+
+<p>Note: Preceeding directories will not be created.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>java_extra_args</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array that will be joined and appended to the Java argument list. The
+sanity and syntax of this list will not be checked.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_stop_retries</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>60</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The number of times to attempt to stop the puppetserver process before
+failing.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>start_timeout</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>120</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The number of seconds after which the service will be determined to have
+failed to start.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>install_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::master_install_dir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>config</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::master_config[&#39;confdir&#39;]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>bootstrap_config</span>
+      
+      
+        <span class='type'>(<tt>Array[Stdlib::AbsolutePath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::pupmod::params::master_bootstrap_config</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>extra_java_args</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array[String]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>server_distribution</span>
+      
+      
+        <span class='type'>(<tt>Simplib::ServerDistribution</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;PC1&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;puppetserver&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;puppet&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;puppet&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mock</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qm3iul/manifests/master/sysconfig.pp', line 46</span>
+
+class pupmod::master::sysconfig (
+  Stdlib::AbsolutePath           $install_dir          = $::pupmod::params::master_install_dir,
+  Stdlib::AbsolutePath           $config               = $::pupmod::params::master_config[&#39;confdir&#39;],
+  Array[Stdlib::AbsolutePath]    $bootstrap_config     = $::pupmod::params::master_bootstrap_config,
+  Stdlib::AbsolutePath           $java_bin             = &#39;/usr/bin/java&#39;,
+  Optional[Pupmod::Memory]       $java_start_memory    = undef,
+  Pupmod::Memory                 $java_max_memory      = &#39;50%&#39;,
+  Optional[Stdlib::AbsolutePath] $java_temp_dir        = undef,
+  Optional[Array[String]]        $extra_java_args      = undef,
+  Integer                        $service_stop_retries = 60,
+  Integer                        $start_timeout        = 120,
+  Simplib::ServerDistribution    $server_distribution  = &#39;PC1&#39;,
+  String                         $service              = &#39;puppetserver&#39;,
+  String                         $user                 = &#39;puppet&#39;,
+  String                         $group                = &#39;puppet&#39;,
+  Boolean                        $mock                 = false
+) inherits pupmod {
+  unless (mock == true) {
+    if empty($java_temp_dir) {
+      $_java_temp_dir = &quot;${::pupmod::vardir}/pserver_tmp&quot;
+    }
+    else {
+      $_java_temp_dir = $java_temp_dir
+    }
+    file { $_java_temp_dir:
+      ensure =&gt; &#39;directory&#39;,
+      owner  =&gt; $user,
+      group  =&gt; $group,
+      mode   =&gt; &#39;0750&#39;
+    }
+    if ($server_distribution == &#39;PC1&#39;) {
+      file { &quot;/etc/sysconfig/${service}&quot;:
+        owner   =&gt; &#39;root&#39;,
+        group   =&gt; &#39;puppet&#39;,
+        mode    =&gt; &#39;0640&#39;,
+        content =&gt; template(&#39;pupmod/etc/sysconfig/puppetserver.erb&#39;),
+        notify  =&gt; Service[$service]
+      }
+    }
+    if ($server_distribution == &#39;PE&#39;) {
+      if (has_key($facts, &#39;pe_build&#39;)) {
+        if (SemVer($facts[&#39;pe_build&#39;]) &lt; SemVer(&#39;2016.4.0&#39;)) {
+          pe_ini_subsetting { &#39;pupmod::master::sysconfig::javatempdir&#39;:
+            path              =&gt; &#39;/etc/sysconfig/pe-puppetserver&#39;,
+            section           =&gt; &#39;&#39;,
+            setting           =&gt; &#39;JAVA_ARGS&#39;,
+            subsetting        =&gt; &#39;-Djava.io.tmpdir&#39;,
+            quote_char        =&gt; &#39;&quot;&#39;,
+            value             =&gt; &quot;=${_java_temp_dir}&quot;,
+            key_val_separator =&gt; &#39;=&#39;,
+            notify            =&gt; Service[$service],
+          }
+        }
+      }
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

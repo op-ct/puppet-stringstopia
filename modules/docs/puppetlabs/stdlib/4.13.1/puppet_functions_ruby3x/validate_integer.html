@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Function: validate_integer (Ruby 3.x API)
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_functions_ruby3x::validate_integer";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_function_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (v)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Functions</span></span>
+     &raquo; 
+    <span class="title">validate_integer</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Function: validate_integer</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-ju7he9/lib/puppet/parser/functions/validate_integer.rb
+    </dd>
+  </dl>
+  <dl>
+    <dt>Function type:</dt>
+    <dd>Ruby 3.x API</dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="method_details first">
+  
+  <div class="tags overload overload_item">
+    <span class="overload">
+      <span class="overload_item">
+        <span class="signature first" style="margin-left: 0px;"><strong>validate_integer()</strong> &#x21d2; <tt>Any</tt> </span>
+      </span>
+    </span>
+  </div>
+  
+  <div class="docstring">
+    <div class="discussion">
+      <p>Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.</p>
+
+<p>The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.</p>
+
+<p>The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+if (all elements of) the first argument are greater or equal to the given minimum.</p>
+
+<p>It will fail if the first argument is not an integer or array of integers, and if arg 2 and arg 3 are not convertable to an integer.</p>
+
+<p>The following values will pass:</p>
+
+<p>validate_integer(1)
+  validate_integer(1, 2)
+  validate_integer(1, 1)
+  validate_integer(1, 2, 0)
+  validate_integer(2, 2, 2)
+  validate_integer(2, ‘’, 0)
+  validate_integer(2, undef, 0)
+  $foo = undef
+  validate_integer(2, $foo, 0)
+  validate_integer([1,2,3,4,5], 6)
+  validate_integer([1,2,3,4,5], 6, 0)</p>
+
+<p>Plus all of the above, but any combination of values passed as strings (‘1’ or “1”).
+Plus all of the above, but with (correct) combinations of negative integer values.</p>
+
+<p>The following values will not:</p>
+
+<p>validate_integer(true)
+  validate_integer(false)
+  validate_integer(7.0)
+  validate_integer({ 1 =&gt; 2 })
+  $foo = undef
+  validate_integer($foo)
+  validate_integer($foobaridontexist)</p>
+
+<p>validate_integer(1, 0)
+  validate_integer(1, true)
+  validate_integer(1, ‘’)
+  validate_integer(1, undef)
+  validate_integer(1, , 0)
+  validate_integer(1, 2, 3)
+  validate_integer(1, 3, 2)
+  validate_integer(1, 3, true)</p>
+
+<p>Plus all of the above, but any combination of values passed as strings (‘false’ or “false”).
+Plus all of the above, but with incorrect combinations of negative integer values.
+Plus all of the above, but with non-integer items in arrays or maximum / minimum argument.</p>
+
+    </div>
+  </div>
+  <div class="tags">
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-ju7he9/lib/puppet/parser/functions/validate_integer.rb', line 3</span>
+
+<span class='id identifier rubyid_newfunction'>newfunction</span><span class='lparen'>(</span><span class='symbol'>:validate_integer</span><span class='comma'>,</span> <span class='symbol'>:doc</span> <span class='op'>=&gt;</span> <span class='heredoc_beg'>&lt;&lt;-&#39;ENDHEREDOC&#39;</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+
+  <span class='id identifier rubyid_function_deprecation'>function_deprecation</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='symbol'>:validate_integer</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>This method is deprecated, please use the stdlib validate_legacy function, with Stdlib::Compat::Integer. There is further documentation for validate_legacy function in the README.</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='tstring_content'>  Validate that the first argument is an integer (or an array of integers). Abort catalog compilation if any of the checks fail.
+
+  The second argument is optional and passes a maximum. (All elements of) the first argument has to be less or equal to this max.
+
+  The third argument is optional and passes a minimum.  (All elements of) the first argument has to be greater or equal to this min.
+  If, and only if, a minimum is given, the second argument may be an empty string or undef, which will be handled to just check
+  if (all elements of) the first argument are greater or equal to the given minimum.
+
+  It will fail if the first argument is not an integer or array of integers, and if arg 2 and arg 3 are not convertable to an integer.
+
+  The following values will pass:
+
+    validate_integer(1)
+    validate_integer(1, 2)
+    validate_integer(1, 1)
+    validate_integer(1, 2, 0)
+    validate_integer(2, 2, 2)
+    validate_integer(2, &#39;&#39;, 0)
+    validate_integer(2, undef, 0)
+    $foo = undef
+    validate_integer(2, $foo, 0)
+    validate_integer([1,2,3,4,5], 6)
+    validate_integer([1,2,3,4,5], 6, 0)
+
+  Plus all of the above, but any combination of values passed as strings (&#39;1&#39; or &quot;1&quot;).
+  Plus all of the above, but with (correct) combinations of negative integer values.
+
+  The following values will not:
+
+    validate_integer(true)
+    validate_integer(false)
+    validate_integer(7.0)
+    validate_integer({ 1 =&gt; 2 })
+    $foo = undef
+    validate_integer($foo)
+    validate_integer($foobaridontexist)
+
+    validate_integer(1, 0)
+    validate_integer(1, true)
+    validate_integer(1, &#39;&#39;)
+    validate_integer(1, undef)
+    validate_integer(1, , 0)
+    validate_integer(1, 2, 3)
+    validate_integer(1, 3, 2)
+    validate_integer(1, 3, true)
+
+  Plus all of the above, but any combination of values passed as strings (&#39;false&#39; or &quot;false&quot;).
+  Plus all of the above, but with incorrect combinations of negative integer values.
+  Plus all of the above, but with non-integer items in arrays or maximum / minimum argument.
+
+</span><span class='heredoc_end'>  ENDHEREDOC
+</span>
+  <span class='comment'># tell the user we need at least one, and optionally up to two other parameters
+</span>  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Wrong number of arguments; must be 1, 2 or 3, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='kw'>and</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&lt;</span> <span class='int'>4</span>
+
+  <span class='id identifier rubyid_input'>input</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
+
+  <span class='comment'># check maximum parameter
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='id identifier rubyid_max'>max</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='comment'># allow max to be empty (or undefined) if we have a minimum set
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>2</span> <span class='kw'>and</span> <span class='id identifier rubyid_max'>max</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='kw'>else</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='const'>Integer</span><span class='lparen'>(</span><span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span>
+      <span class='kw'>rescue</span> <span class='const'>TypeError</span><span class='comma'>,</span> <span class='const'>ArgumentError</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Expected second argument to be unset or an Integer, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_max'>max</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_max'>max</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># check minimum parameter
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>2</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='const'>Integer</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+    <span class='kw'>rescue</span> <span class='const'>TypeError</span><span class='comma'>,</span> <span class='const'>ArgumentError</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Expected third argument to be unset or an Integer, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_min'>min</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_min'>min</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># ensure that min &lt; max
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_min'>min</span> <span class='kw'>and</span> <span class='id identifier rubyid_max'>max</span> <span class='kw'>and</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_max'>max</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Expected second argument to be larger than third argument, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_max'>max</span><span class='embexpr_end'>}</span><span class='tstring_content'> &lt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_min'>min</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># create lamba validator function
+</span>  <span class='id identifier rubyid_validator'>validator</span> <span class='op'>=</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_num'>num</span><span class='op'>|</span>
+    <span class='comment'># check input &lt; max
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_max'>max</span> <span class='kw'>and</span> <span class='id identifier rubyid_num'>num</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_max'>max</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Expected </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> to be smaller or equal to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_max'>max</span><span class='embexpr_end'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+    <span class='comment'># check input &gt; min (this will only be checked if no exception has been raised before)
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_min'>min</span> <span class='kw'>and</span> <span class='id identifier rubyid_num'>num</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_min'>min</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Expected </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> to be greater or equal to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_min'>min</span><span class='embexpr_end'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># if this is an array, handle it.
+</span>  <span class='kw'>case</span> <span class='id identifier rubyid_input'>input</span>
+  <span class='kw'>when</span> <span class='const'>Array</span>
+    <span class='comment'># check every element of the array
+</span>    <span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='comma'>,</span> <span class='id identifier rubyid_pos'>pos</span><span class='op'>|</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>TypeError</span> <span class='kw'>if</span> <span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_arg'>arg</span> <span class='op'>=</span> <span class='const'>Integer</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_validator'>validator</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='rparen'>)</span>
+      <span class='kw'>rescue</span> <span class='const'>TypeError</span><span class='comma'>,</span> <span class='const'>ArgumentError</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Expected element at array position </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pos'>pos</span><span class='embexpr_end'>}</span><span class='tstring_content'> to be an Integer, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='comment'># for the sake of compatibility with ruby 1.8, we need extra handling of hashes
+</span>  <span class='kw'>when</span> <span class='const'>Hash</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Expected first argument to be an Integer or Array, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='comment'># check the input. this will also fail any stuff other than pure, shiny integers
+</span>  <span class='kw'>else</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_input'>input</span> <span class='op'>=</span> <span class='const'>Integer</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_validator'>validator</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
+    <span class='kw'>rescue</span> <span class='const'>TypeError</span><span class='comma'>,</span> <span class='const'>ArgumentError</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>validate_integer(): Expected first argument to be an Integer or Array, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp_logstash
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp_logstash";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp_logstash</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp_logstash</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-u6n33h/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class enhances the elastic-logstash module in the configuration
+settings recommended for SIMP systems.</p>
+
+<p>To modify the sysconfig settings, you’ll need to use the
+‘::logstash::startup_options’ hash.</p>
+
+<p>Be aware that this will remove the <em>entire</em> file, it does not cherry-pick
+settings. See the Logstash documentation for a list of all options.</p>
+
+<p>Please do <em>not</em> change the default config directory. This is hard coded in
+the upstream <code>logstash</code> module and referenced in this module.</p>
+
+<p>To modify JAVA options, you’ll need to use the
+‘::logstash::java_options’ hash.</p>
+
+<p>See simp_logstash::clean if you want to automatically prune your logs to
+conserve Elasticsearch storage space.</p>
+
+<p>See simp_logstash::optimize if you want to automatically merge
+Elasticsearch log segments to conserve storage space and speed up
+cluster recovery after Elasticsearch restart.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Set the Heap Size to ‘10g’ via Hiera</p>
+</div></p>
+      
+      <pre class="example code"><code>---
+logstash::java_options : [&#39;-Xms10g&#39;, &#39;-Xmx10g&#39;]</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>inputs</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[
+    &#39;tcp_syslog_tls&#39;
+  ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An Array of inputs to be enabled. These can
+also be individually enabled by class.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filters</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[
+    &#39;audispd&#39;,
+    &#39;puppet_agent&#39;,
+    &#39;puppet_server&#39;,
+    &#39;sshd&#39;,
+    &#39;sudosh&#39;,
+    &#39;httpd&#39;,
+    &#39;yum&#39;,
+    &#39;simp_syslog&#39;
+  ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An Array of filters to be enabled. These can
+also be individually enabled by class.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>outputs</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[
+    &#39;elasticsearch&#39;
+  ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An Array of outputs to be enabled. These can
+also be individually enabled by class.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>config_purge</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set, purge all unmanaged configuration files. Any
+file matching the glob logstash*.conf will be preserved. This is to allow
+users to explicitly set their own configuration files as well as to prevent
+issues with the upstream logstash module.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>trusted_nets</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Netlist</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::trusted_nets&#39;, {&#39;default_value&#39; =&gt;   [&#39;127.0.0.1/32&#39;] })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of networks and/or hostnames that are
+allowed to connect to this service.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pki</span>
+      
+      
+        <span class='type'>(<tt>Variant[Enum['simp'],Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::pki&#39;, { &#39;default_value&#39;         =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul>
+  <li>If ‘simp’, include SIMP’s pki module and use pki::copy to manage
+application certs in /etc/pki/simp_apps/logstash/x509</li>
+  <li>If true, do <em>not</em> include SIMP’s pki module, but still use pki::copy
+to manage certs in /etc/pki/simp_apps/logstash/x509</li>
+  <li>If false, do not include SIMP’s pki module and do not use pki::copy
+to manage certs.  You will need to appropriately assign a subset of:
+    <ul>
+      <li>app_pki_external_source</li>
+      <li>app_pki_dir</li>
+      <li>app_pki_key</li>
+      <li>app_pki_cert</li>
+      <li>app_pki_ca</li>
+    </ul>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>app_pki_external_source</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::pki::source&#39;, { &#39;default_value&#39; =&gt; &#39;/etc/pki/simp/x509&#39; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul>
+  <li>
+    <p>If pki = ‘simp’ or true, this is the directory from which certs will be
+copied, via pki::copy.  Defaults to /etc/pki/simp/x509.</p>
+  </li>
+  <li>
+    <p>If pki = false, this variable has no effect.</p>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>app_pki_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/pki/simp_apps/logstash/x509&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>This variable controls the basepath of $app_pki_key, $app_pki_cert,
+$app_pki_ca, $app_pki_ca_dir, and $app_pki_crl.
+It defaults to /etc/pki/simp_apps/logstash/x509.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>app_pki_key</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;${app_pki_dir}/private/${facts[&#39;fqdn&#39;]}.pem&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path and name of the private SSL key file</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>app_pki_cert</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;${app_pki_dir}/public/${facts[&#39;fqdn&#39;]}.pub&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path and name of the public SSL certificate</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>app_pki_ca</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;${app_pki_dir}/cacerts/cacerts.pem&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path and name of the certificate authority</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>firewall</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::firewall&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Include the SIMP <code>iptables</code> module to manage the firewall.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Ralph Wright <a href="mailto:rwright@onyxpoint.com">rwright@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-u6n33h/manifests/init.pp', line 83</span>
+
+class simp_logstash (
+  Array[String]                 $inputs                   = [
+    &#39;tcp_syslog_tls&#39;
+  ],
+  Array[String]                 $filters                  = [
+    &#39;audispd&#39;,
+    &#39;puppet_agent&#39;,
+    &#39;puppet_server&#39;,
+    &#39;sshd&#39;,
+    &#39;sudosh&#39;,
+    &#39;httpd&#39;,
+    &#39;yum&#39;,
+    &#39;simp_syslog&#39;
+  ],
+  Array[String]                 $outputs                  = [
+    &#39;elasticsearch&#39;
+  ],
+  Boolean                       $config_purge             = true,
+  Simplib::Netlist              $trusted_nets             = simplib::lookup(&#39;simp_options::trusted_nets&#39;, {&#39;default_value&#39; =&gt;   [&#39;127.0.0.1/32&#39;] }),
+  Stdlib::Absolutepath          $app_pki_dir              = &#39;/etc/pki/simp_apps/logstash/x509&#39;,
+  Stdlib::Absolutepath          $app_pki_external_source  = simplib::lookup(&#39;simp_options::pki::source&#39;, { &#39;default_value&#39; =&gt; &#39;/etc/pki/simp/x509&#39; }),
+  Stdlib::Absolutepath          $app_pki_key              = &quot;${app_pki_dir}/private/${facts[&#39;fqdn&#39;]}.pem&quot;,
+  Stdlib::Absolutepath          $app_pki_cert             = &quot;${app_pki_dir}/public/${facts[&#39;fqdn&#39;]}.pub&quot;,
+  Stdlib::Absolutepath          $app_pki_ca               = &quot;${app_pki_dir}/cacerts/cacerts.pem&quot;,
+  Variant[Enum[&#39;simp&#39;],Boolean] $pki                      = simplib::lookup(&#39;simp_options::pki&#39;, { &#39;default_value&#39;         =&gt; false }),
+
+  Boolean                       $firewall                 = simplib::lookup(&#39;simp_options::firewall&#39;, { &#39;default_value&#39; =&gt; false }),
+
+) {
+
+  include &#39;::java&#39;
+  include &#39;::logstash&#39;
+
+  # This is due to a bug in the upstream Logstash code that sets the owner of
+  # all files to &#39;root:root&#39; when they should be &#39;root:logstash&#39; if the package
+  # is installed.
+  #TODO verify this check is still needed
+  if $::logstash::logstash_user != &#39;logstash&#39; {
+    fail(&#39;The $::logstash::logstash_user must be set to &quot;logstash&quot; via Hiera or your ENC&#39;)
+  }
+  if $::logstash::logstash_group != &#39;logstash&#39; {
+    fail(&#39;The $::logstash::logstash_group must be set to &quot;logstash&quot; via Hiera or your ENC&#39;)
+  }
+
+  Class[&#39;java&#39;] -&gt; Class[&#39;logstash&#39;]
+  Class[&#39;logstash&#39;] -&gt; Class[&#39;simp_logstash&#39;]
+
+  $_config_dir = &quot;${::logstash::config_dir}/conf.d&quot;
+  $config_prefix = &quot;${_config_dir}/simp-logstash&quot;
+  $config_suffix = &#39;.conf&#39;
+
+  $config_order = {
+    &#39;input&#39;  =&gt; &#39;10&#39;,
+    &#39;filter&#39; =&gt; &#39;20&#39;,
+    &#39;output&#39; =&gt; &#39;30&#39;
+  }
+
+  if !empty($inputs)  { ::simp_logstash::input { $inputs: } }
+  if !empty($filters) { ::simp_logstash::filter { $filters: } }
+  if !empty($outputs) { ::simp_logstash::output { $outputs: } }
+
+  # We need to be able to purge invalid configurations. Unfortunately, LogStash
+  # doesn&#39;t allow more than one configuration directory, so we&#39;ve had to be a
+  # bit aggressive.
+  File &lt;| title == $_config_dir |&gt; {
+    recurse =&gt; true,
+    purge   =&gt; $config_purge,
+    ignore  =&gt; &#39;logstash*.conf&#39;
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

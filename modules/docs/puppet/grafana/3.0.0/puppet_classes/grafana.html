@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: grafana
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::grafana";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (g)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">grafana</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: grafana</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="grafana_3A_3Aparams.html" title="puppet_classes::grafana::params (puppet_class)">grafana::params</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-131p8f/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>== Class: grafana</p>
+
+<p>Installs and configures Grafana.</p>
+
+<p>=== Parameters
+[<em>archive_source</em>]
+Download location of tarball to be used with the ‘archive’ install method.
+Defaults to the URL of the latest version of Grafana available at the time of module release.</p>
+
+<p>[<em>container_cfg</em>]
+Boolean. Determines whether a configuration file should be generated when using the ‘docker’ install method.
+If true, use the <code>cfg</code> and <code>cfg_location</code> parameters to control creation of the file.
+Defaults to false.</p>
+
+<p>[<em>container_params</em>]
+Hash of parameters to use when creating the Docker container. For use with the ‘docker’ install method.
+Refer to documentation of the <code>docker::run</code> resource in the <code>garethr-docker</code> module for details of available parameters.
+Defaults to:</p>
+
+<p>container_params =&gt; {
+    ‘image’ =&gt; ‘grafana/grafana:latest’,
+    ‘ports’ =&gt; ‘3000’
+  }</p>
+
+<p>[<em>data_dir</em>]
+The directory Grafana will use for storing its data.
+Defaults to ‘/var/lib/grafana’.</p>
+
+<p>[<em>install_dir</em>]
+Installation directory to be used with the ‘archive’ install method.
+Defaults to ‘/usr/share/grafana’.</p>
+
+<p>[<em>install_method</em>]
+Set to ‘archive’ to install Grafana using the tar archive.
+Set to ‘docker’ to install Grafana using the official Docker container.
+Set to ‘package’ to install Grafana using .deb or .rpm packages.
+Set to ‘repo’ to install Grafana using an apt or yum repository.
+Defaults to ‘package’.</p>
+
+<p>[<em>manage_package_repo</em>]
+If true this will setup the official grafana repositories on your host. Defaults to true.</p>
+
+<p>[<em>package_name</em>]
+The name of the package managed with the ‘package’ install method.
+Defaults to ‘grafana’.</p>
+
+<p>[<em>package_source</em>]
+Download location of package to be used with the ‘package’ install method.
+Defaults to the URL of the latest version of Grafana available at the time of module release.</p>
+
+<p>[<em>service_name</em>]
+The name of the service managed with the ‘archive’ and ‘package’ install methods.
+Defaults to ‘grafana-server’.</p>
+
+<p>[<em>version</em>]
+The version of Grafana to install and manage.
+Defaults to the latest version of Grafana available at the time of module release.</p>
+
+<p>[<em>repo_name</em>]
+When using ‘repo’ install_method, the repo to look for packages in.
+Set to ‘stable’ to install only stable versions
+Set to ‘testing’ to install beta versions
+Defaults to stable.</p>
+
+<p>=== Examples</p>
+
+<p>class { ‘::grafana’:
+   install_method  =&gt; ‘docker’,
+ }</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>archive_source</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::archive_source</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cfg_location</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::cfg_location</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cfg</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::cfg</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_cfg</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::ldap_cfg</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>container_cfg</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::container_cfg</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>container_params</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::container_params</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::data_dir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>install_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::install_dir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>install_method</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::install_method</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_package_repo</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::manage_package_repo</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::package_name</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_source</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::package_source</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repo_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::repo_name</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rpm_iteration</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::rpm_iteration</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::service_name</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>version</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::grafana::params::version</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-131p8f/manifests/init.pp', line 71</span>
+
+class grafana (
+  $archive_source      = $::grafana::params::archive_source,
+  $cfg_location        = $::grafana::params::cfg_location,
+  $cfg                 = $::grafana::params::cfg,
+  $ldap_cfg            = $::grafana::params::ldap_cfg,
+  $container_cfg       = $::grafana::params::container_cfg,
+  $container_params    = $::grafana::params::container_params,
+  $data_dir            = $::grafana::params::data_dir,
+  $install_dir         = $::grafana::params::install_dir,
+  $install_method      = $::grafana::params::install_method,
+  $manage_package_repo = $::grafana::params::manage_package_repo,
+  $package_name        = $::grafana::params::package_name,
+  $package_source      = $::grafana::params::package_source,
+  $repo_name           = $::grafana::params::repo_name,
+  $rpm_iteration       = $::grafana::params::rpm_iteration,
+  $service_name        = $::grafana::params::service_name,
+  $version             = $::grafana::params::version
+) inherits grafana::params {
+
+  # validate parameters here
+  if !is_hash($cfg) {
+    fail(&#39;cfg parameter must be a hash&#39;)
+  }
+
+  anchor { &#39;grafana::begin&#39;: }
+  -&gt; class { &#39;::grafana::install&#39;: }
+  -&gt; class { &#39;::grafana::config&#39;: }
+  ~&gt; class { &#39;::grafana::service&#39;: }
+  -&gt; anchor { &#39;grafana::end&#39;: }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: selinux
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::selinux";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">selinux</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: selinux</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-fe9dj9/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Manage active SELinux state and state after a reboot</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ensure</span>
+      
+      
+        <span class='type'>(<tt>Selinux::State</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::selinux&#39;, { &#39;default_value&#39; =&gt; true })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The state that SELinux should be in.
+Since you are calling this class, we assume that you want to enforce.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mode</span>
+      
+      
+        <span class='type'>(<tt>Enum['targeted','mls']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;targeted&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The SELinux type you want to enforce.
+Note, it is quite possible that ‘mls’ will render your system inoperable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_utils_package</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, ensure policycoreutils-python is installed. This is a supplemental
+package that is required by semanage.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_mcstrans_package</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Manage the <code>mcstrans</code> package.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_mcstrans_service</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Manage the <code>mcstrans</code> service.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mcstrans_service_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>mcstrans</code> service name.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mcstrans_package_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>mcstrans</code> package name.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_restorecond_package</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Manage the <code>restorecond</code> package.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_restorecond_service</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Manage the <code>restorecond</code> service.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restorecond_package_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>restorecond</code> package name.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_ensure</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::package_ensure&#39;, { &#39;default_value&#39; =&gt; &#39;installed&#39; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The ensure status of packages to be installed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-fe9dj9/manifests/init.pp', line 38</span>
+
+class selinux (
+  # defaults are in module data
+  Boolean                $manage_mcstrans_package,
+  Boolean                $manage_mcstrans_service,
+  String                 $mcstrans_package_name,
+  String                 $mcstrans_service_name,
+  Boolean                $manage_restorecond_package,
+  Boolean                $manage_restorecond_service,
+  String                 $restorecond_package_name,
+  Selinux::State         $ensure               = simplib::lookup(&#39;simp_options::selinux&#39;, { &#39;default_value&#39; =&gt; true }),
+  Boolean                $manage_utils_package = true,
+  String                 $package_ensure       = simplib::lookup(&#39;simp_options::package_ensure&#39;, { &#39;default_value&#39; =&gt; &#39;installed&#39; }),
+  Enum[&#39;targeted&#39;,&#39;mls&#39;] $mode                 = &#39;targeted&#39;
+) {
+
+  $state = $ensure ? {
+    true    =&gt; &#39;enforcing&#39;,
+    false   =&gt; &#39;disabled&#39;,
+    default =&gt; $ensure
+  }
+
+  contain &#39;selinux::install&#39;
+  contain &#39;selinux::config&#39;
+  contain &#39;selinux::service&#39;
+
+  Class[&#39;selinux::install&#39;]
+  -&gt; Class[&#39;selinux::config&#39;]
+  ~&gt; Class[&#39;selinux::service&#39;]
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

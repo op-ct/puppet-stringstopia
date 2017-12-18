@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-tpm"><img src="https://travis-ci.org/simp/pupmod-simp-tpm.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#description">Description</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with tpm</a>
+    <ul>
+      <li><a href="#what-tpm-affects">What tpm affects</a></li>
+      <li><a href="#setup-requirements">Setup requirements</a></li>
+      <li><a href="#beginning-with-the-tpm-module">Beginning with the tpm</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a>
+    <ul>
+      <li><a href="#acceptance-tests">Acceptance Tests - Beaker env variables</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="description">Description</h2>
+
+<p>This module manages a TPM, including taking ownership and enabling IMA. You must
+take ownership of a TPM to load and unload certs, use it as a PKCS #11
+interface, or to use SecureBoot or IMA.</p>
+
+<p>The <a href="https://sourceforge.net/p/linux-ima/wiki/Home/">Integrity Management Architecture (IMA)</a> subsystem is a tool that
+uses the TPM to verify integrity of the system, based on filesystem and file
+hashes. The IMA class sets up IMA kernel boot flags if they are not enabled and
+when they are, mounts the <code>securityfs</code>. This module can manage the IMA policy,
+although modifying the policy incorrectly could cause your system to become
+read-only.</p>
+
+<p>The TPM ecosystem has been designed to be difficult to automate. The difficulty
+has shown many downsides of using a tool like this module to manage your
+TPM device. For example, simply reading the TPM’s public key after taking
+ownership of the device requires the owner password to be typed in at the
+command line. This is an intentional feature to encourage admins to be
+physically present at the machine with the device. To get around this, the
+provider included in this module and the advanced facts use Ruby’s <code>expect</code>
+library to interact with the command line. This module also drops the owner
+password in the Puppet <code>$vardir</code> to make interacting with trousers in facts
+possible.</p>
+
+<h3 id="this-is-a-simp-module">This is a SIMP module</h3>
+
+<p>This module is a component of the <a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>, a compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they may be submitted to our <a href="https://simp-project.atlassian.net/">bug tracker</a>.</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but it can be used independently:</p>
+
+<ul>
+  <li>When included within the SIMP ecosystem, security compliance settings will be managed from the Puppet server.</li>
+  <li>If used independently, all SIMP-managed security subsystems are disabled by default and must be explicitly opted into by administrators.  Please review the <code>$client_nets</code>, <code>$enable_*</code> and <code>$use_*</code> parameters in <code>manifests/init.pp</code> for details.</li>
+</ul>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-tpm-affects">What tpm affects</h3>
+
+<hr />
+<blockquote>
+  <p><strong>WARNING</strong></p>
+
+  <p>This module can take ownership of your TPM. This could be a destructive
+process and is not easily reversed. For that reason, the provider does not
+support clearing a TPM.</p>
+</blockquote>
+
+<hr />
+
+<hr />
+<blockquote>
+  <p><strong>WARNING</strong></p>
+
+  <p>Inserting poorly-formed or incorrect policy into the IMA policy file could
+cause your system to become read-only. This can be temporarily remedied by a
+reboot. This is the current case with the way the module manages the policy
+and it is not recommended to use this section of the module at this time.</p>
+</blockquote>
+
+<hr />
+
+<p>This module will:
+* install <code>tpm-tools</code> and <code>trousers</code>
+* enable the <code>tcsd</code> service
+* (<em>OPTIONAL</em>) Take ownership of the TPM
+  * The password will be in a flat file in <code>$vardir/simp</code>
+* (<em>OPTIONAL</em>) Enable IMA on the host
+  * (<em>OPTIONAL</em>) Manage the IMA policy (BROKEN - See Limitations)</p>
+
+<h3 id="setup-requirements">Setup Requirements</h3>
+
+<p>In order to use this module or a TPM in general, you must do the following:</p>
+
+<ol>
+  <li>Enable the TPM in BIOS</li>
+  <li>Set a user/admin BIOS password</li>
+  <li>Be able to type in the user/admin password at boot time, every boot</li>
+</ol>
+
+<h3 id="beginning-with-the-tpm-module">Beginning with the TPM module</h3>
+
+<hr />
+<blockquote>
+  <p><strong>NOTE</strong></p>
+
+  <p>Setting the SRK password to an empty string is not recommended for actual use,
+but it is required for both Intel TXT (Trusted Boot) and the <a href="http://trousers.sourceforge.net/pkcs11.html">PKCS#11
+interface</a>. If you aren’t using
+either of those technologies, please use a real password.</p>
+</blockquote>
+
+<hr />
+
+<p>Include the TPM class and set the passwords in hiera. If either of the passwords
+are the string ‘well-known’, then the well known option will be added to the
+<code>tpm_takeownership</code> command used to take ownership of the TPM:</p>
+
+<p>```yaml
+classes:
+  - tpm</p>
+
+<p>tpm::take_ownership: true
+tpm::ownership::advanced_facts: true</p>
+
+<p>tpm::ownership::owner_pass: ‘badpass’
+tpm::ownership::srk_pass: ‘’
+```</p>
+
+<p>To enable IMA and the PKCS #11 interface, add this to hiera:</p>
+
+<p><code>yaml
+tpm::use_ima: true
+tpm::enable_pkcs_interface: true
+</code></p>
+
+<p>To enable the PKCS#11 interface, add the <code>tpm::pkcs11</code> class to your node and set the PINs in hiera:</p>
+
+<p>```yaml
+classes:
+  - tpm::pkcs11</p>
+
+<p>tpm::pkcs11::so_pin: ‘12345678’
+tpm::pkcs11::user_pin: ‘87654321’
+```</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>The type and provider for tpm ownership provided in this module can be used as follows:</p>
+
+<p><code>puppet
+tpm_ownership { 'tpm0':
+  ensure         =&gt; present,
+  owner_pass     =&gt; 'badpass',
+  srk_pass       =&gt; 'badpass2',
+  advanced_facts =&gt; true
+}
+</code></p>
+
+<p>And the PKCS#11 slot type and provider can be used as follows:</p>
+
+<p><code>puppet
+tpmtoken { 'TPM PKCS#11 token':
+  ensure   =&gt; present,
+  so_pin   =&gt; '12345678',
+  user_pin =&gt; '87654321'
+}
+</code></p>
+
+<h2 id="reference">Reference</h2>
+
+<p>Please refer to the inline documentation within each source file, or to the module’s generated YARD documentation for reference material.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>SIMP Puppet modules are generally intended for use on Red Hat Enterprise Linux and compatible distributions, such as CentOS. Please see the <a href="./metadata.json"><code>metadata.json</code> file</a> for the most up-to-date list of supported operating systems, Puppet versions, and module dependencies.</p>
+
+<p>This module does not support clearing a previously owned TPM.</p>
+
+<h3 id="ima">IMA</h3>
+
+<p>The current RedHat implementation of IMA does not seem to work after inserting our default policy (generated example in <code>spec/files/default_ima_policy.conf</code>). It causes the system to become read-only, even though it is only using supported configuration elements. Please do not use this feature of the module yet.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Please read our <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">Contribution Guide</a> and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">developer wiki</a>.</p>
+
+<h3 id="acceptance-tests">Acceptance tests</h3>
+
+<p><strong>TODO:</strong> There are currently no acceptance tests. We would need to use a
+<a href="https://github.com/stefanberger/swtpm/">virtual TPM</a> to ensure test system
+stability, and it requires quite a few patches to libvirt, associated
+emulation software, Beaker, and Vagrant before acceptance tests for this module become feasible. Read
+our <a href="https://simp-project.atlassian.net/wiki/x/CgAVAg">progress so far on the issue</a>.</p>
+
+<p>This module will include <a href="https://github.com/puppetlabs/beaker">Beaker</a> acceptance tests using the SIMP <a href="https://github.com/simp/rubygem-simp-beaker-helpers">Beaker Helpers</a>.  By default the tests will use <a href="https://www.vagrantup.com/">Vagrant</a> with <a href="https://www.virtualbox.org">VirtualBox</a> as a back-end; Vagrant and VirtualBox must both be installed to run these tests without modification. To execute the tests, when written, run the following:</p>
+
+<p><code>shell
+bundle install
+bundle exec rake beaker:suites
+</code></p>
+
+<p>Please refer to the <a href="https://github.com/simp/rubygem-simp-beaker-helpers/blob/master/README.md">SIMP Beaker Helpers documentation</a> for more information.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

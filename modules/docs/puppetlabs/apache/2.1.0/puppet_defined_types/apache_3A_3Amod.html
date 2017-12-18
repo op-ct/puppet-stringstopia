@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: apache::mod
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::apache::mod";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">apache::mod</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: apache::mod</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>package</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_ensure</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lib</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lib_path</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::lib_path</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>loadfile_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>loadfiles</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod.pp', line 1</span>
+
+define apache::mod (
+  $package        = undef,
+  $package_ensure = &#39;present&#39;,
+  $lib            = undef,
+  $lib_path       = $::apache::lib_path,
+  $id             = undef,
+  $path           = undef,
+  $loadfile_name  = undef,
+  $loadfiles      = undef,
+) {
+  if ! defined(Class[&#39;apache&#39;]) {
+    fail(&#39;You must include the apache base class before using any apache defined resources&#39;)
+  }
+
+  $mod = $name
+  #include apache #This creates duplicate resources in rspec-puppet
+  $mod_dir = $::apache::mod_dir
+
+  # Determine if we have special lib
+  $mod_libs = $::apache::params::mod_libs
+  if $lib {
+    $_lib = $lib
+  } elsif has_key($mod_libs, $mod) { # 2.6 compatibility hack
+    $_lib = $mod_libs[$mod]
+  } else {
+    $_lib = &quot;mod_${mod}.so&quot;
+  }
+
+  # Determine if declaration specified a path to the module
+  if $path {
+    $_path = $path
+  } else {
+    $_path = &quot;${lib_path}/${_lib}&quot;
+  }
+
+  if $id {
+    $_id = $id
+  } else {
+    $_id = &quot;${mod}_module&quot;
+  }
+
+  if $loadfile_name {
+    $_loadfile_name = $loadfile_name
+  } else {
+    $_loadfile_name = &quot;${mod}.load&quot;
+  }
+
+  # Determine if we have a package
+  $mod_packages = $::apache::mod_packages
+  if $package {
+    $_package = $package
+  } elsif has_key($mod_packages, $mod) { # 2.6 compatibility hack
+    if ($::apache::apache_version == &#39;2.4&#39; and $::operatingsystem =~ /^[Aa]mazon$/) {
+      # On amazon linux we need to prefix our package name with mod24 instead of mod to support apache 2.4
+      $_package = regsubst($mod_packages[$mod],&#39;^(mod_)?(.*)&#39;,&#39;mod24_\2&#39;)
+    } else {
+      $_package = $mod_packages[$mod]
+    }
+  } else {
+    $_package = undef
+  }
+  if $_package and ! defined(Package[$_package]) {
+    # note: FreeBSD/ports uses apxs tool to activate modules; apxs clutters
+    # httpd.conf with &#39;LoadModule&#39; directives; here, by proper resource
+    # ordering, we ensure that our version of httpd.conf is reverted after
+    # the module gets installed.
+    $package_before = $::osfamily ? {
+      &#39;freebsd&#39; =&gt; [
+        File[$_loadfile_name],
+        File[&quot;${::apache::conf_dir}/${::apache::params::conf_file}&quot;]
+      ],
+      default =&gt; [
+        File[$_loadfile_name],
+        File[$::apache::confd_dir],
+      ],
+    }
+    # if there are any packages, they should be installed before the associated conf file
+    Package[$_package] -&gt; File&lt;| title == &quot;${mod}.conf&quot; |&gt;
+    # $_package may be an array
+    package { $_package:
+      ensure  =&gt; $package_ensure,
+      require =&gt; Package[&#39;httpd&#39;],
+      before  =&gt; $package_before,
+      notify  =&gt; Class[&#39;apache::service&#39;],
+    }
+  }
+
+  file { $_loadfile_name:
+    ensure  =&gt; file,
+    path    =&gt; &quot;${mod_dir}/${_loadfile_name}&quot;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; $::apache::params::root_group,
+    mode    =&gt; $::apache::file_mode,
+    content =&gt; template(&#39;apache/mod/load.erb&#39;),
+    require =&gt; [
+      Package[&#39;httpd&#39;],
+      Exec[&quot;mkdir ${mod_dir}&quot;],
+    ],
+    before  =&gt; File[$mod_dir],
+    notify  =&gt; Class[&#39;apache::service&#39;],
+  }
+
+  if $::osfamily == &#39;Debian&#39; {
+    $enable_dir = $::apache::mod_enable_dir
+    file{ &quot;${_loadfile_name} symlink&quot;:
+      ensure  =&gt; link,
+      path    =&gt; &quot;${enable_dir}/${_loadfile_name}&quot;,
+      target  =&gt; &quot;${mod_dir}/${_loadfile_name}&quot;,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; $::apache::params::root_group,
+      mode    =&gt; $::apache::file_mode,
+      require =&gt; [
+        File[$_loadfile_name],
+        Exec[&quot;mkdir ${enable_dir}&quot;],
+      ],
+      before  =&gt; File[$enable_dir],
+      notify  =&gt; Class[&#39;apache::service&#39;],
+    }
+    # Each module may have a .conf file as well, which should be
+    # defined in the class apache::mod::module
+    # Some modules do not require this file.
+    if defined(File[&quot;${mod}.conf&quot;]) {
+      file{ &quot;${mod}.conf symlink&quot;:
+        ensure  =&gt; link,
+        path    =&gt; &quot;${enable_dir}/${mod}.conf&quot;,
+        target  =&gt; &quot;${mod_dir}/${mod}.conf&quot;,
+        owner   =&gt; &#39;root&#39;,
+        group   =&gt; $::apache::params::root_group,
+        mode    =&gt; $::apache::file_mode,
+        require =&gt; [
+          File[&quot;${mod}.conf&quot;],
+          Exec[&quot;mkdir ${enable_dir}&quot;],
+        ],
+        before  =&gt; File[$enable_dir],
+        notify  =&gt; Class[&#39;apache::service&#39;],
+      }
+    }
+  } elsif $::osfamily == &#39;Suse&#39; {
+    $enable_dir = $::apache::mod_enable_dir
+    file{ &quot;${_loadfile_name} symlink&quot;:
+      ensure  =&gt; link,
+      path    =&gt; &quot;${enable_dir}/${_loadfile_name}&quot;,
+      target  =&gt; &quot;${mod_dir}/${_loadfile_name}&quot;,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; $::apache::params::root_group,
+      mode    =&gt; $::apache::file_mode,
+      require =&gt; [
+        File[$_loadfile_name],
+        Exec[&quot;mkdir ${enable_dir}&quot;],
+      ],
+      before  =&gt; File[$enable_dir],
+      notify  =&gt; Class[&#39;apache::service&#39;],
+    }
+    # Each module may have a .conf file as well, which should be
+    # defined in the class apache::mod::module
+    # Some modules do not require this file.
+    if defined(File[&quot;${mod}.conf&quot;]) {
+      file{ &quot;${mod}.conf symlink&quot;:
+        ensure  =&gt; link,
+        path    =&gt; &quot;${enable_dir}/${mod}.conf&quot;,
+        target  =&gt; &quot;${mod_dir}/${mod}.conf&quot;,
+        owner   =&gt; &#39;root&#39;,
+        group   =&gt; $::apache::params::root_group,
+        mode    =&gt; $::apache::file_mode,
+        require =&gt; [
+          File[&quot;${mod}.conf&quot;],
+          Exec[&quot;mkdir ${enable_dir}&quot;],
+        ],
+        before  =&gt; File[$enable_dir],
+        notify  =&gt; Class[&#39;apache::service&#39;],
+      }
+    }
+  }
+
+  Apache::Mod[$name] -&gt; Anchor[&#39;::apache::modules_set_up&#39;]
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

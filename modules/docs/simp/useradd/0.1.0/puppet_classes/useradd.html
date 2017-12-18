@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: useradd
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::useradd";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (u)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">useradd</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: useradd</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1pwrh3s/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Manage settings regarding users and user creation</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>manage_useradd</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, manage <code>/etc/default/useradd</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_login_defs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, manage <code>/etc/login.defs</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_libuser_conf</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, manage <code>/etc/libuser.conf</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_etc_profile</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, manage <code>/etc/profile/simp.*</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_sysconfig_init</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, manage <code>/etc/sysconfig/init</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_nss</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, manage <code>/etc/default/nss</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>securetty</span>
+      
+      
+        <span class='type'>(<tt>Variant[Boolean,Array[String]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>List of ttys available to log into</p>
+
+<ul>
+  <li>Set to false to disable management</li>
+  <li>If the Array is empty (default) then root will not be able to log into
+any local device</li>
+  <li>If the string ‘ANY_SHELL’ is found in the Array, then the
+<code>/etc/securetty</code> file will be removed and root will be able to login
+via any device.</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>shells_default</span>
+      
+      
+        <span class='type'>(<tt>Array[Stdlib::AbsolutePath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;/bin/sh&#39;,&#39;/bin/bash&#39;,&#39;/sbin/nologin&#39;,&#39;/usr/bin/sh&#39;,&#39;/usr/bin/bash&#39;,&#39;/usr/sbin/nologin&#39; ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>List of shells that will appear on the system by default</p>
+
+<ul>
+  <li>These have been set to the usual suspects and users should use the
+<code>shells</code> parameter to add to the list</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>shells</span>
+      
+      
+        <span class='type'>(<tt>Variant[Boolean,Array[Stdlib::AbsolutePath]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>List of shells available to the user to set as default</p>
+
+<ul>
+  <li>Set to false to disable management</li>
+  <li>Will be combined with <code>shells_default</code> in /etc/shells</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_passwd_perms</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1pwrh3s/manifests/init.pp', line 43</span>
+
+class useradd (
+  Boolean                                      $manage_etc_profile    = true,
+  Boolean                                      $manage_libuser_conf   = true,
+  Boolean                                      $manage_login_defs     = true,
+  Boolean                                      $manage_nss            = true,
+  Boolean                                      $manage_passwd_perms   = true,
+  Boolean                                      $manage_sysconfig_init = true,
+  Boolean                                      $manage_useradd        = true,
+  Variant[Boolean,Array[String]]               $securetty             = [],
+
+  Array[Stdlib::AbsolutePath]                  $shells_default        = [ &#39;/bin/sh&#39;,&#39;/bin/bash&#39;,&#39;/sbin/nologin&#39;,&#39;/usr/bin/sh&#39;,&#39;/usr/bin/bash&#39;,&#39;/usr/sbin/nologin&#39; ],
+  Variant[Boolean,Array[Stdlib::AbsolutePath]] $shells                = []
+) {
+
+  if $manage_etc_profile    { include &#39;::useradd::etc_profile&#39; }
+  if $manage_libuser_conf   { include &#39;::useradd::libuser_conf&#39; }
+  if $manage_login_defs     { include &#39;::useradd::login_defs&#39; }
+  if $manage_nss            { include &#39;::useradd::nss&#39; }
+  if $manage_passwd_perms   { include &#39;::useradd::passwd&#39; }
+  if $manage_sysconfig_init { include &#39;::useradd::sysconfig_init&#39; }
+  if $manage_useradd        { include &#39;::useradd::useradd&#39; }
+
+  if $securetty {
+    if &#39;ANY_SHELL&#39; in $securetty {
+      $_ensure_securetty = &#39;absent&#39;
+    }
+    else {
+      $_ensure_securetty = &#39;file&#39;
+    }
+
+    file { &#39;/etc/securetty&#39;:
+      ensure  =&gt; $_ensure_securetty,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;root&#39;,
+      mode    =&gt; &#39;0400&#39;,
+      content =&gt; join($securetty,&quot;\n&quot;)
+    }
+  }
+
+  if $shells and !(empty($shells_default) and empty($shells)) {
+    file { &#39;/etc/shells&#39;:
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; &#39;root&#39;,
+      mode    =&gt; &#39;0644&#39;,
+      content =&gt; join(($shells_default + $shells),&quot;\n&quot;)
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

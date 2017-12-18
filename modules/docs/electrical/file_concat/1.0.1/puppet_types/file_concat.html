@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Resource Type: file_concat
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_types::file_concat";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (f)</a> &raquo;
+    <span class='title'><span class='object_link'>Resource Types</span></span>
+     &raquo; 
+    <span class="title">file_concat</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Resource Type: file_concat</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-15trw2i/lib/puppet/type/file_concat.rb
+    </dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Gets all the file fragments and puts these into the target file.
+This will mostly be used with exported resources.</p>
+
+<p>example:
+  File_fragment «| tag == ‘unique_tag’ |»</p>
+
+<p>file_concat { ‘/tmp/file:
+    tag            =&gt; ‘unique_tag’, # Mandatory
+    path           =&gt; ‘/tmp/file’,  # Optional. If given it overrides the resource name
+    owner          =&gt; ‘root’,       # Optional. Default to undef
+    group          =&gt; ‘root’,       # Optional. Default to undef
+    mode           =&gt; ‘0644’,       # Optional. Default to undef
+    order          =&gt; ‘numeric’,    # Optional, Default to ‘numeric’
+    ensure_newline =&gt; false,        # Optional, Defaults to false
+  }</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+<div class="tags">
+  <p class="tag_title">Properties</p>
+  <ul>
+    
+    <li>
+      <span class="name">ensure</span>
+      
+      <span class="default"> (defaults to: <em>present</em>)</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>The basic property that the resource should be in.</p>
+
+        </div>
+      </div>
+      
+      
+      <div>
+        Supported values:
+        <ul>
+          
+          <li>
+            
+            present
+          </li>
+          
+          <li>
+            
+            absent
+          </li>
+          
+        </ul>
+      </div>
+      
+    </li>
+    
+  </ul>
+</div>
+
+
+<div class="tags">
+  <p class="tag_title">Parameters</p>
+  <ul>
+    
+    <li>
+      <span class="name">backup</span>
+      
+      <span class="default"> (defaults to: <em>puppet</em>)</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Controls the filebucketing behavior of the final file and see File type reference for its use.</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">ensure_newline</span>
+      
+      <span class="default"> (defaults to: <em>false</em>)</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Whether to ensure there is a newline after each fragment.</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">group</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Desired file group.</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">mode</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Desired file mode.</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">name (namevar)</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Resource name</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">order</span>
+      
+      <span class="default"> (defaults to: <em>numeric</em>)</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Controls the ordering of fragments. Can be set to alphabetical or numeric.</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">owner</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Desired file owner.</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">path</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>The output file</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">replace</span>
+      
+      <span class="default"> (defaults to: <em>true</em>)</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Whether to replace a file that already exists on the local system.</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">tag</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Tag reference to collect all file_fragment’s with the same tag</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+    <li>
+      <span class="name">validate_cmd</span>
+      
+      
+      <div class="docstring">
+        <div class="discussion">
+          <p>Validates file.</p>
+
+        </div>
+      </div>
+      
+      
+    </li>
+    
+  </ul>
+</div>
+
+
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: nfs
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::nfs";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (n)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">nfs</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: nfs</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1t3lv4c/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Provides the base segments for NFS server <em>and</em> client services.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>stunnel</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::stunnel&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Wrap <code>stunnel</code> around the NFS server connections</p>
+
+<ul>
+  <li>This is ideally suited for environments without a working Kerberos setup
+and may cause issues when used together</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>is_server</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Explicitly state that this system should be an NFS server</p>
+
+<ul>
+  <li>Further configuration will need to be made via the <code>nfs::server</code>
+classes</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>is_client</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Explicitly state that this system should be an NFS client</p>
+
+<ul>
+  <li>Further configuration will need to be made via the ```nfs::client``
+classes</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nfsv3</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Use NFSv3 for connections</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mountd_nfs_v1</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Act as an <code>NFSv1</code> server</p>
+
+<ul>
+  <li>Due to current issues in RHEL/CentOS this must be set to <code>yes</code> to
+properly unmount</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mountd_nfs_v2</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Act as an <code>NFSv2</code> server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mountd_nfs_v3</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Act as an <code>NFSv3</code> server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rquotad</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/usr/sbin/rpc.rquotad&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the <code>rquotad</code> executable</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rquotad_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>875</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port upon which <code>rquotad</code> should listen</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lockd_tcpport</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>32803</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The TCP port upon which <code>lockd</code> should listen</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lockd_udpport</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>32769</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The UDP port upon which <code>lockd</code> should listen</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rpcnfsdargs</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;-N 2&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Arbitrary arguments to pass to <code>nfsd</code></p>
+
+<ul>
+  <li>The defaults disable <code>NFSv2</code> from being served to clients</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rpcnfsdcount</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>8</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The number of NFS server threads to start by default</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nfsd_v4_grace</span>
+      
+      
+        <span class='type'>(<tt>Integer[0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>90</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The NFSv4 grace period, in seconds</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mountd_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>20048</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port upon which <code>mountd</code> should listen</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>statd_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>662</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port upon which <code>statd</code> should listen</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>statd_outgoing_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2020</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port that <code>statd</code> will use when connecting to client systems</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secure_nfs</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable secure NFS mounts</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ensure_latest_lvm2</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See <code>nfs::lvm2</code> for further description</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kerberos</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::kerberos&#39;, { &#39;default_value&#39;    =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Use the SIMP <code>krb5</code> module for Kerberos support</p>
+
+<ul>
+  <li>You may need to set variables in <code>::krb5::config</code> via Hiera or your ENC
+if you do not like the defaults.</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keytab_on_puppet</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::kerberos&#39;, { &#39;default_value&#39;    =&gt; true})</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set, and <code>$krb5</code> is <code>true</code> then set the NFS server to pull its
+keytab directly from the Puppet server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>firewall</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::firewall&#39;, { &#39;default_value&#39;    =&gt; false})</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Use the SIMP <code>iptables</code> module to manage firewall connections</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tcpwrappers</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::tcpwrappers&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Use the SIMP <code>tcpwrappers</code> module to manage tcpwrappers</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Kendall Moore <a href="mailto:kendall.moore@onyxpoint.com">kendall.moore@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1t3lv4c/manifests/init.pp', line 93</span>
+
+class nfs (
+  Boolean              $stunnel             = simplib::lookup(&#39;simp_options::stunnel&#39;, { &#39;default_value&#39; =&gt; false }),
+  Boolean              $is_server           = false,
+  Boolean              $is_client           = true,
+  Boolean              $nfsv3               = false,
+  Boolean              $mountd_nfs_v1       = true,
+  Boolean              $mountd_nfs_v2       = false,
+  Boolean              $mountd_nfs_v3       = false,
+  Stdlib::Absolutepath $rquotad             = &#39;/usr/sbin/rpc.rquotad&#39;,
+  Simplib::Port        $rquotad_port        = 875,
+  Simplib::Port        $lockd_tcpport       = 32803,
+  Simplib::Port        $lockd_udpport       = 32769,
+  String               $rpcnfsdargs         = &#39;-N 2&#39;,
+  Integer[0]           $rpcnfsdcount        = 8,
+  Integer[0]           $nfsd_v4_grace       = 90,
+  Simplib::Port        $mountd_port         = 20048,
+  Simplib::Port        $statd_port          = 662,
+  Simplib::Port        $statd_outgoing_port = 2020,
+  Boolean              $secure_nfs          = false,
+  Boolean              $ensure_latest_lvm2  = true,
+  Boolean              $kerberos            = simplib::lookup(&#39;simp_options::kerberos&#39;, { &#39;default_value&#39;    =&gt; false }),
+  Boolean              $keytab_on_puppet    = simplib::lookup(&#39;simp_options::kerberos&#39;, { &#39;default_value&#39;    =&gt; true}),
+  Boolean              $firewall            = simplib::lookup(&#39;simp_options::firewall&#39;, { &#39;default_value&#39;    =&gt; false}),
+  Boolean              $tcpwrappers         = simplib::lookup(&#39;simp_options::tcpwrappers&#39;, { &#39;default_value&#39; =&gt; false })
+){
+
+  include &#39;::nfs::service_names&#39;
+  include &#39;::nfs::install&#39;
+
+  if $kerberos {
+    include &#39;::krb5&#39;
+
+    if ($::operatingsystem in [&#39;RedHat&#39;, &#39;CentOS&#39;]) {
+      if (versioncmp($::operatingsystemmajrelease,&#39;6&#39;) &gt; 0) {
+        # This is here because the SELinux rules for directory includes in krb5
+        # are broken.
+
+        include &#39;::nfs::selinux_hotfix&#39;
+
+        Class[&#39;::nfs::selinux_hotfix&#39;] -&gt; Class[&#39;::nfs::install&#39;]
+      }
+    }
+
+    if $keytab_on_puppet {
+      include &#39;::krb5::keytab&#39;
+    }
+  }
+
+  if $ensure_latest_lvm2 {
+    include &#39;::nfs::lvm2&#39;
+
+    Class[&#39;nfs::lvm2&#39;] -&gt; Class[&#39;nfs::install&#39;]
+  }
+
+  if $is_client {
+    include &#39;::nfs::client&#39;
+
+    Class[&#39;nfs::install&#39;] -&gt; Class[&#39;nfs::client&#39;]
+  }
+
+  if $is_server {
+
+    include &#39;::nfs::server&#39;
+
+    Class[&#39;nfs::install&#39;] -&gt; Class[&#39;nfs::server&#39;]
+
+    if $kerberos {
+      Class[&#39;krb5&#39;] ~&gt; Class[&#39;nfs::server&#39;]
+
+      if $keytab_on_puppet {
+        Class[&#39;krb5::keytab&#39;] ~&gt; Class[&#39;nfs::server&#39;]
+      }
+    }
+  }
+
+  if $secure_nfs {
+    if !empty($::nfs::service_names::rpcgssd) {
+      service { $::nfs::service_names::rpcgssd :
+        ensure     =&gt; &#39;running&#39;,
+        enable     =&gt; true,
+        hasrestart =&gt; true,
+        hasstatus  =&gt; true
+      }
+
+      # If you don&#39;t put your keytabs on the Puppet server, you&#39;ll need to add
+      # code to trigger this yourself!
+      if $keytab_on_puppet {
+        Class[&#39;krb5::keytab&#39;] ~&gt; Service[$::nfs::service_names::rpcgssd]
+      }
+
+      Concat[&#39;/etc/sysconfig/nfs&#39;] -&gt; Service[$::nfs::service_names::rpcgssd]
+      Service[$::nfs::service_names::rpcbind] -&gt; Service[$::nfs::service_names::rpcgssd]
+    }
+  }
+
+  if $is_server or $nfsv3 {
+
+    service { $::nfs::service_names::nfs_lock :
+      ensure     =&gt; &#39;running&#39;,
+      enable     =&gt; true,
+      hasrestart =&gt; true,
+      hasstatus  =&gt; true,
+      require    =&gt; Concat[&#39;/etc/sysconfig/nfs&#39;]
+    }
+
+    if (!$is_server and $is_client and $stunnel) {
+      service { $::nfs::service_names::rpcbind :
+        ensure  =&gt; &#39;stopped&#39;,
+        require =&gt; Concat[&#39;/etc/sysconfig/nfs&#39;]
+      }
+    }
+    else {
+      service { $::nfs::service_names::rpcbind :
+        ensure     =&gt; &#39;running&#39;,
+        enable     =&gt; true,
+        hasrestart =&gt; true,
+        hasstatus  =&gt; true
+      }
+
+      Concat[&#39;/etc/sysconfig/nfs&#39;] -&gt; Service[$::nfs::service_names::rpcbind]
+      Service[$::nfs::service_names::rpcbind] -&gt; Service[$::nfs::service_names::nfs_lock]
+    }
+  }
+  else {
+    service { $::nfs::service_names::rpcbind :
+      ensure  =&gt; &#39;stopped&#39;,
+      require =&gt; Class[&#39;nfs::install&#39;]
+    }
+  }
+
+  svckill::ignore { &#39;nfs-idmap&#39;: }
+  svckill::ignore { &#39;nfs-secure&#39;: }
+  svckill::ignore { &#39;nfs-mountd&#39;: }
+  svckill::ignore { &#39;nfs-rquotad&#39;: }
+
+  concat { &#39;/etc/sysconfig/nfs&#39;:
+    owner          =&gt; &#39;root&#39;,
+    group          =&gt; &#39;root&#39;,
+    mode           =&gt; &#39;0644&#39;,
+    ensure_newline =&gt; true,
+    warn           =&gt; true
+  }
+
+  concat::fragment { &#39;nfs_init&#39;:
+    order   =&gt; 5,
+    target  =&gt; &#39;/etc/sysconfig/nfs&#39;,
+    content =&gt; template(&quot;${module_name}/etc/sysconfig/nfs.erb&quot;)
+  }
+
+  Class[&#39;nfs::install&#39;] -&gt; Concat[&#39;/etc/sysconfig/nfs&#39;]
+
+  if $is_server {
+    Concat[&#39;/etc/sysconfig/nfs&#39;] ~&gt; Service[$::nfs::service_names::nfs_server]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp_elasticsearch::defaults
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp_elasticsearch::defaults";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp_elasticsearch::defaults</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp_elasticsearch::defaults</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-i97n36/manifests/defaults.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class is just for storing default option hashes/arrays so the
+main classes are cleaner.</p>
+
+<p>Items are called from simp_elasticsearch</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-i97n36/manifests/defaults.pp', line 6</span>
+
+class simp_elasticsearch::defaults {
+
+  if array_size($::simp_elasticsearch::unicast_hosts) &lt; 3 {
+    $min_master_nodes = 1
+  }
+  else {
+    $min_master_nodes = $::simp_elasticsearch::min_master_nodes
+  }
+
+  # The amount of memory that ES should allocate on startup.
+  #   Default: 50% of Memory + 2G. If &lt; 10G is present, just 50% of
+  #   mem.
+  $mem_bytes = to_bytes($::memorysize)
+
+  if $mem_bytes &lt; 10737418240 {
+    $es_heap_size = ( $mem_bytes / 2 )
+  }
+  else {
+    $es_heap_size = (( $mem_bytes / 2 ) + 2147483648 )
+  }
+
+  # JNA tmp dir must be set, as default is /tmp which won&#39;t
+  # work with noexec constraints
+  $jvm_options_defaults = [
+    &quot;-Xms${es_heap_size}&quot;,
+    &quot;-Xmx${es_heap_size}&quot;,
+    &quot;-Djna.tmpdir=${::simp_elasticsearch::jna_tmpdir}&quot;
+  ]
+
+  $_base_config = {
+    &#39;cluster&#39;     =&gt; {
+      &#39;name&#39;                =&gt; $::simp_elasticsearch::cluster_name
+    },
+    &#39;node.name&#39;   =&gt; $::simp_elasticsearch::node_name,
+    &#39;network&#39;     =&gt; {
+      &#39;bind_host&#39;    =&gt; $::simp_elasticsearch::bind_host,
+      # This must be done due to a bug in the ES configuration processor that
+      # does not match the documentation which states that publish_host will be
+      # automatically selected from the best address in bind_host.
+      # TODO Verify this workaround is still required with ES 5.X
+      &#39;publish_host&#39; =&gt; $::simp_elasticsearch::bind_host
+    },
+    &#39;http&#39;        =&gt; {
+      &#39;bind_host&#39; =&gt; $::simp_elasticsearch::http_bind_host,
+      &#39;port&#39;      =&gt; $::simp_elasticsearch::http_port
+    },
+    &#39;path.logs&#39;   =&gt; &#39;/var/log/elasticsearch&#39;,
+    &#39;path.data&#39;   =&gt; $::simp_elasticsearch::data_dir,
+    &#39;discovery&#39;                =&gt; {
+      &#39;zen&#39;                    =&gt; {
+        &#39;minimum_master_nodes&#39; =&gt; $min_master_nodes,
+        &#39;ping&#39;                 =&gt; {
+          &#39;unicast&#39; =&gt; {
+            &#39;hosts&#39; =&gt; $::simp_elasticsearch::unicast_hosts
+          }
+        }
+      }
+    }
+  }
+
+  if (versioncmp($facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;],&#39;7&#39;) &lt; 0) {
+    # CentOS 6 does not support SecComp so need to disable that feature
+    # See https://github.com/elastic/elasticsearch/issues/22899
+    $base_config  = merge($_base_config, { &#39;bootstrap.system_call_filter&#39; =&gt; false })
+  }
+  else {
+    $base_config = $_base_config
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

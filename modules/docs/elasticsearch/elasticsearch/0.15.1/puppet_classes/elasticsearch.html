@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: elasticsearch
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::elasticsearch";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (e)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">elasticsearch</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: elasticsearch</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="elasticsearch_3A_3Aparams.html" title="puppet_classes::elasticsearch::params (puppet_class)">elasticsearch::params</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-16tmmhe/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>== Class: elasticsearch</p>
+
+<p>This class is able to install or remove elasticsearch on a node.
+It manages the status of the related service.</p>
+
+<p>=== Parameters</p>
+
+<p>[<em>ensure</em>]
+  String. Controls if the managed resources shall be <tt>present</tt> or
+  <tt>absent</tt>. If set to <tt>absent</tt>:
+  * The managed software packages are being uninstalled.
+  * Any traces of the packages will be purged as good as possible. This may
+    include existing configuration files. The exact behavior is provider
+    dependent. Q.v.:
+    * Puppet type reference: “purgeable”[http://j.mp/xbxmNP]
+    * package provider source code[http://j.mp/wtVCaL]
+  * System modifications (if any) will be reverted as good as possible
+    (e.g. removal of created users, services, changed log settings, …).
+  * This is thus destructive and should be used with care.
+  Defaults to <tt>present</tt>.</p>
+
+<p>[<em>autoupgrade</em>]
+  Boolean. If set to <tt>true</tt>, any managed package gets upgraded
+  on each Puppet run when the package provider is able to find a newer
+  version than the present one. The exact behavior is provider dependent.
+  Q.v.:
+  * Puppet type reference: “upgradeable”[http://j.mp/xbxmNP]
+  * package provider source code[http://j.mp/wtVCaL]
+  Defaults to <tt>false</tt>.</p>
+
+<p>[<em>status</em>]
+  String to define the status of the service. Possible values:
+  * <tt>enabled</tt>: Service is running and will be started at boot time.
+  * <tt>disabled</tt>: Service is stopped and will not be started at boot
+    time.
+  * <tt>running</tt>: Service is running but will not be started at boot time.
+    You can use this to start a service on the first Puppet run instead of
+    the system startup.
+  * <tt>unmanaged</tt>: Service will not be started at boot time and Puppet
+    does not care whether the service is running or not. For example, this may
+    be useful if a cluster management software is used to decide when to start
+    the service plus assuring it is running on the desired node.
+  Defaults to <tt>enabled</tt>. The singular form (“service”) is used for the
+  sake of convenience. Of course, the defined status affects all services if
+  more than one is managed (see <tt>service.pp</tt> to check if this is the
+  case).</p>
+
+<p>[<em>version</em>]
+  String to set the specific version you want to install.
+  Defaults to <tt>false</tt>.</p>
+
+<p>[<em>restart_on_change</em>]
+  Boolean that determines if the application should be automatically restarted
+  whenever the configuration, package, or plugins change. Enabling this
+  setting will cause Elasticsearch to restart whenever there is cause to
+  re-read configuration files, load new plugins, or start the service using an
+  updated/changed executable. This may be undesireable in highly available
+  environments.</p>
+
+<p>If all other restart_* parameters are left unset, the value of
+  restart_on_change is used for all other restart_*_change defaults.</p>
+
+<p>Defaults to <tt>false</tt>, which disables automatic restarts. Setting to
+  <tt>true</tt> will restart the application on any config, plugin, or
+  package change.</p>
+
+<p>[<em>restart_config_change</em>]
+  Boolean that determines if the application should be automatically restarted
+  whenever the configuration changes. This includes the Elasticsearch
+  configuration file, any service files, and defaults files.
+  Disabling automatic restarts on config changes may be desired in an
+  environment where you need to ensure restarts occur in a controlled/rolling
+  manner rather than during a Puppet run.</p>
+
+<p>Defaults to <tt>undef</tt>, in which case the default value of
+  restart_on_change will be used (defaults to false).</p>
+
+<p>[<em>restart_package_change</em>]
+  Boolean that determines if the application should be automatically restarted
+  whenever the package (or package version) for Elasticsearch changes.
+  Disabling automatic restarts on package changes may be desired in an
+  environment where you need to ensure restarts occur in a controlled/rolling
+  manner rather than during a Puppet run.</p>
+
+<p>Defaults to <tt>undef</tt>, in which case the default value of
+  restart_on_change will be used (defaults to false).</p>
+
+<p>[<em>restart_plugin_change</em>]
+  Boolean that determines if the application should be automatically restarted
+  whenever plugins are installed or removed.
+  Disabling automatic restarts on plugin changes may be desired in an
+  environment where you need to ensure restarts occur in a controlled/rolling
+  manner rather than during a Puppet run.</p>
+
+<p>Defaults to <tt>undef</tt>, in which case the default value of
+  restart_on_change will be used (defaults to false).</p>
+
+<p>[<em>configdir</em>]
+  Path to directory containing the elasticsearch configuration.
+  Use this setting if your packages deviate from the norm (/etc/elasticsearch)</p>
+
+<p>[<em>plugindir</em>]
+  Path to directory containing the elasticsearch plugins
+  Use this setting if your packages deviate from the norm (/usr/share/elasticsearch/plugins)</p>
+
+<p>[<em>package_url</em>]
+  Url to the package to download.
+  This can be a http,https or ftp resource for remote packages
+  puppet:// resource or file:/ for local packages</p>
+
+<p>[<em>package_provider</em>]
+  Way to install the packages, currently only packages are supported.</p>
+
+<p>[<em>package_dir</em>]
+  Directory where the packages are downloaded to</p>
+
+<p>[<em>package_name</em>]
+  Name of the package to install</p>
+
+<p>[<em>purge_package_dir</em>]
+  Purge package directory on removal</p>
+
+<p>[<em>package_dl_timeout</em>]
+  For http,https and ftp downloads you can set howlong the exec resource may take.
+  Defaults to: 600 seconds</p>
+
+<p>[<em>proxy_url</em>]
+  For http and https downloads you can set a proxy server to use
+  Format: proto://[user:pass@]server[:port]/
+  Defaults to: undef (proxy disabled)</p>
+
+<p>[<em>elasticsearch_user</em>]
+  The user Elasticsearch should run as. This also sets the file rights.</p>
+
+<p>[<em>elasticsearch_group</em>]
+  The group Elasticsearch should run as. This also sets the file rights</p>
+
+<p>[<em>purge_configdir</em>]
+  Purge the config directory for any unmanaged files</p>
+
+<p>[<em>service_provider</em>]
+  Service provider to use. By Default when a single service provider is possibe that one is selected.</p>
+
+<p>[<em>init_defaults</em>]
+  Defaults file content in hash representation</p>
+
+<p>[<em>init_defaults_file</em>]
+  Defaults file as puppet resource</p>
+
+<p>[<em>init_template</em>]
+  Service file as a template</p>
+
+<p>[<em>config</em>]
+  Elasticsearch configuration hash</p>
+
+<p>[<em>config_hiera_merge</em>]
+  Enable Hiera merging for the config hash
+  Defaults to: false</p>
+
+<p>[<em>datadir</em>]
+  Allows you to set the data directory of Elasticsearch</p>
+
+<p>[<em>logdir</em>]
+  Use different directory for logging</p>
+
+<p>[<em>java_install</em>]
+ Install java which is required for Elasticsearch.
+ Defaults to: false</p>
+
+<p>[<em>java_package</em>]
+  If you like to install a custom java package, put the name here.</p>
+
+<p>[<em>manage_repo</em>]
+  Enable repo management by enabling our official repositories</p>
+
+<p>[<em>repo_version</em>]
+  Our repositories are versioned per major version (0.90, 1.0) select here which version you want</p>
+
+<p>[<em>repo_priority</em>]
+  Repository priority. yum and apt supported.
+  Default: undef</p>
+
+<p>[<em>repo_key_id</em>]
+  String.  The apt GPG key id
+  Default: 46095ACC8548582C1A2699A9D27D666CD88E42B4</p>
+
+<p>[<em>repo_key_source</em>]
+  String.  URL of the apt GPG key
+  Default: http://packages.elastic.co/GPG-KEY-elasticsearch</p>
+
+<p>[<em>repo_proxy</em>]
+  String.  URL for repository proxy
+  Default: undef</p>
+
+<p>[<em>logging_config</em>]
+  Hash representation of information you want in the logging.yml file</p>
+
+<p>[<em>logging_file</em>]
+  Instead of a hash you can supply a puppet:// file source for the logging.yml file</p>
+
+<p>[<em>logging_template</em>]
+ Use a custom logging template - just supply the reative path ie $module/elasticsearch/logging.yml.erb</p>
+
+<p>[<em>default_logging_level</em>]
+  Default logging level for Elasticsearch.
+  Defaults to: INFO</p>
+
+<p>[<em>repo_stage</em>]
+  Use stdlib stage setup for managing the repo, instead of anchoring</p>
+
+<p>[<em>instances</em>]
+  Define instances via a hash. This is mainly used with Hiera’s auto binding
+  Defaults to: undef</p>
+
+<p>[<em>instances_hiera_merge</em>]
+  Enable Hiera’s merging function for the instances
+  Defaults to: false</p>
+
+<p>[<em>plugins</em>]
+  Define plugins via a hash. This is mainly used with Hiera’s auto binding
+  Defaults to: undef</p>
+
+<p>[<em>plugins_hiera_merge</em>]
+  Enable Hiera’s merging function for the plugins
+  Defaults to: false</p>
+
+<p>[<em>package_pin</em>]
+  Enables package version pinning.
+  This pins the package version to the set version number and avoids
+  package upgrades.
+  Defaults to: true</p>
+
+<p>[<em>use_ssl</em>]
+  Enable auth on api calls. This parameter is deprecated in favor of setting
+  the <code>api_protocol</code> parameter to “https”.
+  Defaults to: false
+  This variable is deprecated</p>
+
+<p>[<em>validate_ssl</em>]
+  Enable ssl validation on api calls. This parameter is deprecated in favor
+  of the <code>validate_tls</code> parameter.
+  Defaults to: true
+  This variable is deprecated</p>
+
+<p>[<em>ssl_user</em>]
+  Defines the username for authentication. This parameter is deprecated in
+  favor of the <code>api_basic_auth_username</code> parameter.
+  Defaults to: undef
+  This variable is deprecated</p>
+
+<p>[<em>ssl_password</em>]
+  Defines the password for authentication. This parameter is deprecated in
+  favor of the <code>api_basic_auth_password</code> parameter.
+  Defaults to: undef
+  This variable is deprecated</p>
+
+<p>[<em>api_protocol</em>]
+  Default protocol to use when accessing Elasticsearch APIs.
+  Defaults to: http</p>
+
+<p>[<em>api_host</em>]
+  Default host to use when accessing Elasticsearch APIs.
+  Defaults to: localhost</p>
+
+<p>[<em>api_port</em>]
+  Default port to use when accessing Elasticsearch APIs.
+  Defaults to: 9200</p>
+
+<p>[<em>api_timeout</em>]
+  Default timeout (in seconds) to use when accessing Elasticsearch APIs.
+  Defaults to: 10</p>
+
+<p>[<em>validate_tls</em>]
+  Enable TLS/SSL validation on API calls.
+  Defaults to: true</p>
+
+<p>[<em>api_basic_auth_username</em>]
+  Defines the default REST basic auth username for API authentication.
+  Defaults to: undef</p>
+
+<p>[<em>api_basic_auth_password</em>]
+  Defines the default REST basic auth password for API authentication.
+  Defaults to: undef</p>
+
+<p>[<em>api_ca_file</em>]
+  Path to a CA file which will be used to validate server certs when
+  communicating with the Elasticsearch API over HTTPS.
+  Defaults to: undef</p>
+
+<p>[<em>api_ca_path</em>]
+  Path to a directory with CA files which will be used to validate server
+  certs when communicating with the Elasticsearch API over HTTPS.
+  Defaults to: undef</p>
+
+<p>[<em>system_key</em>]
+  Source for the Shield system key. Valid values are any that are
+  supported for the file resource <code>source</code> parameter.
+  Value type is string
+  Default value: undef</p>
+
+<p>[<em>file_rolling_type</em>]
+  Configuration for the file appender rotation. It can be ‘dailyRollingFile’
+  or ‘rollingFile’. The first rotates by name, and the second one by size.
+  Value type is string
+  Default value: dailyRollingFile</p>
+
+<p>[<em>daily_rolling_date_pattern</em>]
+  File pattern for the file appender log when file_rolling_type is ‘dailyRollingFile’
+  Value type is string
+  Default value: “’.’yyyy-MM-dd”</p>
+
+<p>[<em>rolling_file_max_backup_index</em>]
+  Max number of logs to store whern file_rolling_type is ‘rollingFile’
+  Value type is integer
+  Default value: 1</p>
+
+<p>[<em>rolling_file_max_file_size</em>]
+  Max log file size when file_rolling_type is ‘rollingFile’
+  Value type is string
+  Default value: 10MB</p>
+
+<p>The default values for the parameters are set in elasticsearch::params. Have
+a look at the corresponding <tt>params.pp</tt> manifest file if you need more
+technical information about them.</p>
+
+<p>=== Examples</p>
+
+<ul>
+  <li>
+    <p>Installation, make sure service is running and will be started at boot time:
+  class { ‘elasticsearch’: }</p>
+  </li>
+  <li>
+    <p>Removal/decommissioning:
+  class { ‘elasticsearch’:
+    ensure =&gt; ‘absent’,
+  }</p>
+  </li>
+  <li>
+    <p>Install everything but disable service(s) afterwards
+  class { ‘elasticsearch’:
+    status =&gt; ‘disabled’,
+  }</p>
+  </li>
+</ul>
+
+<p>=== Authors</p>
+
+<ul>
+  <li>Richard Pijnenburg <a href="mailto:richard.pijnenburg@elasticsearch.com">richard.pijnenburg@elasticsearch.com</a></li>
+</ul>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ensure</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::ensure</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>status</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::status</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_on_change</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::restart_on_change</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_config_change</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::restart_on_change</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_package_change</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::restart_on_change</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_plugin_change</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::restart_on_change</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>autoupgrade</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::autoupgrade</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>version</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_provider</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;package&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_url</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::package_dir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::package</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_pin</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>purge_package_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::purge_package_dir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>package_dl_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::package_dl_timeout</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_url</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>elasticsearch_user</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::elasticsearch_user</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>elasticsearch_group</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::elasticsearch_group</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>configdir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::configdir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>purge_configdir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::purge_configdir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>service_provider</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;init&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>init_defaults</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>init_defaults_file</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>init_template</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;${module_name}/etc/init.d/${elasticsearch::params::init_template}&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>config</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>config_hiera_merge</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>datadir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::datadir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logdir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::logdir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plugindir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::plugindir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>java_install</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>java_package</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_repo</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repo_version</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repo_priority</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repo_key_id</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;46095ACC8548582C1A2699A9D27D666CD88E42B4&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repo_key_source</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;https://artifacts.elastic.co/GPG-KEY-elasticsearch&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repo_proxy</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logging_file</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logging_config</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logging_template</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_logging_level</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::default_logging_level</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repo_stage</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>instances</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>instances_hiera_merge</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plugins</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>plugins_hiera_merge</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_ssl</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>validate_ssl</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_user</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_password</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>api_protocol</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;http&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>api_host</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;localhost&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>api_port</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>9200</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>api_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>api_basic_auth_username</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>api_basic_auth_password</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>api_ca_file</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>api_ca_path</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>validate_tls</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>system_key</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>file_rolling_type</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::file_rolling_type</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>daily_rolling_date_pattern</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::daily_rolling_date_pattern</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rolling_file_max_backup_index</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::rolling_file_max_backup_index</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rolling_file_max_file_size</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$elasticsearch::params::rolling_file_max_file_size</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-16tmmhe/manifests/init.pp', line 346</span>
+
+class elasticsearch(
+  $ensure                         = $elasticsearch::params::ensure,
+  $status                         = $elasticsearch::params::status,
+  $restart_on_change              = $elasticsearch::params::restart_on_change,
+  $restart_config_change          = $elasticsearch::restart_on_change,
+  $restart_package_change         = $elasticsearch::restart_on_change,
+  $restart_plugin_change          = $elasticsearch::restart_on_change,
+  $autoupgrade                    = $elasticsearch::params::autoupgrade,
+  $version                        = false,
+  $package_provider               = &#39;package&#39;,
+  $package_url                    = undef,
+  $package_dir                    = $elasticsearch::params::package_dir,
+  $package_name                   = $elasticsearch::params::package,
+  $package_pin                    = true,
+  $purge_package_dir              = $elasticsearch::params::purge_package_dir,
+  $package_dl_timeout             = $elasticsearch::params::package_dl_timeout,
+  $proxy_url                      = undef,
+  $elasticsearch_user             = $elasticsearch::params::elasticsearch_user,
+  $elasticsearch_group            = $elasticsearch::params::elasticsearch_group,
+  $configdir                      = $elasticsearch::params::configdir,
+  $purge_configdir                = $elasticsearch::params::purge_configdir,
+  $service_provider               = &#39;init&#39;,
+  $init_defaults                  = undef,
+  $init_defaults_file             = undef,
+  $init_template                  = &quot;${module_name}/etc/init.d/${elasticsearch::params::init_template}&quot;,
+  $config                         = undef,
+  $config_hiera_merge             = false,
+  $datadir                        = $elasticsearch::params::datadir,
+  $logdir                         = $elasticsearch::params::logdir,
+  $plugindir                      = $elasticsearch::params::plugindir,
+  $java_install                   = false,
+  $java_package                   = undef,
+  $manage_repo                    = false,
+  $repo_version                   = undef,
+  $repo_priority                  = undef,
+  $repo_key_id                    = &#39;46095ACC8548582C1A2699A9D27D666CD88E42B4&#39;,
+  $repo_key_source                = &#39;https://artifacts.elastic.co/GPG-KEY-elasticsearch&#39;,
+  $repo_proxy                     = undef,
+  $logging_file                   = undef,
+  $logging_config                 = undef,
+  $logging_template               = undef,
+  $default_logging_level          = $elasticsearch::params::default_logging_level,
+  $repo_stage                     = false,
+  $instances                      = undef,
+  $instances_hiera_merge          = false,
+  $plugins                        = undef,
+  $plugins_hiera_merge            = false,
+  $use_ssl                        = undef,
+  $validate_ssl                   = undef,
+  $ssl_user                       = undef,
+  $ssl_password                   = undef,
+  $api_protocol                   = &#39;http&#39;,
+  $api_host                       = &#39;localhost&#39;,
+  $api_port                       = 9200,
+  $api_timeout                    = 10,
+  $api_basic_auth_username        = undef,
+  $api_basic_auth_password        = undef,
+  $api_ca_file                    = undef,
+  $api_ca_path                    = undef,
+  $validate_tls                   = true,
+  $system_key                     = undef,
+  $file_rolling_type              = $elasticsearch::params::file_rolling_type,
+  $daily_rolling_date_pattern     = $elasticsearch::params::daily_rolling_date_pattern,
+  $rolling_file_max_backup_index  = $elasticsearch::params::rolling_file_max_backup_index,
+  $rolling_file_max_file_size     = $elasticsearch::params::rolling_file_max_file_size,
+) inherits elasticsearch::params {
+
+  anchor {&#39;elasticsearch::begin&#39;: }
+
+
+  #### Validate parameters
+
+  # ensure
+  if ! ($ensure in [ &#39;present&#39;, &#39;absent&#39; ]) {
+    fail(&quot;\&quot;${ensure}\&quot; is not a valid ensure parameter value&quot;)
+  }
+
+  # autoupgrade
+  validate_bool($autoupgrade)
+
+  # service status
+  if ! ($status in [ &#39;enabled&#39;, &#39;disabled&#39;, &#39;running&#39;, &#39;unmanaged&#39; ]) {
+    fail(&quot;\&quot;${status}\&quot; is not a valid status parameter value&quot;)
+  }
+
+  if ! ($file_rolling_type in [ &#39;dailyRollingFile&#39;, &#39;rollingFile&#39;]) {
+    fail(&quot;\&quot;${file_rolling_type}\&quot; is not a valid type&quot;)
+  }
+
+  validate_integer($rolling_file_max_backup_index)
+  validate_string($daily_rolling_date_pattern)
+  validate_string($rolling_file_max_file_size)
+
+
+  # restart on change
+  validate_bool(
+    $restart_on_change,
+    $restart_config_change,
+    $restart_package_change,
+    $restart_plugin_change
+  )
+
+  # purge conf dir
+  validate_bool($purge_configdir)
+
+  if is_array($elasticsearch::params::service_providers) {
+    # Verify the service provider given is in the array
+    if ! ($service_provider in $elasticsearch::params::service_providers) {
+      fail(&quot;\&quot;${service_provider}\&quot; is not a valid provider for \&quot;${::operatingsystem}\&quot;&quot;)
+    }
+    $real_service_provider = $service_provider
+  } else {
+    # There is only one option so simply set it
+    $real_service_provider = $elasticsearch::params::service_providers
+  }
+
+  if ($package_url != undef and $version != false) {
+    fail(&#39;Unable to set the version number when using package_url option.&#39;)
+  }
+
+  if $ensure == &#39;present&#39; {
+    # validate config hash
+    if ($config != undef) {
+      validate_hash($config)
+    }
+
+    if ($logging_config != undef) {
+      validate_hash($logging_config)
+    }
+  }
+
+  # java install validation
+  validate_bool($java_install)
+
+  validate_bool(
+    $manage_repo,
+    $package_pin
+  )
+
+  if ($manage_repo == true and $ensure == &#39;present&#39;) {
+    if $repo_version == undef {
+      fail(&#39;Please fill in a repository version at $repo_version&#39;)
+    } else {
+      validate_string($repo_version)
+    }
+  }
+
+  if ($version != false) {
+    case $::osfamily {
+      &#39;RedHat&#39;, &#39;Linux&#39;, &#39;Suse&#39;: {
+        if ($version =~ /.+-\d/) {
+          $pkg_version = $version
+        } else {
+          $pkg_version = &quot;${version}-1&quot;
+        }
+      }
+      default: {
+        $pkg_version = $version
+      }
+    }
+  }
+
+  # Various parameters governing API access to Elasticsearch, handling
+  # deprecated params.
+  validate_string($api_protocol, $api_host)
+  if $use_ssl != undef {
+    validate_bool($use_ssl)
+    warning(&#39;&quot;use_ssl&quot; parameter is deprecated; set $api_protocol to &quot;https&quot; instead&#39;)
+    $_api_protocol = &#39;https&#39;
+  } else {
+    $_api_protocol = $api_protocol
+  }
+
+  validate_bool($validate_tls)
+  if $validate_ssl != undef {
+    validate_bool($validate_ssl)
+    warning(&#39;&quot;validate_ssl&quot; parameter is deprecated; use $validate_tls instead&#39;)
+    $_validate_tls = $validate_ssl
+  } else {
+    $_validate_tls = $validate_tls
+  }
+
+  if $api_basic_auth_username { validate_string($api_basic_auth_username) }
+  if $ssl_user != undef {
+    validate_string($ssl_user)
+    warning(&#39;&quot;ssl_user&quot; parameter is deprecated; use $api_basic_auth_username instead&#39;)
+    $_api_basic_auth_username = $ssl_user
+  } else {
+    $_api_basic_auth_username = $api_basic_auth_username
+  }
+
+  if $api_basic_auth_password { validate_string($api_basic_auth_password) }
+  if $ssl_password != undef {
+    validate_string($ssl_password)
+    warning(&#39;&quot;ssl_password&quot; parameter is deprecated; use $api_basic_auth_password instead&#39;)
+    $_api_basic_auth_password = $ssl_password
+  } else {
+    $_api_basic_auth_password = $api_basic_auth_password
+  }
+
+  if ! is_integer($api_timeout) {
+    fail(&quot;&#39;${api_timeout}&#39; is not an integer&quot;)
+  }
+
+  if ! is_integer($api_port) {
+    fail(&quot;&#39;${api_port}&#39; is not an integer&quot;)
+  }
+
+  if $system_key != undef { validate_string($system_key) }
+
+  #### Manage actions
+
+  # package(s)
+  class { &#39;elasticsearch::package&#39;: }
+
+  # configuration
+  class { &#39;elasticsearch::config&#39;: }
+
+  # Hiera support for configuration hash
+  validate_bool($config_hiera_merge)
+
+  if $config_hiera_merge == true {
+    $x_config = hiera_hash(&#39;elasticsearch::config&#39;, $config)
+  } else {
+    $x_config = $config
+  }
+
+  # Hiera support for instances
+  validate_bool($instances_hiera_merge)
+
+  if $instances_hiera_merge == true {
+    $x_instances = hiera_hash(&#39;elasticsearch::instances&#39;, $::elasticsearch::instances)
+  } else {
+    $x_instances = $instances
+  }
+
+  if $x_instances {
+    validate_hash($x_instances)
+    create_resources(&#39;elasticsearch::instance&#39;, $x_instances)
+  }
+
+  # Hiera support for plugins
+  validate_bool($plugins_hiera_merge)
+
+  if $plugins_hiera_merge == true {
+    $x_plugins = hiera_hash(&#39;elasticsearch::plugins&#39;, $::elasticsearch::plugins)
+  } else {
+    $x_plugins = $plugins
+  }
+
+  if $x_plugins {
+    validate_hash($x_plugins)
+    create_resources(&#39;elasticsearch::plugin&#39;, $x_plugins)
+  }
+
+
+  if $java_install == true {
+    # Install java
+    class { &#39;::java&#39;:
+      package      =&gt; $java_package,
+      distribution =&gt; &#39;jre&#39;,
+    }
+
+    # ensure we first install java, the package and then the rest
+    Anchor[&#39;elasticsearch::begin&#39;]
+    -&gt; Class[&#39;::java&#39;]
+    -&gt; Class[&#39;elasticsearch::package&#39;]
+  }
+
+  if $package_pin {
+    class { &#39;elasticsearch::package::pin&#39;:
+      before =&gt; Class[&#39;elasticsearch::package&#39;],
+    }
+  }
+
+  if ($manage_repo == true) {
+
+    if ($repo_stage == false) {
+      # use anchor for ordering
+
+      # Set up repositories
+      class { &#39;elasticsearch::repo&#39;: }
+
+      # Ensure that we set up the repositories before trying to install
+      # the packages
+      Anchor[&#39;elasticsearch::begin&#39;]
+      -&gt; Class[&#39;elasticsearch::repo&#39;]
+      -&gt; Class[&#39;elasticsearch::package&#39;]
+
+    } else {
+      # use staging for ordering
+
+      if !(defined(Stage[$repo_stage])) {
+        stage { $repo_stage:  before =&gt; Stage[&#39;main&#39;] }
+      }
+
+      class { &#39;elasticsearch::repo&#39;:
+        stage =&gt; $repo_stage,
+      }
+    }
+
+    if defined(Class[&#39;elasticsearch::package::pin&#39;]) {
+      Class[&#39;elasticsearch::package::pin&#39;]
+      -&gt; Class[&#39;elasticsearch::repo&#39;]
+    }
+
+  }
+
+  #### Manage relationships
+  #
+  # Note that many of these overly verbose declarations work around
+  # https://tickets.puppetlabs.com/browse/PUP-1410
+  # which means clean arrow order chaining won&#39;t work if someone, say,
+  # doesn&#39;t declare any plugins.
+  #
+  # forgive me for what you&#39;re about to see
+
+  if $ensure == &#39;present&#39; {
+
+    # Anchor, installation, and configuration
+    Anchor[&#39;elasticsearch::begin&#39;]
+    -&gt; Class[&#39;elasticsearch::package&#39;]
+    -&gt; Class[&#39;elasticsearch::config&#39;]
+
+    # Top-level ordering bindings for resources.
+    Class[&#39;elasticsearch::config&#39;]
+    -&gt; Elasticsearch::Plugin &lt;| ensure == &#39;present&#39; or ensure == &#39;installed&#39; |&gt;
+    Elasticsearch::Plugin &lt;| ensure == &#39;absent&#39; |&gt;
+    -&gt; Class[&#39;elasticsearch::config&#39;]
+    Class[&#39;elasticsearch::config&#39;]
+    -&gt; Elasticsearch::Instance &lt;| |&gt;
+    Class[&#39;elasticsearch::config&#39;]
+    -&gt; Elasticsearch::Shield::User &lt;| |&gt;
+    Class[&#39;elasticsearch::config&#39;]
+    -&gt; Elasticsearch::Shield::Role &lt;| |&gt;
+    Class[&#39;elasticsearch::config&#39;]
+    -&gt; Elasticsearch::Template &lt;| |&gt;
+
+  } else {
+
+    # Main anchor and included classes
+    Anchor[&#39;elasticsearch::begin&#39;]
+    -&gt; Class[&#39;elasticsearch::config&#39;]
+    -&gt; Class[&#39;elasticsearch::package&#39;]
+
+    # Top-level ordering bindings for resources.
+    Anchor[&#39;elasticsearch::begin&#39;]
+    -&gt; Elasticsearch::Plugin &lt;| |&gt;
+    -&gt; Class[&#39;elasticsearch::config&#39;]
+    Anchor[&#39;elasticsearch::begin&#39;]
+    -&gt; Elasticsearch::Instance &lt;| |&gt;
+    -&gt; Class[&#39;elasticsearch::config&#39;]
+    Anchor[&#39;elasticsearch::begin&#39;]
+    -&gt; Elasticsearch::Shield::User &lt;| |&gt;
+    -&gt; Class[&#39;elasticsearch::config&#39;]
+    Anchor[&#39;elasticsearch::begin&#39;]
+    -&gt; Elasticsearch::Shield::Role &lt;| |&gt;
+    -&gt; Class[&#39;elasticsearch::config&#39;]
+    Anchor[&#39;elasticsearch::begin&#39;]
+    -&gt; Elasticsearch::Template &lt;| |&gt;
+    -&gt; Class[&#39;elasticsearch::config&#39;]
+
+  }
+
+  # Install plugins before managing instances or shield users/roles
+  Elasticsearch::Plugin &lt;| ensure == &#39;present&#39; or ensure == &#39;installed&#39; |&gt;
+  -&gt; Elasticsearch::Instance &lt;| |&gt;
+  Elasticsearch::Plugin &lt;| ensure == &#39;present&#39; or ensure == &#39;installed&#39; |&gt;
+  -&gt; Elasticsearch::Shield::User &lt;| |&gt;
+  Elasticsearch::Plugin &lt;| ensure == &#39;present&#39; or ensure == &#39;installed&#39; |&gt;
+  -&gt; Elasticsearch::Shield::Role &lt;| |&gt;
+
+  # Remove plugins after managing shield users/roles
+  Elasticsearch::Shield::User &lt;| |&gt;
+  -&gt; Elasticsearch::Plugin &lt;| ensure == &#39;absent&#39; |&gt;
+  Elasticsearch::Shield::Role &lt;| |&gt;
+  -&gt; Elasticsearch::Plugin &lt;| ensure == &#39;absent&#39; |&gt;
+
+  # Ensure roles are defined before managing users that reference roles
+  Elasticsearch::Shield::Role &lt;| |&gt;
+  -&gt; Elasticsearch::Shield::User &lt;| ensure == &#39;present&#39; |&gt;
+  # Ensure users are removed before referenced roles are managed
+  Elasticsearch::Shield::User &lt;| ensure == &#39;absent&#39; |&gt;
+  -&gt; Elasticsearch::Shield::Role &lt;| |&gt;
+
+  # Ensure users and roles are managed before calling out to templates
+  Elasticsearch::Shield::Role &lt;| |&gt;
+  -&gt; Elasticsearch::Template &lt;| |&gt;
+  Elasticsearch::Shield::User &lt;| |&gt;
+  -&gt; Elasticsearch::Template &lt;| |&gt;
+
+  # Manage users/roles before instances (req&#39;d to keep shield dir in sync)
+  Elasticsearch::Shield::Role &lt;| |&gt;
+  -&gt; Elasticsearch::Instance &lt;| |&gt;
+  Elasticsearch::Shield::User &lt;| |&gt;
+  -&gt; Elasticsearch::Instance &lt;| |&gt;
+
+  # Ensure instances are started before managing templates
+  Elasticsearch::Instance &lt;| ensure == &#39;present&#39; |&gt;
+  -&gt; Elasticsearch::Template &lt;| |&gt;
+  # Ensure instances are stopped after managing templates
+  Elasticsearch::Template &lt;| |&gt;
+  -&gt; Elasticsearch::Instance &lt;| ensure == &#39;absent&#39; |&gt;
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: autofs
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::autofs";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">autofs</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: autofs</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-ea3iov/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class provides for the configuration of <code>autofs</code></p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>master_map_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;auto.master&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The default map name for the master map</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mount_timeout</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>600</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; GENERAL SYSTEM DEFAULTS CONFIGURATION -&gt; TIMEOUT</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>negative_timeout</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>60</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; GENERAL SYSTEM DEFAULTS CONFIGURATION -&gt; NEGATIVE_TIMEOUT</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mount_wait</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type: Integer
+See: auto.master(5) -&gt; GENERAL SYSTEM DEFAULTS CONFIGURATION -&gt; MOUNT_WAIT</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>umount_wait</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; GENERAL SYSTEM DEFAULTS CONFIGURATION -&gt; MOUNT_WAIT</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>browse_mode</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; GENERAL SYSTEM DEFAULTS CONFIGURATION -&gt; BROWSE_MODE</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>append_options</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type: [yes|no]
+See: auto.master(5) -&gt; GENERAL SYSTEM DEFAULTS CONFIGURATION -&gt; APPEND_OPTIONS</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logging</span>
+      
+      
+        <span class='type'>(<tt>Enum['none','verbose','debug']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;none&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Type: [none|verbose|debug]
+See: auto.master(5) -&gt; GENERAL SYSTEM DEFAULTS CONFIGURATION -&gt; LOGGING</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_uri</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Uri]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; LDAP_TIMEOUT</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; LDAP_TIMEOUT</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_network_timeout</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; LDAP_NETWORK_TIMEOUT</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>search_base</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; SEARCH_BASE</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>map_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; MAP_OBJECT_CLASS</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_object_class</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; ENTRY_OBJECT_CLASS</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>map_attribute</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; MAP_ATTRIBUTE</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>entry_attribute</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; ENTRY_ATTRIBUTE</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value_attribute</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>See: auto.master(5) -&gt; LDAP MAPS -&gt; VALUE_ATTRIBUTE</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>map_hash_table_size</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Set the map cache hash table size</p>
+
+<ul>
+  <li>Should be a power of 2 with a ratio roughly between 1:10 and 1:20 for
+each map</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_misc_device</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If the kernel supports using the autofs miscellanous device, and you wish
+to use it, you must set this configuration option to <code>yes</code> otherwise it
+will not be used</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options to append to the automount application at start time</p>
+
+<ul>
+  <li>See <code>automount(8)</code> for details</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>samba_package_ensure</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::package_ensure&#39;, { &#39;default_value&#39; =&gt; &#39;installed&#39; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The value to pass to the <code>ensure</code> parameter of the <code>samba-utils</code> package.
+Defaults to <code>simp_options::package_ensure</code> or <code>installed</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>autofs_package_ensure</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::package_ensure&#39;, { &#39;default_value&#39; =&gt; &#39;installed&#39; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The value to pass to the <code>ensure</code> parameter of the <code>autofs</code> package.
+Defaults to <code>simp_options::package_ensure</code> or <code>installed</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable LDAP lookups</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pki</span>
+      
+      
+        <span class='type'>(<tt>Variant[Enum['simp'],Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::pki&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul>
+  <li>If ‘simp’, include SIMP’s pki module and use pki::copy to manage
+application certs in /etc/pki/simp_apps/autofs/x509</li>
+  <li>If true, do <em>not</em> include SIMP’s pki module, but still use pki::copy
+to manage certs in /etc/pki/simp_apps/autofs/x509</li>
+  <li>If false, do not include SIMP’s pki module and do not use pki::copy
+to manage certs.  You will need to appropriately assign a subset of:
+    <ul>
+      <li>app_pki_dir</li>
+      <li>app_pki_key</li>
+      <li>app_pki_cert</li>
+      <li>app_pki_ca</li>
+      <li>app_pki_ca_dir</li>
+    </ul>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>autoauto.master(5)</li>
+    
+      <li>automount(8)</li>
+    
+  </ul>
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-ea3iov/manifests/init.pp', line 102</span>
+
+class autofs (
+  String                         $master_map_name       = &#39;auto.master&#39;,
+  Integer                        $mount_timeout         = 600,
+  Integer                        $negative_timeout      = 60,
+  Optional[Integer]              $mount_wait            = undef,
+  Optional[Integer]              $umount_wait           = undef,
+  Boolean                        $browse_mode           = false,
+  Boolean                        $append_options        = true,
+  Enum[&#39;none&#39;,&#39;verbose&#39;,&#39;debug&#39;] $logging               = &#39;none&#39;,
+  Optional[Simplib::Uri]         $ldap_uri              = undef,
+  Optional[Integer]              $ldap_timeout          = undef,
+  Optional[Integer]              $ldap_network_timeout  = undef,
+  Optional[String]               $search_base           = undef,
+  Optional[String]               $map_object_class      = undef,
+  Optional[String]               $entry_object_class    = undef,
+  Optional[String]               $map_attribute         = undef,
+  Optional[String]               $entry_attribute       = undef,
+  Optional[String]               $value_attribute       = undef,
+  Optional[Integer]              $map_hash_table_size   = undef,
+  Boolean                        $use_misc_device       = true,
+  Optional[String]               $options               = undef,
+  String                         $samba_package_ensure  = simplib::lookup(&#39;simp_options::package_ensure&#39;, { &#39;default_value&#39; =&gt; &#39;installed&#39; }),
+  String                         $autofs_package_ensure = simplib::lookup(&#39;simp_options::package_ensure&#39;, { &#39;default_value&#39; =&gt; &#39;installed&#39; }),
+  Boolean                        $ldap                  = simplib::lookup(&#39;simp_options::ldap&#39;, { &#39;default_value&#39; =&gt; false }),
+  Variant[Enum[&#39;simp&#39;],Boolean]  $pki                   = simplib::lookup(&#39;simp_options::pki&#39;, { &#39;default_value&#39; =&gt; false })
+) {
+
+  contain &#39;::autofs::install&#39;
+  contain &#39;::autofs::service&#39;
+
+  file { &#39;/etc/sysconfig/autofs&#39;:
+    ensure  =&gt; &#39;file&#39;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0640&#39;,
+    content =&gt; template(&quot;autofs/etc/sysconfig/autofs.erb&quot;),
+    require =&gt; Class[&#39;autofs::install&#39;],
+    notify  =&gt; Class[&#39;autofs::service&#39;]
+  }
+
+  Class[&#39;autofs::install&#39;] ~&gt; Class[&#39;autofs::service&#39;]
+
+  if $ldap {
+    include &#39;::autofs::ldap_auth&#39;
+
+    Class[&#39;autofs::ldap_auth&#39;] ~&gt; Class[&#39;autofs::service&#39;]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

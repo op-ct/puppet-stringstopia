@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp::scenario::base
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp::scenario::base";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp::scenario::base</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp::scenario::base</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>::simp</dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/scenario/base.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p><strong>NOTE: THIS IS A <a href="https://github.com/puppetlabs/puppetlabs-stdlib#assert_private">PRIVATE</a> CLASS</strong></p>
+
+<p>This class provides the basis of what a native SIMP system should
+be. It is expected that users may deviate from this configuration
+over time, but this should be an effective starting place.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>mail_server</span>
+      
+      
+        <span class='type'>(<tt>Variant[Boolean,Enum['remote']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::mail_server</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Install a local mail service on the system</p>
+
+<ul>
+  <li>If <code>true</code> will install only a locally usable MTA</li>
+  <li>If <code>remote</code> will install a full mail server capable of processing
+remote connections
+    <ul>
+      <li>If you use a remote server, you’ll need to set the appropriate
+parameters for the <code>postfix</code> class</li>
+    </ul>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rsync_stunnel</span>
+      
+      
+        <span class='type'>(<tt>Variant[Boolean,Simplib::Host]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::rsync_stunnel</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The rsync server from which files should be retrieved</p>
+
+<ul>
+  <li>May be set to <code>false</code> to disable the rsync stunnel connection</li>
+  <li>If unset, will default to the Puppet server itself</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_ssh_global_known_hosts</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::use_ssh_global_known_hosts</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Boolean
+If true, use the ssh_global_known_hosts function to gather the various host
+SSH public keys and populate the /etc/ssh/known_hosts file.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppet_server_hosts_entry</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::puppet_server_hosts_entry</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Add a <code>host</code> entry for the Puppet server to the catalog</p>
+
+<ul>
+  <li>This has no effect if the <code>$server_facts</code> Hash is not populated</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_sudoers_aliases</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::use_sudoers_aliases</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, enable simp site sudoers aliases</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>runlevel</span>
+      
+      
+        <span class='type'>(<tt>Simp::Runlevel</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::runlevel</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The default runlevel to which the system should be set</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restrict_max_logins</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::restrict_max_logins</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable restrictions of the number of simultaneous logins a user may have</p>
+
+<ul>
+  <li>Has no effect if <code>$pam</code> is <code>false</code></li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_ctrl_alt_del</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::manage_ctrl_alt_del</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Include the <code>simp::ctrl_alt_del</code> class, which, by default, disables the
+use of ctrl_alt_del and logs all instances of the event.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_root_metadata</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::manage_root_metadata</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Include the <code>simp::root_user</code> class, which manages resources related to
+the <code>root</code> user</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_root_perms</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::manage_root_perms</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Ensure that <code>/root</code> has restricted permissions and proper SELinux
+contexts</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_rc_local</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::manage_rc_local</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Include the <code>simp::rc_local</code> class</p>
+
+<ul>
+  <li>This <strong>disables</strong> rc.local by default but you may also use it to set
+custom content</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pam</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::pam</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable management of PAM resources via SIMP modules</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sssd</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::sssd</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable management of SSSD resources via SIMP modules</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::ldap</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable management of LDAP resources via SIMP modules</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>stock_sssd</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::simp::stock_sssd</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Add a default setup that will successfully connect to the SIMP LDAP server,
+if enabled, and will otherwise provide a functional SSSD stack for the
+system</p>
+
+<ul>
+  <li>Has no effect if <code>$sssd</code> is <code>false</code></li>
+</ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/scenario/base.pp', line 78</span>
+
+class simp::scenario::base (
+  Variant[Boolean,Enum[&#39;remote&#39;]] $mail_server                = $::simp::mail_server,
+  Variant[Boolean,Simplib::Host]  $rsync_stunnel              = $::simp::rsync_stunnel,
+  Boolean                         $use_ssh_global_known_hosts = $::simp::use_ssh_global_known_hosts,
+  Boolean                         $puppet_server_hosts_entry  = $::simp::puppet_server_hosts_entry,
+  Boolean                         $use_sudoers_aliases        = $::simp::use_sudoers_aliases,
+  Simp::Runlevel                  $runlevel                   = $::simp::runlevel,
+  Boolean                         $restrict_max_logins        = $::simp::restrict_max_logins,
+  Boolean                         $manage_ctrl_alt_del        = $::simp::manage_ctrl_alt_del,
+  Boolean                         $manage_root_metadata       = $::simp::manage_root_metadata,
+  Boolean                         $manage_root_perms          = $::simp::manage_root_perms,
+  Boolean                         $manage_rc_local            = $::simp::manage_rc_local,
+  Boolean                         $pam                        = $::simp::pam,
+  Boolean                         $ldap                       = $::simp::ldap,
+  Boolean                         $sssd                       = $::simp::sssd,
+  Boolean                         $stock_sssd                 = $::simp::stock_sssd
+) inherits ::simp {
+
+  assert_private()
+
+  runlevel { to_string($runlevel): }
+
+  if ($sssd and $stock_sssd) { include &#39;::simp::sssd::client&#39; }
+
+  if $use_sudoers_aliases { include &#39;::simp::sudoers&#39; }
+
+  if $manage_ctrl_alt_del { include &#39;::simp::ctrl_alt_del&#39; }
+
+  if $manage_root_metadata { include &#39;::simp::root_user&#39; }
+
+  if ($restrict_max_logins and $pam) { include &#39;::simp::pam_limits::max_logins&#39; }
+
+  if $mail_server == &#39;remote&#39; {
+    include &#39;::postfix::server&#39;
+  }
+  elsif $mail_server {
+    include &#39;::postfix&#39;
+  }
+
+  if $ldap {
+    include &#39;::simp_openldap::client&#39;
+  }
+
+  if $manage_rc_local { include &#39;::simp::rc_local&#39; }
+
+  if $puppet_server_hosts_entry {
+    if getvar(&#39;server_facts&#39;) and $server_facts[&#39;servername&#39;] and $server_facts[&#39;serverip&#39;] {
+      $_pserver_alias = split($server_facts[&#39;servername&#39;],&#39;.&#39;)[0]
+
+      host { $server_facts[&#39;servername&#39;]:
+        ensure       =&gt; &#39;present&#39;,
+        host_aliases =&gt; $_pserver_alias,
+        ip           =&gt; $server_facts[&#39;serverip&#39;]
+      }
+    }
+  }
+
+  if $use_ssh_global_known_hosts {
+    ssh_global_known_hosts()
+
+    sshkey_prune { &#39;/etc/ssh/ssh_known_hosts&#39;: }
+  }
+
+  if $rsync_stunnel {
+    if $rsync_stunnel == true  {
+      $_rsync_stunnel_svr = $server_facts ? {
+        Hash    =&gt; $server_facts[&#39;serverip&#39;],
+        default =&gt; $facts[&#39;puppet_settings&#39;][&#39;agent&#39;][&#39;server&#39;]
+      }
+    }
+    else {
+      $_rsync_stunnel_svr = $rsync_stunnel
+    }
+
+    if !host_is_me($_rsync_stunnel_svr) {
+      stunnel::connection { &#39;rsync&#39;:
+        connect =&gt; [&quot;${_rsync_stunnel_svr}:8730&quot;],
+        accept  =&gt; &#39;127.0.0.1:873&#39;
+      }
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,4515 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: apache::vhost
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::apache::vhost";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">apache::vhost</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: apache::vhost</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/vhost.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>See README.md for usage information</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>docroot</span>
+      
+      
+        <span class='type'>(<tt>Variant[Boolean,String]</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_docroot</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>virtual_docroot</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>port</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ip</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ip_based</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>add_listen</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>docroot_owner</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;root&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>docroot_group</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::root_group</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>docroot_mode</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>serveradmin</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_cert</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::default_ssl_cert</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_key</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::default_ssl_key</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_chain</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::default_ssl_chain</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_ca</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::default_ssl_ca</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_crl_path</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::default_ssl_crl_path</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_crl</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::default_ssl_crl</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_crl_check</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::default_ssl_crl_check</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_certs_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::ssl_certs_dir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_protocol</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_cipher</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_honorcipherorder</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_verify_client</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_verify_depth</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxy_verify</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['none', 'optional', 'require', 'optional_no_ca']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxy_verify_depth</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer[0]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxy_ca_cert</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxy_check_peer_cn</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['on', 'off']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxy_check_peer_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['on', 'off']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxy_check_peer_expire</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['on', 'off']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxy_machine_cert</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxy_protocol</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_options</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_openssl_conf_cmd</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_proxyengine</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_stapling</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_stapling_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ssl_stapling_return_errors</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>priority</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_vhost</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>servername</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$name</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>serveraliases</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&#39;Indexes&#39;,&#39;FollowSymLinks&#39;,&#39;MultiViews&#39;]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>override</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&#39;None&#39;]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>directoryindex</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>vhost_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;*&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logroot</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::logroot</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logroot_ensure</span>
+      
+      
+        <span class='type'>(<tt>Enum['directory', 'absent']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;directory&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logroot_mode</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logroot_owner</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logroot_group</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_level</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_log</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_log_file</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_log_pipe</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_log_syslog</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_log_format</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_log_env_var</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>access_logs</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>aliases</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>directories</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Hash, Array[Variant[Array,Hash]]]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>error_log</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>error_log_file</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>error_log_pipe</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>error_log_syslog</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>http_protocol_options</span>
+      
+      
+        <span class='type'>(<tt>Optional[Pattern[/^((Strict|Unsafe)?\s*(\b(Registered|Lenient)Methods)?\s*(\b(Allow0\.9|Require1\.0))?)$/]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_audit_log</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_audit_log_file</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_audit_log_pipe</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>error_documents</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fallbackresource</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Stdlib::Absolutepath, Enum['disabled']]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>scriptalias</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>scriptaliases</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_dest</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_dest_match</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_dest_reverse_match</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_pass</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_pass_match</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>suphp_addhandler</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::suphp_addhandler</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>suphp_engine</span>
+      
+      
+        <span class='type'>(<tt>Enum['on', 'off']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::suphp_engine</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>suphp_configpath</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::params::suphp_configpath</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>php_flags</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>php_values</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>php_admin_flags</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>php_admin_values</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>no_proxy_uris</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>no_proxy_uris_match</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_preserve_host</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_add_headers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>proxy_error_override</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>redirect_source</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>redirect_dest</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>redirect_status</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>redirectmatch_status</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>redirectmatch_regexp</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>redirectmatch_dest</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rack_base_uris</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_base_uris</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>headers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>request_headers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>filters</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rewrites</span>
+      
+      
+        <span class='type'>(<tt>Optional[Array]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rewrite_base</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rewrite_rule</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rewrite_cond</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>rewrite_inherit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>setenv</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>setenvif</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>setenvifnocase</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>block</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ensure</span>
+      
+      
+        <span class='type'>(<tt>Enum['absent', 'present']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_application_group</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_daemon_process</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_daemon_process_options</span>
+      
+      
+        <span class='type'>(<tt>Optional[Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_import_script</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_import_script_options</span>
+      
+      
+        <span class='type'>(<tt>Optional[Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_process_group</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_script_aliases_match</span>
+      
+      
+        <span class='type'>(<tt>Optional[Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_script_aliases</span>
+      
+      
+        <span class='type'>(<tt>Optional[Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_pass_authorization</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['on', 'off', 'On', 'Off']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>wsgi_chunked_request</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_fragment</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>itk</span>
+      
+      
+        <span class='type'>(<tt>Optional[Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>action</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fastcgi_server</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fastcgi_socket</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fastcgi_dir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fastcgi_idle_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>additional_includes</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_optional_includes</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::use_optional_includes</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>apache_version</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::apache::apache_version</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allow_encoded_slashes</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['on', 'off', 'nodecode']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>suexec_user_group</span>
+      
+      
+        <span class='type'>(<tt>Optional[Pattern[/^[\w-]+ [\w-]+$/]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_app_root</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_app_env</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_ruby</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_min_instances</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_max_requests</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_start_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_pre_start</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_user</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_high_performance</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_nodejs</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_sticky_sessions</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>passenger_startup_file</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>add_default_charset</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_disable_vhost</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_disable_ids</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Hash, Array]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_disable_ips</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_disable_msgs</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Hash, Array]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_disable_tags</span>
+      
+      
+        <span class='type'>(<tt>Optional[Variant[Hash, Array]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>modsec_body_limit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>jk_mounts</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>auth_kerb</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_method_negotiate</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;on&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_method_k5passwd</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;on&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_authoritative</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;on&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_auth_realms</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_5keytab</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_local_user_mapping</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_verify_kdc</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;on&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_servicename</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;HTTP&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>krb_save_credentials</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;off&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keepalive</span>
+      
+      
+        <span class='type'>(<tt>Optional[Enum['on', 'off']]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keepalive_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_keepalive_requests</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cas_attribute_prefix</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cas_attribute_delimiter</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cas_scrub_request_headers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cas_sso_enabled</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cas_login_url</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cas_validate_url</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cas_validate_saml</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+1044
+1045
+1046
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/vhost.pp', line 2</span>
+
+define apache::vhost(
+  Variant[Boolean,String] $docroot,
+  $manage_docroot                                                                   = true,
+  $virtual_docroot                                                                  = false,
+  $port                                                                             = undef,
+  $ip                                                                               = undef,
+  Boolean $ip_based                                                                 = false,
+  $add_listen                                                                       = true,
+  $docroot_owner                                                                    = &#39;root&#39;,
+  $docroot_group                                                                    = $::apache::params::root_group,
+  $docroot_mode                                                                     = undef,
+  $serveradmin                                                                      = undef,
+  Boolean $ssl                                                                      = false,
+  $ssl_cert                                                                         = $::apache::default_ssl_cert,
+  $ssl_key                                                                          = $::apache::default_ssl_key,
+  $ssl_chain                                                                        = $::apache::default_ssl_chain,
+  $ssl_ca                                                                           = $::apache::default_ssl_ca,
+  $ssl_crl_path                                                                     = $::apache::default_ssl_crl_path,
+  $ssl_crl                                                                          = $::apache::default_ssl_crl,
+  $ssl_crl_check                                                                    = $::apache::default_ssl_crl_check,
+  $ssl_certs_dir                                                                    = $::apache::params::ssl_certs_dir,
+  $ssl_protocol                                                                     = undef,
+  $ssl_cipher                                                                       = undef,
+  $ssl_honorcipherorder                                                             = undef,
+  $ssl_verify_client                                                                = undef,
+  $ssl_verify_depth                                                                 = undef,
+  Optional[Enum[&#39;none&#39;, &#39;optional&#39;, &#39;require&#39;, &#39;optional_no_ca&#39;]] $ssl_proxy_verify = undef,
+  Optional[Integer[0]] $ssl_proxy_verify_depth                                      = undef,
+  $ssl_proxy_ca_cert                                                                = undef,
+  Optional[Enum[&#39;on&#39;, &#39;off&#39;]] $ssl_proxy_check_peer_cn                              = undef,
+  Optional[Enum[&#39;on&#39;, &#39;off&#39;]] $ssl_proxy_check_peer_name                            = undef,
+  Optional[Enum[&#39;on&#39;, &#39;off&#39;]] $ssl_proxy_check_peer_expire                          = undef,
+  $ssl_proxy_machine_cert                                                           = undef,
+  $ssl_proxy_protocol                                                               = undef,
+  $ssl_options                                                                      = undef,
+  $ssl_openssl_conf_cmd                                                             = undef,
+  Boolean $ssl_proxyengine                                                          = false,
+  Optional[Boolean] $ssl_stapling                                                   = undef,
+  $ssl_stapling_timeout                                                             = undef,
+  $ssl_stapling_return_errors                                                       = undef,
+  $priority                                                                         = undef,
+  Boolean $default_vhost                                                            = false,
+  $servername                                                                       = $name,
+  $serveraliases                                                                    = [],
+  $options                                                                          = [&#39;Indexes&#39;,&#39;FollowSymLinks&#39;,&#39;MultiViews&#39;],
+  $override                                                                         = [&#39;None&#39;],
+  $directoryindex                                                                   = &#39;&#39;,
+  $vhost_name                                                                       = &#39;*&#39;,
+  $logroot                                                                          = $::apache::logroot,
+  Enum[&#39;directory&#39;, &#39;absent&#39;] $logroot_ensure                                       = &#39;directory&#39;,
+  $logroot_mode                                                                     = undef,
+  $logroot_owner                                                                    = undef,
+  $logroot_group                                                                    = undef,
+  $log_level                                                                        = undef,
+  Boolean $access_log                                                               = true,
+  $access_log_file                                                                  = false,
+  $access_log_pipe                                                                  = false,
+  $access_log_syslog                                                                = false,
+  $access_log_format                                                                = false,
+  $access_log_env_var                                                               = false,
+  Optional[Array] $access_logs                                                      = undef,
+  $aliases                                                                          = undef,
+  Optional[Variant[Hash, Array[Variant[Array,Hash]]]] $directories                  = undef,
+  Boolean $error_log                                                                = true,
+  $error_log_file                                                                   = undef,
+  $error_log_pipe                                                                   = undef,
+  $error_log_syslog                                                                 = undef,
+  Optional[Pattern[/^((Strict|Unsafe)?\s*(\b(Registered|Lenient)Methods)?\s*(\b(Allow0\.9|Require1\.0))?)$/]] $http_protocol_options = undef,
+  $modsec_audit_log                                                                 = undef,
+  $modsec_audit_log_file                                                            = undef,
+  $modsec_audit_log_pipe                                                            = undef,
+  $error_documents                                                                  = [],
+  Optional[Variant[Stdlib::Absolutepath, Enum[&#39;disabled&#39;]]] $fallbackresource       = undef,
+  $scriptalias                                                                      = undef,
+  $scriptaliases                                                                    = [],
+  $proxy_dest                                                                       = undef,
+  $proxy_dest_match                                                                 = undef,
+  $proxy_dest_reverse_match                                                         = undef,
+  $proxy_pass                                                                       = undef,
+  $proxy_pass_match                                                                 = undef,
+  $suphp_addhandler                                                                 = $::apache::params::suphp_addhandler,
+  Enum[&#39;on&#39;, &#39;off&#39;] $suphp_engine                                                   = $::apache::params::suphp_engine,
+  $suphp_configpath                                                                 = $::apache::params::suphp_configpath,
+  $php_flags                                                                        = {},
+  $php_values                                                                       = {},
+  $php_admin_flags                                                                  = {},
+  $php_admin_values                                                                 = {},
+  $no_proxy_uris                                                                    = [],
+  $no_proxy_uris_match                                                              = [],
+  $proxy_preserve_host                                                              = false,
+  $proxy_add_headers                                                                = undef,
+  $proxy_error_override                                                             = false,
+  $redirect_source                                                                  = &#39;/&#39;,
+  $redirect_dest                                                                    = undef,
+  $redirect_status                                                                  = undef,
+  $redirectmatch_status                                                             = undef,
+  $redirectmatch_regexp                                                             = undef,
+  $redirectmatch_dest                                                               = undef,
+  $rack_base_uris                                                                   = undef,
+  $passenger_base_uris                                                              = undef,
+  $headers                                                                          = undef,
+  $request_headers                                                                  = undef,
+  $filters                                                                          = undef,
+  Optional[Array] $rewrites                                                         = undef,
+  $rewrite_base                                                                     = undef,
+  $rewrite_rule                                                                     = undef,
+  $rewrite_cond                                                                     = undef,
+  $rewrite_inherit                                                                  = false,
+  $setenv                                                                           = [],
+  $setenvif                                                                         = [],
+  $setenvifnocase                                                                   = [],
+  $block                                                                            = [],
+  Enum[&#39;absent&#39;, &#39;present&#39;] $ensure                                                 = &#39;present&#39;,
+  $wsgi_application_group                                                           = undef,
+  $wsgi_daemon_process                                                              = undef,
+  Optional[Hash] $wsgi_daemon_process_options                                       = undef,
+  $wsgi_import_script                                                               = undef,
+  Optional[Hash] $wsgi_import_script_options                                        = undef,
+  $wsgi_process_group                                                               = undef,
+  Optional[Hash] $wsgi_script_aliases_match                                         = undef,
+  Optional[Hash] $wsgi_script_aliases                                               = undef,
+  Optional[Enum[&#39;on&#39;, &#39;off&#39;, &#39;On&#39;, &#39;Off&#39;]] $wsgi_pass_authorization                 = undef,
+  $wsgi_chunked_request                                                             = undef,
+  Optional[String] $custom_fragment                                                 = undef,
+  Optional[Hash] $itk                                                               = undef,
+  $action                                                                           = undef,
+  $fastcgi_server                                                                   = undef,
+  $fastcgi_socket                                                                   = undef,
+  $fastcgi_dir                                                                      = undef,
+  $fastcgi_idle_timeout                                                             = undef,
+  $additional_includes                                                              = [],
+  $use_optional_includes                                                            = $::apache::use_optional_includes,
+  $apache_version                                                                   = $::apache::apache_version,
+  Optional[Enum[&#39;on&#39;, &#39;off&#39;, &#39;nodecode&#39;]] $allow_encoded_slashes                    = undef,
+  Optional[Pattern[/^[\w-]+ [\w-]+$/]] $suexec_user_group                           = undef,
+  $passenger_app_root                                                               = undef,
+  $passenger_app_env                                                                = undef,
+  $passenger_ruby                                                                   = undef,
+  $passenger_min_instances                                                          = undef,
+  $passenger_max_requests                                                           = undef,
+  $passenger_start_timeout                                                          = undef,
+  $passenger_pre_start                                                              = undef,
+  $passenger_user                                                                   = undef,
+  $passenger_high_performance                                                       = undef,
+  $passenger_nodejs                                                                 = undef,
+  Optional[Boolean] $passenger_sticky_sessions                                      = undef,
+  $passenger_startup_file                                                           = undef,
+  $add_default_charset                                                              = undef,
+  $modsec_disable_vhost                                                             = undef,
+  Optional[Variant[Hash, Array]] $modsec_disable_ids                                = undef,
+  $modsec_disable_ips                                                               = undef,
+  Optional[Variant[Hash, Array]] $modsec_disable_msgs                               = undef,
+  Optional[Variant[Hash, Array]] $modsec_disable_tags                               = undef,
+  $modsec_body_limit                                                                = undef,
+  $jk_mounts                                                                        = undef,
+  Boolean $auth_kerb                                                                = false,
+  $krb_method_negotiate                                                             = &#39;on&#39;,
+  $krb_method_k5passwd                                                              = &#39;on&#39;,
+  $krb_authoritative                                                                = &#39;on&#39;,
+  $krb_auth_realms                                                                  = [],
+  $krb_5keytab                                                                      = undef,
+  $krb_local_user_mapping                                                           = undef,
+  $krb_verify_kdc                                                                   = &#39;on&#39;,
+  $krb_servicename                                                                  = &#39;HTTP&#39;,
+  $krb_save_credentials                                                             = &#39;off&#39;,
+  Optional[Enum[&#39;on&#39;, &#39;off&#39;]] $keepalive                                            = undef,
+  $keepalive_timeout                                                                = undef,
+  $max_keepalive_requests                                                           = undef,
+  $cas_attribute_prefix                                                             = undef,
+  $cas_attribute_delimiter                                                          = undef,
+  $cas_scrub_request_headers                                                        = undef,
+  $cas_sso_enabled                                                                  = undef,
+  $cas_login_url                                                                    = undef,
+  $cas_validate_url                                                                 = undef,
+  $cas_validate_saml                                                                = undef,
+) {
+
+  # The base class must be included first because it is used by parameter defaults
+  if ! defined(Class[&#39;apache&#39;]) {
+    fail(&#39;You must include the apache base class before using any apache defined resources&#39;)
+  }
+
+  $apache_name = $::apache::apache_name
+
+  if $rewrites {
+    unless empty($rewrites) {
+      $rewrites_flattened = delete_undef_values(flatten([$rewrites]))
+      assert_type(Array[Hash], $rewrites_flattened)
+    }
+  }
+
+  # Input validation begins
+
+  if $log_level {
+    validate_apache_log_level($log_level)
+  }
+
+  if $access_log_file and $access_log_pipe {
+    fail(&quot;Apache::Vhost[${name}]: &#39;access_log_file&#39; and &#39;access_log_pipe&#39; cannot be defined at the same time&quot;)
+  }
+
+  if $error_log_file and $error_log_pipe {
+    fail(&quot;Apache::Vhost[${name}]: &#39;error_log_file&#39; and &#39;error_log_pipe&#39; cannot be defined at the same time&quot;)
+  }
+
+  if $modsec_audit_log_file and $modsec_audit_log_pipe {
+    fail(&quot;Apache::Vhost[${name}]: &#39;modsec_audit_log_file&#39; and &#39;modsec_audit_log_pipe&#39; cannot be defined at the same time&quot;)
+  }
+
+  # Input validation ends
+
+  if $ssl and $ensure == &#39;present&#39; {
+    include ::apache::mod::ssl
+    # Required for the AddType lines.
+    include ::apache::mod::mime
+  }
+
+  if $auth_kerb and $ensure == &#39;present&#39; {
+    include ::apache::mod::auth_kerb
+  }
+
+  if $virtual_docroot {
+    include ::apache::mod::vhost_alias
+  }
+
+  if $wsgi_daemon_process {
+    include ::apache::mod::wsgi
+  }
+
+  if $suexec_user_group {
+    include ::apache::mod::suexec
+  }
+
+  if $passenger_app_root or $passenger_app_env or $passenger_ruby or $passenger_min_instances or $passenger_max_requests or $passenger_start_timeout or $passenger_pre_start or $passenger_user or $passenger_high_performance or $passenger_nodejs or $passenger_sticky_sessions or $passenger_startup_file {
+    include ::apache::mod::passenger
+  }
+
+  # Configure the defaultness of a vhost
+  if $priority {
+    $priority_real = &quot;${priority}-&quot;
+  } elsif $priority == false {
+    $priority_real = &#39;&#39;
+  } elsif $default_vhost {
+    $priority_real = &#39;10-&#39;
+  } else {
+    $priority_real = &#39;25-&#39;
+  }
+
+  ## Apache include does not always work with spaces in the filename
+  $filename = regsubst($name, &#39; &#39;, &#39;_&#39;, &#39;G&#39;)
+
+  # This ensures that the docroot exists
+  # But enables it to be specified across multiple vhost resources
+  if $manage_docroot and $docroot and ! defined(File[$docroot]) {
+    file { $docroot:
+      ensure  =&gt; directory,
+      owner   =&gt; $docroot_owner,
+      group   =&gt; $docroot_group,
+      mode    =&gt; $docroot_mode,
+      require =&gt; Package[&#39;httpd&#39;],
+      before  =&gt; Concat[&quot;${priority_real}${filename}.conf&quot;],
+    }
+  }
+
+  # Same as above, but for logroot
+  if ! defined(File[$logroot]) {
+    file { $logroot:
+      ensure  =&gt; $logroot_ensure,
+      owner   =&gt; $logroot_owner,
+      group   =&gt; $logroot_group,
+      mode    =&gt; $logroot_mode,
+      require =&gt; Package[&#39;httpd&#39;],
+      before  =&gt; Concat[&quot;${priority_real}${filename}.conf&quot;],
+    }
+  }
+
+
+  # Is apache::mod::passenger enabled (or apache::mod[&#39;passenger&#39;])
+  $passenger_enabled = defined(Apache::Mod[&#39;passenger&#39;])
+
+  # Is apache::mod::shib enabled (or apache::mod[&#39;shib2&#39;])
+  $shibboleth_enabled = defined(Apache::Mod[&#39;shib2&#39;])
+
+  # Is apache::mod::cas enabled (or apache::mod[&#39;cas&#39;])
+  $cas_enabled = defined(Apache::Mod[&#39;auth_cas&#39;])
+
+  if $access_log and !$access_logs {
+    if $access_log_file {
+      if $access_log_file =~ /^\// {
+        # Absolute path provided - don&#39;t prepend $logroot
+        $_logs_dest = $access_log_file
+      } else {
+        $_logs_dest = &quot;${logroot}/${access_log_file}&quot;
+      }
+    } elsif $access_log_pipe {
+      $_logs_dest = $access_log_pipe
+    } elsif $access_log_syslog {
+      $_logs_dest = $access_log_syslog
+    } else {
+      $_logs_dest = undef
+    }
+    $_access_logs = [{
+      &#39;file&#39;        =&gt; $access_log_file,
+      &#39;pipe&#39;        =&gt; $access_log_pipe,
+      &#39;syslog&#39;      =&gt; $access_log_syslog,
+      &#39;format&#39;      =&gt; $access_log_format,
+      &#39;env&#39;         =&gt; $access_log_env_var
+    }]
+  } elsif $access_logs {
+    $_access_logs = $access_logs
+  }
+
+  if $error_log_file {
+    if $error_log_file =~ /^\// {
+      # Absolute path provided - don&#39;t prepend $logroot
+      $error_log_destination = $error_log_file
+    } else {
+      $error_log_destination = &quot;${logroot}/${error_log_file}&quot;
+    }
+  } elsif $error_log_pipe {
+    $error_log_destination = $error_log_pipe
+  } elsif $error_log_syslog {
+    $error_log_destination = $error_log_syslog
+  } else {
+    if $ssl {
+      $error_log_destination = &quot;${logroot}/${name}_error_ssl.log&quot;
+    } else {
+      $error_log_destination = &quot;${logroot}/${name}_error.log&quot;
+    }
+  }
+
+  if $modsec_audit_log == false {
+    $modsec_audit_log_destination = undef
+  } elsif $modsec_audit_log_file {
+    $modsec_audit_log_destination = &quot;${logroot}/${modsec_audit_log_file}&quot;
+  } elsif $modsec_audit_log_pipe {
+    $modsec_audit_log_destination = $modsec_audit_log_pipe
+  } elsif $modsec_audit_log {
+    if $ssl {
+      $modsec_audit_log_destination = &quot;${logroot}/${name}_security_ssl.log&quot;
+    } else {
+      $modsec_audit_log_destination = &quot;${logroot}/${name}_security.log&quot;
+    }
+  } else {
+    $modsec_audit_log_destination = undef
+  }
+
+
+  if $ip {
+    $_ip = any2array(enclose_ipv6($ip))
+    if $port {
+      $_port = any2array($port)
+      $listen_addr_port = split(inline_template(&quot;&lt;%= @_ip.product(@_port).map {|x| x.join(&#39;:&#39;)  }.join(&#39;,&#39;)%&gt;&quot;), &#39;,&#39;)
+      $nvh_addr_port = split(inline_template(&quot;&lt;%= @_ip.product(@_port).map {|x| x.join(&#39;:&#39;)  }.join(&#39;,&#39;)%&gt;&quot;), &#39;,&#39;)
+    } else {
+      $listen_addr_port = undef
+      $nvh_addr_port = $_ip
+      if ! $servername and ! $ip_based {
+        fail(&quot;Apache::Vhost[${name}]: must pass &#39;ip&#39; and/or &#39;port&#39; parameters for name-based vhosts&quot;)
+      }
+    }
+  } else {
+    if $port {
+      $listen_addr_port = $port
+      $nvh_addr_port = prefix(any2array($port),&quot;${vhost_name}:&quot;)
+    } else {
+      $listen_addr_port = undef
+      $nvh_addr_port = $name
+      if ! $servername and $servername != &#39;&#39; {
+        fail(&quot;Apache::Vhost[${name}]: must pass &#39;ip&#39; and/or &#39;port&#39; parameters, and/or &#39;servername&#39; parameter&quot;)
+      }
+    }
+  }
+  if $add_listen {
+    if $ip and defined(Apache::Listen[&quot;${port}&quot;]) {
+      fail(&quot;Apache::Vhost[${name}]: Mixing IP and non-IP Listen directives is not possible; check the add_listen parameter of the apache::vhost define to disable this&quot;)
+    }
+    if $listen_addr_port and $ensure == &#39;present&#39; {
+      ensure_resource(&#39;apache::listen&#39;, $listen_addr_port)
+    }
+  }
+  if ! $ip_based {
+    if $ensure == &#39;present&#39; and (versioncmp($apache_version, &#39;2.4&#39;) &lt; 0) {
+      ensure_resource(&#39;apache::namevirtualhost&#39;, $nvh_addr_port)
+    }
+  }
+
+  # Load mod_rewrite if needed and not yet loaded
+  if $rewrites or $rewrite_cond {
+    if ! defined(Class[&#39;apache::mod::rewrite&#39;]) {
+      include ::apache::mod::rewrite
+    }
+  }
+
+  # Load mod_alias if needed and not yet loaded
+  if ($scriptalias or $scriptaliases != [])
+    or ($aliases and $aliases != [])
+    or ($redirect_source and $redirect_dest)
+    or ($redirectmatch_regexp or $redirectmatch_status or $redirectmatch_dest){
+    if ! defined(Class[&#39;apache::mod::alias&#39;])  and ($ensure == &#39;present&#39;) {
+      include ::apache::mod::alias
+    }
+  }
+
+  # Load mod_proxy if needed and not yet loaded
+  if ($proxy_dest or $proxy_pass or $proxy_pass_match or $proxy_dest_match) {
+    if ! defined(Class[&#39;apache::mod::proxy&#39;]) {
+      include ::apache::mod::proxy
+    }
+    if ! defined(Class[&#39;apache::mod::proxy_http&#39;]) {
+      include ::apache::mod::proxy_http
+    }
+  }
+
+  # Load mod_passenger if needed and not yet loaded
+  if $rack_base_uris {
+    if ! defined(Class[&#39;apache::mod::passenger&#39;]) {
+      include ::apache::mod::passenger
+    }
+  }
+
+  # Load mod_passenger if needed and not yet loaded
+  if $passenger_base_uris {
+      include ::apache::mod::passenger
+  }
+
+  # Load mod_fastci if needed and not yet loaded
+  if $fastcgi_server and $fastcgi_socket {
+    if ! defined(Class[&#39;apache::mod::fastcgi&#39;]) {
+      include ::apache::mod::fastcgi
+    }
+  }
+
+  # Check if mod_headers is required to process $headers/$request_headers
+  if $headers or $request_headers {
+    if ! defined(Class[&#39;apache::mod::headers&#39;]) {
+      include ::apache::mod::headers
+    }
+  }
+
+  # Check if mod_filter is required to process $filters
+  if $filters {
+    if ! defined(Class[&#39;apache::mod::filter&#39;]) {
+      include ::apache::mod::filter
+    }
+  }
+
+  # Check if mod_env is required and not yet loaded.
+  # create an expression to simplify the conditional check
+  $use_env_mod = $setenv and ! empty($setenv)
+  if ($use_env_mod) {
+    if ! defined(Class[&#39;apache::mod::env&#39;]) {
+      include ::apache::mod::env
+    }
+  }
+  # Check if mod_setenvif is required and not yet loaded.
+  # create an expression to simplify the conditional check
+  $use_setenvif_mod = ($setenvif and ! empty($setenvif)) or ($setenvifnocase and ! empty($setenvifnocase))
+
+  if ($use_setenvif_mod) {
+    if ! defined(Class[&#39;apache::mod::setenvif&#39;]) {
+      include ::apache::mod::setenvif
+    }
+  }
+
+  ## Create a default directory list if none defined
+  if $directories {
+    $_directories = $directories
+  } elsif $docroot {
+    $_directory = {
+      provider       =&gt; &#39;directory&#39;,
+      path           =&gt; $docroot,
+      options        =&gt; $options,
+      allow_override =&gt; $override,
+      directoryindex =&gt; $directoryindex,
+    }
+
+    if versioncmp($apache_version, &#39;2.4&#39;) &gt;= 0 {
+      $_directory_version = {
+        require =&gt; &#39;all granted&#39;,
+      }
+    } else {
+      $_directory_version = {
+        order =&gt; &#39;allow,deny&#39;,
+        allow =&gt; &#39;from all&#39;,
+      }
+    }
+
+    $_directories = [ merge($_directory, $_directory_version) ]
+  } else {
+    $_directories = undef
+  }
+
+  ## Create a global LocationMatch if locations aren&#39;t defined
+  if $modsec_disable_ids {
+    if $modsec_disable_ids =~ Array {
+      $_modsec_disable_ids = { &#39;.*&#39; =&gt; $modsec_disable_ids }
+    } else {
+      $_modsec_disable_ids = $modsec_disable_ids
+    }
+  }
+
+  if $modsec_disable_msgs {
+    if $modsec_disable_msgs =~ Array {
+      $_modsec_disable_msgs = { &#39;.*&#39; =&gt; $modsec_disable_msgs }
+    } else {
+      $_modsec_disable_msgs = $modsec_disable_msgs
+    }
+  }
+
+  if $modsec_disable_tags {
+    if $modsec_disable_tags =~ Array {
+      $_modsec_disable_tags = { &#39;.*&#39; =&gt; $modsec_disable_tags }
+    } else {
+      $_modsec_disable_tags = $modsec_disable_tags
+    }
+  }
+
+  concat { &quot;${priority_real}${filename}.conf&quot;:
+    ensure  =&gt; $ensure,
+    path    =&gt; &quot;${::apache::vhost_dir}/${priority_real}${filename}.conf&quot;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; $::apache::params::root_group,
+    mode    =&gt; $::apache::file_mode,
+    order   =&gt; &#39;numeric&#39;,
+    require =&gt; Package[&#39;httpd&#39;],
+    notify  =&gt; Class[&#39;apache::service&#39;],
+  }
+  # NOTE(pabelanger): This code is duplicated in ::apache::vhost::custom and
+  # needs to be converted into something generic.
+  if $::apache::vhost_enable_dir {
+    $vhost_enable_dir = $::apache::vhost_enable_dir
+    $vhost_symlink_ensure = $ensure ? {
+      present =&gt; link,
+      default =&gt; $ensure,
+    }
+    file{ &quot;${priority_real}${filename}.conf symlink&quot;:
+      ensure  =&gt; $vhost_symlink_ensure,
+      path    =&gt; &quot;${vhost_enable_dir}/${priority_real}${filename}.conf&quot;,
+      target  =&gt; &quot;${::apache::vhost_dir}/${priority_real}${filename}.conf&quot;,
+      owner   =&gt; &#39;root&#39;,
+      group   =&gt; $::apache::params::root_group,
+      mode    =&gt; $::apache::file_mode,
+      require =&gt; Concat[&quot;${priority_real}${filename}.conf&quot;],
+      notify  =&gt; Class[&#39;apache::service&#39;],
+    }
+  }
+
+  # Template uses:
+  # - $nvh_addr_port
+  # - $servername
+  # - $serveradmin
+  concat::fragment { &quot;${name}-apache-header&quot;:
+    target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+    order   =&gt; 0,
+    content =&gt; template(&#39;apache/vhost/_file_header.erb&#39;),
+  }
+
+  # Template uses:
+  # - $virtual_docroot
+  # - $docroot
+  if $docroot {
+    concat::fragment { &quot;${name}-docroot&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 10,
+      content =&gt; template(&#39;apache/vhost/_docroot.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $aliases
+  if $aliases and ! empty($aliases) {
+    concat::fragment { &quot;${name}-aliases&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 20,
+      content =&gt; template(&#39;apache/vhost/_aliases.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $itk
+  # - $::kernelversion
+  if $itk and ! empty($itk) {
+    concat::fragment { &quot;${name}-itk&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 30,
+      content =&gt; template(&#39;apache/vhost/_itk.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $fallbackresource
+  if $fallbackresource {
+    concat::fragment { &quot;${name}-fallbackresource&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 40,
+      content =&gt; template(&#39;apache/vhost/_fallbackresource.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $allow_encoded_slashes
+  if $allow_encoded_slashes {
+    concat::fragment { &quot;${name}-allow_encoded_slashes&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 50,
+      content =&gt; template(&#39;apache/vhost/_allow_encoded_slashes.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $_directories
+  # - $docroot
+  # - $apache_version
+  # - $suphp_engine
+  # - $shibboleth_enabled
+  if $_directories and ! empty($_directories) {
+    concat::fragment { &quot;${name}-directories&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 60,
+      content =&gt; template(&#39;apache/vhost/_directories.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $additional_includes
+  if $additional_includes and ! empty($additional_includes) {
+    concat::fragment { &quot;${name}-additional_includes&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 70,
+      content =&gt; template(&#39;apache/vhost/_additional_includes.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $error_log
+  # - $log_level
+  # - $error_log_destination
+  # - $log_level
+  if $error_log or $log_level {
+    concat::fragment { &quot;${name}-logging&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 80,
+      content =&gt; template(&#39;apache/vhost/_logging.erb&#39;),
+    }
+  }
+
+  # Template uses no variables
+  concat::fragment { &quot;${name}-serversignature&quot;:
+    target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+    order   =&gt; 90,
+    content =&gt; template(&#39;apache/vhost/_serversignature.erb&#39;),
+  }
+
+  # Template uses:
+  # - $access_log
+  # - $_access_log_env_var
+  # - $access_log_destination
+  # - $_access_log_format
+  # - $_access_log_env_var
+  # - $access_logs
+  if $access_log or $access_logs {
+    concat::fragment { &quot;${name}-access_log&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 100,
+      content =&gt; template(&#39;apache/vhost/_access_log.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $action
+  if $action {
+    concat::fragment { &quot;${name}-action&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 110,
+      content =&gt; template(&#39;apache/vhost/_action.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $block
+  # - $apache_version
+  if $block and ! empty($block) {
+    concat::fragment { &quot;${name}-block&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 120,
+      content =&gt; template(&#39;apache/vhost/_block.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $error_documents
+  if $error_documents and ! empty($error_documents) {
+    concat::fragment { &quot;${name}-error_document&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 130,
+      content =&gt; template(&#39;apache/vhost/_error_document.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $headers
+  if $headers and ! empty($headers) {
+    concat::fragment { &quot;${name}-header&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 140,
+      content =&gt; template(&#39;apache/vhost/_header.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $request_headers
+  if $request_headers and ! empty($request_headers) {
+    concat::fragment { &quot;${name}-requestheader&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 150,
+      content =&gt; template(&#39;apache/vhost/_requestheader.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $proxy_dest
+  # - $proxy_pass
+  # - $proxy_pass_match
+  # - $proxy_preserve_host
+  # - $proxy_add_headers
+  # - $no_proxy_uris
+  if $proxy_dest or $proxy_pass or $proxy_pass_match or $proxy_dest_match or $proxy_preserve_host {
+    concat::fragment { &quot;${name}-proxy&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 160,
+      content =&gt; template(&#39;apache/vhost/_proxy.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $rack_base_uris
+  if $rack_base_uris {
+    concat::fragment { &quot;${name}-rack&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 170,
+      content =&gt; template(&#39;apache/vhost/_rack.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $passenger_base_uris
+  if $passenger_base_uris {
+    concat::fragment { &quot;${name}-passenger_uris&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 175,
+      content =&gt; template(&#39;apache/vhost/_passenger_base_uris.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $redirect_source
+  # - $redirect_dest
+  # - $redirect_status
+  # - $redirect_dest_a
+  # - $redirect_source_a
+  # - $redirect_status_a
+  # - $redirectmatch_status
+  # - $redirectmatch_regexp
+  # - $redirectmatch_dest
+  # - $redirectmatch_status_a
+  # - $redirectmatch_regexp_a
+  # - $redirectmatch_dest
+  if ($redirect_source and $redirect_dest) or ($redirectmatch_regexp and $redirectmatch_dest) {
+    concat::fragment { &quot;${name}-redirect&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 180,
+      content =&gt; template(&#39;apache/vhost/_redirect.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $rewrites
+  # - $rewrite_base
+  # - $rewrite_rule
+  # - $rewrite_cond
+  # - $rewrite_map
+  if $rewrites or $rewrite_rule {
+    concat::fragment { &quot;${name}-rewrite&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 190,
+      content =&gt; template(&#39;apache/vhost/_rewrite.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $scriptaliases
+  # - $scriptalias
+  if ( $scriptalias or $scriptaliases != [] ) {
+    concat::fragment { &quot;${name}-scriptalias&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 200,
+      content =&gt; template(&#39;apache/vhost/_scriptalias.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $serveraliases
+  if $serveraliases and ! empty($serveraliases) {
+    concat::fragment { &quot;${name}-serveralias&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 210,
+      content =&gt; template(&#39;apache/vhost/_serveralias.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $setenv
+  # - $setenvif
+  if ($use_env_mod or $use_setenvif_mod) {
+    concat::fragment { &quot;${name}-setenv&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 220,
+      content =&gt; template(&#39;apache/vhost/_setenv.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $ssl
+  # - $ssl_cert
+  # - $ssl_key
+  # - $ssl_chain
+  # - $ssl_certs_dir
+  # - $ssl_ca
+  # - $ssl_crl_path
+  # - $ssl_crl
+  # - $ssl_crl_check
+  # - $ssl_protocol
+  # - $ssl_cipher
+  # - $ssl_honorcipherorder
+  # - $ssl_verify_client
+  # - $ssl_verify_depth
+  # - $ssl_options
+  # - $ssl_openssl_conf_cmd
+  # - $ssl_stapling
+  # - $apache_version
+  if $ssl {
+    concat::fragment { &quot;${name}-ssl&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 230,
+      content =&gt; template(&#39;apache/vhost/_ssl.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $ssl_proxyengine
+  # - $ssl_proxy_verify
+  # - $ssl_proxy_verify_depth
+  # - $ssl_proxy_ca_cert
+  # - $ssl_proxy_check_peer_cn
+  # - $ssl_proxy_check_peer_name
+  # - $ssl_proxy_check_peer_expire
+  # - $ssl_proxy_machine_cert
+  # - $ssl_proxy_protocol
+  if $ssl_proxyengine {
+    concat::fragment { &quot;${name}-sslproxy&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 230,
+      content =&gt; template(&#39;apache/vhost/_sslproxy.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $auth_kerb
+  # - $krb_method_negotiate
+  # - $krb_method_k5passwd
+  # - $krb_authoritative
+  # - $krb_auth_realms
+  # - $krb_5keytab
+  # - $krb_local_user_mapping
+  if $auth_kerb {
+    concat::fragment { &quot;${name}-auth_kerb&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 230,
+      content =&gt; template(&#39;apache/vhost/_auth_kerb.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $suphp_engine
+  # - $suphp_addhandler
+  # - $suphp_configpath
+  if $suphp_engine == &#39;on&#39; {
+    concat::fragment { &quot;${name}-suphp&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 240,
+      content =&gt; template(&#39;apache/vhost/_suphp.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $php_values
+  # - $php_flags
+  if ($php_values and ! empty($php_values)) or ($php_flags and ! empty($php_flags)) {
+    concat::fragment { &quot;${name}-php&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 240,
+      content =&gt; template(&#39;apache/vhost/_php.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $php_admin_values
+  # - $php_admin_flags
+  if ($php_admin_values and ! empty($php_admin_values)) or ($php_admin_flags and ! empty($php_admin_flags)) {
+    concat::fragment { &quot;${name}-php_admin&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 250,
+      content =&gt; template(&#39;apache/vhost/_php_admin.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $wsgi_application_group
+  # - $wsgi_daemon_process
+  # - $wsgi_daemon_process_options
+  # - $wsgi_import_script
+  # - $wsgi_import_script_options
+  # - $wsgi_process_group
+  # - $wsgi_script_aliases
+  # - $wsgi_pass_authorization
+  if $wsgi_application_group or $wsgi_daemon_process or ($wsgi_import_script and $wsgi_import_script_options) or $wsgi_process_group or ($wsgi_script_aliases and ! empty($wsgi_script_aliases)) or $wsgi_pass_authorization {
+    concat::fragment { &quot;${name}-wsgi&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 260,
+      content =&gt; template(&#39;apache/vhost/_wsgi.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $custom_fragment
+  if $custom_fragment {
+    concat::fragment { &quot;${name}-custom_fragment&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 270,
+      content =&gt; template(&#39;apache/vhost/_custom_fragment.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $fastcgi_server
+  # - $fastcgi_socket
+  # - $fastcgi_dir
+  # - $fastcgi_idle_timeout
+  # - $apache_version
+  if $fastcgi_server or $fastcgi_dir {
+    concat::fragment { &quot;${name}-fastcgi&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 280,
+      content =&gt; template(&#39;apache/vhost/_fastcgi.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $suexec_user_group
+  if $suexec_user_group {
+    concat::fragment { &quot;${name}-suexec&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 290,
+      content =&gt; template(&#39;apache/vhost/_suexec.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $passenger_app_root
+  # - $passenger_app_env
+  # - $passenger_ruby
+  # - $passenger_min_instances
+  # - $passenger_max_requests
+  # - $passenger_start_timeout
+  # - $passenger_pre_start
+  # - $passenger_user
+  # - $passenger_nodejs
+  # - $passenger_sticky_sessions
+  # - $passenger_startup_file
+  if $passenger_app_root or $passenger_app_env or $passenger_ruby or $passenger_min_instances or $passenger_start_timeout or $passenger_pre_start or $passenger_user or $passenger_nodejs or $passenger_sticky_sessions or $passenger_startup_file{
+    concat::fragment { &quot;${name}-passenger&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 300,
+      content =&gt; template(&#39;apache/vhost/_passenger.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $add_default_charset
+  if $add_default_charset {
+    concat::fragment { &quot;${name}-charsets&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 310,
+      content =&gt; template(&#39;apache/vhost/_charsets.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $modsec_disable_vhost
+  # - $modsec_disable_ids
+  # - $modsec_disable_ips
+  # - $modsec_disable_msgs
+  # - $modsec_disable_tags
+  # - $modsec_body_limit
+  # - $modsec_audit_log_destination
+  if $modsec_disable_vhost or $modsec_disable_ids or $modsec_disable_ips or $modsec_disable_msgs or $modsec_disable_tags or $modsec_audit_log_destination {
+    concat::fragment { &quot;${name}-security&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 320,
+      content =&gt; template(&#39;apache/vhost/_security.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $filters
+  if $filters and ! empty($filters) {
+    concat::fragment { &quot;${name}-filters&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 330,
+      content =&gt; template(&#39;apache/vhost/_filters.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $jk_mounts
+  if $jk_mounts and ! empty($jk_mounts) {
+    concat::fragment { &quot;${name}-jk_mounts&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 340,
+      content =&gt; template(&#39;apache/vhost/_jk_mounts.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $keepalive
+  # - $keepalive_timeout
+  # - $max_keepalive_requests
+  if $keepalive or $keepalive_timeout or $max_keepalive_requests {
+    concat::fragment { &quot;${name}-keepalive_options&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 350,
+      content =&gt; template(&#39;apache/vhost/_keepalive_options.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $cas_*
+  if $cas_enabled {
+    concat::fragment { &quot;${name}-auth_cas&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 350,
+      content =&gt; template(&#39;apache/vhost/_auth_cas.erb&#39;),
+    }
+  }
+
+  # Template uses:
+  # - $http_protocol_options
+  if $http_protocol_options {
+    concat::fragment { &quot;${name}-http_protocol_options&quot;:
+      target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+      order   =&gt; 350,
+      content =&gt; template(&#39;apache/vhost/_http_protocol_options.erb&#39;),
+    }
+  }
+
+  # Template uses no variables
+  concat::fragment { &quot;${name}-file_footer&quot;:
+    target  =&gt; &quot;${priority_real}${filename}.conf&quot;,
+    order   =&gt; 999,
+    content =&gt; template(&#39;apache/vhost/_file_footer.erb&#39;),
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

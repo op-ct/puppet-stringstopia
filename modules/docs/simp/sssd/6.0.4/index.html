@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-sssd"><img src="https://travis-ci.org/simp/pupmod-simp-sssd.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#module-description">Module Description - A Puppet module for managing sssd</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with pupmod-simp-sssd</a>
+    <ul>
+      <li><a href="#what-simp-sssd-affects">What pupmod-simp-sssd affects</a></li>
+      <li><a href="#setup-requirements">Setup requirements</a></li>
+      <li><a href="#beginning-with-simp-sssd">Beginning with pupmod-simp-sssd</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a></li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a></li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+<p>This module installs and manages SSSD. It allows you to set config options in sssd.conf through puppet / hiera.</p>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+<p>This module is a component of the
+<a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>,
+a compliance-management framework built on Puppet.</p>
+
+<p>If you find any issues, they can be submitted to our
+<a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+
+<p>Please read our <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">Contribution Guide</a>
+and visit our <a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">developer wiki</a>.</p>
+
+<p>This module is optimally designed for use within a larger SIMP ecosystem, but it
+can be used independently:
+* When included within the SIMP ecosystem, security compliance settings will be
+managed from the Puppet server.
+* In the future, all SIMP-managed security subsystems will be disabled by
+default and must be explicitly opted into by administrators.  Please review
+<em>simp/simp_options</em> for details.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>This module installs, configures and manages SSSD. It is also cross compatible
+with <code>simp/pki</code> and <code>simp/auditd</code>.</p>
+
+<p>It allows connection via krb5, ldap and local authentication.</p>
+
+<p><code>simp/sssd</code> also connects to autofs, nss, pac, pam, ssh, and sudo.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-simp-sssd-affects">What simp sssd affects</h3>
+
+<p>Files managed by <code>simp/sssd</code>:
+* /etc/sssd/sssd.conf
+* /etc/init.d/sssd
+* (Optional) /etc/sssd/pki with <code>simp/pki</code> enabled</p>
+
+<p>Services and operations managed or affected:
+* sssd (running)
+* nscd (stopped)</p>
+
+<p>Packages installed by <code>simp/pki</code>:
+* sssd (latest by Default)</p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="beginning-with-simp-sssd">Beginning with SIMP SSSD</h3>
+
+<p>The following will install and manage the service for SSSD with the Default settings,
+but will include no additional providers or affected services.</p>
+
+<p><code>puppet
+include ::sssd
+</code></p>
+
+<p>or</p>
+
+<p><code>yaml
+classes:
+  - sssd
+</code></p>
+
+<p>To enable integration with the existing SIMP PKI module, set the
+value of the PKI SIMP option to true:</p>
+
+<p><code>yaml
+simp_options::pki: true
+</code></p>
+
+<h3 id="using-providers-and-services">Using Providers and Services</h3>
+
+<p>To include configuration options for the providers of the SSSD module, you must
+instantiate individual defined Types contained within this module on your systems.
+Similarly, include configuration options for services by including instances of the
+service subclasses on the system.</p>
+
+<p>See the examples for specific services and providers.</p>
+
+<h3 id="providers">Providers</h3>
+<p>#### I want to use local users</p>
+
+<p><code>puppet
+sssd::provider::local { 'localusers':
+  Default_shell  =&gt; '/bin/bash',
+  base_directory =&gt; '/home',
+  create_homedir =&gt; true,
+  remove_homedir =&gt; true,
+  homedir_umask  =&gt; '0037',
+  skel_dir       =&gt; '/etc/skel/user',
+  mail_dir       =&gt; '/etc/mailbox',
+  userdel_cmd    =&gt; '/bin/userdel',
+}
+</code></p>
+
+<h4 id="i-want-to-use-ldap-users">I want to use LDAP users</h4>
+
+<p>Instantiating the LDAP provider will automatically set
+access_provider = ‘ldap’, and you can pass configuration
+options to the declaration of the defined type. The options below
+are only useful as example syntax, you may need to check
+<a href="https://linux.die.net/man/5/sssd-ldap">the sssd man page</a> or the code
+for sssd::provider::ldap for a full list of options and examples
+that you can pass to the ldap section of the sssd config file.</p>
+
+<p><code>puppet
+sssd::provider::ldap { 'ldapusers':
+  ldap_access_filter =&gt; 'memberOf=cn=allowedusers,ou=Groups,dc=example,dc=com',
+  ldap_chpass_uri    =&gt; empty,
+  ldap_access_order  =&gt; 'expire',
+  ...etc
+}
+</code></p>
+
+<h4 id="i-want-to-use-kerberos">I want to use Kerberos</h4>
+
+<p>This will provide a basic connection to Kerberos</p>
+
+<p><code>puppet
+sssd::provider::krb5 { 'kerberos':
+  krb5_server    =&gt; 'my.kerberos.server',
+  krb5_realm     =&gt; 'mykrbrealm',
+  krb5_password  =&gt; lookup('use_eyaml'),
+}
+</code></p>
+
+<h3 id="services">Services</h3>
+
+<p>The following services can be managed by <code>simp/sssd</code>. You use
+these services in the same way that you use the providers described above,
+but as there can only be one instance of each service on a system these
+services are presented as Puppet subclasses rather than as Types.</p>
+
+<ul>
+  <li>autofs</li>
+  <li>nss</li>
+  <li>pac</li>
+  <li>pam</li>
+  <li>ssh</li>
+  <li>sudo</li>
+</ul>
+
+<p>Please see sssd::service::<class> for more options on configuration,
+some example usage syntax is below:</class></p>
+
+<h4 id="i-want-to-configure-the-nss-service">I want to configure the nss service</h4>
+
+<p>You can pass values to the keys of the [nss] section of the config file
+by including the nss service subclass, and passing values to the corresponding keys:</p>
+
+<p><code>puppet
+class { 'sssd::service::nss':
+  description          =&gt; 'The nss section of the config file',
+  filter_users         =&gt; 'root',
+  filter_groups        =&gt; 'root',
+  reconnection_retries =&gt; 3,
+  ...
+}
+</code></p>
+
+<h2 id="reference">Reference</h2>
+
+<h3 id="classes">Classes</h3>
+
+<h4 id="public-classes">Public Classes</h4>
+
+<ul>
+  <li>sssd</li>
+  <li>sssd::install</li>
+  <li>sssd::install::client</li>
+  <li>sssd::service</li>
+  <li>sssd::service::autofs</li>
+  <li>sssd::service::nss</li>
+  <li>sssd::service::pac</li>
+  <li>sssd::service::pam</li>
+  <li>sssd::service::ssh</li>
+  <li>sssd::service::sudo</li>
+</ul>
+
+<h4 id="private-classes">Private Classes</h4>
+
+<ul>
+  <li>sssd::pki</li>
+</ul>
+
+<h4 id="defined-types">Defined Types</h4>
+
+<ul>
+  <li>sssd::domain</li>
+  <li>sssd::provider::ad</li>
+  <li>sssd::provider::krb5</li>
+  <li>sssd::provider::ldap</li>
+  <li>sssd::provider::local</li>
+</ul>
+
+<h2 id="parameters">Parameters</h2>
+
+<p>Many of the parameters and variables below have a one-to-one correspondance to the keys in the sssd man pages. Because of this, we strongly suggest searching the man pages in the event of confusion or ambiguity regarding any one parameter.</p>
+
+<h3 id="sssd">sssd</h3>
+
+<h5 id="domains"><code>domains</code>:</h5>
+<p>This key is a mandatory array of domains that will be included in your sssd.conf file. Each of these domains can have an instance of each of the provider defined Types, which must reference the domain that they belong to by name. This list cannot be empty, you must choose at least 1 domain for SSSD to manage.
+  * Valid Options: Array[String]
+  * Default Value: N/A</p>
+
+<h5 id="debuglevel"><code>debug_level</code>:</h5>
+<p>Sets the debug verbosity for the main section of the config file.
+  * Valid Options: Sssd::DebugLevel
+  * Default Value: undef,</p>
+
+<h5 id="debugtimestamps"><code>debug_timestamps</code>:</h5>
+<p>Enable or disable timestamps in debug file for this section of the config file.
+  * Valid Options: Boolean
+  * Default Value: true,</p>
+
+<h5 id="debugmicroseconds"><code>debug_microseconds</code>:</h5>
+<p>Enable or disable microseconds in the debug timestamps for this section of the config file.
+  * Valid Options: Boolean
+  * Default Value: false,</p>
+
+<h5 id="description"><code>description</code>:</h5>
+<p>A brief description of this section of the config file.
+  * Valid Options: String
+  * Default Value: undef,</p>
+
+<h5 id="configfileversion"><code>config_file_version</code>:</h5>
+<ul>
+  <li>Valid Options: Integer</li>
+  <li>Default Value: 2,</li>
+</ul>
+
+<h5 id="services-1"><code>services</code>:</h5>
+<p>A list of the services that SSSD will integrate with. Each entry here corresponds to one section of the config file at sssd.conf. Each of the services that you include here will be managed by the corresponding sssd::service::service_name subclass.
+  * Valid Options: Sssd::Services
+  * Default Value: [‘nss’,’pam’,’ssh’,’sudo’],</p>
+
+<h5 id="reconnectionretries"><code>reconnection_retries</code>:</h5>
+<p>Number of times services should attempt to reconnect in the event of a Data Provider crash or restart before they give up
+  * Valid Options: Integer
+  * Default Value: 3,</p>
+
+<h5 id="reexpression"><code>re_expression</code>:</h5>
+<p>Default regular expression that describes how to parse the string containing user name and domain into these components.
+  * Valid Options: String
+  * Default Value: undef,</p>
+
+<h5 id="fullnameformat"><code>full_name_format</code>:</h5>
+<p>The Default format that describes how to translate a (name, domain) tuple into a fully qualified name.
+  * Valid Options: String
+  * Default Value: undef,</p>
+
+<h5 id="tryinotify"><code>try_inotify</code>:</h5>
+<p>Determines if inotify should be used to query resolv.conf
+  * Valid Options: Boolean
+  * Default Value: true,</p>
+
+<h5 id="krb5rcachedir"><code>krb5_rcache_dir</code>:</h5>
+<p>Directory where krb5 files should be cached.
+  * Valid Options: String
+  * Default Value: undef,</p>
+
+<h5 id="user"><code>user</code>:</h5>
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="defaultdomainsuffix"><code>Default_domain_suffix</code>:</h5>
+<p>Used as the default domain for instances where none is provided
+  * Valid Options: String
+  * Default Value: undef,</p>
+
+<h5 id="overridespace"><code>override_space</code>:</h5>
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="auditd"><code>auditd</code>:</h5>
+<p>This is a special SIMP level key, which determines automatically if the simp/auditd module is installed on your system. If it is, this module will enable some Defaults to ensure the two modules interact cleanly together
+  * Valid Options: BooleanS
+  * Default Value: simplib::lookup(‘simp_options::auditd’, { ‘Default_value’ =&gt; false}),</p>
+
+<h5 id="pki"><code>pki</code>:</h5>
+<p>This is a special SIMP level key, which determines automatically if the simp/pki module is installed on your system. If it is, this module will enable some Defaults to ensure the two modules interact cleanly together
+  * Type Options: Boolean,’simp’
+  * Default Value: simplib::lookup(‘simp_options::pki’, { ‘Default_value’ =&gt; false}),</p>
+
+<h5 id="apppkicertsource"><code>app_pki_cert_source</code>:</h5>
+<p>If the PKI module is enabled, this attempts to automatically detect the location on your system where certs are stored by Default.
+  * Valid Options: Stdlib::Absolutepath
+  * Default Value: simplib::lookup(‘simp_options::pki::source’, { ‘Default_value’ =&gt; ‘/etc/pki/simp/x509’}),</p>
+
+<h5 id="apppkidir"><code>app_pki_dir</code>:</h5>
+<p>Default PKI dir if the above lookup fails to find a set directory.
+  * Valid Options: Stdlib::Absolutepath
+  * Default Value: ‘/etc/pki/simp_apps/sssd/x509’</p>
+
+<h3 id="sssdinstall">sssd::install</h3>
+
+<h5 id="installusertools"><code>install_user_tools</code>:</h5>
+<p>If true, install the sssd-tools package in addition to the sssd package.
+	* Valid Options: Boolean
+	* Default: True</p>
+
+<h3 id="sssdserviceautofs">sssd::service::autofs</h3>
+
+<h5 id="description-1"><code>description</code>:</h5>
+<p>A brief description of this section of the config file.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="debuglevel-1"><code>debug_level</code>:</h5>
+<p>Level of verbosity of debug of this section of the config file.
+  * Valid Options: [Sssd::DebugLevel]
+  * Default Value: undef</p>
+
+<h5 id="debugtimestamps-1"><code>debug_timestamps</code>:</h5>
+<p>Determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default Value: true</p>
+
+<h5 id="debugmicroseconds-1"><code>debug_microseconds</code>:</h5>
+<p>Determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default Value: false</p>
+
+<h5 id="autofsnegativetimeout"><code>autofs_negative_timeout</code>:</h5>
+<p>Specifies for how many seconds should the autofs responder negative cache hits (that is, queries for invalid map entries, like nonexistent ones) before asking the back end again.
+	* Valid Options: Integer
+	* Default Value: undef</p>
+
+<h3 id="sssdservicenss">sssd::service::nss</h3>
+
+<h5 id="description-2"><code>description</code>:</h5>
+<p>A brief description of this section of the config file.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="debuglevel-2"><code>debug_level</code>:</h5>
+<p>Level of verbosity of debug of this section of the config file.
+  * Valid Options: [Sssd::DebugLevel]
+  * Default Value: undef</p>
+
+<h5 id="debugtimestamps-2"><code>debug_timestamps</code>:</h5>
+<p>Determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default Value: true</p>
+
+<h5 id="debugmicroseconds-2"><code>debug_microseconds</code>:</h5>
+<p>Determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default Value: false</p>
+
+<h5 id="reconnectionretries-1"><code>reconnection_retries</code>:</h5>
+<p>The number of times the service will attempt to reconnect in the event of timeout.
+  * Valid Options: Integer
+  * Default Value: 3</p>
+
+<h5 id="fdlimit"><code>fd_limit</code>:</h5>
+<p>This option specifies the maximum number of file descriptors that may be opened at one time by this SSSD process.
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="command"><code>command</code>:</h5>
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="enumcachetimeout"><code>enum_cache_timeout</code>:</h5>
+<p>How many seconds should nss_sss cache enumerations
+  * Valid Options: Integer
+  * Default Value: 120</p>
+
+<h5 id="entrycachenowaitpercentage"><code>entry_cache_nowait_percentage</code>:</h5>
+<p>The entry cache can be set to automatically update entries in the background if they are requested beyond a percentage of the entry_cache_timeout value for the domain.
+  * Valid Options: Integer
+  * Default Value: 0</p>
+
+<h5 id="entrynegativetimeout"><code>entry_negative_timeout</code>:</h5>
+<p>Specifies for how many seconds nss_sss should cache negative cache hits
+  * Valid Options: Integer
+  * Default Value: 15</p>
+
+<h5 id="filterusers"><code>filter_users</code>:</h5>
+<p>Exclude certain users from being fetched from the sss NSS database.
+  * Valid Options: String
+  * Default Value: ‘root’</p>
+
+<h5 id="filtergroups"><code>filter_groups</code>:</h5>
+<p>Exclude certain groups from being fetched from the sss NSS database.
+  * Valid Options: String
+  * Default Value: ‘root’</p>
+
+<h5 id="filterusersingroups"><code>filter_users_in_groups</code>:</h5>
+<p>If you want filtered user still be group members set this option to false.
+  * Valid Options: Boolean
+  * Default Value: true</p>
+
+<h5 id="overridehomedir"><code>override_homedir</code>:</h5>
+<p>Override the user’s home directory
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="fallbackhomedir"><code>fallback_homedir</code>:</h5>
+<p>Set a Default template for a user’s home directory if one is not specified explicitly by the domain’s data provider.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="overrideshell"><code>override_shell</code>:</h5>
+<p>Override the login shell for all users. This option can be specified globally in the [nss] section or per-domain.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="vetoedshells"><code>vetoed_shells</code>:</h5>
+<p>Replace any instance of these shells with the shell_fallback
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="defaultshell"><code>Default_shell</code>:</h5>
+<p>The default shell to use if the provider does not return one during lookup. This option supersedes any other shell options if it takes effect.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="getdomainstimeout"><code>get_domains_timeout</code>:</h5>
+<p>Specifies time in seconds for which the list of subdomains will be considered valid.
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="memcachetimeout"><code>memcache_timeout</code>:</h5>
+<p>Specifies time in seconds for which records in the in-memory cache will be valid
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="userattributes"><code>user_attributes</code>:</h5>
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h3 id="sssdservicepac">sssd::service::pac</h3>
+
+<h5 id="description-3"><code>description</code>:</h5>
+<p>a brief description of this section of the config file.
+  * Valid Options: Optional[String]
+  * Default value: undef</p>
+
+<h5 id="debuglevel-3"><code>debug_level</code>:</h5>
+<p>level of verbosity of debug of this section of the config file.
+  * Valid Options: Optional[Sssd::Debuglevel]
+  * Default value: undef</p>
+
+<h5 id="debugtimestamps-3"><code>debug_timestamps</code>:</h5>
+<p>determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default value: true</p>
+
+<h5 id="debugmicroseconds-3"><code>debug_microseconds</code>:</h5>
+<p>determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default value: false</p>
+
+<h5 id="alloweduids"><code>allowed_uids</code>:</h5>
+<p>Specifies the comma-separated list of UID values or user names that are allowed to access the PAC responder. User names are resolved to UIDs at startup.
+	* Valid Options: ArrayString
+	* Default Value: []</p>
+
+<h3 id="sssdservicepam">sssd::service::pam</h3>
+
+<h5 id="description-4"><code>description</code>:</h5>
+<p>a brief description of this section of the config file.
+  * Valid Options: Optional[String]
+  * Default value: undef</p>
+
+<h5 id="debuglevel-4"><code>debug_level</code>:</h5>
+<p>level of verbosity of debug of this section of the config file.
+  * Valid Options: Optional[Sssd::Debuglevel]
+  * Default value: undef</p>
+
+<h5 id="debugtimestamps-4"><code>debug_timestamps</code>:</h5>
+<p>determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default value: true</p>
+
+<h5 id="debugmicroseconds-4"><code>debug_microseconds</code>:</h5>
+<p>determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default value: false</p>
+
+<h5 id="reconnectionretries-2"><code>reconnection_retries</code>:</h5>
+<p>The number of times the service will attempt to reconnect in the event of timeout.
+  * Valid Options: Integer
+  * Default Value: 3</p>
+
+<h5 id="command-1"><code>command</code>:</h5>
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="offlinecredentialsexpiration"><code>offline_credentials_expiration</code>:</h5>
+<p>If the authentication provider is offline, how long should we allow cached logins (in days since the last successful online login).
+  * Valid Options: Integer
+  * Default Value: 0</p>
+
+<h5 id="offlinefailedloginattempts"><code>offline_failed_login_attempts</code>:</h5>
+<p>If the authentication provider is offline, how many failed login attempts are allowed.
+  * Valid Options: Integer
+  * Default Value: 3</p>
+
+<h5 id="offlinefailedlogindelay"><code>offline_failed_login_delay</code>:</h5>
+<p>The time in minutes which has to pass after offline_failed_login_attempts has been reached before a new login attempt is possible.
+  * Valid Options: Integer
+  * Default Value: 5</p>
+
+<h5 id="pamverbosity"><code>pam_verbosity</code>:</h5>
+<p>Controls what kind of messages are shown to the user during authentication. The higher the number, the more messages displayed.
+  * Valid Options: Integer
+  * Default Value: 1</p>
+
+<h5 id="pamidtimeout"><code>pam_id_timeout</code>:</h5>
+<p>For any PAM request while SSSD is online, the SSSD will attempt to immediately update the cached identity information for the user in order to ensure that authentication takes place with the latest information.
+  * Valid Options: Integer
+  * Default Value: 5</p>
+
+<h5 id="pampwdexpirationwarning"><code>pam_pwd_expiration_warning</code>:</h5>
+<p>Display a warning N days before the password expires.
+  * Valid Options: Integer
+  * Default Value: 7</p>
+
+<h5 id="getdomainstimeout-1"><code>get_domains_timeout</code>:</h5>
+<p>Specifies time in seconds for which the list of subdomains will be considered valid.
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="pamtrustedusers"><code>pam_trusted_users</code>:</h5>
+<p>List of numerical UIDs or user names that are trusted
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="pampublicdomains"><code>pam_public_domains</code>:</h5>
+<p>List of domains accessible for untrusted users
+  * Valid Options: String
+  * Default Value: unde</p>
+
+<h3 id="sssdservicessh">sssd::service::ssh</h3>
+
+<h5 id="description-5"><code>description</code>:</h5>
+<p>a brief description of this section of the config file.
+  * Valid Options: Optional[String]
+  * Default value: undef</p>
+
+<h5 id="debuglevel-5"><code>debug_level</code>:</h5>
+<p>level of verbosity of debug of this section of the config file.
+  * Valid Options: Optional[Sssd::Debuglevel]
+  * Default value: undef</p>
+
+<h5 id="debugtimestamps-5"><code>debug_timestamps</code>:</h5>
+<p>determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default value: true</p>
+
+<h5 id="debugmicroseconds-5"><code>debug_microseconds</code>:</h5>
+<p>determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default value: false</p>
+
+<h5 id="sshhashknownhosts"><code>ssh_hash_known_hosts</code>:</h5>
+<p>Whether or not to hash host names and addresses in the managed known_hosts file.
+  * Valid Options: Boolean
+  * Default Value: true</p>
+
+<h5 id="sshknownhoststimeout"><code>ssh_known_hosts_timeout</code>:</h5>
+<p>How many seconds to keep a host in the managed known_hosts file after its host keys were requested.
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h3 id="sssdservicesudo">sssd::service::sudo</h3>
+
+<h5 id="description-6"><code>description</code>:</h5>
+<p>a brief description of this section of the config file.
+  * Valid Options: Optional[String]
+  * Default value: undef</p>
+
+<h5 id="debuglevel-6"><code>debug_level</code>:</h5>
+<p>level of verbosity of debug of this section of the config file.
+  * Valid Options: Optional[Sssd::Debuglevel]
+  * Default value: undef</p>
+
+<h5 id="debugtimestamps-6"><code>debug_timestamps</code>:</h5>
+<p>determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default value: true</p>
+
+<h5 id="debugmicroseconds-6"><code>debug_microseconds</code>:</h5>
+<p>determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default value: false</p>
+
+<h5 id="sudotimed"><code>sudo_timed</code>:</h5>
+<p>Whether or not to evaluate the sudoNotBefore and sudoNotAfter attributes that implement time-dependent sudoers entries.
+  * Valid Options: Boolean
+	* Default Value: false</p>
+
+<h2 id="defined-type-variables">Defined Type Variables</h2>
+
+<h3 id="sssddomain">sssd::domain</h3>
+
+<h5 id="idprovider"><code>id_provider</code>:</h5>
+<p>Indicates the id of this domain that providers will reference.
+  * Valid Options: Sssd::IdProvider
+  * Default Value:</p>
+
+<h5 id="description-7"><code>description</code>:</h5>
+<p>a brief description of this section of the config file.
+  * Valid Options: Optional[String]
+  * Default value: undef</p>
+
+<h5 id="debuglevel-7"><code>debug_level</code>:</h5>
+<p>level of verbosity of debug of this section of the config file.
+  * Valid Options: Optional[Sssd::Debuglevel]
+  * Default value: undef</p>
+
+<h5 id="debugtimestamps-7"><code>debug_timestamps</code>:</h5>
+<p>determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default value: true</p>
+
+<h5 id="debugmicroseconds-7"><code>debug_microseconds</code>:</h5>
+<p>determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default value: false</p>
+
+<h5 id="minid"><code>min_id</code>:</h5>
+<p>UID and GID limits for the domain. If a domain contains an entry that is outside these limits, it is ignored.
+  * Valid Options: Integer
+  * Default Value: $facts[‘uid_min’]</p>
+
+<h5 id="maxid"><code>max_id</code>:</h5>
+<p>UID and GID limits for the domain. If a domain contains an entry that is outside these limits, it is ignored.
+  * Valid Options: Integer
+  * Default Value: 0</p>
+
+<h5 id="enumerate"><code>enumerate</code>:</h5>
+<p>Determines if a domain can be enumerated.
+  * Valid Options: Boolean
+  * Default Value: false</p>
+
+<h5 id="subdomainenumerate"><code>subdomain_enumerate</code>:</h5>
+<p>Same as enumerate, for subdomains
+  * Valid Options: Boolean
+  * Default Value: false</p>
+
+<h5 id="forcetimeout"><code>force_timeout</code>:</h5>
+<p>If a service is not responding to ping checks (see the “timeout” option), it is first sent the SIGTERM signal that instructs it to quit gracefully. If the service does not terminate after “force_timeout” seconds, the monitor will forcibly shut it down by sending a SIGKILL signal.
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="entrycachetimeout"><code>entry_cache_timeout</code>:</h5>
+<p>How many seconds should nss_sss consider entries valid before asking the backend again
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="entrycacheusertimeout"><code>entry_cache_user_timeout</code>:</h5>
+<p>How many seconds should nss_sss consider user entries valid before asking the backend again
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="entrycachegrouptimeout"><code>entry_cache_group_timeout</code>:</h5>
+<p>How many seconds should nss_sss consider user entries valid before asking the backend again
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="entrycachenetgrouptimeout"><code>entry_cache_netgroup_timeout</code>:</h5>
+<p>How many seconds should nss_sss consider user entries valid before asking the backend again
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="entrycacheservicetimeout"><code>entry_cache_service_timeout</code>:</h5>
+<p>How many seconds should nss_sss consider user entries valid before asking the backend again
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="entrycachesudotimeout"><code>entry_cache_sudo_timeout</code>:</h5>
+<p>How many seconds should nss_sss consider user entries valid before asking the backend again
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="entrycacheautofstimeout"><code>entry_cache_autofs_timeout</code>:</h5>
+<p>How many seconds should nss_sss consider user entries valid before asking the backend again
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="entrycachesshhosttimeout"><code>entry_cache_ssh_host_timeout</code>:</h5>
+<p>How many seconds should nss_sss consider user entries valid before asking the backend again
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="refreshexpiredinterval"><code>refresh_expired_interval</code>:</h5>
+<p>Time between refresh expired intervals
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="cachecredentials"><code>cache_credentials</code>:</h5>
+<p>Determines if user credentials are also cached in the local LDB cache
+  * Valid Options: Boolean
+  * Default Value: false</p>
+
+<h5 id="accountcacheexpiration"><code>account_cache_expiration</code>:</h5>
+<p>Number of days entries are left in cache after last successful login before being removed during a cleanup of the cache. 0 means keep forever.
+  * Valid Options: Integer
+  * Default Value: 0</p>
+
+<h5 id="pwdexpirationwarning"><code>pwd_expiration_warning</code>:</h5>
+<p>Display a warning N days before the password expires.
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="usefullyqualifiednames"><code>use_fully_qualified_names</code>:</h5>
+<p>Use the full name and domain (as formatted by the domain’s full_name_format) as the user’s login name reported to NSS.
+  * Valid Options: Boolean
+  * Default Value: false</p>
+
+<h5 id="ignoregroupmembers"><code>ignore_group_members</code>:</h5>
+<ul>
+  <li>Valid Options: Boolean</li>
+  <li>Default Value: true</li>
+</ul>
+
+<h5 id="accessprovider"><code>access_provider</code>:</h5>
+<p>The access control provider used for the domain. There are two built-in access providers (in addition to any included in installed backends)
+  * Valid Options: [Sssd::AccessProvider]
+  * Default Value: undef</p>
+
+<h5 id="authprovider"><code>auth_provider</code>:</h5>
+<p>The authentication provider used for the domain.
+  * Valid Options: [Sssd::AuthProvider]
+  * Default Value: undef</p>
+
+<h5 id="chpassprovider"><code>chpass_provider</code>:</h5>
+<p>The provider which should handle change password operations for the domain
+  * Valid Options: [Sssd::ChpassProvider]
+  * Default Value: undef</p>
+
+<h5 id="sudoprovider"><code>sudo_provider</code>:</h5>
+<p>The SUDO provider used for the domain.
+  * Valid Options: ‘ldap’, ‘ipa’,’ad’,’none’
+  * Default Value: undef</p>
+
+<h5 id="selinuxprovider"><code>selinux_provider</code>:</h5>
+<p>The provider which should handle loading of selinux settings. Note that this provider will be called right after access provider ends.
+  * Valid Options: ‘ipa’, ‘none’
+  * Default Value: undef</p>
+
+<h5 id="subdomainsprovider"><code>subdomains_provider</code>:</h5>
+<p>The provider which should handle fetching of subdomains. This value should be always the same as id_provider.
+  * Valid Options: ‘ipa’, ‘ad’,’none’
+  * Default Value: undef</p>
+
+<h5 id="autofsprovider"><code>autofs_provider</code>:</h5>
+<p>The autofs provider used for the domain. Supported autofs providers are:
+  * Valid Options: ‘ldap’, ‘ipa’,’none’
+  * Default Value: undef</p>
+
+<h5 id="hostidprovider"><code>hostid_provider</code>:</h5>
+<p>The provider used for retrieving host identity information.
+  * Valid Options: ‘ipa’, ‘none’
+  * Default Value: undef</p>
+
+<h5 id="reexpression-1"><code>re_expression</code>:</h5>
+<p>Regular expression for this domain that describes how to parse the string containing user name and domain into these components.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="fullnameformat-1"><code>full_name_format</code>:</h5>
+<p>The default format that describes how to translate a (name, domain) tuple into a fully qualified name.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="lookupfamilyorder"><code>lookup_family_order</code>:</h5>
+<p>Provides the ability to select preferred address family to use when performing DNS lookups.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="dnsresolvertimeout"><code>dns_resolver_timeout</code>:</h5>
+<p>Defines the amount of time (in seconds) to wait for a reply from the DNS resolver before assuming that it is unreachable. If this timeout is reached, the domain will continue to operate in offline mode.
+  * Valid Options: Integer
+  * Default Value: 5</p>
+
+<h5 id="dnsdiscoverydomain"><code>dns_discovery_domain</code>:</h5>
+<p>If service discovery is used in the back end, specifies the domain part of the service discovery DNS query.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="overridegid"><code>override_gid</code>:</h5>
+<p>Override the primary GID value with the one specified.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="casesensitive"><code>case_sensitive</code>:</h5>
+<p>Treat user and group names as case sensitive
+  * Valid Options: Boolean,’preserving’
+  * Default Value: true</p>
+
+<h5 id="proxyfastalias"><code>proxy_fast_alias</code>:</h5>
+<p>When a user or group is looked up by name in the proxy provider, a second lookup by ID is performed to “canonicalize” the name in case the requested name was an alias. Setting this option to true would cause the SSSD to perform the ID lookup from cache for performance reasons.
+  * Valid Options: Boolean
+  * Default Value: false</p>
+
+<h5 id="realmdtags"><code>realmd_tags</code>:</h5>
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="proxypamtarget"><code>proxy_pam_target</code>:</h5>
+<p>The proxy target PAM proxies to.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="proxylibname"><code>proxy_lib_name</code>:</h5>
+<p>The name of the NSS library to use in proxy domains. The NSS functions searched for in the library are in the form of <em>nss</em>$(libName)_$(function), for example _nss_files_getpwent.
+	* Valid Options: String
+  * Default Value: undef</p>
+
+<h3 id="sssdproviderad">sssd::provider::ad</h3>
+
+<p>For each variable listed below that begins with <code>ad_</code>, please reference the SSSD-ad man pages at <a href="https://linux.die.net/man/5/sssd-ad">this location</a></p>
+
+<h5 id="addomain"><code>ad_domain</code>:</h5>
+<p>Specifies the name of the Active Directory domain. This is optional. If not provided, the configuration domain name is used.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="adenableddomains"><code>ad_enabled_domains</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adservers"><code>ad_servers</code>:</h5>
+<p>The comma-separated list of IP addresses or hostnames of the AD servers to which SSSD should connect in order of preference.
+  * Valid Options: [Simplib::Hostname], [‘<em>srv</em>’]
+  * Default Value: undef</p>
+
+<h5 id="adbackupservers"><code>ad_backup_servers</code>:</h5>
+<p>The comma-separated list of IP addresses or hostnames of the AD servers to which SSSD should connect in order of preference.
+  * Valid Options: Array[Simplib::Hostname]
+  * Default Value: undef</p>
+
+<h5 id="adhostname"><code>ad_hostname</code>:</h5>
+<p>May be set on machines where the hostname(5) does not reflect the fully qualified name used in the Active Directory domain to identify this host.
+  * Valid Options: [Simplib::Hostname]
+  * Default Value: undef</p>
+
+<h5 id="adenablednssites"><code>ad_enable_dns_sites</code>:</h5>
+<ul>
+  <li>Valid Options: Boolean</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adaccessfilters"><code>ad_access_filters</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adsite"><code>ad_site</code>:</h5>
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adenablegc"><code>ad_enable_gc</code>:</h5>
+<ul>
+  <li>Valid Options: Boolean</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpoaccesscontrol"><code>ad_gpo_access_control</code>:</h5>
+<ul>
+  <li>Valid Options: ‘disabled’,’enforcing’,’permissive’</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpocachetimeout"><code>ad_gpo_cache_timeout</code>:</h5>
+<ul>
+  <li>Valid Options: [Integer[1]]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpomapinteractive"><code>ad_gpo_map_interactive</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpomapremoteinteractive"><code>ad_gpo_map_remote_interactive</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpomapnetwork"><code>ad_gpo_map_network</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpomapbatch"><code>ad_gpo_map_batch</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpomapservice"><code>ad_gpo_map_service</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpomappermit"><code>ad_gpo_map_permit</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpomapdeny"><code>ad_gpo_map_deny</code>:</h5>
+<ul>
+  <li>Valid Options: Array[String]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="adgpodefaultright"><code>ad_gpo_default_right</code>:</h5>
+<ul>
+  <li>Valid Options: ‘interactive’,’remote</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="admaximummachineaccountpasswordage"><code>ad_maximum_machine_account_password_age</code>:</h5>
+<ul>
+  <li>Valid Options: Integer[0]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="admachineaccountpasswordrenewalopts"><code>ad_machine_account_password_renewal_opts</code>:</h5>
+<ul>
+  <li>Valid Options: Pattern[’^\d+:\d+$’]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="dyndnsupdate"><code>dyndns_update</code>:</h5>
+<p>This option tells SSSD to automatically update the DNS server built into FreeIPA v2 with the IP address of this client. The update is secured using GSS-TSIG. The IP address of the IPA LDAP connection is used for the updates, if it is not otherwise specified by using the “dyndns_iface” option.
+  * Valid Options: Boolean
+  * Default Value: true</p>
+
+<h5 id="dyndnsttl"><code>dyndns_ttl</code>:</h5>
+<p>The TTL to apply to the client DNS record when updating it. If dyndns_update is false this has no effect. This will override the TTL serverside if set by an administrator.
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="dyndnsifaces"><code>dyndns_ifaces</code>:</h5>
+<p>Applicable only when dyndns_update is true. Choose the interface whose IP address should be used for dynamic DNS updates.
+  * Valid Options: Array[String]
+  * Default Value: undef</p>
+
+<h5 id="dyndnsrefreshinterval"><code>dyndns_refresh_interval</code>:</h5>
+<p>How often should the back end perform periodic DNS update in addition to the automatic update performed when the back end goes online. This option is optional and applicable only when dyndns_update is true.
+  * Valid Options: Integer
+  * Default Value: undef</p>
+
+<h5 id="dyndnsupdateptr"><code>dyndns_update_ptr</code>:</h5>
+<p>Whether the PTR record should also be explicitly updated when updating the client’s DNS records. Applicable only when dyndns_update is true.
+  * Valid Options: Boolean
+  * Default Value: undef</p>
+
+<h5 id="dyndnsforcetcp"><code>dyndns_force_tcp</code>:</h5>
+<p>Whether the nsupdate utility should default to using TCP for communicating with the DNS server.
+  * Valid Options: Boolean
+  * Default Value: undef</p>
+
+<h5 id="dyndnsserver"><code>dyndns_server</code>:</h5>
+<p>Hostname of the dyndns server
+  * Valid Options: [Simplib::Hostname]
+  * Default Value: undef</p>
+
+<h5 id="overridehomedir-1"><code>override_homedir</code>:</h5>
+<p>Override the user’s home directory. You can either provide an absolute value or a template
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="homedirsubstring"><code>homedir_substring</code>:</h5>
+<ul>
+  <li>Valid Options: [Stdlib::Absolutepath]</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="krb5useenterpriseprincipal"><code>krb5_use_enterprise_principal</code>:</h5>
+<ul>
+  <li>Valid Options: Boolean</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="krb5confdpath"><code>krb5_confd_path</code>:</h5>
+<ul>
+  <li>Valid Options: ‘none’, Stdlib::Absolutepath</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h5 id="ldapidmapping"><code>ldap_id_mapping</code>:</h5>
+<p>Set the id_mapping value for this section
+  * Valid Options: Boolean
+  * Default Value: true</p>
+
+<h5 id="ldapidmaprangemin"><code>ldap_idmap_range_min</code>:</h5>
+<p>Specifies the lower bound of the range of POSIX IDs to use for mapping Active Directory user and group SIDs.
+  * Valid Options: [Integer[0]]
+  * Default Value: undef</p>
+
+<h5 id="ldapidmaprangemax"><code>ldap_idmap_range_max</code>:</h5>
+<p>Specifies the upper bound of the range of POSIX IDs to use for mapping Active Directory user and group SIDs.
+  * Valid Options: [Integer[1]]
+  * Default Value: undef</p>
+
+<h5 id="ldapidmaprangesize"><code>ldap_idmap_range_size</code>:</h5>
+<p>Specifies the number of IDs available for each slice.
+  * Valid Options: [Integer[1]]
+  * Default Value: undef</p>
+
+<h5 id="ldapidmapdefaultdomainsid"><code>ldap_idmap_default_domain_sid</code>:</h5>
+<p>Specify the domain SID of the default domain.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="ldapidmapdefaultdomain"><code>ldap_idmap_default_domain</code>:</h5>
+<p>Specify the name of the default domain.
+  * Valid Options: String
+  * Default Value: undef</p>
+
+<h5 id="ldapidmapautoridcompat"><code>ldap_idmap_autorid_compat</code>:</h5>
+<p>Changes the behavior of the ID-mapping algorithm to behave more similarly to winbind’s “idmap_autorid” algorithm.
+  * Valid Options: Boolean
+  * Default Value: undef</p>
+
+<h5 id="ldapidmaphelpertablesize"><code>ldap_idmap_helper_table_size</code>:</h5>
+<p>Valid Options: [Integer[1]]
+  * Default Value: undef</p>
+
+<h3 id="sssdproviderlocal">sssd::provider::local</h3>
+
+<h5 id="debuglevel-8"><code>debug_level</code>:</h5>
+<p>level of verbosity of debug of this section of the config file.
+  * Valid Options: Optional[Sssd::Debuglevel]
+  * Default value: undef</p>
+
+<h5 id="debugtimestamps-8"><code>debug_timestamps</code>:</h5>
+<p>determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default value: true</p>
+
+<h5 id="debugmicroseconds-8"><code>debug_microseconds</code>:</h5>
+<p>determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default value: false</p>
+
+<h5 id="defaultshell-1"><code>default_shell</code>:</h5>
+<p>The default shell for users created with SSSD userspace tools.
+  * Valid Options: Optional[String]
+  * Default Value: undef</p>
+
+<h5 id="basedirectory"><code>base_directory</code>:</h5>
+<p>The tools append the login name to base_directory and use that as the home directory.
+  * Valid Options: Optional[Stdlib::Absolutepath]
+  * Default Value: undef</p>
+
+<h5 id="createhomedir"><code>create_homedir</code>:</h5>
+<p>Indicate if a home directory should be created by default for new users. Can be overridden on command line.
+  * Valid Options: Boolean
+  * Default Value: true</p>
+
+<h5 id="removehomedir"><code>remove_homedir</code>:</h5>
+<p>Indicate if a home directory should be removed by default for deleted users. Can be overridden on command line.
+  * Valid Options: Boolean
+  * Default Value: true</p>
+
+<h5 id="homedirumask"><code>homedir_umask</code>:</h5>
+<p>Used to specify the default permissions on a newly created home directory.
+  * Valid Options: Optional[Simplib::Umask]
+  * Default Value: undef</p>
+
+<h5 id="skeldir"><code>skel_dir</code>:</h5>
+<p>The skeleton directory, which contains files and directories to be copied in the user’s home directory, when the home directory is created
+  * Valid Options: Optional[Stdlib::Absolutepath]
+  * Default Value: undef</p>
+
+<h5 id="maildir"><code>mail_dir</code>:</h5>
+<p>The mail spool directory. This is needed to manipulate the mailbox when its corresponding user account is modified or deleted.
+  * Valid Options: Optional[Stdlib::Absolutepath]
+  * Default Value: undef</p>
+
+<h5 id="userdelcmd"><code>userdel_cmd</code>:</h5>
+<p>The command that is run after a user is removed. The command us passed the username of the user being removed as the first and only parameter. The return code of the command is not taken into account.
+  * Valid Options: Optional[String]
+  * Default Value: undef</p>
+
+<h3 id="sssdproviderkrb5">sssd::provider::krb5</h3>
+
+<p>For each variable listed below that begins with <code>krb5_</code>, please reference the SSSD-krb5 man pages at <a href="https://linux.die.net/man/5/sssd-krb5">this location</a></p>
+
+<h5 id="debuglevel-9"><code>debug_level</code>:</h5>
+<p>level of verbosity of debug of this section of the config file.
+  * Valid Options: Optional[Sssd::Debuglevel]
+  * Default value: undef</p>
+
+<h5 id="debugtimestamps-9"><code>debug_timestamps</code>:</h5>
+<p>determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default value: true</p>
+
+<h5 id="debugmicroseconds-9"><code>debug_microseconds</code>:</h5>
+<p>determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default value: false</p>
+
+<h5 id="krb5server"><code>krb5_server</code>:</h5>
+<ul>
+  <li>Valid Options: Simplib::Host</li>
+  <li>Default Value:</li>
+</ul>
+
+<h5 id="krb5realm"><code>krb5_realm</code>:</h5>
+<ul>
+  <li>Valid Options: String</li>
+  <li>Default Value:</li>
+</ul>
+
+<h5 id="krb5kpasswd"><code>krb5_kpasswd</code>:</h5>
+<ul>
+  <li>Valid Options: Optional[String]</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="krb5ccachedir"><code>krb5_ccachedir</code>:</h5>
+<ul>
+  <li>Valid Options: Optional[Stdlib::Absolutepath]</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="krb5ccnametemplate"><code>krb5_ccname_template</code>:</h5>
+<ul>
+  <li>Valid Options: Optional[Stdlib::Absolutepath]</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="krb5authtimeout"><code>krb5_auth_timeout</code>:</h5>
+<ul>
+  <li>Valid Options: Integer</li>
+  <li>Default Value: 15,</li>
+</ul>
+
+<h5 id="krb5validate"><code>krb5_validate</code>:</h5>
+<ul>
+  <li>Valid Options: Boolean</li>
+  <li>Default Value: false,</li>
+</ul>
+
+<h5 id="krb5keytab"><code>krb5_keytab</code>:</h5>
+<ul>
+  <li>Valid Options: Optional[Stdlib::Absolutepath]</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="krb5storepasswordifoffline"><code>krb5_store_password_if_offline</code>:</h5>
+<ul>
+  <li>Valid Options: Boolean</li>
+  <li>Default Value: false,</li>
+</ul>
+
+<h5 id="krb5renewablelifetime"><code>krb5_renewable_lifetime</code>:</h5>
+<ul>
+  <li>Valid Options: Optional[String]</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="krb5lifetime"><code>krb5_lifetime</code>:</h5>
+<ul>
+  <li>Valid Options: Optional[String]</li>
+  <li>Default Value: undef,</li>
+</ul>
+
+<h5 id="krb5renewinterval"><code>krb5_renew_interval</code>:</h5>
+<ul>
+  <li>Valid Options: Integer</li>
+  <li>Default Value: 0,</li>
+</ul>
+
+<h5 id="krb5usefast"><code>krb5_use_fast</code>:</h5>
+<ul>
+  <li>Valid Options: ‘never’,’try’,’demand’</li>
+  <li>Default Value: undef</li>
+</ul>
+
+<h3 id="sssdproviderldap">sssd::provider::ldap</h3>
+
+<p>For each variable listed below that begins with <code>krb5_</code>, please reference the SSSD-krb5 man pages at <a href="https://linux.die.net/man/5/sssd-krb5">this location</a>
+For each variable listed below that begins with <code>ldap_</code>, please reference the SSSD-ldap man pages at <a href="https://linux.die.net/man/5/sssd-ldap">this location</a></p>
+
+<p>Defaults for these variables can be found in the sssd::provider::ldap manifest</p>
+
+<h5 id="debuglevel-10"><code>debug_level</code>:</h5>
+<p>level of verbosity of debug of this section of the config file.
+  * Valid Options: Optional[Sssd::Debuglevel]
+  * Default value: undef</p>
+
+<h5 id="debugtimestamps-10"><code>debug_timestamps</code>:</h5>
+<p>determines if the log file for this section of the config file will use timestamps
+  * Valid Options: Boolean
+  * Default value: true</p>
+
+<h5 id="debugmicroseconds-10"><code>debug_microseconds</code>:</h5>
+<p>determines if the log file will use microseconds in timestamps
+  * Valid Options: Boolean
+  * Default value: false</p>
+
+<h5 id="ldapuri"><code>ldap_uri</code></h5>
+<p>##### <code>ldap_backup_uri</code>
+##### <code>ldap_chpass_uri</code>
+##### <code>ldap_chpass_backup_uri</code>
+##### <code>ldap_chpass_update_last_change</code>
+##### <code>ldap_search_base</code>
+##### <code>ldap_schema</code>
+##### <code>ldap_default_bind_dn</code>
+##### <code>ldap_default_authtok_type</code>
+##### <code>ldap_default_authtok</code>
+##### <code>ldap_user_object_class</code>
+##### <code>ldap_user_name</code>
+##### <code>ldap_user_uid_number</code>
+##### <code>ldap_user_gid_number</code>
+##### <code>ldap_user_gecos</code>
+##### <code>ldap_user_home_directory</code>
+##### <code>ldap_user_shell</code>
+##### <code>ldap_user_uuid</code>
+##### <code>ldap_user_objectsid</code>
+##### <code>ldap_user_modify_timestamp</code>
+##### <code>ldap_user_shadow_last_change</code>
+##### <code>ldap_user_shadow_min</code>
+##### <code>ldap_user_shadow_max</code>
+##### <code>ldap_user_shadow_warning</code>
+##### <code>ldap_user_shadow_inactive</code>
+##### <code>ldap_user_shadow_expire</code>
+##### <code>ldap_user_krb_last_pwd_change</code>
+##### <code>ldap_user_krb_password_expiration</code>
+##### <code>ldap_user_ad_account_expires</code>
+##### <code>ldap_user_ad_user_account_control</code>
+##### <code>ldap_ns_account_lock</code>
+##### <code>ldap_user_nds_login_disabled</code>
+##### <code>ldap_user_nds_login_expiration_time</code>
+##### <code>ldap_user_nds_login_allowed_time_map</code>
+##### <code>ldap_user_principal</code>
+##### <code>ldap_user_extra_attrs</code>
+##### <code>ldap_user_ssh_public_key</code>
+##### <code>ldap_force_upper_case_realm</code>
+##### <code>ldap_enumeration_refresh_timeout</code>
+##### <code>ldap_purge_cache_timeout</code>
+##### <code>ldap_user_fullname</code>
+##### <code>ldap_user_member_of</code>
+##### <code>ldap_user_authorized_service</code>
+##### <code>ldap_user_authorized_host</code>
+##### <code>ldap_group_object_class</code>
+##### <code>ldap_group_name</code>
+##### <code>ldap_group_gid_number</code>
+##### <code>ldap_group_member</code>
+##### <code>ldap_group_uuid</code>
+##### <code>ldap_group_objectsid</code>
+##### <code>ldap_group_modify_timestamp</code>
+##### <code>ldap_group_type</code>
+##### <code>ldap_group_nesting_level</code>
+##### <code>ldap_groups_use_matching_rule_in_chain</code>
+##### <code>ldap_initgroups_use_matching_rule_in_chain</code>
+##### <code>ldap_use_tokengroups</code>
+##### <code>ldap_netgroup_object_class</code>
+##### <code>ldap_netgroup_name</code>
+##### <code>ldap_netgroup_member</code>
+##### <code>ldap_netgroup_triple</code>
+##### <code>ldap_netgroup_uuid</code>
+##### <code>ldap_netgroup_modify_timestamp</code>
+##### <code>ldap_service_name</code>
+##### <code>ldap_service_port</code>
+##### <code>ldap_service_proto</code>
+##### <code>ldap_service_search_base</code>
+##### <code>ldap_search_timeout</code>
+##### <code>ldap_enumeration_search_timeout</code>
+##### <code>ldap_network_timeout</code>
+##### <code>ldap_opt_timeout</code>
+##### <code>ldap_connection_expire_timeout</code>
+##### <code>ldap_page_size</code>
+##### <code>ldap_disable_paging</code>
+##### <code>ldap_disable_range_retrieval</code>
+##### <code>ldap_sasl_minssf</code>
+##### <code>ldap_deref_threshold</code>
+##### <code>ldap_tls_reqcert</code>
+##### <code>app_pki_ca_dir</code>
+##### <code>app_pki_key</code>
+##### <code>app_pki_cert</code>
+##### <code>ldap_tls_cipher_suite</code>
+##### <code>ldap_id_use_start_tls</code>
+##### <code>ldap_id_mapping</code>
+##### <code>ldap_min_id</code>
+##### <code>ldap_max_id</code>
+##### <code>ldap_sasl_mech</code>
+##### <code>ldap_sasl_authid</code>
+##### <code>ldap_sasl_realm</code>
+##### <code>ldap_sasl_canonicalize</code>
+##### <code>ldap_krb5_keytab</code>
+##### <code>ldap_krb5_init_creds</code>
+##### <code>ldap_krb5_ticket_lifetime</code>
+##### <code>krb5_server</code>
+##### <code>krb5_backup_server</code>
+##### <code>krb5_realm</code>
+##### <code>krb5_canonicalize</code>
+##### <code>krb5_use_kdcinfo</code>
+##### <code>ldap_pwd_policy</code>
+##### <code>ldap_referrals</code>
+##### <code>ldap_dns_service_name</code>
+##### <code>ldap_chpass_dns_service_name</code>
+##### <code>ldap_access_filter</code>
+##### <code>ldap_account_expire_policy</code>
+##### <code>ldap_access_order</code>
+##### <code>ldap_pwdlockout_dn</code>
+##### <code>ldap_deref</code>
+##### <code>ldap_sudorule_object_class</code>
+##### <code>ldap_sudorule_name</code>
+##### <code>ldap_sudorule_command</code>
+##### <code>ldap_sudorule_host</code>
+##### <code>ldap_sudorule_user</code>
+##### <code>ldap_sudorule_option</code>
+##### <code>ldap_sudorule_runasuser</code>
+##### <code>ldap_sudorule_runasgroup</code>
+##### <code>ldap_sudorule_notbefore</code>
+##### <code>ldap_sudorule_notafter</code>
+##### <code>ldap_sudorule_order</code>
+##### <code>ldap_sudo_full_refresh_interval</code>
+##### <code>ldap_sudo_smart_refresh_interval</code>
+##### <code>ldap_sudo_use_host_filter</code>
+##### <code>ldap_sudo_hostnames</code>
+##### <code>ldap_sudo_ip</code>
+##### <code>ldap_sudo_include_netgroups</code>
+##### <code>ldap_sudo_include_regexp</code>
+##### <code>ldap_autofs_map_master_name</code>
+##### <code>ldap_autofs_map_object_class</code>
+##### <code>ldap_autofs_map_name</code>
+##### <code>ldap_autofs_entry_object_class</code>
+##### <code>ldap_autofs_entry_key</code>
+##### <code>ldap_autofs_entry_value</code></p>
+
+<p>Be careful with the following options!</p>
+
+<h5 id="ldapnetgroupsearchbase"><code>ldap_netgroup_search_base</code></h5>
+<p>##### <code>ldap_user_search_base</code>
+##### <code>ldap_group_search_base</code>
+##### <code>ldap_sudo_search_base</code>
+##### <code>ldap_autofs_search_base</code></p>
+
+<p>Advanced Configuration - Read the man page</p>
+
+<h5 id="ldapidmaprangemin-1"><code>ldap_idmap_range_min</code></h5>
+<p>##### <code>ldap_idmap_range_max</code>
+##### <code>ldap_idmap_range_size</code>
+##### <code>ldap_idmap_default_domain_sid</code>
+##### <code>ldap_idmap_default_domain</code>
+##### <code>ldap_idmap_autorid_compat</code></p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>This module is only designed to work in RHEL or CentOS 6 and 7. Any other
+operating systems have not been tested and results cannot be guaranteed.</p>
+
+<h1 id="development">Development</h1>
+
+<p>Please see the
+<a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">SIMP Contribution Guidelines</a>.</p>
+
+<p>General developer documentation can be found on
+<a href="https://simp-project.atlassian.net/wiki/display/SD/SIMP+Development+Home">Confluence</a>.
+Visit the project homepage on <a href="https://simp-project.com">GitHub</a>,
+chat with us on our <a href="https://simp-project.hipchat.com/">HipChat</a>,
+and look at our issues on  <a href="https://simp-project.atlassian.net/">JIRA</a>.</p>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

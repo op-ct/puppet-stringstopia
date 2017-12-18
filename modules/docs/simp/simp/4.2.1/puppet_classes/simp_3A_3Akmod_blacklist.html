@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp::kmod_blacklist
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp::kmod_blacklist";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp::kmod_blacklist</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp::kmod_blacklist</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/kmod_blacklist.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class provides a default set of blacklist entries per the SCAP Security
+Guide</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>enable_defaults</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable to use the default blacklist, otherwise just the
+<code>$custom_blacklist</code> will be used</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>blacklist</span>
+      
+      
+        <span class='type'>(<tt>Array[String,1]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[
+    &#39;bluetooth&#39;,
+    &#39;cramfs&#39;,
+    &#39;dccp&#39;,
+    &#39;dccp_ipv4&#39;,
+    &#39;dccp_ipv6&#39;,
+    &#39;freevxfs&#39;,
+    &#39;hfs&#39;,
+    &#39;hfsplus&#39;,
+    &#39;ieee1394&#39;,
+    &#39;jffs2&#39;,
+    &#39;net-pf-31&#39;,
+    &#39;rds&#39;,
+    &#39;sctp&#39;,
+    &#39;squashfs&#39;,
+    &#39;tipc&#39;,
+    &#39;udf&#39;,
+    &#39;usb-storage&#39;
+  ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>List of kernel modules to be blacklisted by default</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_blacklist</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Additional kernel modules to be blacklisted</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>allow_overrides</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Allow the addition of kernel module rules that come before the disabling of
+the module blacklist and disabling so that optional override autoloading
+can work properly</p>
+
+<ul>
+  <li>If this is not set, you will be unable to optionally override the
+disabling of the modules</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lock_modules</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Disallow all further modification to modules without a reboot</p>
+
+<ul>
+  <li>Requires that the <code>kernel.modules_disabled</code> sysctl option is available</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>notify_if_reboot_required</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Trigger a ‘reboot_notify’ resource that will warn at every puppet run that
+a reboot is required if necessary.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/kmod_blacklist.pp', line 31</span>
+
+class simp::kmod_blacklist (
+  Boolean         $enable_defaults           = true,
+  Array[String,1] $blacklist                 = [
+    &#39;bluetooth&#39;,
+    &#39;cramfs&#39;,
+    &#39;dccp&#39;,
+    &#39;dccp_ipv4&#39;,
+    &#39;dccp_ipv6&#39;,
+    &#39;freevxfs&#39;,
+    &#39;hfs&#39;,
+    &#39;hfsplus&#39;,
+    &#39;ieee1394&#39;,
+    &#39;jffs2&#39;,
+    &#39;net-pf-31&#39;,
+    &#39;rds&#39;,
+    &#39;sctp&#39;,
+    &#39;squashfs&#39;,
+    &#39;tipc&#39;,
+    &#39;udf&#39;,
+    &#39;usb-storage&#39;
+  ],
+  Array[String]   $custom_blacklist          = [],
+  Boolean         $allow_overrides           = true,
+  Boolean         $lock_modules              = false,
+  Boolean         $notify_if_reboot_required = true
+) {
+
+  simplib::assert_metadata( $module_name )
+
+  if $enable_defaults {
+    $_blacklist = $custom_blacklist + $blacklist
+    $_unblacklist = []
+  }
+  else {
+    # If we don&#39;t want to enable the defaults, we need to make sure they&#39;ve been
+    # properly purged from the management files. Otherwise, the system is not
+    # resetting to the expected state.
+
+    $_blacklist = $custom_blacklist
+    $_unblacklist = $blacklist - $custom_blacklist
+  }
+
+  # Fun fact, EL6 takes the first item found as authoritative and EL7 takes the
+  # last item found as authoritative
+  #
+  # We&#39;re going to make the assumption that this isn&#39;t going to change but we
+  # should obviously update our tests regularly
+  if ( $::operatingsystem in [&#39;RedHat&#39;,&#39;CentOS&#39;] ) and ( $::operatingsystemmajrelease == &#39;6&#39; ) {
+    $_late_prefix = &#39;00&#39;
+    $_early_prefix = &#39;zz&#39;
+  }
+  else {
+    $_late_prefix = &#39;zz&#39;
+    $_early_prefix = &#39;00&#39;
+  }
+
+  # Overrides in modprobe are processed in shell glob alphabetical order
+  if $allow_overrides {
+    $_disable_file = &quot;/etc/modprobe.d/${_late_prefix}_simp_disable.conf&quot;
+    $_obsolete_disable_file = &quot;/etc/modprobe.d/${_early_prefix}_simp_disable.conf&quot;
+  }
+  else {
+    $_disable_file = &quot;/etc/modprobe.d/${_early_prefix}_simp_disable.conf&quot;
+    $_obsolete_disable_file = &quot;/etc/modprobe.d/${_late_prefix}_simp_disable.conf&quot;
+  }
+
+  $_disable_file_content = join($_blacklist.map |$mod| { &quot;install ${mod} /bin/true&quot; }, &quot;\n&quot;)
+
+  file { $_disable_file:
+    ensure  =&gt; file,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    content =&gt; &quot;${_disable_file_content}\n&quot;
+  }
+
+  file { $_obsolete_disable_file: ensure =&gt; absent }
+
+  $_blacklist.each |String $mod| {
+    kmod::blacklist { $mod: }
+  }
+
+  $_unblacklist.each |String $mod| {
+    kmod::blacklist { $mod: ensure =&gt; &#39;absent&#39; }
+  }
+
+  # None of this works if we don&#39;t actually have the kernel capability
+  if $facts[&#39;simplib_sysctl&#39;] and $facts[&#39;simplib_sysctl&#39;][&#39;kernel.modules_disabled&#39;] {
+    if $lock_modules {
+      include simplib::stages
+
+      $_stage = &#39;simp_modprobe_lock&#39;
+
+      # Unfortunately, there is no way to make this *absolutely last*, so we just
+      # have to do the best that we can.
+      stage { $_stage: require =&gt; Stage[&#39;simp_finalize&#39;] }
+    }
+    else {
+      $_stage = &#39;main&#39;
+    }
+
+    class { &#39;simp::kmod_blacklist::lock_modules&#39;:
+      enable                    =&gt; $lock_modules,
+      notify_if_reboot_required =&gt; $notify_if_reboot_required,
+      stage                     =&gt; $_stage
+    }
+  }
+  elsif $lock_modules {
+    notify { &#39;simp::kmod_blacklist cannot lock modules&#39;:
+      message =&gt; &#39;WARNING: Could not find `kernel.modules_disabled`, unable to lock kernel modules as requested by `simp::kmod_blacklist::lock_modules`&#39;
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

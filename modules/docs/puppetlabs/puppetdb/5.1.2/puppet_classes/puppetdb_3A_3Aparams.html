@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: puppetdb::params
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::puppetdb::params";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">puppetdb::params</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: puppetdb::params</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="puppetdb_3A_3Aglobals.html" title="puppet_classes::puppetdb::globals (puppet_class)">puppetdb::globals</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Inherited by:</dt>
+    <dd>
+      
+      <span class='object_link'><a href="puppetdb.html" title="puppet_classes::puppetdb (puppet_class)">puppetdb</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver.html" title="puppet_classes::puppetdb::server (puppet_class)">puppetdb::server</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Ajetty.html" title="puppet_classes::puppetdb::server::jetty (puppet_class)">puppetdb::server::jetty</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Amaster_3A_3Aconfig.html" title="puppet_classes::puppetdb::master::config (puppet_class)">puppetdb::master::config</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Amaster_3A_3Aroutes.html" title="puppet_classes::puppetdb::master::routes (puppet_class)">puppetdb::master::routes</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Aglobal.html" title="puppet_classes::puppetdb::server::global (puppet_class)">puppetdb::server::global</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Adatabase.html" title="puppet_classes::puppetdb::server::database (puppet_class)">puppetdb::server::database</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Afirewall.html" title="puppet_classes::puppetdb::server::firewall (puppet_class)">puppetdb::server::firewall</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Apuppetdb.html" title="puppet_classes::puppetdb::server::puppetdb (puppet_class)">puppetdb::server::puppetdb</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Avalidate_db.html" title="puppet_classes::puppetdb::server::validate_db (puppet_class)">puppetdb::server::validate_db</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Adatabase_3A_3Apostgresql.html" title="puppet_classes::puppetdb::database::postgresql (puppet_class)">puppetdb::database::postgresql</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Amaster_3A_3Astoreconfigs.html" title="puppet_classes::puppetdb::master::storeconfigs (puppet_class)">puppetdb::master::storeconfigs</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Amaster_3A_3Apuppetdb_conf.html" title="puppet_classes::puppetdb::master::puppetdb_conf (puppet_class)">puppetdb::master::puppetdb_conf</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Aread_database.html" title="puppet_classes::puppetdb::server::read_database (puppet_class)">puppetdb::server::read_database</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Amaster_3A_3Areport_processor.html" title="puppet_classes::puppetdb::master::report_processor (puppet_class)">puppetdb::master::report_processor</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Avalidate_read_db.html" title="puppet_classes::puppetdb::server::validate_read_db (puppet_class)">puppetdb::server::validate_read_db</a></span><br/>
+      
+      <span class='object_link'><a href="puppetdb_3A_3Aserver_3A_3Acommand_processing.html" title="puppet_classes::puppetdb::server::command_processing (puppet_class)">puppetdb::server::command_processing</a></span><br/>
+      
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-gd4zev/manifests/params.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>PRIVATE CLASS - do not use directly</p>
+
+<p>The puppetdb default configuration settings.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-gd4zev/manifests/params.pp', line 4</span>
+
+class puppetdb::params inherits puppetdb::globals {
+  $listen_address            = &#39;localhost&#39;
+  $listen_port               = &#39;8080&#39;
+  $disable_cleartext         = false
+  $open_listen_port          = false
+  $ssl_listen_address        = &#39;0.0.0.0&#39;
+  $ssl_listen_port           = &#39;8081&#39;
+  $ssl_protocols             = undef
+  $disable_ssl               = false
+  $open_ssl_listen_port      = undef
+  $postgres_listen_addresses = &#39;localhost&#39;
+
+  $puppetdb_version          = $puppetdb::globals::version
+  $database                  = $puppetdb::globals::database
+  $manage_dbserver           = true
+  $manage_pg_repo            = true
+  $postgres_version          = &#39;9.4&#39;
+
+  # The remaining database settings are not used for an embedded database
+  $database_host       = &#39;localhost&#39;
+  $database_port       = &#39;5432&#39;
+  $database_name       = &#39;puppetdb&#39;
+  $database_username   = &#39;puppetdb&#39;
+  $database_password   = &#39;puppetdb&#39;
+  $database_ssl        = undef
+  $jdbc_ssl_properties = &#39;&#39;
+  $database_validate   = true
+
+  # These settings manage the various auto-deactivation and auto-purge settings
+  $node_ttl               = &#39;0s&#39;
+  $node_purge_ttl         = &#39;0s&#39;
+  $report_ttl             = &#39;14d&#39;
+
+  $gc_interval            = &#39;60&#39;
+
+  $log_slow_statements    = &#39;10&#39;
+  $conn_max_age           = &#39;60&#39;
+  $conn_keep_alive        = &#39;45&#39;
+  $conn_lifetime          = &#39;0&#39;
+
+  $max_threads            = undef
+
+  # These settings are for the read database
+  $read_database                     = &#39;postgres&#39;
+  $read_database_host                = undef
+  $read_database_port                = &#39;5432&#39;
+  $read_database_name                = &#39;puppetdb&#39;
+  $read_database_username            = &#39;puppetdb&#39;
+  $read_database_password            = &#39;puppetdb&#39;
+  $read_database_ssl                 = undef
+  $read_database_jdbc_ssl_properties = &#39;&#39;
+  $read_database_validate            = true
+  $read_log_slow_statements          = &#39;10&#39;
+  $read_conn_max_age                 = &#39;60&#39;
+  $read_conn_keep_alive              = &#39;45&#39;
+  $read_conn_lifetime                = &#39;0&#39;
+
+  $manage_firewall         = true
+  $java_args               = {}
+  $merge_default_java_args = true
+
+  $puppetdb_package     = &#39;puppetdb&#39;
+  $puppetdb_service     = &#39;puppetdb&#39;
+  $puppetdb_user        = &#39;puppetdb&#39;
+  $puppetdb_group       = &#39;puppetdb&#39;
+  $masterless           = false
+
+  if !($puppetdb_version in [&#39;latest&#39;,&#39;present&#39;,&#39;absent&#39;]) and versioncmp($puppetdb_version, &#39;3.0.0&#39;) &lt; 0 {
+    case $::osfamily {
+      &#39;RedHat&#39;, &#39;Suse&#39;, &#39;Archlinux&#39;,&#39;Debian&#39;: {
+        $etcdir                 = &#39;/etc/puppetdb&#39;
+        $vardir                 = &#39;/var/lib/puppetdb&#39;
+        $database_embedded_path = &quot;${vardir}/db/db&quot;
+        $puppet_confdir         = pick($settings::confdir,&#39;/etc/puppet&#39;)
+        $puppet_service_name    = &#39;puppetmaster&#39;
+      }
+      &#39;OpenBSD&#39;: {
+        $etcdir                 = &#39;/etc/puppetdb&#39;
+        $vardir                 = &#39;/var/db/puppetdb&#39;
+        $database_embedded_path = &quot;${vardir}/db/db&quot;
+        $puppet_confdir         = pick($settings::confdir,&#39;/etc/puppet&#39;)
+        $puppet_service_name    = &#39;puppetmasterd&#39;
+      }
+      &#39;FreeBSD&#39;: {
+        $etcdir                 = &#39;/usr/local/etc/puppetdb&#39;
+        $vardir                 = &#39;/var/db/puppetdb&#39;
+        $database_embedded_path = &quot;${vardir}/db/db&quot;
+        $puppet_confdir         = pick($settings::confdir,&#39;/usr/local/etc/puppet&#39;)
+        $puppet_service_name    = &#39;puppetmaster&#39;
+      }
+      default: {
+        fail(&quot;The fact &#39;osfamily&#39; is set to ${::osfamily} which is not supported by the puppetdb module.&quot;)
+      }
+    }
+    $terminus_package = &#39;puppetdb-terminus&#39;
+    $test_url         = &#39;/v3/version&#39;
+  } else {
+    case $::osfamily {
+      &#39;RedHat&#39;, &#39;Suse&#39;, &#39;Archlinux&#39;,&#39;Debian&#39;: {
+        $etcdir              = &#39;/etc/puppetlabs/puppetdb&#39;
+        $puppet_confdir      = pick($settings::confdir,&#39;/etc/puppetlabs/puppet&#39;)
+        $puppet_service_name = &#39;puppetserver&#39;
+      }
+      &#39;OpenBSD&#39;: {
+        $etcdir              = &#39;/etc/puppetlabs/puppetdb&#39;
+        $puppet_confdir      = pick($settings::confdir,&#39;/etc/puppetlabs/puppet&#39;)
+        $puppet_service_name = undef
+      }
+      &#39;FreeBSD&#39;: {
+        $etcdir              = &#39;/usr/local/etc/puppetlabs/puppetdb&#39;
+        $puppet_confdir      = pick($settings::confdir,&#39;/usr/local/etc/puppetlabs/puppet&#39;)
+        $puppet_service_name = undef
+      }
+      default: {
+        fail(&quot;The fact &#39;osfamily&#39; is set to ${::osfamily} which is not supported by the puppetdb module.&quot;)
+      }
+    }
+    $terminus_package       = &#39;puppetdb-termini&#39;
+    $test_url               = &#39;/pdb/meta/v1/version&#39;
+    $vardir                 = &#39;/opt/puppetlabs/server/data/puppetdb&#39;
+    $database_embedded_path = &quot;${vardir}/db/db&quot;
+  }
+
+  $confdir = &quot;${etcdir}/conf.d&quot;
+  $ssl_dir = &quot;${etcdir}/ssl&quot;
+
+  case $::osfamily {
+    &#39;RedHat&#39;, &#39;Suse&#39;, &#39;Archlinux&#39;: {
+      $puppetdb_initconf = &#39;/etc/sysconfig/puppetdb&#39;
+    }
+    &#39;Debian&#39;: {
+      $puppetdb_initconf = &#39;/etc/default/puppetdb&#39;
+    }
+    &#39;OpenBSD&#39;,&#39;FreeBSD&#39;: {
+      $puppetdb_initconf = undef
+    }
+    default: {
+      fail(&quot;The fact &#39;osfamily&#39; is set to ${::osfamily} which is not supported by the puppetdb module.&quot;)
+    }
+  }
+
+  $puppet_conf              = &quot;${puppet_confdir}/puppet.conf&quot;
+  $puppetdb_startup_timeout = 120
+  $puppetdb_service_status  = &#39;running&#39;
+
+  $command_threads          = undef
+  $store_usage              = undef
+  $temp_usage               = undef
+
+  $ssl_set_cert_paths       = false
+  $ssl_cert_path            = &quot;${ssl_dir}/public.pem&quot;
+  $ssl_key_path             = &quot;${ssl_dir}/private.pem&quot;
+  $ssl_ca_cert_path         = &quot;${ssl_dir}/ca.pem&quot;
+  $ssl_deploy_certs         = false
+  $ssl_key                  = undef
+  $ssl_cert                 = undef
+  $ssl_ca_cert              = undef
+
+  $certificate_whitelist_file = &quot;${etcdir}/certificate-whitelist&quot;
+  # the default is free access for now
+  $certificate_whitelist      = [ ]
+  # change to this to only allow access by the puppet master by default:
+  #$certificate_whitelist      = [ $::servername ]
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

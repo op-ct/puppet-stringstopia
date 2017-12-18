@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp::ctrl_alt_del
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp::ctrl_alt_del";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp::ctrl_alt_del</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp::ctrl_alt_del</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/ctrl_alt_del.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Manage the state of pressing <code>ctrl-alt-del</code></p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Allow <code>ctrl-alt-del</code> to restart the system</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Instead of just disabling the command, set the system up to write a log
+entry when the key combination is pressed</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_users</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Record all logged in users in the log message</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>facility</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Syslog::Facility</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;local6&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>syslog</code> facility to use for the log message</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>severity</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Syslog::Severity</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;warning&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>syslog</code> severity to use for the log message</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/ctrl_alt_del.pp', line 21</span>
+
+class simp::ctrl_alt_del (
+  Boolean                   $enable    = false,
+  Boolean                   $log       = true,
+  Boolean                   $log_users = true,
+  Simplib::Syslog::Facility $facility  = &#39;local6&#39;,
+  Simplib::Syslog::Severity $severity  = &#39;warning&#39;
+) {
+
+  if &#39;systemd&#39; in $facts[&#39;init_systems&#39;] {
+    $_logger = &#39;/bin/echo -n&#39;
+  }
+  else {
+    $_logger = &quot;/bin/logger -p ${facility}.${severity}&quot;
+  }
+
+  if $log {
+    if $log_users {
+      $_log_cmnd = &quot;/bin/sh -c \&quot;${_logger} &#39;Ctrl-Alt-Del detected - Logged in users:&#39; `/usr/bin/who | /bin/cut -f1 -d&#39; &#39; | /bin/sort -u | /usr/bin/tr &#39;\\n&#39; &#39; &#39;`\&quot;&quot;
+    }
+    else {
+      $_log_cmnd = &quot;/bin/sh -c \&quot;${_logger} &#39;Ctrl-Alt-Del detected&#39;\&quot;&quot;
+    }
+  }
+
+  if &#39;systemd&#39; in $facts[&#39;init_systems&#39;] {
+    if $enable {
+      file { &#39;/etc/systemd/system/ctrl-alt-del.target&#39;: ensure =&gt; &#39;absent&#39; }
+      file { &#39;/etc/systemd/system/ctrl-alt-del-capture.service&#39;: ensure =&gt; &#39;absent&#39; }
+    }
+    else {
+      if $log {
+        file { &#39;/etc/systemd/system/ctrl-alt-del.target&#39;:
+          owner   =&gt; &#39;root&#39;,
+          group   =&gt; &#39;root&#39;,
+          mode    =&gt; &#39;0644&#39;,
+          content =&gt; file(&quot;${module_name}/etc/systemd/system/ctrl-alt-del.target&quot;)
+        }
+
+        file { &#39;/etc/systemd/system/ctrl-alt-del-capture.service&#39;:
+          ensure  =&gt; &#39;file&#39;,
+          owner   =&gt; &#39;root&#39;,
+          group   =&gt; &#39;root&#39;,
+          mode    =&gt; &#39;0640&#39;,
+          content =&gt; template(&quot;${module_name}/etc/systemd/system/ctrl-alt-del-capture.service.erb&quot;)
+        }
+      }
+      else {
+        file { &#39;/etc/systemd/system/ctrl-alt-del.target&#39;:
+          ensure =&gt; &#39;symlink&#39;,
+          target =&gt; &#39;/dev/null&#39;,
+          force  =&gt; true
+        }
+
+        file { &#39;/etc/systemd/system/ctrl-alt-del-capture.service&#39;: ensure =&gt; &#39;absent&#39; }
+      }
+
+      File[&#39;/etc/systemd/system/ctrl-alt-del.target&#39;] ~&gt; Exec[&#39;ctrl_alt_del_systemd_reexec&#39;]
+      File[&#39;/etc/systemd/system/ctrl-alt-del-capture.service&#39;] ~&gt; Exec[&#39;ctrl_alt_del_systemd_reexec&#39;]
+    }
+
+    exec { &#39;ctrl_alt_del_systemd_reexec&#39;:
+      refreshonly =&gt; true,
+      command     =&gt; &#39;/bin/systemctl daemon-reexec&#39;
+    }
+  }
+  elsif &#39;upstart&#39; in $facts[&#39;init_systems&#39;] {
+    include &#39;::upstart&#39;
+
+    if $enable {
+      upstart::job { &#39;control-alt-delete&#39;:
+        main_process =&gt; &#39;/sbin/shutdown -r now &quot;Control-Alt-Delete pressed&quot;&#39;,
+        start_on     =&gt; &#39;control-alt-delete&#39;,
+        description  =&gt; &#39;Logs that Ctrl-Alt-Del was pressed without rebooting the system.&#39;
+      }
+    }
+    else {
+      if $log {
+        upstart::job { &#39;control-alt-delete&#39;:
+          main_process =&gt; $_log_cmnd,
+          start_on     =&gt; &#39;control-alt-delete&#39;,
+          description  =&gt; &#39;Logs that Ctrl-Alt-Del was pressed without rebooting the system.&#39;
+        }
+      }
+      else {
+        upstart::job { &#39;control-alt-delete&#39;:
+          main_process =&gt; &#39;/bin/true&#39;,
+          start_on     =&gt; &#39;control-alt-delete&#39;,
+          description  =&gt; &#39;Logs that Ctrl-Alt-Del was pressed without rebooting the system.&#39;
+        }
+      }
+    }
+  }
+  else {
+    fail(&#39;Could not find a supported init system&#39;)
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

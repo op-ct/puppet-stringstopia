@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: puppetdb::server::database
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::puppetdb::server::database";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">puppetdb::server::database</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: puppetdb::server::database</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="puppetdb_3A_3Aparams.html" title="puppet_classes::puppetdb::params (puppet_class)">puppetdb::params</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-gd4zev/manifests/server/database.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>PRIVATE CLASS - do not use directly</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_host</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database_host</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_port</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database_port</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_username</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database_username</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_password</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database_password</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database_name</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_ssl</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database_ssl</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>jdbc_ssl_properties</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::jdbc_ssl_properties</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_validate</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database_validate</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_embedded_path</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::database_embedded_path</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>node_ttl</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::node_ttl</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>node_purge_ttl</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::node_purge_ttl</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>report_ttl</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::report_ttl</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>gc_interval</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::gc_interval</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_slow_statements</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::log_slow_statements</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>conn_max_age</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::conn_max_age</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>conn_keep_alive</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::conn_keep_alive</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>conn_lifetime</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::conn_lifetime</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>confdir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::confdir</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-gd4zev/manifests/server/database.pp', line 2</span>
+
+class puppetdb::server::database (
+  $database               = $puppetdb::params::database,
+  $database_host          = $puppetdb::params::database_host,
+  $database_port          = $puppetdb::params::database_port,
+  $database_username      = $puppetdb::params::database_username,
+  $database_password      = $puppetdb::params::database_password,
+  $database_name          = $puppetdb::params::database_name,
+  $database_ssl           = $puppetdb::params::database_ssl,
+  $jdbc_ssl_properties    = $puppetdb::params::jdbc_ssl_properties,
+  $database_validate      = $puppetdb::params::database_validate,
+  $database_embedded_path = $puppetdb::params::database_embedded_path,
+  $node_ttl               = $puppetdb::params::node_ttl,
+  $node_purge_ttl         = $puppetdb::params::node_purge_ttl,
+  $report_ttl             = $puppetdb::params::report_ttl,
+  $gc_interval            = $puppetdb::params::gc_interval,
+  $log_slow_statements    = $puppetdb::params::log_slow_statements,
+  $conn_max_age           = $puppetdb::params::conn_max_age,
+  $conn_keep_alive        = $puppetdb::params::conn_keep_alive,
+  $conn_lifetime          = $puppetdb::params::conn_lifetime,
+  $confdir                = $puppetdb::params::confdir,
+) inherits puppetdb::params {
+
+  if str2bool($database_validate) {
+    # Validate the database connection.  If we can&#39;t connect, we want to fail
+    # and skip the rest of the configuration, so that we don&#39;t leave puppetdb
+    # in a broken state.
+    #
+    # NOTE:
+    # Because of a limitation in the postgres module this will break with
+    # a duplicate declaration if read and write database host+name are the
+    # same.
+    class { &#39;puppetdb::server::validate_db&#39;:
+      database          =&gt; $database,
+      database_host     =&gt; $database_host,
+      database_port     =&gt; $database_port,
+      database_username =&gt; $database_username,
+      database_password =&gt; $database_password,
+      database_name     =&gt; $database_name,
+    }
+  }
+
+  $ini_setting_require = str2bool($database_validate) ? {
+    false =&gt; undef,
+    default  =&gt; Class[&#39;puppetdb::server::validate_db&#39;],
+  }
+  # Set the defaults
+  Ini_setting {
+    path    =&gt; &quot;${confdir}/database.ini&quot;,
+    ensure  =&gt; present,
+    section =&gt; &#39;database&#39;,
+    require =&gt; $ini_setting_require
+  }
+
+  if $database == &#39;embedded&#39; {
+
+    $classname   = &#39;org.hsqldb.jdbcDriver&#39;
+    $subprotocol = &#39;hsqldb&#39;
+    $subname     = &quot;file:${database_embedded_path};hsqldb.tx=mvcc;sql.syntax_pgs=true&quot;
+
+  } elsif $database == &#39;postgres&#39; {
+    $classname = &#39;org.postgresql.Driver&#39;
+    $subprotocol = &#39;postgresql&#39;
+
+    if !empty($jdbc_ssl_properties) {
+      $database_suffix = $jdbc_ssl_properties
+    }
+    elsif $database_ssl {
+      $database_suffix = &#39;?ssl=true&#39;
+    }
+    else {
+      $database_suffix = &#39;&#39;
+    }
+
+    $subname = &quot;//${database_host}:${database_port}/${database_name}${database_suffix}&quot;
+
+    ##Only setup for postgres
+    ini_setting {&#39;puppetdb_psdatabase_username&#39;:
+      setting =&gt; &#39;username&#39;,
+      value   =&gt; $database_username,
+    }
+
+    if $database_password != undef {
+      ini_setting {&#39;puppetdb_psdatabase_password&#39;:
+        setting =&gt; &#39;password&#39;,
+        value   =&gt; $database_password,
+      }
+    }
+  }
+
+  ini_setting { &#39;puppetdb_classname&#39;:
+    setting =&gt; &#39;classname&#39;,
+    value   =&gt; $classname,
+  }
+
+  ini_setting { &#39;puppetdb_subprotocol&#39;:
+    setting =&gt; &#39;subprotocol&#39;,
+    value   =&gt; $subprotocol,
+  }
+
+  ini_setting { &#39;puppetdb_pgs&#39;:
+    setting =&gt; &#39;syntax_pgs&#39;,
+    value   =&gt; true,
+  }
+
+  ini_setting { &#39;puppetdb_subname&#39;:
+    setting =&gt; &#39;subname&#39;,
+    value   =&gt; $subname,
+  }
+
+  ini_setting { &#39;puppetdb_gc_interval&#39;:
+    setting =&gt; &#39;gc-interval&#39;,
+    value   =&gt; $gc_interval,
+  }
+
+  ini_setting { &#39;puppetdb_node_ttl&#39;:
+    setting =&gt; &#39;node-ttl&#39;,
+    value   =&gt; $node_ttl,
+  }
+
+  ini_setting { &#39;puppetdb_node_purge_ttl&#39;:
+    setting =&gt; &#39;node-purge-ttl&#39;,
+    value   =&gt; $node_purge_ttl,
+  }
+
+  ini_setting { &#39;puppetdb_report_ttl&#39;:
+    setting =&gt; &#39;report-ttl&#39;,
+    value   =&gt; $report_ttl,
+  }
+
+  ini_setting { &#39;puppetdb_log_slow_statements&#39;:
+    setting =&gt; &#39;log-slow-statements&#39;,
+    value   =&gt; $log_slow_statements,
+  }
+
+  ini_setting { &#39;puppetdb_conn_max_age&#39;:
+    setting =&gt; &#39;conn-max-age&#39;,
+    value   =&gt; $conn_max_age,
+  }
+
+  ini_setting { &#39;puppetdb_conn_keep_alive&#39;:
+    setting =&gt; &#39;conn-keep-alive&#39;,
+    value   =&gt; $conn_keep_alive,
+  }
+
+  ini_setting { &#39;puppetdb_conn_lifetime&#39;:
+    setting =&gt; &#39;conn-lifetime&#39;,
+    value   =&gt; $conn_lifetime,
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

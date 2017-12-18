@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: postgresql::validate_db_connection
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::postgresql::validate_db_connection";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">postgresql::validate_db_connection</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: postgresql::validate_db_connection</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-ggoakr/manifests/validate_db_connection.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This type validates that a successful postgres connection can be established
+between the node on which this resource is run and a specified postgres
+instance (host/port/user/password/database name).</p>
+
+<p>See README.md for more details.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>database_host</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_password</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_username</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_port</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>connect_settings</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>run_as</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>sleep</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>2</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tries</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>create_db_first</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-ggoakr/manifests/validate_db_connection.pp', line 6</span>
+
+define postgresql::validate_db_connection(
+  $database_host     = undef,
+  $database_name     = undef,
+  $database_password = undef,
+  $database_username = undef,
+  $database_port     = undef,
+  $connect_settings  = undef,
+  $run_as            = undef,
+  $sleep             = 2,
+  $tries             = 10,
+  $create_db_first   = true
+) {
+  include postgresql::client
+  include postgresql::params
+
+  $psql_path = $postgresql::params::psql_path
+  $module_workdir = $postgresql::params::module_workdir
+  $validcon_script_path = $postgresql::client::validcon_script_path
+
+  $cmd_init = &quot;${psql_path} --tuples-only --quiet &quot;
+  $cmd_host = $database_host ? {
+    undef   =&gt; &#39;&#39;,
+    default =&gt; &quot;-h ${database_host} &quot;,
+  }
+  $cmd_user = $database_username ? {
+    undef   =&gt; &#39;&#39;,
+    default =&gt; &quot;-U ${database_username} &quot;,
+  }
+  $cmd_port = $database_port ? {
+    undef   =&gt; &#39;&#39;,
+    default =&gt; &quot;-p ${database_port} &quot;,
+  }
+  $cmd_dbname = $database_name ? {
+    undef   =&gt; &quot;--dbname ${postgresql::params::default_database} &quot;,
+    default =&gt; &quot;--dbname ${database_name} &quot;,
+  }
+  $pass_env = $database_password ? {
+    undef   =&gt; undef,
+    default =&gt; &quot;PGPASSWORD=${database_password}&quot;,
+  }
+  $cmd = join([$cmd_init, $cmd_host, $cmd_user, $cmd_port, $cmd_dbname], &#39; &#39;)
+  $validate_cmd = &quot;${validcon_script_path} ${sleep} ${tries} &#39;${cmd}&#39;&quot;
+
+  # This is more of a safety valve, we add a little extra to compensate for the
+  # time it takes to run each psql command.
+  $timeout = (($sleep + 2) * $tries)
+
+  # Combine $database_password and $connect_settings into an array of environment
+  # variables, ensure $database_password is last, allowing it to override a password
+  # from the $connect_settings hash
+  if $connect_settings != undef {
+    if $pass_env != undef {
+      $env = concat(join_keys_to_values( $connect_settings, &#39;=&#39;), $pass_env)
+    } else {
+      $env = join_keys_to_values( $connect_settings, &#39;=&#39;)
+    }
+  } else {
+    $env = $pass_env
+  }
+
+  $exec_name = &quot;validate postgres connection for ${database_username}@${database_host}:${database_port}/${database_name}&quot;
+
+  exec { $exec_name:
+    command     =&gt; &quot;echo &#39;Unable to connect to defined database using: ${cmd}&#39; &amp;&amp; false&quot;,
+    unless      =&gt; $validate_cmd,
+    cwd         =&gt; $module_workdir,
+    environment =&gt; $env,
+    logoutput   =&gt; &#39;on_failure&#39;,
+    user        =&gt; $run_as,
+    path        =&gt; &#39;/bin:/usr/bin:/usr/local/bin&#39;,
+    timeout     =&gt; $timeout,
+    require     =&gt; Class[&#39;postgresql::client&#39;],
+  }
+
+  # This is a little bit of puppet magic.  What we want to do here is make
+  # sure that if the validation and the database instance creation are being
+  # applied on the same machine, then the database resource is applied *before*
+  # the validation resource.  Otherwise, the validation is guaranteed to fail
+  # on the first run.
+  #
+  # We accomplish this by using Puppet&#39;s resource collection syntax to search
+  # for the Database resource in our current catalog; if it exists, the
+  # appropriate relationship is created here.
+  if($create_db_first) {
+    Postgresql::Server::Database&lt;|title == $database_name|&gt; -&gt; Exec[$exec_name]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

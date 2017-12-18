@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: tuned
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::tuned";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (t)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">tuned</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: tuned</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-7j8gkg/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Manages the activation of tuned</p>
+
+<p>The following options only affect ‘tuned’</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>use_sysctl</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>This is the custom sysctl configuration file.  Set to false to
+use only the ktune settings.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_sysctl_post</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>This is the ktune sysctl file.  Any settings in this file will be applied
+after custom settings, overriding them.  Comment this out to not use ktune
+settings.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>io_scheduler</span>
+      
+      
+        <span class='type'>(<tt>Tuned::IoSchedule</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;deadline&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>This is the I/O scheduler ktune will use.  This will <em>not</em> override
+anything explicitly set on the kernel command line, nor will it change
+the scheduler for any block device that is using a non-default scheduler
+when ktune starts.  You should probably leave this on “deadline”, but
+“as”, “cfq”, and “noop” are also legal values.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>elevator_tune_devs</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&#39;hd&#39;,&#39;sd&#39;,&#39;cciss&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>These are the devices, that should be tuned with the ELEVATOR</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tuning_interval</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The number of seconds between tuning runs.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>diskmonitor_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable the disk monitoring plugin.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>disktuning_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable the disk tuning plugin.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>disktuning_hdparm</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Use ‘hdparm’ for disk tuning.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>disktuning_alpm</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Use ‘ALPM’ when disk tuning.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>netmonitor_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable the network monitoring plugin.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nettuning_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable the network tuning plugin.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cpumonitor_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable the CPU monitoring plugin.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>cputuning_enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable the CPU tuning plugin.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-7j8gkg/manifests/init.pp', line 39</span>
+
+class tuned (
+  Tuned::IoSchedule $io_scheduler             = &#39;deadline&#39;,
+  Array[String]     $elevator_tune_devs       = [&#39;hd&#39;,&#39;sd&#39;,&#39;cciss&#39;],
+  Boolean           $use_sysctl               = true,
+  Boolean           $use_sysctl_post          = false,
+  Integer           $tuning_interval          = 10,
+  Boolean           $diskmonitor_enable       = true,
+  Boolean           $disktuning_enable        = true,
+  Boolean           $disktuning_hdparm        = true,
+  Boolean           $disktuning_alpm          = true,
+  Boolean           $netmonitor_enable        = true,
+  Boolean           $nettuning_enable         = true,
+  Boolean           $cpumonitor_enable        = true,
+  Boolean           $cputuning_enable         = true
+) {
+
+  $ktune_name = &#39;tuned&#39;
+
+  file { &#39;/etc/tuned.conf&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0640&#39;,
+    content =&gt; template(&#39;tuned/etc/tuned.conf.erb&#39;),
+    notify  =&gt; Service[$ktune_name]
+  }
+
+  file { &#39;/etc/sysconfig/ktune&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0640&#39;,
+    content =&gt; template(&#39;tuned/etc/sysconfig/ktune.erb&#39;)
+  }
+
+  file { &#39;/etc/sysctl.ktune&#39;:
+    ensure =&gt; &#39;present&#39;,
+    owner  =&gt; &#39;root&#39;,
+    group  =&gt; &#39;root&#39;,
+    mode   =&gt; &#39;0640&#39;
+  }
+
+  package { $ktune_name:
+    ensure =&gt; &#39;latest&#39;
+  }
+
+  service { $ktune_name:
+    ensure     =&gt; &#39;running&#39;,
+    enable     =&gt; true,
+    hasrestart =&gt; true,
+    hasstatus  =&gt; true,
+    require    =&gt; [
+      Package[$ktune_name],
+      File[&#39;/etc/sysconfig/ktune&#39;]
+    ]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

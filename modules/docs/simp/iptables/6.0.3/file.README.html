@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a> <a href="https://travis-ci.org/simp/pupmod-simp-iptables"><img src="https://travis-ci.org/simp/pupmod-simp-iptables.svg" alt="Build Status" /></a> <a href="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg"><img src="https://img.shields.io/badge/SIMP%20compatibility-4.2.*%2F5.1.*-orange.svg" alt="SIMP compatibility" /></a></p>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#module-description">Module Description - What the module does and why it is useful</a></li>
+  <li><a href="#setup">Setup - The basics of getting started with iptables</a>
+    <ul>
+      <li><a href="#what-iptables-affects">What iptables affects</a></li>
+      <li><a href="#beginning-with-iptables">Beginning with iptables</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage">Usage - Configuration options and additional functionality</a></li>
+  <li><a href="#reference">Reference - An under-the-hood peek at what the module is doing and how</a>
+    <ul>
+      <li><a href="#data-types">Data Types</a></li>
+    </ul>
+  </li>
+  <li><a href="#limitations">Limitations - OS compatibility, etc.</a></li>
+  <li><a href="#development">Development - Guide for contributing to the module</a>
+    <ul>
+      <li><a href="#acceptance-tests">Acceptance Tests - Beaker env variables</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>This module provides native types for managing the system IPTables and
+IP6Tables as well as convenience defines and general system configuration
+capabilities.</p>
+
+<h2 id="this-is-a-simp-module">This is a SIMP module</h2>
+<p>This module is a component of the <a href="https://github.com/NationalSecurityAgency/SIMP">System Integrity Management Platform</a>,
+a compliance-management framework built on Puppet.</p>
+
+<p>Most SIMP modules actively take advantage of this module when used within the
+SIMP ecosystem.</p>
+
+<h2 id="module-description">Module Description</h2>
+
+<p>The <code>iptables</code> module manages all IPTables and IP6Tables rules in an atomic
+fashion. All rules are applied only once per puppet agent run during the
+application of the last executed <code>iptables</code> resource.</p>
+
+<p>Applying the rules in this manner ensures that avoid situations where you have
+a partially applied IPTables rule set during a failure in your run of puppet
+(someone hits ^C, your system runs out of memory, etc…).</p>
+
+<p>The module also takes additional safety measures to attempt to keep your
+firewall rules in a consistent state over time to include:</p>
+
+<ul>
+  <li>Rolling back to the last configuration if the application of the new configuration fails</li>
+  <li>Rolling back to an ‘ssh-only’ mode if application of all configurations fail</li>
+</ul>
+
+<p>The goal is to remain in a state where you can be sure that your system is
+tightly restricted but also able to be recovered.</p>
+
+<p>Finally, the module works to ensure that services such as OpenStack, Docker,
+VirtualBox, etc… can apply their rules without being affected by this module.
+The module provides mechanisms to preserve these rules as managed by external
+systems based on regular expression matches.</p>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="what-iptables-affects">What iptables affects</h3>
+
+<p>The module manages the <code>iptables</code> package, service, and rules.</p>
+
+<p>On systems containing the <code>firewalld</code> service, it is ensured to be stopped.</p>
+
+<h3 id="beginning-with-iptables">Beginning with iptables</h3>
+
+<h4 id="i-want-a-basic-secure-iptables-setup">I want a basic secure iptables setup</h4>
+
+<p>A basic setup with iptables will allow the following:</p>
+
+<ul>
+  <li>ICMP</li>
+  <li>Loopback</li>
+  <li>SSH</li>
+  <li>Estabilished and Related traffic (Return Traffic)</li>
+</ul>
+
+<p>```puppet
+# Set up iptables with the default settings</p>
+
+<p>include ‘::iptables’
+```
+Output (to /<code>etc/sysconfig/iptables</code>)</p>
+
+<p><code>bash
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:LOCAL-INPUT - [0:0]
+-A INPUT -j LOCAL-INPUT
+-A FORWARD -j LOCAL-INPUT
+-A LOCAL-INPUT -p icmp --icmp-type 8 -j ACCEPT
+-A LOCAL-INPUT -i lo -j ACCEPT
+-A LOCAL-INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+-A LOCAL-INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A LOCAL-INPUT -j LOG --log-prefix "IPT:"
+-A LOCAL-INPUT -j DROP
+COMMIT
+</code></p>
+
+<h2 id="usage">Usage</h2>
+
+<h4 id="i-want-to-open-a-specific-port-or-allow-access">I want to open a specific port or allow access</h4>
+
+<p>The IPtables module has a set of defined types for adding in new firewall
+rules. This code can be utilized in a role or profile.</p>
+
+<p>```puppet
+#open TCP port 443 (HTTPS) and a custom 8443 from any IP Address</p>
+
+<p>iptables::listen::tcp_stateful { ‘webserver’:
+  client_nets =&gt; [‘any’],
+  dports =&gt; [‘443’,’8443’]
+}</p>
+
+<h1 id="open-udp-port-53-dns-from-two-specific-ip-addresses">open UDP port 53 (DNS) from two specific IP addresses</h1>
+
+<p>iptables::listen::udp {‘DNS’:
+  client_nets =&gt; [‘192.168.56.55’,’192.168.56.147’],
+  dports      =&gt; [‘53’]
+}</p>
+
+<h1 id="allow-a-specific-machine-full-access-to-this-node">Allow a specific machine full access to this node</h1>
+
+<p>iptables::add_all_listen { ‘Central Management’:
+  trusted_nets =&gt; [‘10.10.35.100’],
+}</p>
+
+<h1 id="allow-a-range-of-ports-to-be-accessible-from-a-specific-ip">Allow a range of ports to be accessible from a specific IP</h1>
+<p>iptables::listen::tcp_stateful { ‘myapp’:
+  client_nets =&gt; [‘10.10.45.100’],
+  dports =&gt; [‘1024:60000’]
+}</p>
+
+<p>```</p>
+
+<h4 id="this-module-doesnt-cover-my-specific-iptables-rule">This module doesn’t cover my specific iptables rule</h4>
+
+<p>In the case you need a rule not covered properly by the module, you can use the
+<code>iptables::add_rules</code> type to place the exact rule into <code>/etc/sysconfig/iptables</code>.</p>
+
+<p>```puppet
+# Inserts a custom rule into IPtables</p>
+
+<p>iptables::rule { ‘example’:
+  content =&gt; ‘-A LOCAL-INPUT -m state –state NEW -m tcp -p tcp\
+  -s 1.2.3.4 –dport 1024:65535 -j ACCEPT’
+}
+```</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>«««&lt; be8c418e96cf122b1636397d7921baf0d5b33b86
+### Native Types</p>
+
+<h4 id="iptablesrule"><code>iptables_rule</code></h4>
+
+<p>A managed iptables rule. This may be used to provide ultimate flexibility in managing the system rules.</p>
+
+<h5 id="parameters">Parameters</h5>
+
+<ul>
+  <li>name: A unique name for the rule, does not provide any other function. Required</li>
+  <li>comment: A comment to apply to the rule. Default: No Comment</li>
+  <li>header: Whether or not to auto-include the table LOCAL-INPUT in the rule. Default: true</li>
+  <li>apply_to: What version(s) of iptables to which to apply this rule. Default: ‘auto’
+If set to ‘auto’ (the default) then we’ll try to guess what you want and default to [‘ipv4’,’ipv6’].
+If ‘auto’ is set then each line will be evaluated as an independent rule.
+    <ul>
+      <li>Any rules that have IPv4 addresses will be applied to iptables.</li>
+      <li>Any rules that have IPv6 addresses will be applied to ip6tables.</li>
+      <li>All other rules will be applied to <em>both</em> utilities.</li>
+      <li>If in doubt, split your rules and specify your tables!</li>
+    </ul>
+  </li>
+  <li>table: The name of the table to which you are adding the rule. Default: ‘filter’</li>
+  <li>first: If <code>true</code>, prepend the rule to the rule set. Default: <code>false</code></li>
+  <li>absolute: If <code>true</code>, ensure that the rule is at the absolute beginning or end of the rule set. If multiple rules are marked as absolute then they are sorted by resource name. Default: <code>false</code></li>
+  <li>order: The order in which the rule should appear. 1 is the minimum and 999 is the maximum. Default: ‘11’</li>
+  <li>resolve: If <code>true</code>, Puppet will resolve any hostnames in the rules prior to application to prevent iptables from starting should a name change in the future. Default: <code>true</code></li>
+  <li>content: The full content of the rule that should be added to the rule set. You may place <em>anything</em> here. Required</li>
+</ul>
+
+<h4 id="iptablesoptimize">iptables_optimize</h4>
+<p>#### ip6tables_optimize</p>
+
+<p>This type collects all of the <code>iptables_rule</code> resources and compiles the final iptables rule set. By default, it will collapse rules into a single rule when possible to make the iptables rule set more efficient. Eventually, it will support <code>ipset</code>.</p>
+
+<p>The ip6tables_optimize type has the exact same parameters but affects ip6tables instead of iptables.</p>
+
+<h5 id="parameters-1">Parameters</h5>
+
+<ul>
+  <li>name: An arbitrary name for the resource. This resource is not meant to be called more than once…</li>
+  <li>disable: If <code>true</code>, disable the management of iptables altogether. Default: <code>false</code></li>
+  <li>
+    <p>ignore: Ignore all <em>running</em> iptables rules matching one or more provide Ruby regular expressions. The regular expressions are compared against both the JUMP and CHAIN options of the running rules. Anything matching these rules are excluded from the synchronization comparison against the new rules.</p>
+
+    <p><strong>Caveats</strong></p>
+
+    <p>Do NOT include the beginning and trailing slashes in your regular expressions.</p>
+
+    <p>If a rule has been added or removed, this setting ignored and iptables <em>will</em>
+be restarted! If you have services which are affected by this, make sure that
+they subscribe to Service[‘iptables’] and/or Service[‘ip6tables’] as
+appropriate.</p>
+
+    <p><strong>Examples</strong>
+```
+# Preserve all rules whose jump or chain begins with the word ‘foo’
+ignore =&gt; ‘^foo’</p>
+
+    <h1 id="preserve-all-rules-whose-jump-or-chain-begins-with-the-word-foo-or">Preserve all rules whose jump or chain begins with the word ‘foo’ or</h1>
+    <p># ends with the word ‘bar’
+ignore =&gt; [‘^foo’,’bar$’]
+```</p>
+  </li>
+  <li>optimize: If <code>true</code>, enable the optimization of the IPTables rules. Default: <code>true</code></li>
+</ul>
+
+<h4 id="xtrecent">xt_recent</h4>
+
+<h5 id="parameters-2">Parameters</h5>
+
+<ul>
+  <li>name: The path to the xt_recent variables to be manipulated</li>
+  <li>ip_list_tot: The number of addresses remembered per table. This effectively becomes the maximum size of your block list. The more addresses you are recording, the higher the load on your system. Default: ‘100’</li>
+  <li>ip_pkt_list_tot: The number of packets per address remembered. Default: ‘20’</li>
+  <li>ip_list_hash_size: The hash table size. 0 means to calculate it based on ip_list_tot. Default: ‘0’</li>
+  <li>ip_list_perms: Permissions for /proc/net/xt_recent/* files. Default: ‘0640’</li>
+  <li>ip_list_uid: Numerical UID for ownership of /proc/net/xt_recent/* files. Defafult: ‘0’</li>
+  <li>ip_list_gid: Numerical GID for ownership of /proc/net/xt_recent/* files. Defafult: ‘0’</li>
+</ul>
+
+<h3 id="classes">Classes</h3>
+
+<h4 id="iptables"><code>iptables</code></h4>
+
+<p>This sets the system up in a way that will maximally utilize the iptables native types.</p>
+
+<h5 id="parameters-3">Parameters</h5>
+
+<ul>
+  <li>
+    <p><code>authoritative</code>: If true, only iptables rules set by Puppet may be present on the system. Otherwise, only manage the <em>chains</em> that Puppet is managing.  Default: true</p>
+
+    <p><strong>WARNING:</strong>  Be <em>extremely</em> careful with this option. If you don’t match all of your rules that you want left around, but you also don’t have something to clean up the various tables, you will get continuous warnings that IPTables rules are being optimized.</p>
+  </li>
+  <li><code>class_debug</code>: If true, the system will print messages regarding rule comparisons.  Default: false</li>
+  <li><code>optimize_rules</code>: If true, the inbuilt iptables rule optimizer will be run to collapse the rules down to as small as is reasonably possible without reordering. IPsets will be used eventually.  Default: true</li>
+  <li><code>ignore</code>: Set this to an Array of regular expressions that you would like to match in order to preserve running rules. This modifies the behavior of the optimize type.  Do not include the beginning and ending ‘/’ but do include an end or beginning of word marker if appropriate.  Default: []</li>
+  <li>
+    <p><code>enable_default_rules</code>: If true, enable the usual set of default deny rules that you would expect to see on most systems.  Default: true</p>
+
+    <p>This uses the following expectations of rule ordering (not enforced):
+  * 1 -&gt; ESTABLISHED,RELATED rules.
+  * 2-5 -&gt; Standard ACCEPT/DENY rules.
+  * 6-10 -&gt; Jumps to other rule sets.
+  * 11-20 -&gt; Pure accept rules.
+  * 22-30 -&gt; Logging and rejection rules.</p>
+  </li>
+  <li><code>enable_scanblock</code>: If true, enable a technique for setting up port-based triggers that will block anyone connecting to the system for an hour after connection to a forbidden port.  Default: false</li>
+  <li><code>disable</code>: If true, disable iptables management completely. The build will still happen but nothing will be enforced.  Default: false</li>
+</ul>
+
+<h3 id="defined-types">Defined Types</h3>
+
+<h4 id="addalllisten"><code>add_all_listen</code></h4>
+
+<p>This define provides a simple way to allow all protocols to all ports on the target system from a select set of networks.</p>
+
+<h5 id="example">Example</h5>
+
+<p><code>ruby
+iptables::add_all_listen { 'example':
+  trusted_nets =&gt; [ '1.2.3.4', '5.6.7.8' ],
+}
+</code></p>
+
+<p>Output (to /<code>etc/sysconfig/iptables</code>)</p>
+
+<p><code>bash
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:LOCAL-INPUT - [0:0]
+-A INPUT -j LOCAL-INPUT
+-A FORWARD -j LOCAL-INPUT
+-A LOCAL-INPUT -p icmp --icmp-type 8 -j ACCEPT
+-A LOCAL-INPUT -i lo -j ACCEPT
+-A LOCAL-INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+-A LOCAL-INPUT -s 1.2.3.4 -j ACCEPT
+-A LOCAL-INPUT -s 5.6.7.8 -j ACCEPT
+-A LOCAL-INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A LOCAL-INPUT -j LOG --log-prefix "IPT:"
+-A LOCAL-INPUT -j DROP
+COMMIT
+</code></p>
+
+<h4 id="addicmplisten"><code>add_icmp_listen</code></h4>
+<p>This provides a simple way to allow ICMP ports into the system.</p>
+
+<h5 id="example-1">Example</h5>
+
+<p>Command</p>
+
+<p><code>ruby
+iptables::add_icmp_listen { "example":
+  trusted_nets =&gt; [ "1.2.3.4", "5.6.7.8" ],
+  icmp_type =&gt; '8'
+}
+</code></p>
+
+<p>Output (to /<code>etc/sysconfig/iptables</code>)</p>
+
+<p><code>bash
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:LOCAL-INPUT - [0:0]
+-A INPUT -j LOCAL-INPUT
+-A FORWARD -j LOCAL-INPUT
+-A LOCAL-INPUT -p icmp --icmp-type 8 -j ACCEPT
+-A LOCAL-INPUT -i lo -j ACCEPT
+-A LOCAL-INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+-A LOCAL-INPUT -p icmp -s 1.2.3.4 --icmp-type 8 -j ACCEPT
+-A LOCAL-INPUT -p icmp -s 5.6.7.8 --icmp-type 8 -j ACCEPT
+-A LOCAL-INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A LOCAL-INPUT -j LOG --log-prefix "IPT:"
+-A LOCAL-INPUT -j DROP
+COMMIT
+</code></p>
+
+<h4 id="addrules"><code>add_rules</code></h4>
+
+<p>This function allows you to add rules to the iptables configuration file.  These rules should be uniquely named.  Rules are added to <code>/etc/sysconfig/iptables</code>.</p>
+
+<h5 id="parameters-4">Parameters</h5>
+<p>All parameters are optional, unless otherwise noted.</p>
+
+<ul>
+  <li><code>content</code>: <strong>Required.</strong> The content of the rules that should be added.</li>
+  <li><code>table</code>:  Should be the name of the table you are adding to.  Default: ‘filter’.</li>
+  <li><code>first</code>: Should be set to ‘true’ if you want to prepend your custom rules.</li>
+  <li><code>absolute</code>: Should be set to ‘true’ if you want the section to be absolutely first or last, depending on the setting of $first.  This is relative and basically places items in alphabetical order.</li>
+  <li>
+    <p><code>order</code>: The order in which the rule should appear.  1 is the minimum, 11 is the mean, and 9999999 is the max.</p>
+
+    <p>The following ordering ranges are suggested:
+   - <strong>1</strong>     –&gt; ESTABLISHED,RELATED rules.
+   - <strong>2-5</strong>   –&gt; Standard ACCEPT/DENY rules.
+   - <strong>6-10</strong>  –&gt; Jumps to other rule sets.
+   - <strong>11-20</strong> –&gt; Pure accept rules.
+   - <strong>22-30</strong> –&gt; Logging and rejection rules.
+ These are suggestions and are not enforced.
+=======
+For the most up to date reference, please see <a href="https://github.com/simp/pupmod-simp-iptables/doc/index.html">The Project Documentation</a>.</p>
+  </li>
+</ul>
+
+<p>Items that are not covered by <code>puppet strings</code> are listed below.</p>
+
+<h3 id="data-types">Data Types</h3>
+
+<ul>
+  <li>Iptables::PortRange
+    <ul>
+      <li>A range of ports, in IPTables format
+        <ul>
+          <li><code>22:1234</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="limitations">Limitations</h2>
+<ul>
+  <li>IPv6 support has not been fully tested, use with caution</li>
+  <li><code>firewalld</code> must be disabled.  The module will disable <code>firewalld</code> if it is present</li>
+  <li>This module is intended to be used on a Redhat Enterprise Linux-compatible
+distribution such as EL6 and EL7. However, any distribution that uses the
+<code>/etc/sysconfig/iptables</code> configuration should function properly (let us
+know!).</li>
+</ul>
+
+<h2 id="development">Development</h2>
+
+<p>Please see the <a href="https://simp-project.atlassian.net/wiki/display/SD/Contributing+to+SIMP">SIMP Contribution Guidelines</a>.</p>
+
+<h3 id="acceptance-tests">Acceptance tests</h3>
+
+<p>To run the system tests, you need <a href="https://www.vagrantup.com/">Vagrant</a> installed. Then, run:</p>
+
+<p><code>shell
+bundle exec rake beaker:suites
+</code></p>
+
+<p>Some environment variables may be useful:</p>
+
+<p><code>shell
+BEAKER_debug=true
+BEAKER_provision=no
+BEAKER_destroy=no
+BEAKER_use_fixtures_dir_for_modules=yes
+</code></p>
+
+<ul>
+  <li><code>BEAKER_debug</code>: show the commands being run on the STU and their output.</li>
+  <li><code>BEAKER_destroy=no</code>: prevent the machine destruction after the tests finish so you can inspect the state.</li>
+  <li><code>BEAKER_provision=no</code>: prevent the machine from being recreated. This can save a lot of time while you’re writing the tests.</li>
+  <li><code>BEAKER_use_fixtures_dir_for_modules=yes</code>: cause all module dependencies to be loaded from the <code>spec/fixtures/modules</code> directory, based on the contents of <code>.fixtures.yml</code>.  The contents of this directory are usually populated by <code>bundle exec rake spec_prep</code>.  This can be used to run acceptance tests to run on isolated networks.</li>
+</ul>
+</div></div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

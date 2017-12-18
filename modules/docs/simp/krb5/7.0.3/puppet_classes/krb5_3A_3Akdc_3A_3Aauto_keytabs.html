@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: krb5::kdc::auto_keytabs
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::krb5::kdc::auto_keytabs";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (k)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">krb5::kdc::auto_keytabs</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: krb5::kdc::auto_keytabs</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>::krb5::kdc</dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-i022n2/manifests/kdc/auto_keytabs.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p><strong>NOTE: THIS IS A <a href="https://github.com/puppetlabs/puppetlabs-stdlib#assert_private">PRIVATE</a> CLASS</strong></p>
+
+<p>This class provides a mechanism for auto-generating keytabs on the KDC as
+well as provisioning those keytabs for distribution via Puppet if possible.</p>
+
+<p>The keytabs will be collected in a directory that is, by default, located at
+<code>/var/kerberos/krb5kdc/generated_keytabs</code>.</p>
+
+<p>The target directory will have subdirectories created, one per
+<code>host/fqdn@REALM</code> principal that match the <code>fqdn</code> of the host.</p>
+
+<p>Each of those directories will have a krb5.keytab file created that contains
+<em>all</em> discovered keytabs for the principal, <em>regardless of REALM</em>.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>introspect</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set, attempt to discover, and create all
+relevant keytabs from data on the Puppet server.
+@note This has no effect if you aren’t running on a Puppet server.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>output_dir</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The directory into which to install the
+keytabs.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>all_known</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set, generate keytabs for any ‘host/.*’ entries
+known to the KDC.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;root&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The user that should own the keytab files.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;puppet&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The group that should own the keytab files.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>realms</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;krb5::kdc::auto_realm&#39;, { &#39;default_value&#39; =&gt; $facts[&#39;domain&#39;] })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The REALMs into which the hosts should be added unless
+otherwise specified in the <code>$hosts</code> Hash. Will be auto-upcased.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>global_services</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An Array of Kerberos services that
+should be added to <em>all</em> hosts.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hosts</span>
+      
+      
+        <span class='type'>(<tt>Hash[String,
+    Struct[{'ensure'             =&gt; Enum['absent','present'],
+            Optional['realms']   =&gt; Array[String],
+            Optional['services'] =&gt; Array[String]
+    }]
+  ]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A Hash of hosts for which keytabs should be
+generated, and kept in the KDC by Puppet.
+This is done as a Hash so that you don’t end up with thousands of Puppet
+resources in your catalog.
+@note The Hash should be formatted as follows:
+  {
+    ‘fqdn’ =&gt;
+      ‘ensure’   =&gt; (‘absent’|’present’) # Required
+      ‘realms’   =&gt; [‘REALM1’, ‘REALM2’] # Optional. Will be auto upcased.
+      ‘services’ =&gt; [‘svc1’,’svc2’]      # Optional
+  }</p>
+
+<p>@note This will be combined with the auto-generated hosts if $auto_generate
+  is <code>true</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>purge</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set, purge any keytab directories for systems that
+we don’t know about.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-i022n2/manifests/kdc/auto_keytabs.pp', line 61</span>
+
+class krb5::kdc::auto_keytabs (
+  Boolean                        $introspect      = true,
+  Optional[Stdlib::Absolutepath] $output_dir      = undef,
+  Boolean                        $all_known       = false,
+  String                         $user            = &#39;root&#39;,
+  String                         $group           = &#39;puppet&#39;,
+  String                         $realms          = simplib::lookup(&#39;krb5::kdc::auto_realm&#39;, { &#39;default_value&#39; =&gt; $facts[&#39;domain&#39;] }),
+  Array[String]                  $global_services = [],
+  Boolean                        $purge           = true,
+  Hash[String,
+    Struct[{&#39;ensure&#39;             =&gt; Enum[&#39;absent&#39;,&#39;present&#39;],
+            Optional[&#39;realms&#39;]   =&gt; Array[String],
+            Optional[&#39;services&#39;] =&gt; Array[String]
+    }]
+  ]                              $hosts           = {}
+) inherits ::krb5::kdc {
+
+  assert_private()
+
+  if $output_dir {
+    $_output_dir = $output_dir
+  }
+  else {
+    $_output_dir = &#39;__default__&#39;
+  }
+
+  krb5kdc_auto_keytabs { $_output_dir:
+    introspect      =&gt; $introspect,
+    all_known       =&gt; $all_known,
+    user            =&gt; $user,
+    group           =&gt; $group,
+    realms          =&gt; $realms,
+    global_services =&gt; $global_services,
+    hosts           =&gt; $hosts,
+    purge           =&gt; $purge
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

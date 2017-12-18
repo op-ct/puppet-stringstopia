@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: tpm::ima
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::tpm::ima";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (t)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">tpm::ima</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: tpm::ima</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1jvc9cn/manifests/ima.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Sets up IMA kernel boot flags if they are not enabled, and mounts the
+securityfs when they are.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, enable IMA on the system.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_policy</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, the tpm::ima::policy class will be
+included. Please read the documentation for that claa heavily, as it can
+cause live filesystems to become read-only until a reboot.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mount_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::AbsolutePath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/sys/kernel/security&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Where to mount ima securityfs</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ima_audit</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Audit control.  Can be set to:
+  true  - Enable additional integrity auditing messages
+  false - Enable integrity auditing messages (default)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ima_template</span>
+      
+      
+        <span class='type'>(<tt>Tpm::Ima::Template</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;ima-ng&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A pre-defined IMA measurement template format.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ima_hash</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;sha256&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The list of supported hashes can be found in crypto/hash_info.h</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ima_tcb</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Toggle the TCB policy.  This means IMA will measure
+all programs exec’d, files mmap’d for exec, and all file opened
+for read by uid=0. Defaults to true.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>log_max_size</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>30000000</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The size of the
+/sys/kernel/security/ima/ascii_runtime_measurements, in bytes, that will
+cause a reboot notification will be sent to the user.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Nick Markowski <a href="mailto:namarkowski@keywcorp.com">namarkowski@keywcorp.com</a></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1jvc9cn/manifests/ima.pp', line 34</span>
+
+class tpm::ima (
+  Boolean              $enable        = true,
+  Boolean              $manage_policy = false,
+  Stdlib::AbsolutePath $mount_dir     = &#39;/sys/kernel/security&#39;,
+  Boolean              $ima_audit     = true,
+  Tpm::Ima::Template   $ima_template  = &#39;ima-ng&#39;,
+  String               $ima_hash      = &#39;sha256&#39;,
+  Boolean              $ima_tcb       = true,
+  Integer              $log_max_size  = 30000000
+){
+
+  if $enable {
+    if $facts[&#39;cmdline&#39;][&#39;ima&#39;] == &#39;on&#39; {
+      mount { $mount_dir:
+        ensure   =&gt; mounted,
+        atboot   =&gt; true,
+        device   =&gt; &#39;securityfs&#39;,
+        fstype   =&gt; &#39;securityfs&#39;,
+        target   =&gt; &#39;/etc/fstab&#39;,
+        remounts =&gt; true,
+        options  =&gt; &#39;defaults&#39;,
+        dump     =&gt; &#39;0&#39;,
+        pass     =&gt; &#39;0&#39;
+      }
+    }
+
+    kernel_parameter { &#39;ima&#39;:
+      value    =&gt; &#39;on&#39;,
+      bootmode =&gt; &#39;normal&#39;
+    }
+    kernel_parameter { &#39;ima_audit&#39;:
+      value    =&gt; $ima_audit,
+      bootmode =&gt; &#39;normal&#39;
+    }
+    kernel_parameter { &#39;ima_template&#39;:
+      value    =&gt; $ima_template,
+      bootmode =&gt; &#39;normal&#39;
+    }
+    kernel_parameter { &#39;ima_hash&#39;:
+      value    =&gt; $ima_hash,
+      bootmode =&gt; &#39;normal&#39;
+    }
+
+    if $ima_tcb {
+      kernel_parameter { &#39;ima_tcb&#39;:
+        notify =&gt; Reboot_notify[&#39;ima_reboot&#39;]
+      }
+    }
+
+    # This feature will remain commented out until the generated policy
+    #  can be safely imported. As of now, it makes the system read-only
+    # if $manage_policy {
+    #   include &#39;::tpm::ima::policy&#39;
+    # }
+
+    if $facts[&#39;ima_log_size&#39;] &gt;= $log_max_size {
+      reboot_notify { &#39;ima_log&#39;:
+        reason =&gt; &#39;The IMA /sys/kernel/security/ima/ascii_runtime_measurements is filling up kernel memory. Please reboot to clear.&#39;
+      }
+    }
+  }
+  else {
+    kernel_parameter { [ &#39;ima_tcb&#39; ]:
+      ensure =&gt; &#39;absent&#39;,
+      notify =&gt; Reboot_notify[&#39;ima_reboot&#39;]
+    }
+    kernel_parameter { [ &#39;ima&#39;, &#39;ima_audit&#39;, &#39;ima_template&#39;, &#39;ima_hash&#39; ]:
+      ensure   =&gt; &#39;absent&#39;,
+      bootmode =&gt; &#39;normal&#39;
+    }
+  }
+
+  reboot_notify { &#39;ima_reboot&#39;:
+    subscribe =&gt; [
+      Kernel_parameter[&#39;ima&#39;],
+      Kernel_parameter[&#39;ima_audit&#39;],
+      Kernel_parameter[&#39;ima_template&#39;],
+      Kernel_parameter[&#39;ima_hash&#39;]
+    ]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

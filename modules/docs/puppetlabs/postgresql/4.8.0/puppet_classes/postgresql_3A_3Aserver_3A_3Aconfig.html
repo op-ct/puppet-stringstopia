@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: postgresql::server::config
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::postgresql::server::config";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">postgresql::server::config</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: postgresql::server::config</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-ggoakr/manifests/server/config.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>PRIVATE CLASS: do not call directly</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-ggoakr/manifests/server/config.pp', line 2</span>
+
+class postgresql::server::config {
+  $ip_mask_deny_postgres_user = $postgresql::server::ip_mask_deny_postgres_user
+  $ip_mask_allow_all_users    = $postgresql::server::ip_mask_allow_all_users
+  $listen_addresses           = $postgresql::server::listen_addresses
+  $port                       = $postgresql::server::port
+  $ipv4acls                   = $postgresql::server::ipv4acls
+  $ipv6acls                   = $postgresql::server::ipv6acls
+  $pg_hba_conf_path           = $postgresql::server::pg_hba_conf_path
+  $pg_ident_conf_path         = $postgresql::server::pg_ident_conf_path
+  $postgresql_conf_path       = $postgresql::server::postgresql_conf_path
+  $recovery_conf_path         = $postgresql::server::recovery_conf_path
+  $pg_hba_conf_defaults       = $postgresql::server::pg_hba_conf_defaults
+  $user                       = $postgresql::server::user
+  $group                      = $postgresql::server::group
+  $version                    = $postgresql::server::_version
+  $manage_pg_hba_conf         = $postgresql::server::manage_pg_hba_conf
+  $manage_pg_ident_conf       = $postgresql::server::manage_pg_ident_conf
+  $manage_recovery_conf       = $postgresql::server::manage_recovery_conf
+  $datadir                    = $postgresql::server::datadir
+  $logdir                     = $postgresql::server::logdir
+  $service_name               = $postgresql::server::service_name
+  $log_line_prefix            = $postgresql::server::log_line_prefix
+  $timezone                   = $postgresql::server::timezone
+
+  if ($manage_pg_hba_conf == true) {
+    # Prepare the main pg_hba file
+    concat { $pg_hba_conf_path:
+      owner  =&gt; $user,
+      group  =&gt; $group,
+      mode   =&gt; &#39;0640&#39;,
+      warn   =&gt; true,
+      notify =&gt; Class[&#39;postgresql::server::reload&#39;],
+    }
+
+    if $pg_hba_conf_defaults {
+      Postgresql::Server::Pg_hba_rule {
+        database =&gt; &#39;all&#39;,
+        user =&gt; &#39;all&#39;,
+      }
+
+      # Lets setup the base rules
+      $local_auth_option = $version ? {
+        &#39;8.1&#39;   =&gt; &#39;sameuser&#39;,
+        default =&gt; undef,
+      }
+      postgresql::server::pg_hba_rule { &#39;local access as postgres user&#39;:
+        type        =&gt; &#39;local&#39;,
+        user        =&gt; $user,
+        auth_method =&gt; &#39;ident&#39;,
+        auth_option =&gt; $local_auth_option,
+        order       =&gt; &#39;001&#39;,
+      }
+      postgresql::server::pg_hba_rule { &#39;local access to database with same name&#39;:
+        type        =&gt; &#39;local&#39;,
+        auth_method =&gt; &#39;ident&#39;,
+        auth_option =&gt; $local_auth_option,
+        order       =&gt; &#39;002&#39;,
+      }
+      postgresql::server::pg_hba_rule { &#39;allow localhost TCP access to postgresql user&#39;:
+        type        =&gt; &#39;host&#39;,
+        user        =&gt; $user,
+        address     =&gt; &#39;127.0.0.1/32&#39;,
+        auth_method =&gt; &#39;md5&#39;,
+        order       =&gt; &#39;003&#39;,
+      }
+      postgresql::server::pg_hba_rule { &#39;deny access to postgresql user&#39;:
+        type        =&gt; &#39;host&#39;,
+        user        =&gt; $user,
+        address     =&gt; $ip_mask_deny_postgres_user,
+        auth_method =&gt; &#39;reject&#39;,
+        order       =&gt; &#39;004&#39;,
+      }
+
+      postgresql::server::pg_hba_rule { &#39;allow access to all users&#39;:
+        type        =&gt; &#39;host&#39;,
+        address     =&gt; $ip_mask_allow_all_users,
+        auth_method =&gt; &#39;md5&#39;,
+        order       =&gt; &#39;100&#39;,
+      }
+      postgresql::server::pg_hba_rule { &#39;allow access to ipv6 localhost&#39;:
+        type        =&gt; &#39;host&#39;,
+        address     =&gt; &#39;::1/128&#39;,
+        auth_method =&gt; &#39;md5&#39;,
+        order       =&gt; &#39;101&#39;,
+      }
+    }
+
+    # ipv4acls are passed as an array of rule strings, here we transform
+    # them into a resources hash, and pass the result to create_resources
+    $ipv4acl_resources = postgresql_acls_to_resources_hash($ipv4acls,
+    &#39;ipv4acls&#39;, 10)
+    create_resources(&#39;postgresql::server::pg_hba_rule&#39;, $ipv4acl_resources)
+
+
+    # ipv6acls are passed as an array of rule strings, here we transform
+    # them into a resources hash, and pass the result to create_resources
+    $ipv6acl_resources = postgresql_acls_to_resources_hash($ipv6acls,
+    &#39;ipv6acls&#39;, 102)
+    create_resources(&#39;postgresql::server::pg_hba_rule&#39;, $ipv6acl_resources)
+  }
+
+  # We must set a &quot;listen_addresses&quot; line in the postgresql.conf if we
+  # want to allow any connections from remote hosts.
+  postgresql::server::config_entry { &#39;listen_addresses&#39;:
+    value =&gt; $listen_addresses,
+  }
+  postgresql::server::config_entry { &#39;port&#39;:
+    value =&gt; $port,
+  }
+  postgresql::server::config_entry { &#39;data_directory&#39;:
+    value =&gt; $datadir,
+  }
+  if $timezone {
+    postgresql::server::config_entry { &#39;timezone&#39;:
+      value =&gt; $timezone,
+    }
+  }
+  if $logdir {
+    postgresql::server::config_entry { &#39;log_directory&#39;:
+      value =&gt; $logdir,
+    }
+
+  }
+  # Allow timestamps in log by default
+  if $log_line_prefix {
+    postgresql::server::config_entry {&#39;log_line_prefix&#39;:
+      value =&gt; $log_line_prefix,
+    }
+  }
+
+  # RedHat-based systems hardcode some PG* variables in the init script, and need to be overriden
+  # in /etc/sysconfig/pgsql/postgresql. Create a blank file so we can manage it with augeas later.
+  if ($::osfamily == &#39;RedHat&#39;) and ($::operatingsystemrelease !~ /^7/) and ($::operatingsystem != &#39;Fedora&#39;) {
+    file { &#39;/etc/sysconfig/pgsql/postgresql&#39;:
+      ensure  =&gt; present,
+      replace =&gt; false,
+    }
+
+    # The init script from the packages of the postgresql.org repository
+    # sources an alternate sysconfig file.
+    # I. e. /etc/sysconfig/pgsql/postgresql-9.3 for PostgreSQL 9.3
+    # Link to the sysconfig file set by this puppet module
+    file { &quot;/etc/sysconfig/pgsql/postgresql-${version}&quot;:
+      ensure  =&gt; link,
+      target  =&gt; &#39;/etc/sysconfig/pgsql/postgresql&#39;,
+      require =&gt; File[ &#39;/etc/sysconfig/pgsql/postgresql&#39; ],
+    }
+
+  }
+
+
+  if ($manage_pg_ident_conf == true) {
+    concat { $pg_ident_conf_path:
+      owner  =&gt; $user,
+      group  =&gt; $group,
+      force  =&gt; true, # do not crash if there is no pg_ident_rules
+      mode   =&gt; &#39;0640&#39;,
+      warn   =&gt; true,
+      notify =&gt; Class[&#39;postgresql::server::reload&#39;],
+    }
+  }
+
+  if ($manage_recovery_conf == true) {
+    concat { $recovery_conf_path:
+      owner  =&gt; $user,
+      group  =&gt; $group,
+      force  =&gt; true, # do not crash if there is no recovery conf file
+      mode   =&gt; &#39;0640&#39;,
+      warn   =&gt; true,
+      notify =&gt; Class[&#39;postgresql::server::reload&#39;],
+    }
+  }
+
+  if $::osfamily == &#39;RedHat&#39; {
+    if $::operatingsystemrelease =~ /^7/ or $::operatingsystem == &#39;Fedora&#39; {
+      # Template uses:
+      # - $::operatingsystem
+      # - $service_name
+      # - $port
+      # - $datadir
+      file { &#39;systemd-override&#39;:
+        ensure  =&gt; present,
+        path    =&gt; &quot;/etc/systemd/system/${service_name}.service&quot;,
+        owner   =&gt; root,
+        group   =&gt; root,
+        content =&gt; template(&#39;postgresql/systemd-override.erb&#39;),
+        notify  =&gt; [ Exec[&#39;restart-systemd&#39;], Class[&#39;postgresql::server::service&#39;] ],
+        before  =&gt; Class[&#39;postgresql::server::reload&#39;],
+      }
+      exec { &#39;restart-systemd&#39;:
+        command     =&gt; &#39;systemctl daemon-reload&#39;,
+        refreshonly =&gt; true,
+        path        =&gt; &#39;/bin:/usr/bin:/usr/local/bin&#39;
+      }
+    }
+  }
+  elsif $::osfamily == &#39;Gentoo&#39; {
+    # Template uses:
+    # - $::operatingsystem
+    # - $service_name
+    # - $port
+    # - $datadir
+    file { &#39;systemd-override&#39;:
+      ensure  =&gt; present,
+      path    =&gt; &quot;/etc/systemd/system/${service_name}.service&quot;,
+      owner   =&gt; root,
+      group   =&gt; root,
+      content =&gt; template(&#39;postgresql/systemd-override.erb&#39;),
+      notify  =&gt; [ Exec[&#39;restart-systemd&#39;], Class[&#39;postgresql::server::service&#39;] ],
+      before  =&gt; Class[&#39;postgresql::server::reload&#39;],
+    }
+    exec { &#39;restart-systemd&#39;:
+      command     =&gt; &#39;systemctl daemon-reload&#39;,
+      refreshonly =&gt; true,
+      path        =&gt; &#39;/bin:/usr/bin:/usr/local/bin&#39;
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

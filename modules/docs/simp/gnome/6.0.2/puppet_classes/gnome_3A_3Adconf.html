@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: gnome::dconf
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::gnome::dconf";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (g)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">gnome::dconf</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: gnome::dconf</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-rz2cax/manifests/dconf.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Uses dconf to configure settings in gnome 3 and higher.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>profile_list</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[&#39;simp&#39;,&#39;gdm&#39;]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of profiles used to ensure the directories are
+created. Should probably add a check to ensure you can’t use a profile
+value that is not first defined here.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/dconf&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The dconf directory.  This really shouldn’t change.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>banner</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;&#39;--------------------------------- ATTENTION ----------------------------------\\n\\n                         THIS IS A RESTRICTED COMPUTER SYSTEM\\n\\nThis computer system, and all related equipment, networks, and\\nnetwork devices are provided for authorised use only.  All \\nsystems controlled by this organisation will be monitored for\\nall lawful purposes.  Monitoring includes the totality of the\\noperating system and connected networks.No events on this\\nsystem are excluded from record and there are no exclusions\\nfrom this policy.\\n\\nUse of this system constitutes consent to full monitoring of\\nyour activities for use by the authorised monitoring organisation.\\nUnauthorised use of this system, including uninvited connections,\\nmay subject you to criminal prosecution.\\n\\nThe data collected from this system may be used for any purpose by\\nthe collecting organisation.  If you do not agree to this\\nmonitoring, discontinue use of the system IMMEDIATELY.\\n\\n                         THIS IS A RESTRICTED COMPUTER SYSTEM\\n\\n--------------------------------- ATTENTION ----------------------------------&#39;&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The banner to be displayed at login. You need to escape special characters
+and add new line characters manually.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Ralph Wright <a href="mailto:rwright@onyxpoint.com">rwright@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-rz2cax/manifests/dconf.pp', line 14</span>
+
+class gnome::dconf (
+  Array[String]        $profile_list = [&#39;simp&#39;,&#39;gdm&#39;],
+  Stdlib::Absolutepath $base = &#39;/etc/dconf&#39;,
+  # Fix the source of the content
+  String               $banner = &quot;&#39;--------------------------------- ATTENTION ----------------------------------\\n\\n                         THIS IS A RESTRICTED COMPUTER SYSTEM\\n\\nThis computer system, and all related equipment, networks, and\\nnetwork devices are provided for authorised use only.  All \\nsystems controlled by this organisation will be monitored for\\nall lawful purposes.  Monitoring includes the totality of the\\noperating system and connected networks.No events on this\\nsystem are excluded from record and there are no exclusions\\nfrom this policy.\\n\\nUse of this system constitutes consent to full monitoring of\\nyour activities for use by the authorised monitoring organisation.\\nUnauthorised use of this system, including uninvited connections,\\nmay subject you to criminal prosecution.\\n\\nThe data collected from this system may be used for any purpose by\\nthe collecting organisation.  If you do not agree to this\\nmonitoring, discontinue use of the system IMMEDIATELY.\\n\\n                         THIS IS A RESTRICTED COMPUTER SYSTEM\\n\\n--------------------------------- ATTENTION ----------------------------------&#39;&quot;
+) {
+
+  # Create an array of directories based on profile names
+  $locks_dir = regsubst($profile_list, &#39;^(.*)$&#39;, &#39;/etc/dconf/db/\1.d/locks&#39;)
+  $dir       = regsubst($profile_list, &#39;^(.*)$&#39;, &#39;/etc/dconf/db/\1.d&#39;)
+
+  file { $dir :
+    ensure =&gt; &#39;directory&#39;,
+    owner  =&gt; &#39;root&#39;,
+    group  =&gt; &#39;root&#39;,
+    mode   =&gt; &#39;0644&#39;
+  }
+  file { $locks_dir :
+    ensure =&gt; &#39;directory&#39;,
+    owner  =&gt; &#39;root&#39;,
+    group  =&gt; &#39;root&#39;,
+    mode   =&gt; &#39;0644&#39;
+  }
+
+  # Ensure the SIMP profile is first
+  # Should probably move this to a template
+  file { &#39;/etc/dconf/profile/user&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0644&#39;,
+    content =&gt; &quot;system-db:simp\nuser-db:user\nsystem-db:local\nsystem-db:site\nsystem-db:distro&quot;,
+  }
+
+  # Everything below this sets the actual values we care about
+
+  # Prevent mount points from being automatically created
+  gnome::dconf::add { &#39;automount&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/desktop/media-handling&#39;,
+    key     =&gt; &#39;automount&#39;,
+    value   =&gt; false
+  }
+
+  # Prevent automounted devices from opening automatically
+  gnome::dconf::add { &#39;automount_open&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/desktop/media-handling&#39;,
+    key     =&gt; &#39;automount-open&#39;,
+    value   =&gt; false
+  }
+
+  # Prevent automounted devices from executing automatically
+  gnome::dconf::add { &#39;autorun&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/desktop/media-handling&#39;,
+    key     =&gt; &#39;autorun-never&#39;,
+    value   =&gt; false
+  }
+
+  # Ensures ctr-alt-del is not used for logout
+  gnome::dconf::add { &#39;ctrl_alt_del&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/settings-daemon/plugins/media-keys&#39;,
+    key     =&gt; &#39;logout&#39;,
+    # Setting this to an empty string causes the key sequence to be ignored
+    value   =&gt; &quot;&#39;&#39;&quot;
+  }
+
+  # Removes Shutdown From Login Screen
+  gnome::dconf::add { &#39;shutdown_login_screen&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/login-screen&#39;,
+    key     =&gt; &#39;disable-restart-buttons&#39;,
+    value   =&gt; true
+  }
+
+  # Ensure gnome does not react to the physical machine&#39;s power buttons
+  gnome::dconf::add { &#39;power_button_action&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/settings-daemon/plugins/power&#39;,
+    key     =&gt; &#39;active&#39;,
+    value   =&gt; false
+  }
+
+  # Activate the idle timer
+  gnome::dconf::add { &#39;screen_saver_idle&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/desktop/screensaver&#39;,
+    key     =&gt; &#39;idle-activation-enabled&#39;,
+    value   =&gt; true
+  }
+
+  # Set the idle time to 15 minutes
+  gnome::dconf::add { &#39;screen_saver_idle_time&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/desktop/session&#39;,
+    key     =&gt; &#39;idle-delay&#39;,
+    # This MUST be set to an unsigned integer or the value will be ignored.
+    value   =&gt; &#39;uint32 900&#39;
+  }
+
+  # Activate the lock
+  gnome::dconf::add { &#39;lock_enabled&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/desktop/screensaver&#39;,
+    key     =&gt; &#39;lock-enabled&#39;,
+    value   =&gt; true
+  }
+
+  # Ensure there is no delay in the screen lock
+  gnome::dconf::add { &#39;lock_delay&#39;:
+    profile =&gt; &#39;simp&#39;,
+    path    =&gt; &#39;org/gnome/desktop/screensaver&#39;,
+    key     =&gt; &#39;lock-delay&#39;,
+    value   =&gt; &#39;0&#39;
+  }
+
+  gnome::dconf::add { &#39;enable_banner&#39;:
+    profile =&gt;  &#39;gdm&#39;,
+    path    =&gt;  &#39;org/gnome/login-screen&#39;,
+    key     =&gt;  &#39;banner-message-enable&#39;,
+    value   =&gt;  true
+  }
+
+  gnome::dconf::add { &#39;banner_text&#39;:
+    profile =&gt;  &#39;gdm&#39;,
+    path    =&gt;  &#39;org/gnome/login-screen&#39;,
+    key     =&gt;  &#39;banner-message-text&#39;,
+    value   =&gt;  $banner
+  }
+
+  # The shutdown button can&#39;t be controlled by Dconf.
+  # Use this file type for now to disable it until the policykit module can support the rules.d and javascript methods.
+  file { &#39;/etc/polkit-1/rules.d/10-disable-shutdown-button.rules&#39;:
+    owner  =&gt; &#39;root&#39;,
+    group  =&gt; &#39;root&#39;,
+    mode   =&gt; &#39;0644&#39;,
+    source =&gt; &#39;puppet:///modules/gnome/10-disable-shutdown-button.rules&#39;
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

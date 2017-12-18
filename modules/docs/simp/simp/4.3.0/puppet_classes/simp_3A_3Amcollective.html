@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp::mcollective
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp::mcollective";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp::mcollective</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp::mcollective</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/mcollective.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Set up java, activemq, and mcollective with SSL fully enabled</p>
+
+<p>See the <a href="modules/mcollective/README">MCollective README</a> for more information</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>mco_server</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Set if the system is a MCollective Server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mco_client</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Set if the system is a MCollective Client</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_server_config</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The content for ActiveMQ</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_ssl</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable SSL for ActiveMQ connections</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>passgen(&#39;simp_mco_activemq_username&#39;, { &#39;length&#39; =&gt; 12, &#39;complexity&#39; =&gt; 0 })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The username to use for ActiveMQ connections</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>passgen(&#39;simp_mco_activemq&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The password to use for ActiveMQ connections</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_admin_user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>passgen(&#39;simp_mco_activemq_admin_username&#39;, { &#39;length&#39; =&gt; 12, &#39;complexity&#39; =&gt; 0})</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The admin username for ActiveMQ</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_admin_password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>passgen(&#39;simp_mco_activemq_admin&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The admin password for ActiveMQ</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_console</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Activate the built-in ActdiveMQ console</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_memory_usage</span>
+      
+      
+        <span class='type'>(<tt>Pattern[/^([0-9]+\s)[kmgt][b]$/]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;20 mb&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The default memory use limits for ActiveMQ</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_store_usage</span>
+      
+      
+        <span class='type'>(<tt>Pattern[/^([0-9]+\s)[kmgt][b]$/]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;1 gb&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The disk storage limit for ActiveMQ</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_temp_usage</span>
+      
+      
+        <span class='type'>(<tt>Pattern[/^([0-9]+\s)[kmgt][b]$/]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;100 mb&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The temp space usage for ActiveMQ</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_brokers</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Netlist</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[$facts[&#39;fqdn&#39;]]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The full list of ActiveMQ brokers in the environment</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>trusted_nets</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Netlist</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::trusted_nets&#39;, { &#39;default_value&#39; =&gt; [&#39;127.0.0.1&#39;] })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The IP range on which the <code>activemq_port</code> variable will be open</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>activemq_port</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Port]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port to open for activemq</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>truststore_certificate</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/pki/cacerts/cacerts.pem&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path to the CA file to be placed in the activemq truststore</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>truststore_target</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/activemq/truststore.jks&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path to install the activemq truststore</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>truststore_password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>passgen(&#39;simp_mco_truststore&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Password to access the activemq truststore</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keystore_certificate</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;/etc/pki/public/${facts[&#39;fqdn&#39;]}.pub&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path to the cert to use for the activemq keystore</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keystore_key</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;/etc/pki/private/${facts[&#39;fqdn&#39;]}.pem&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path to the key to use for the activemq keystore</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keystore_target</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/activemq/keystore.jks&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Path to install the activemq keystore</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>keystore_password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>passgen(&#39;simp_mco_keystore&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Password to access the activemq keystore</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>installplugins</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Install the Puppet, Service and Package mcollective plugins</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Nick Markowski <a href="mailto:nmarkowski@keywcorp.com">nmarkowski@keywcorp.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/mcollective.pp', line 76</span>
+
+class simp::mcollective (
+  Boolean                          $mco_server              = true,
+  Boolean                          $mco_client              = false,
+  Simplib::Netlist                 $trusted_nets            = simplib::lookup(&#39;simp_options::trusted_nets&#39;, { &#39;default_value&#39; =&gt; [&#39;127.0.0.1&#39;] }),
+  Stdlib::Absolutepath             $truststore_certificate  = &#39;/etc/pki/cacerts/cacerts.pem&#39;,
+  Stdlib::Absolutepath             $truststore_target       = &#39;/etc/activemq/truststore.jks&#39;,
+  String                           $truststore_password     = passgen(&#39;simp_mco_truststore&#39;),
+  Stdlib::Absolutepath             $keystore_certificate    = &quot;/etc/pki/public/${facts[&#39;fqdn&#39;]}.pub&quot;,
+  Stdlib::Absolutepath             $keystore_key            = &quot;/etc/pki/private/${facts[&#39;fqdn&#39;]}.pem&quot;,
+  Stdlib::Absolutepath             $keystore_target         = &#39;/etc/activemq/keystore.jks&#39;,
+  String                           $keystore_password       = passgen(&#39;simp_mco_keystore&#39;),
+  Optional[String]                 $activemq_server_config  = undef,
+  Boolean                          $activemq_ssl            = true,
+  String                           $activemq_user           = passgen(&#39;simp_mco_activemq_username&#39;, { &#39;length&#39; =&gt; 12, &#39;complexity&#39; =&gt; 0 }),
+  String                           $activemq_password       = passgen(&#39;simp_mco_activemq&#39;),
+  String                           $activemq_admin_user     = passgen(&#39;simp_mco_activemq_admin_username&#39;, { &#39;length&#39; =&gt; 12, &#39;complexity&#39; =&gt; 0}),
+  String                           $activemq_admin_password = passgen(&#39;simp_mco_activemq_admin&#39;),
+  Optional[Simplib::Port]          $activemq_port           = undef,
+  Boolean                          $activemq_console        = false,
+  Pattern[/^([0-9]+\s)[kmgt][b]$/] $activemq_memory_usage   = &#39;20 mb&#39;,
+  Pattern[/^([0-9]+\s)[kmgt][b]$/] $activemq_store_usage    = &#39;1 gb&#39;,
+  Pattern[/^([0-9]+\s)[kmgt][b]$/] $activemq_temp_usage     = &#39;100 mb&#39;,
+  Simplib::Netlist                 $activemq_brokers        = [$facts[&#39;fqdn&#39;]],
+  Boolean                          $installplugins          = true
+) {
+
+  simplib::assert_metadata( $module_name )
+
+  if $activemq_port {
+    $_activemq_port = $activemq_port
+  }
+  else {
+    if $activemq_ssl {
+      $_activemq_port = 61614
+    }
+    else {
+      $_activemq_port = 61613
+    }
+  }
+
+  if $activemq_ssl {
+    class { &#39;::mcollective&#39;:
+      server              =&gt; $mco_server,
+      client              =&gt; $mco_client,
+      version             =&gt; &#39;latest&#39;,
+      middleware_hosts    =&gt; $activemq_brokers,
+      middleware_user     =&gt; $activemq_user,
+      middleware_password =&gt; $activemq_password,
+      middleware_ssl_port =&gt; $_activemq_port,
+      middleware_ssl      =&gt; true,
+      middleware_ssl_ca   =&gt; $truststore_certificate,
+      middleware_ssl_cert =&gt; $keystore_certificate,
+      middleware_ssl_key  =&gt; $keystore_key,
+      ssl_mco_autokeys    =&gt; true,
+      securityprovider    =&gt; &#39;ssl&#39;,
+      connector           =&gt; &#39;activemq&#39;
+    }
+  }
+  else {
+    class { &#39;::mcollective&#39;:
+      server              =&gt; $mco_server,
+      client              =&gt; $mco_client,
+      version             =&gt; &#39;latest&#39;,
+      middleware_hosts    =&gt; $activemq_brokers,
+      middleware_user     =&gt; $activemq_user,
+      middleware_password =&gt; $activemq_password,
+      middleware_port     =&gt; $_activemq_port,
+      middleware_ssl      =&gt; false,
+      securityprovider    =&gt; &#39;ssl&#39;,
+      connector           =&gt; &#39;activemq&#39;
+    }
+  }
+
+  #Install mcollective plugins by default
+  if $installplugins {
+    mcollective::plugin { &#39;puppet&#39;: package =&gt; true }
+    mcollective::plugin { &#39;service&#39;: package =&gt; true }
+    mcollective::plugin { &#39;package&#39;: package =&gt; true }
+  }
+
+  if $mco_server {
+    include &#39;::pki&#39;
+    include &#39;::java&#39;
+
+    if $activemq_server_config {
+      $_activemq_server_config = $activemq_server_config
+    }
+    else {
+      $_activemq_server_config = template(&#39;simp/activemq.xml.erb&#39;)
+    }
+
+    class { &#39;::activemq&#39;:
+      version                 =&gt; &#39;latest&#39;,
+      instance                =&gt; &#39;simp_mco&#39;,
+      server_config           =&gt; $_activemq_server_config,
+      server_config_show_diff =&gt; false,
+      mq_admin_username       =&gt; $activemq_admin_user,
+      mq_admin_password       =&gt; $activemq_admin_password,
+      mq_cluster_username     =&gt; $activemq_user,
+      mq_cluster_password     =&gt; $activemq_password,
+      mq_cluster_brokers      =&gt; $activemq_brokers
+    }
+
+    iptables::listen::tcp_stateful { &#39;allow_activemq&#39;:
+      trusted_nets =&gt; $trusted_nets,
+      dports       =&gt; $_activemq_port
+    }
+
+    pam::access::rule { &#39;activemq&#39;:
+      users   =&gt; [&#39;activemq&#39;],
+      origins =&gt; [&#39;LOCAL&#39;],
+      notify  =&gt; Class[&#39;activemq::service&#39;]
+    }
+
+    java_ks { &#39;mcollective_truststore&#39;:
+      ensure       =&gt; &#39;latest&#39;,
+      certificate  =&gt; $truststore_certificate,
+      target       =&gt; $truststore_target,
+      password     =&gt; $truststore_password,
+      trustcacerts =&gt; true,
+      notify       =&gt; Class[&#39;activemq::service&#39;],
+      require      =&gt; Class[&#39;activemq::packages&#39;]
+    }
+
+    file { $truststore_target:
+      owner   =&gt; &#39;activemq&#39;,
+      group   =&gt; &#39;activemq&#39;,
+      mode    =&gt; &#39;0400&#39;,
+      require =&gt; Java_ks[&#39;mcollective_truststore&#39;],
+      before  =&gt; Java_ks[&#39;mcollective_keystore&#39;]
+    }
+
+    java_ks { &#39;mcollective_keystore&#39; :
+      ensure       =&gt; &#39;latest&#39;,
+      certificate  =&gt; $keystore_certificate,
+      private_key  =&gt; $keystore_key,
+      target       =&gt; $keystore_target,
+      password     =&gt; $keystore_password,
+      trustcacerts =&gt; true,
+      require      =&gt; Class[&#39;pki&#39;],
+      before       =&gt; Class[&#39;activemq::service&#39;]
+    }
+
+    file { &#39;keystore_target&#39; :
+      path    =&gt; $keystore_target,
+      owner   =&gt; &#39;activemq&#39;,
+      group   =&gt; &#39;activemq&#39;,
+      mode    =&gt; &#39;0400&#39;,
+      require =&gt; Java_ks[&#39;mcollective_keystore&#39;],
+      before  =&gt; Class[&#39;activemq::service&#39;]
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

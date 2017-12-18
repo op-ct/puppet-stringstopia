@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp::server::kickstart::runpuppet
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp::server::kickstart::runpuppet";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp::server::kickstart::runpuppet</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp::server::kickstart::runpuppet</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/server/kickstart/runpuppet.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This class manages the runpuppet script, which is a script that can be run
+to bootstrap provisioned clients, adding them to puppet and running it in a
+fashion similar so <code>simp bootstrap</code>.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>location</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/var/www/ks/runpuppet&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The location of the runpuppet file to be placed when
+generated.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ntp_servers</span>
+      
+      
+        <span class='type'>(<tt>Variant[Array, Hash]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ntpd::servers&#39;, { &#39;default_value&#39; =&gt; [] })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of ntp servers or hash of server/value pairs that should
+be used during client kickstarts to slew the local time correctly
+prior to PKI key distribution.</p>
+
+<p>Failure to set the system clock will not cause the runpuppet script to fail
+to execute.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppet_server</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Host]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::puppet::server&#39;, { &#39;default_value&#39; =&gt; undef })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The FQDN of your Puppet server</p>
+
+<ul>
+  <li>If not set, will use <code>$server_facts['servername']</code>, or the puppet
+server set in puppet.conf if trusted_server_facts isn’t set or found.</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppet_ca</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Host]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::puppet::ca&#39;, { &#39;default_value&#39; =&gt; undef })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The FQDN of your Puppet CA</p>
+
+<ul>
+  <li>If not set, will use <code>$server_facts['servername']</code>, or the puppet
+server set in puppet.conf if trusted_server_facts isn’t set or found.</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppet_ca_port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::puppet::ca_port&#39;, { &#39;default_value&#39; =&gt; 8141 })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port upon which the Puppet CA is listening.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>runpuppet_print_stats</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, print statistics for each client puppet run during bootstrap.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>runpuppet_wait_for_cert</span>
+      
+      
+        <span class='type'>(<tt>Variant[Integer[0],Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set to an integer, the runpuppet client script will wait for this many
+seconds between checking into the puppet master for a signed certificate.
+This will go on until a signed certificate is presented.</p>
+
+<p>If set to false or 0, the client will immediately timeout if a signed
+certificate is not presented.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>fips</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::fips&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If true, set puppet keylength to 2048, else 4096.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-m4sj5d/manifests/server/kickstart/runpuppet.pp', line 45</span>
+
+class simp::server::kickstart::runpuppet (
+  Boolean                     $fips                    = simplib::lookup(&#39;simp_options::fips&#39;, { &#39;default_value&#39; =&gt; false }),
+  Variant[Array, Hash]        $ntp_servers             = simplib::lookup(&#39;simp_options::ntpd::servers&#39;, { &#39;default_value&#39; =&gt; [] }),
+  Optional[Simplib::Host]     $puppet_server           = simplib::lookup(&#39;simp_options::puppet::server&#39;, { &#39;default_value&#39; =&gt; undef }),
+  Optional[Simplib::Host]     $puppet_ca               = simplib::lookup(&#39;simp_options::puppet::ca&#39;, { &#39;default_value&#39; =&gt; undef }),
+  Simplib::Port               $puppet_ca_port          = simplib::lookup(&#39;simp_options::puppet::ca_port&#39;, { &#39;default_value&#39; =&gt; 8141 }),
+  Stdlib::Absolutepath        $location                = &#39;/var/www/ks/runpuppet&#39;,
+  Boolean                     $runpuppet_print_stats   = true,
+  Variant[Integer[0],Boolean] $runpuppet_wait_for_cert = 10
+) {
+
+  if $puppet_server {
+    $_puppet_server = $puppet_server
+  }
+  elsif defined(&#39;::server_facts&#39;) {
+    $_puppet_server = $server_facts[&#39;servername&#39;]
+  }
+  else {
+    $_puppet_server = $facts[&#39;puppet_settings&#39;][&#39;agent&#39;][&#39;server&#39;]
+  }
+
+  if $puppet_ca {
+    $_puppet_ca = $puppet_ca
+  }
+  elsif defined(&#39;::server_facts&#39;) {
+    $_puppet_ca = $server_facts[&#39;servername&#39;]
+  }
+  else {
+    $_puppet_ca = $facts[&#39;puppet_settings&#39;][&#39;agent&#39;][&#39;ca_server&#39;]
+  }
+
+  file { $location:
+    ensure  =&gt; &#39;present&#39;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;apache&#39;,
+    mode    =&gt; &#39;0640&#39;,
+    content =&gt; template(&quot;${module_name}/www/ks/runpuppet.erb&quot;)
+  }
+
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: simp_nfs::create_home_dirs
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::simp_nfs::create_home_dirs";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">simp_nfs::create_home_dirs</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: simp_nfs::create_home_dirs</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/create_home_dirs.pp<span class="defines">,<br />
+      /tmp/tmp_git_repo20171214-12245-72o93u/manifests/create_home_dirs.pp</div>
+      
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Adds a script to create user home directories for directory server
+by pulling users from LDAP</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>uri</span>
+      
+      
+        <span class='type'>(<tt>Array[Simplib::URI]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::uri&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The uri(s) of the LDAP servers</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>base_dn</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::base_dn&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The root DN that should be used when searching for entries</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>bind_dn</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::bind_dn&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The DN to use when binding to the LDAP server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>bind_pw</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::ldap::bind_pw&#39;)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The password to use when binding to the LDAP server</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>export_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/var/nfs/home&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The location of the home directories being exported</p>
+
+<ul>
+  <li>This location must be a puppet managed <code>File</code> resource</li>
+  <li>See the <code>simp_nfs::export_home</code> class for an example</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>skel_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/etc/skel&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The location of sample skeleton files for user directories</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ldap_scope</span>
+      
+      
+        <span class='type'>(<tt>Enum['one','sub','base']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;one&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The search scope to use</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>port</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Port</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>389</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The target port on the LDAP server</p>
+
+<ul>
+  <li>If none specified, defaults to <code>389</code> for regular and <code>start_tls</code>
+connections, and <code>636</code> for legacy SSL connections</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tls</span>
+      
+      
+        <span class='type'>(<tt>Enum['ssl','start_tls','none']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;start_tls&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to enable SSL/TLS for the connection</p>
+
+<ul>
+  <li><code>ssl</code>
+    <ul>
+      <li><code>LDAPS</code> on port <code>636</code> unless  different <code>port</code> specified
+        <ul>
+          <li>Uses <code>simple_tls</code>; No validation of the LDAP server’s SSL
+certificate is performed</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code>start_tls</code>
+    <ul>
+      <li>Start TLS on port <code>389</code> unless different <code>port</code> specified</li>
+    </ul>
+  </li>
+  <li><code>none</code>
+    <ul>
+      <li>LDAP without encryption on port <code>389</code> unless different <code>port</code>
+specified</li>
+    </ul>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>quiet</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether or not to print potentially useful warnings</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>syslog_facility</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Syslog::CFacility</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;LOG_LOCAL6&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The syslog facility at which to log, must be Ruby <code>syslog</code> compatible</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>syslog_severity</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Syslog::CSeverity</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;LOG_NOTICE&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The syslog severity at which to log, must be Ruby <code>syslog</code> compatible</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>strip_128_bit_ciphers</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>On EL6 systems, all 128-bit ciphers will be removed from <code>tls_cipher_suite</code></p>
+
+<ul>
+  <li>This is due to a bug in the LDAP client libraries that does not appear to
+honor the order of the SSL ciphers and will attempt to connect with
+128-bit ciphers and not use stronger ciphers when those are present. This
+breaks connections to securely configured LDAP servers.</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tls_cipher_suite</span>
+      
+      
+        <span class='type'>(<tt>Array[String[1]]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::openssl::cipher_suite&#39;, { &#39;default_value&#39; =&gt; [&#39;DEFAULT&#39;,&#39;!MEDIUM&#39;] })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The TLS ciphers that should be used for the connection to LDAP</p>
+
+<ul>
+  <li>Presently only affects EL6 systems</li>
+</ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/create_home_dirs.pp', line 73</span>
+
+class simp_nfs::create_home_dirs (
+  Array[Simplib::URI]            $uri                   = simplib::lookup(&#39;simp_options::ldap::uri&#39;),
+  String                         $base_dn               = simplib::lookup(&#39;simp_options::ldap::base_dn&#39;),
+  String                         $bind_dn               = simplib::lookup(&#39;simp_options::ldap::bind_dn&#39;),
+  String                         $bind_pw               = simplib::lookup(&#39;simp_options::ldap::bind_pw&#39;),
+  Stdlib::Absolutepath           $export_dir            = &#39;/var/nfs/home&#39;,
+  Stdlib::Absolutepath           $skel_dir              = &#39;/etc/skel&#39;,
+  Enum[&#39;one&#39;,&#39;sub&#39;,&#39;base&#39;]       $ldap_scope            = &#39;one&#39;,
+  Simplib::Port                  $port                  = 389,
+  Enum[&#39;ssl&#39;,&#39;start_tls&#39;,&#39;none&#39;] $tls                   = &#39;start_tls&#39;,
+  Boolean                        $quiet                 = true,
+  Simplib::Syslog::CFacility     $syslog_facility       = &#39;LOG_LOCAL6&#39;,
+  Simplib::Syslog::CSeverity     $syslog_severity       = &#39;LOG_NOTICE&#39;,
+  Boolean                        $strip_128_bit_ciphers = true,
+  Array[String[1]]               $tls_cipher_suite      = simplib::lookup(&#39;simp_options::openssl::cipher_suite&#39;, { &#39;default_value&#39; =&gt; [&#39;DEFAULT&#39;,&#39;!MEDIUM&#39;] })
+) {
+
+  if $strip_128_bit_ciphers {
+    # This is here due to a bug in the LDAP client library on EL6 that will set
+    # the SSF to 128 when connecting over StartTLS if there are *any* 128-bit
+    # ciphers in the list.
+    if $facts[&#39;os&#39;][&#39;name&#39;] in [&#39;RedHat&#39;,&#39;CentOS&#39;] and (versioncmp($facts[&#39;os&#39;][&#39;release&#39;][&#39;major&#39;],&#39;7&#39;) &lt; 0) {
+      $_tmp_suite = flatten($tls_cipher_suite.map |$cipher| { split($cipher,&#39;:&#39;) })
+      $_tls_cipher_suite = $_tmp_suite.filter |$cipher| { $cipher !~ Pattern[/128/] }
+    }
+    else {
+      $_tls_cipher_suite = $tls_cipher_suite
+    }
+  }
+  else {
+    $_tls_cipher_suite = $tls_cipher_suite
+  }
+
+  package { &#39;rubygem-net-ldap&#39;: ensure =&gt; &#39;latest&#39; }
+
+  file { &#39;/etc/cron.hourly/create_home_directories.rb&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0500&#39;,
+    content =&gt; template(&quot;${module_name}/etc/cron.hourly/create_home_directories.rb.erb&quot;),
+    notify  =&gt; [ Exec[&#39;/etc/cron.hourly/create_home_directories.rb&#39;] ],
+    require =&gt; Package[&#39;rubygem-net-ldap&#39;]
+  }
+
+  exec { &#39;/etc/cron.hourly/create_home_directories.rb&#39;: refreshonly =&gt; true }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

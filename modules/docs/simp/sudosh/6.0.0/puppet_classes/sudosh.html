@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: sudosh
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::sudosh";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">sudosh</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: sudosh</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-amog5l/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>sudosh class</p>
+
+<p>This class installs sudosh and optionally configures rsyslog and logrotate.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Ensuring all sudo operations are run with sudosh</p>
+</div></p>
+      
+      <pre class="example code"><code>Insert the following code in an appropriate manifest (e.g.,
+/etc/puppet/manifests/nodes/default_classes/base_config.pp).
+
+  sudo::user_specification { &#39;global_admin&#39;:
+    user_list =&gt; &#39;%administrators&#39;,
+    host_list =&gt; &#39;ALL&#39;,
+    runas =&gt; &#39;ALL&#39;,
+    cmnd =&gt; &#39;/usr/bin/sudosh&#39;,
+    passwd =&gt; &#39;false&#39;
+  }</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>syslog</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::syslog&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to include SIMP’s ::rsyslog class and use it to create
+a specific log file for sudosh (/var/log/sudosh.log)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logrotate</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;simp_options::logrotate&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to include SIMP’s logrotate class and to use it
+to create a log rotate rule for the sudosh log file.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpont.com">tvaughan@onyxpont.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-amog5l/manifests/init.pp', line 25</span>
+
+class sudosh (
+  Boolean $syslog    = simplib::lookup(&#39;simp_options::syslog&#39;, { &#39;default_value&#39; =&gt; false }),
+  Boolean $logrotate = simplib::lookup(&#39;simp_options::logrotate&#39;, { &#39;default_value&#39; =&gt; false })
+) {
+
+  # This package is from the SIMP repo
+  package { &#39;sudosh2&#39;:
+    ensure =&gt; &#39;latest&#39;
+  }
+
+  if $syslog {
+    include &#39;::rsyslog&#39;
+    # named &#39;XX_sudosh&#39; so that it appears before the local filesystem defaults
+    rsyslog::rule::local { &#39;XX_sudosh&#39;:
+      rule            =&gt; &#39;$programname == \&#39;sudosh\&#39;&#39;,
+      target_log_file =&gt; &#39;/var/log/sudosh.log&#39;,
+      stop_processing =&gt; true
+    }
+
+    # Don&#39;t forget the logrotate rule!
+    if $logrotate {
+      include &#39;::logrotate&#39;
+      logrotate::rule { &#39;sudosh&#39;:
+        log_files  =&gt; [ &#39;/var/log/sudosh.log&#39; ],
+        missingok  =&gt; true,
+        lastaction =&gt; &#39;/sbin/service rsyslog restart &gt; /dev/null 2&gt;&amp;1 || true&#39;
+      }
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

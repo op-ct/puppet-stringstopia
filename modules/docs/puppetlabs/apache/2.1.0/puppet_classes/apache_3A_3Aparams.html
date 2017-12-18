@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: apache::params
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::apache::params";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">apache::params</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: apache::params</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>::apache::version</dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Inherited by:</dt>
+    <dd>
+      
+      <span class='object_link'><a href="apache_3A_3Amod_3A_3Aphp.html" title="puppet_classes::apache::mod::php (puppet_class)">apache::mod::php</a></span><br/>
+      
+    </dd>
+  </dl>
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/params.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Class: apache::params</p>
+
+<p>This class manages Apache parameters</p>
+
+<p>Parameters:
+- The $user that Apache runs as
+- The $group that Apache runs as
+- The $apache_name is the name of the package and service on the relevant
+  distribution
+- The $php_package is the name of the package that provided PHP
+- The $ssl_package is the name of the Apache SSL package
+- The $apache_dev is the name of the Apache development libraries package
+- The $conf_contents is the contents of the Apache configuration file</p>
+
+<p>Actions:</p>
+
+<p>Requires:</p>
+
+<p>Sample Usage:</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/params.pp', line 21</span>
+
+class apache::params inherits ::apache::version {
+  if($::fqdn) {
+    $servername = $::fqdn
+  } else {
+    $servername = $::hostname
+  }
+
+  # The default error log level
+  $log_level = &#39;warn&#39;
+  $use_optional_includes = false
+
+  # Default mime types settings
+  $mime_types_additional = {
+    &#39;AddHandler&#39;      =&gt; { &#39;type-map&#39;  =&gt; &#39;var&#39;, },
+    &#39;AddType&#39;         =&gt; { &#39;text/html&#39; =&gt; &#39;.shtml&#39;, },
+    &#39;AddOutputFilter&#39; =&gt; { &#39;INCLUDES&#39;  =&gt; &#39;.shtml&#39;, },
+  }
+
+  # should we use systemd module?
+  $use_systemd = true
+
+  # Default mode for files
+  $file_mode = &#39;0644&#39;
+
+  # Default options for / directory
+  $root_directory_options = [&#39;FollowSymLinks&#39;]
+
+  $vhost_include_pattern = &#39;*&#39;
+
+  $modsec_audit_log_parts = &#39;ABIJDEFHZ&#39;
+
+  # no client certs should be trusted for auth by default.
+  $ssl_certs_dir          = undef
+
+  if ($::operatingsystem == &#39;Ubuntu&#39; and $::lsbdistrelease == &#39;10.04&#39;) or ($::operatingsystem == &#39;SLES&#39;) {
+    $verify_command = &#39;/usr/sbin/apache2ctl -t&#39;
+  } elsif $::operatingsystem == &#39;FreeBSD&#39; {
+    $verify_command = &#39;/usr/local/sbin/apachectl -t&#39;
+  } else {
+    $verify_command = &#39;/usr/sbin/apachectl -t&#39;
+  }
+  if $::osfamily == &#39;RedHat&#39; or $::operatingsystem =~ /^[Aa]mazon$/ {
+    $user                 = &#39;apache&#39;
+    $group                = &#39;apache&#39;
+    $root_group           = &#39;root&#39;
+    $apache_name          = &#39;httpd&#39;
+    $service_name         = &#39;httpd&#39;
+    $httpd_dir            = &#39;/etc/httpd&#39;
+    $server_root          = &#39;/etc/httpd&#39;
+    $conf_dir             = &quot;${httpd_dir}/conf&quot;
+    $confd_dir            = &quot;${httpd_dir}/conf.d&quot;
+    $mod_dir              = $::apache::version::distrelease ? {
+      &#39;7&#39;     =&gt; &quot;${httpd_dir}/conf.modules.d&quot;,
+      default =&gt; &quot;${httpd_dir}/conf.d&quot;,
+    }
+    $mod_enable_dir       = undef
+    $vhost_dir            = &quot;${httpd_dir}/conf.d&quot;
+    $vhost_enable_dir     = undef
+    $conf_file            = &#39;httpd.conf&#39;
+    $ports_file           = &quot;${conf_dir}/ports.conf&quot;
+    $pidfile              = &#39;run/httpd.pid&#39;
+    $logroot              = &#39;/var/log/httpd&#39;
+    $logroot_mode         = undef
+    $lib_path             = &#39;modules&#39;
+    $mpm_module           = &#39;prefork&#39;
+    $dev_packages         = &#39;httpd-devel&#39;
+    $default_ssl_cert     = &#39;/etc/pki/tls/certs/localhost.crt&#39;
+    $default_ssl_key      = &#39;/etc/pki/tls/private/localhost.key&#39;
+    $ssl_sessioncache     = &#39;/var/cache/mod_ssl/scache(512000)&#39;
+    $passenger_conf_file  = &#39;passenger_extra.conf&#39;
+    $passenger_conf_package_file = &#39;passenger.conf&#39;
+    $passenger_root       = undef
+    $passenger_ruby       = undef
+    $passenger_default_ruby = undef
+    $suphp_addhandler     = &#39;php5-script&#39;
+    $suphp_engine         = &#39;off&#39;
+    $suphp_configpath     = undef
+    $php_version          = &#39;5&#39;
+    $mod_packages         = {
+      # NOTE: The auth_cas module isn&#39;t available on RH/CentOS without providing dependency packages provided by EPEL.
+      &#39;auth_cas&#39;              =&gt; &#39;mod_auth_cas&#39;,
+      &#39;auth_kerb&#39;             =&gt; &#39;mod_auth_kerb&#39;,
+      &#39;auth_mellon&#39;           =&gt; &#39;mod_auth_mellon&#39;,
+      &#39;authnz_ldap&#39;           =&gt; $::apache::version::distrelease ? {
+        &#39;7&#39;     =&gt; &#39;mod_ldap&#39;,
+        default =&gt; &#39;mod_authz_ldap&#39;,
+      },
+      &#39;authnz_pam&#39;            =&gt; &#39;mod_authnz_pam&#39;,
+      &#39;fastcgi&#39;               =&gt; &#39;mod_fastcgi&#39;,
+      &#39;fcgid&#39;                 =&gt; &#39;mod_fcgid&#39;,
+      &#39;geoip&#39;                 =&gt; &#39;mod_geoip&#39;,
+      &#39;intercept_form_submit&#39; =&gt; &#39;mod_intercept_form_submit&#39;,
+      &#39;ldap&#39;                  =&gt; $::apache::version::distrelease ? {
+        &#39;7&#39;     =&gt; &#39;mod_ldap&#39;,
+        default =&gt; undef,
+      },
+      &#39;lookup_identity&#39;       =&gt; &#39;mod_lookup_identity&#39;,
+      &#39;pagespeed&#39;             =&gt; &#39;mod-pagespeed-stable&#39;,
+      # NOTE: The passenger module isn&#39;t available on RH/CentOS without
+      # providing dependency packages provided by EPEL and passenger
+      # repositories. See
+      # https://www.phusionpassenger.com/library/install/apache/install/oss/el7/
+      &#39;passenger&#39;             =&gt; &#39;mod_passenger&#39;,
+      &#39;perl&#39;                  =&gt; &#39;mod_perl&#39;,
+      &#39;php5&#39;                  =&gt; $::apache::version::distrelease ? {
+        &#39;5&#39;     =&gt; &#39;php53&#39;,
+        default =&gt; &#39;php&#39;,
+      },
+      &#39;phpXXX&#39;                =&gt; &#39;php&#39;,
+      &#39;proxy_html&#39;            =&gt; &#39;mod_proxy_html&#39;,
+      &#39;python&#39;                =&gt; &#39;mod_python&#39;,
+      &#39;security&#39;              =&gt; &#39;mod_security&#39;,
+      # NOTE: The module for Shibboleth is not available on RH/CentOS without
+      # providing dependency packages provided by Shibboleth&#39;s repositories.
+      # See http://wiki.aaf.edu.au/tech-info/sp-install-guide
+      &#39;shibboleth&#39;            =&gt; &#39;shibboleth&#39;,
+      &#39;ssl&#39;                   =&gt; &#39;mod_ssl&#39;,
+      &#39;wsgi&#39;                  =&gt; &#39;mod_wsgi&#39;,
+      &#39;dav_svn&#39;               =&gt; &#39;mod_dav_svn&#39;,
+      &#39;suphp&#39;                 =&gt; &#39;mod_suphp&#39;,
+      &#39;xsendfile&#39;             =&gt; &#39;mod_xsendfile&#39;,
+      &#39;nss&#39;                   =&gt; &#39;mod_nss&#39;,
+      &#39;shib2&#39;                 =&gt; &#39;shibboleth&#39;,
+    }
+    $mod_libs             = {
+      &#39;nss&#39; =&gt; &#39;libmodnss.so&#39;,
+    }
+    $conf_template        = &#39;apache/httpd.conf.erb&#39;
+    $http_protocol_options  = undef
+    $keepalive            = &#39;On&#39;
+    $keepalive_timeout    = 15
+    $max_keepalive_requests = 100
+    $fastcgi_lib_path     = undef
+    $mime_support_package = &#39;mailcap&#39;
+    $mime_types_config    = &#39;/etc/mime.types&#39;
+    $docroot              = &#39;/var/www/html&#39;
+    $alias_icons_path     = $::apache::version::distrelease ? {
+      &#39;7&#39;     =&gt; &#39;/usr/share/httpd/icons&#39;,
+      default =&gt; &#39;/var/www/icons&#39;,
+    }
+    $error_documents_path = $::apache::version::distrelease ? {
+      &#39;7&#39;     =&gt; &#39;/usr/share/httpd/error&#39;,
+      default =&gt; &#39;/var/www/error&#39;
+    }
+    if $::osfamily == &#39;RedHat&#39; {
+      $wsgi_socket_prefix = &#39;/var/run/wsgi&#39;
+    } else {
+      $wsgi_socket_prefix = undef
+    }
+    $cas_cookie_path      = &#39;/var/cache/mod_auth_cas/&#39;
+    $mellon_lock_file     = &#39;/run/mod_auth_mellon/lock&#39;
+    $mellon_cache_size    = 100
+    $mellon_post_directory = undef
+    $modsec_crs_package   = &#39;mod_security_crs&#39;
+    $modsec_crs_path      = &#39;/usr/lib/modsecurity.d&#39;
+    $modsec_dir           = &#39;/etc/httpd/modsecurity.d&#39;
+    $secpcrematchlimit = 1500
+    $secpcrematchlimitrecursion = 1500
+    $modsec_secruleengine = &#39;On&#39;
+    $modsec_default_rules = [
+      &#39;base_rules/modsecurity_35_bad_robots.data&#39;,
+      &#39;base_rules/modsecurity_35_scanners.data&#39;,
+      &#39;base_rules/modsecurity_40_generic_attacks.data&#39;,
+      &#39;base_rules/modsecurity_50_outbound.data&#39;,
+      &#39;base_rules/modsecurity_50_outbound_malware.data&#39;,
+      &#39;base_rules/modsecurity_crs_20_protocol_violations.conf&#39;,
+      &#39;base_rules/modsecurity_crs_21_protocol_anomalies.conf&#39;,
+      &#39;base_rules/modsecurity_crs_23_request_limits.conf&#39;,
+      &#39;base_rules/modsecurity_crs_30_http_policy.conf&#39;,
+      &#39;base_rules/modsecurity_crs_35_bad_robots.conf&#39;,
+      &#39;base_rules/modsecurity_crs_40_generic_attacks.conf&#39;,
+      &#39;base_rules/modsecurity_crs_41_sql_injection_attacks.conf&#39;,
+      &#39;base_rules/modsecurity_crs_41_xss_attacks.conf&#39;,
+      &#39;base_rules/modsecurity_crs_42_tight_security.conf&#39;,
+      &#39;base_rules/modsecurity_crs_45_trojans.conf&#39;,
+      &#39;base_rules/modsecurity_crs_47_common_exceptions.conf&#39;,
+      &#39;base_rules/modsecurity_crs_49_inbound_blocking.conf&#39;,
+      &#39;base_rules/modsecurity_crs_50_outbound.conf&#39;,
+      &#39;base_rules/modsecurity_crs_59_outbound_blocking.conf&#39;,
+      &#39;base_rules/modsecurity_crs_60_correlation.conf&#39;,
+    ]
+    $error_log           = &#39;error_log&#39;
+    $scriptalias         = &#39;/var/www/cgi-bin&#39;
+    $access_log_file     = &#39;access_log&#39;
+  } elsif $::osfamily == &#39;Debian&#39; {
+    $user                = &#39;www-data&#39;
+    $group               = &#39;www-data&#39;
+    $root_group          = &#39;root&#39;
+    $apache_name         = &#39;apache2&#39;
+    $service_name        = &#39;apache2&#39;
+    $httpd_dir           = &#39;/etc/apache2&#39;
+    $server_root         = &#39;/etc/apache2&#39;
+    $conf_dir            = $httpd_dir
+    $confd_dir           = &quot;${httpd_dir}/conf.d&quot;
+    $mod_dir             = &quot;${httpd_dir}/mods-available&quot;
+    $mod_enable_dir      = &quot;${httpd_dir}/mods-enabled&quot;
+    $vhost_dir           = &quot;${httpd_dir}/sites-available&quot;
+    $vhost_enable_dir    = &quot;${httpd_dir}/sites-enabled&quot;
+    $conf_file           = &#39;apache2.conf&#39;
+    $ports_file          = &quot;${conf_dir}/ports.conf&quot;
+    $pidfile             = &quot;\${APACHE_PID_FILE}&quot;
+    $logroot             = &#39;/var/log/apache2&#39;
+    $logroot_mode        = undef
+    $lib_path            = &#39;/usr/lib/apache2/modules&#39;
+    $mpm_module          = &#39;worker&#39;
+    $default_ssl_cert    = &#39;/etc/ssl/certs/ssl-cert-snakeoil.pem&#39;
+    $default_ssl_key     = &#39;/etc/ssl/private/ssl-cert-snakeoil.key&#39;
+    $ssl_sessioncache    = &quot;\${APACHE_RUN_DIR}/ssl_scache(512000)&quot;
+    $suphp_addhandler    = &#39;x-httpd-php&#39;
+    $suphp_engine        = &#39;off&#39;
+    $suphp_configpath    = &#39;/etc/php5/apache2&#39;
+    if ($::operatingsystem == &#39;Ubuntu&#39; and versioncmp($::operatingsystemrelease, &#39;16.04&#39;) &lt; 0) or ($::operatingsystem == &#39;Debian&#39; and versioncmp($::operatingsystemrelease, &#39;9&#39;) &lt; 0) {
+      # Only the major version is used here
+      $php_version = &#39;5&#39;
+      $mod_packages = {
+        &#39;auth_cas&#39;              =&gt; &#39;libapache2-mod-auth-cas&#39;,
+        &#39;auth_kerb&#39;             =&gt; &#39;libapache2-mod-auth-kerb&#39;,
+        &#39;auth_mellon&#39;           =&gt; &#39;libapache2-mod-auth-mellon&#39;,
+        &#39;authnz_pam&#39;            =&gt; &#39;libapache2-mod-authnz-pam&#39;,
+        &#39;dav_svn&#39;               =&gt; &#39;libapache2-svn&#39;,
+        &#39;fastcgi&#39;               =&gt; &#39;libapache2-mod-fastcgi&#39;,
+        &#39;fcgid&#39;                 =&gt; &#39;libapache2-mod-fcgid&#39;,
+        &#39;geoip&#39;                 =&gt; &#39;libapache2-mod-geoip&#39;,
+        &#39;intercept_form_submit&#39; =&gt; &#39;libapache2-mod-intercept-form-submit&#39;,
+        &#39;lookup_identity&#39;       =&gt; &#39;libapache2-mod-lookup-identity&#39;,
+        &#39;nss&#39;                   =&gt; &#39;libapache2-mod-nss&#39;,
+        &#39;pagespeed&#39;             =&gt; &#39;mod-pagespeed-stable&#39;,
+        &#39;passenger&#39;             =&gt; &#39;libapache2-mod-passenger&#39;,
+        &#39;perl&#39;                  =&gt; &#39;libapache2-mod-perl2&#39;,
+        &#39;phpXXX&#39;                =&gt; &#39;libapache2-mod-phpXXX&#39;,
+        &#39;proxy_html&#39;            =&gt; &#39;libapache2-mod-proxy-html&#39;,
+        &#39;python&#39;                =&gt; &#39;libapache2-mod-python&#39;,
+        &#39;rpaf&#39;                  =&gt; &#39;libapache2-mod-rpaf&#39;,
+        &#39;security&#39;              =&gt; &#39;libapache2-modsecurity&#39;,
+        &#39;shib2&#39;                 =&gt; &#39;libapache2-mod-shib2&#39;,
+        &#39;suphp&#39;                 =&gt; &#39;libapache2-mod-suphp&#39;,
+        &#39;wsgi&#39;                  =&gt; &#39;libapache2-mod-wsgi&#39;,
+        &#39;xsendfile&#39;             =&gt; &#39;libapache2-mod-xsendfile&#39;,
+      }
+    } else {
+      # major.minor version used since Debian stretch and Ubuntu Xenial
+      $php_version = &#39;7.0&#39;
+      $mod_packages = {
+        &#39;auth_cas&#39;              =&gt; &#39;libapache2-mod-auth-cas&#39;,
+        &#39;auth_kerb&#39;             =&gt; &#39;libapache2-mod-auth-kerb&#39;,
+        &#39;auth_mellon&#39;           =&gt; &#39;libapache2-mod-auth-mellon&#39;,
+        &#39;authnz_pam&#39;            =&gt; &#39;libapache2-mod-authnz-pam&#39;,
+        &#39;dav_svn&#39;               =&gt; &#39;libapache2-svn&#39;,
+        &#39;fastcgi&#39;               =&gt; &#39;libapache2-mod-fastcgi&#39;,
+        &#39;fcgid&#39;                 =&gt; &#39;libapache2-mod-fcgid&#39;,
+        &#39;geoip&#39;                 =&gt; &#39;libapache2-mod-geoip&#39;,
+        &#39;intercept_form_submit&#39; =&gt; &#39;libapache2-mod-intercept-form-submit&#39;,
+        &#39;lookup_identity&#39;       =&gt; &#39;libapache2-mod-lookup-identity&#39;,
+        &#39;nss&#39;                   =&gt; &#39;libapache2-mod-nss&#39;,
+        &#39;pagespeed&#39;             =&gt; &#39;mod-pagespeed-stable&#39;,
+        &#39;passenger&#39;             =&gt; &#39;libapache2-mod-passenger&#39;,
+        &#39;perl&#39;                  =&gt; &#39;libapache2-mod-perl2&#39;,
+        &#39;phpXXX&#39;                =&gt; &#39;libapache2-mod-phpXXX&#39;,
+        &#39;python&#39;                =&gt; &#39;libapache2-mod-python&#39;,
+        &#39;rpaf&#39;                  =&gt; &#39;libapache2-mod-rpaf&#39;,
+        &#39;security&#39;              =&gt; &#39;libapache2-modsecurity&#39;,
+        &#39;shib2&#39;                 =&gt; &#39;libapache2-mod-shib2&#39;,
+        &#39;suphp&#39;                 =&gt; &#39;libapache2-mod-suphp&#39;,
+        &#39;wsgi&#39;                  =&gt; &#39;libapache2-mod-wsgi&#39;,
+        &#39;xsendfile&#39;             =&gt; &#39;libapache2-mod-xsendfile&#39;,
+      }
+    }
+    $error_log           = &#39;error.log&#39;
+    $scriptalias         = &#39;/usr/lib/cgi-bin&#39;
+    $access_log_file     = &#39;access.log&#39;
+    if $::osfamily == &#39;Debian&#39; and versioncmp($::operatingsystemrelease, &#39;8&#39;) &lt; 0 {
+      $shib2_lib = &#39;mod_shib_22.so&#39;
+    } else {
+      $shib2_lib = &#39;mod_shib2.so&#39;
+    }
+    $mod_libs             = {
+      &#39;shib2&#39; =&gt; $shib2_lib,
+    }
+    $conf_template          = &#39;apache/httpd.conf.erb&#39;
+    $http_protocol_options  = undef
+    $keepalive              = &#39;Off&#39;
+    $keepalive_timeout      = 15
+    $max_keepalive_requests = 100
+    $fastcgi_lib_path       = &#39;/var/lib/apache2/fastcgi&#39;
+    $mime_support_package = &#39;mime-support&#39;
+    $mime_types_config    = &#39;/etc/mime.types&#39;
+    if ($::operatingsystem == &#39;Ubuntu&#39; and versioncmp($::operatingsystemrelease, &#39;13.10&#39;) &gt;= 0) or ($::operatingsystem == &#39;Debian&#39; and versioncmp($::operatingsystemrelease, &#39;8&#39;) &gt;= 0) {
+      $docroot              = &#39;/var/www/html&#39;
+    } else {
+      $docroot              = &#39;/var/www&#39;
+    }
+    $cas_cookie_path      = &#39;/var/cache/apache2/mod_auth_cas/&#39;
+    $mellon_lock_file     = undef
+    $mellon_cache_size    = undef
+    $mellon_post_directory = &#39;/var/cache/apache2/mod_auth_mellon/&#39;
+    $modsec_crs_package   = &#39;modsecurity-crs&#39;
+    $modsec_crs_path      = &#39;/usr/share/modsecurity-crs&#39;
+    $modsec_dir           = &#39;/etc/modsecurity&#39;
+    $secpcrematchlimit = 1500
+    $secpcrematchlimitrecursion = 1500
+    $modsec_secruleengine = &#39;On&#39;
+    $modsec_default_rules = [
+      &#39;base_rules/modsecurity_35_bad_robots.data&#39;,
+      &#39;base_rules/modsecurity_35_scanners.data&#39;,
+      &#39;base_rules/modsecurity_40_generic_attacks.data&#39;,
+      &#39;base_rules/modsecurity_50_outbound.data&#39;,
+      &#39;base_rules/modsecurity_50_outbound_malware.data&#39;,
+      &#39;base_rules/modsecurity_crs_20_protocol_violations.conf&#39;,
+      &#39;base_rules/modsecurity_crs_21_protocol_anomalies.conf&#39;,
+      &#39;base_rules/modsecurity_crs_23_request_limits.conf&#39;,
+      &#39;base_rules/modsecurity_crs_30_http_policy.conf&#39;,
+      &#39;base_rules/modsecurity_crs_35_bad_robots.conf&#39;,
+      &#39;base_rules/modsecurity_crs_40_generic_attacks.conf&#39;,
+      &#39;base_rules/modsecurity_crs_41_sql_injection_attacks.conf&#39;,
+      &#39;base_rules/modsecurity_crs_41_xss_attacks.conf&#39;,
+      &#39;base_rules/modsecurity_crs_42_tight_security.conf&#39;,
+      &#39;base_rules/modsecurity_crs_45_trojans.conf&#39;,
+      &#39;base_rules/modsecurity_crs_47_common_exceptions.conf&#39;,
+      &#39;base_rules/modsecurity_crs_49_inbound_blocking.conf&#39;,
+      &#39;base_rules/modsecurity_crs_50_outbound.conf&#39;,
+      &#39;base_rules/modsecurity_crs_59_outbound_blocking.conf&#39;,
+      &#39;base_rules/modsecurity_crs_60_correlation.conf&#39;,
+    ]
+    $alias_icons_path     = &#39;/usr/share/apache2/icons&#39;
+    $error_documents_path = &#39;/usr/share/apache2/error&#39;
+    if ($::operatingsystem == &#39;Ubuntu&#39; and versioncmp($::operatingsystemrelease, &#39;13.10&#39;) &gt;= 0) or ($::operatingsystem == &#39;Debian&#39; and versioncmp($::operatingsystemrelease, &#39;8&#39;) &gt;= 0) {
+      $dev_packages        = [&#39;libaprutil1-dev&#39;, &#39;libapr1-dev&#39;, &#39;apache2-dev&#39;]
+    } else {
+      $dev_packages        = [&#39;libaprutil1-dev&#39;, &#39;libapr1-dev&#39;, &#39;apache2-prefork-dev&#39;]
+    }
+
+    #
+    # Passenger-specific settings
+    #
+
+    $passenger_conf_file         = &#39;passenger.conf&#39;
+    $passenger_conf_package_file = undef
+
+    if ($::operatingsystem == &#39;Ubuntu&#39; and versioncmp($::operatingsystemrelease, &#39;14.04&#39;) &lt; 0) or ($::operatingsystem == &#39;Debian&#39; and versioncmp($::operatingsystemrelease, &#39;8&#39;) &lt; 0) {
+      $passenger_root         = &#39;/usr&#39;
+      $passenger_ruby         = &#39;/usr/bin/ruby&#39;
+      $passenger_default_ruby = undef
+    } else {
+      $passenger_root         = &#39;/usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini&#39;
+      $passenger_ruby         = undef
+      $passenger_default_ruby = &#39;/usr/bin/ruby&#39;
+    }
+    $wsgi_socket_prefix = undef
+  } elsif $::osfamily == &#39;FreeBSD&#39; {
+    $user             = &#39;www&#39;
+    $group            = &#39;www&#39;
+    $root_group       = &#39;wheel&#39;
+    $apache_name      = &#39;apache24&#39;
+    $service_name     = &#39;apache24&#39;
+    $httpd_dir        = &#39;/usr/local/etc/apache24&#39;
+    $server_root      = &#39;/usr/local&#39;
+    $conf_dir         = $httpd_dir
+    $confd_dir        = &quot;${httpd_dir}/Includes&quot;
+    $mod_dir          = &quot;${httpd_dir}/Modules&quot;
+    $mod_enable_dir   = undef
+    $vhost_dir        = &quot;${httpd_dir}/Vhosts&quot;
+    $vhost_enable_dir = undef
+    $conf_file        = &#39;httpd.conf&#39;
+    $ports_file       = &quot;${conf_dir}/ports.conf&quot;
+    $pidfile          = &#39;/var/run/httpd.pid&#39;
+    $logroot          = &#39;/var/log/apache24&#39;
+    $logroot_mode     = undef
+    $lib_path         = &#39;/usr/local/libexec/apache24&#39;
+    $mpm_module       = &#39;prefork&#39;
+    $dev_packages     = undef
+    $default_ssl_cert = &#39;/usr/local/etc/apache24/server.crt&#39;
+    $default_ssl_key  = &#39;/usr/local/etc/apache24/server.key&#39;
+    $ssl_sessioncache  = &#39;/var/run/ssl_scache(512000)&#39;
+    $passenger_conf_file = &#39;passenger.conf&#39;
+    $passenger_conf_package_file = undef
+    $passenger_root   = &#39;/usr/local/lib/ruby/gems/2.0/gems/passenger-4.0.58&#39;
+    $passenger_ruby   = &#39;/usr/local/bin/ruby&#39;
+    $passenger_default_ruby = undef
+    $suphp_addhandler = &#39;php5-script&#39;
+    $suphp_engine     = &#39;off&#39;
+    $suphp_configpath = undef
+    $php_version      = &#39;5&#39;
+    $mod_packages     = {
+      # NOTE: I list here only modules that are not included in www/apache24
+      # NOTE: &#39;passenger&#39; needs to enable APACHE_SUPPORT in make config
+      # NOTE: &#39;php&#39; needs to enable APACHE option in make config
+      # NOTE: &#39;dav_svn&#39; needs to enable MOD_DAV_SVN make config
+      # NOTE: not sure where the shibboleth should come from
+      &#39;auth_kerb&#39;  =&gt; &#39;www/mod_auth_kerb2&#39;,
+      &#39;fcgid&#39;      =&gt; &#39;www/mod_fcgid&#39;,
+      &#39;passenger&#39;  =&gt; &#39;www/rubygem-passenger&#39;,
+      &#39;perl&#39;       =&gt; &#39;www/mod_perl2&#39;,
+      &#39;phpXXX&#39;     =&gt; &#39;www/mod_phpXXX&#39;,
+      &#39;proxy_html&#39; =&gt; &#39;www/mod_proxy_html&#39;,
+      &#39;python&#39;     =&gt; &#39;www/mod_python3&#39;,
+      &#39;wsgi&#39;       =&gt; &#39;www/mod_wsgi&#39;,
+      &#39;dav_svn&#39;    =&gt; &#39;devel/subversion&#39;,
+      &#39;xsendfile&#39;  =&gt; &#39;www/mod_xsendfile&#39;,
+      &#39;rpaf&#39;       =&gt; &#39;www/mod_rpaf2&#39;,
+      &#39;shib2&#39;      =&gt; &#39;security/shibboleth2-sp&#39;,
+    }
+    $mod_libs         = {
+    }
+    $conf_template        = &#39;apache/httpd.conf.erb&#39;
+    $http_protocol_options = undef
+    $keepalive            = &#39;Off&#39;
+    $keepalive_timeout    = 15
+    $max_keepalive_requests = 100
+    $fastcgi_lib_path     = undef # TODO: revisit
+    $mime_support_package = &#39;misc/mime-support&#39;
+    $mime_types_config    = &#39;/usr/local/etc/mime.types&#39;
+    $wsgi_socket_prefix   = undef
+    $docroot              = &#39;/usr/local/www/apache24/data&#39;
+    $alias_icons_path     = &#39;/usr/local/www/apache24/icons&#39;
+    $error_documents_path = &#39;/usr/local/www/apache24/error&#39;
+    $error_log            = &#39;httpd-error.log&#39;
+    $scriptalias          = &#39;/usr/local/www/apache24/cgi-bin&#39;
+    $access_log_file      = &#39;httpd-access.log&#39;
+  } elsif $::osfamily == &#39;Gentoo&#39; {
+    $user             = &#39;apache&#39;
+    $group            = &#39;apache&#39;
+    $root_group       = &#39;wheel&#39;
+    $apache_name      = &#39;www-servers/apache&#39;
+    $service_name     = &#39;apache2&#39;
+    $httpd_dir        = &#39;/etc/apache2&#39;
+    $server_root      = &#39;/var/www&#39;
+    $conf_dir         = $httpd_dir
+    $confd_dir        = &quot;${httpd_dir}/conf.d&quot;
+    $mod_dir          = &quot;${httpd_dir}/modules.d&quot;
+    $mod_enable_dir   = undef
+    $vhost_dir        = &quot;${httpd_dir}/vhosts.d&quot;
+    $vhost_enable_dir = undef
+    $conf_file        = &#39;httpd.conf&#39;
+    $ports_file       = &quot;${conf_dir}/ports.conf&quot;
+    $logroot          = &#39;/var/log/apache2&#39;
+    $logroot_mode     = undef
+    $lib_path         = &#39;/usr/lib/apache2/modules&#39;
+    $mpm_module       = &#39;prefork&#39;
+    $dev_packages     = undef
+    $default_ssl_cert = &#39;/etc/ssl/apache2/server.crt&#39;
+    $default_ssl_key  = &#39;/etc/ssl/apache2/server.key&#39;
+    $ssl_sessioncache  = &#39;/var/run/ssl_scache(512000)&#39;
+    $passenger_root   = &#39;/usr&#39;
+    $passenger_ruby   = &#39;/usr/bin/ruby&#39;
+    $passenger_conf_file = &#39;passenger.conf&#39;
+    $passenger_conf_package_file = undef
+    $passenger_default_ruby = undef
+    $suphp_addhandler = &#39;x-httpd-php&#39;
+    $suphp_engine     = &#39;off&#39;
+    $suphp_configpath = &#39;/etc/php5/apache2&#39;
+    $php_version      = &#39;5&#39;
+    $mod_packages     = {
+      # NOTE: I list here only modules that are not included in www-servers/apache
+      &#39;auth_kerb&#39;       =&gt; &#39;www-apache/mod_auth_kerb&#39;,
+      &#39;authnz_external&#39; =&gt; &#39;www-apache/mod_authnz_external&#39;,
+      &#39;fcgid&#39;           =&gt; &#39;www-apache/mod_fcgid&#39;,
+      &#39;passenger&#39;       =&gt; &#39;www-apache/passenger&#39;,
+      &#39;perl&#39;            =&gt; &#39;www-apache/mod_perl&#39;,
+      &#39;phpXXX&#39;          =&gt; &#39;dev-lang/php&#39;,
+      &#39;proxy_html&#39;      =&gt; &#39;www-apache/mod_proxy_html&#39;,
+      &#39;proxy_fcgi&#39;      =&gt; &#39;www-apache/mod_proxy_fcgi&#39;,
+      &#39;python&#39;          =&gt; &#39;www-apache/mod_python&#39;,
+      &#39;wsgi&#39;            =&gt; &#39;www-apache/mod_wsgi&#39;,
+      &#39;dav_svn&#39;         =&gt; &#39;dev-vcs/subversion&#39;,
+      &#39;xsendfile&#39;       =&gt; &#39;www-apache/mod_xsendfile&#39;,
+      &#39;rpaf&#39;            =&gt; &#39;www-apache/mod_rpaf&#39;,
+      &#39;xml2enc&#39;         =&gt; &#39;www-apache/mod_xml2enc&#39;,
+    }
+    $mod_libs         = {
+    }
+    $conf_template        = &#39;apache/httpd.conf.erb&#39;
+    $http_protocol_options = undef
+    $keepalive            = &#39;Off&#39;
+    $keepalive_timeout    = 15
+    $max_keepalive_requests = 100
+    $fastcgi_lib_path     = undef # TODO: revisit
+    $mime_support_package = &#39;app-misc/mime-types&#39;
+    $mime_types_config    = &#39;/etc/mime.types&#39;
+    $wsgi_socket_prefix   = undef
+    $docroot              = &#39;/var/www/localhost/htdocs&#39;
+    $alias_icons_path     = &#39;/usr/share/apache2/icons&#39;
+    $error_documents_path = &#39;/usr/share/apache2/error&#39;
+    $pidfile              = &#39;/var/run/apache2.pid&#39;
+    $error_log            = &#39;error.log&#39;
+    $scriptalias          = &#39;/var/www/localhost/cgi-bin&#39;
+    $access_log_file      = &#39;access.log&#39;
+  } elsif $::osfamily == &#39;Suse&#39; {
+    $user                = &#39;wwwrun&#39;
+    $group               = &#39;www&#39;
+    $root_group          = &#39;root&#39;
+    $apache_name         = &#39;apache2&#39;
+    $service_name        = &#39;apache2&#39;
+    $httpd_dir           = &#39;/etc/apache2&#39;
+    $server_root         = &#39;/etc/apache2&#39;
+    $conf_dir            = $httpd_dir
+    $confd_dir           = &quot;${httpd_dir}/conf.d&quot;
+    $mod_dir             = &quot;${httpd_dir}/mods-available&quot;
+    $mod_enable_dir      = &quot;${httpd_dir}/mods-enabled&quot;
+    $vhost_dir           = &quot;${httpd_dir}/sites-available&quot;
+    $vhost_enable_dir    = &quot;${httpd_dir}/sites-enabled&quot;
+    $conf_file           = &#39;httpd.conf&#39;
+    $ports_file          = &quot;${conf_dir}/ports.conf&quot;
+    $pidfile             = &#39;/var/run/httpd2.pid&#39;
+    $logroot             = &#39;/var/log/apache2&#39;
+    $logroot_mode        = undef
+    $lib_path            = &#39;/usr/lib64/apache2&#39; #changes for some modules based on mpm
+    $mpm_module          = &#39;prefork&#39;
+    $default_ssl_cert    = &#39;/etc/apache2/ssl.crt/server.crt&#39;
+    $default_ssl_key     = &#39;/etc/apache2/ssl.key/server.key&#39;
+    $ssl_sessioncache    = &#39;/var/lib/apache2/ssl_scache(512000)&#39;
+    $suphp_addhandler    = &#39;x-httpd-php&#39;
+    $suphp_engine        = &#39;off&#39;
+    $suphp_configpath    = &#39;/etc/php5/apache2&#39;
+    $php_version         = &#39;5&#39;
+    if $::operatingsystemrelease &lt; &#39;11&#39; or $::operatingsystemrelease &gt;= &#39;12&#39; {
+      $mod_packages      = {
+        &#39;auth_kerb&#39;   =&gt; &#39;apache2-mod_auth_kerb&#39;,
+        &#39;perl&#39;        =&gt; &#39;apache2-mod_perl&#39;,
+        &#39;php5&#39;        =&gt; &#39;apache2-mod_php5&#39;,
+        &#39;python&#39;      =&gt; &#39;apache2-mod_python&#39;,
+        &#39;security&#39;    =&gt; &#39;apache2-mod_security2&#39;,
+        &#39;worker&#39;      =&gt; &#39;apache2-worker&#39;,
+        }
+    } else {
+      $mod_packages        = {
+        &#39;auth_kerb&#39;   =&gt; &#39;apache2-mod_auth_kerb&#39;,
+        &#39;perl&#39;        =&gt; &#39;apache2-mod_perl&#39;,
+        &#39;php5&#39;        =&gt; &#39;apache2-mod_php53&#39;,
+        &#39;python&#39;      =&gt; &#39;apache2-mod_python&#39;,
+        &#39;security&#39;    =&gt; &#39;apache2-mod_security2&#39;,
+      }
+    }
+    $mod_libs             = {
+      &#39;security&#39;       =&gt; &#39;/usr/lib64/apache2/mod_security2.so&#39;,
+      &#39;php53&#39;          =&gt; &#39;/usr/lib64/apache2/mod_php5.so&#39;,
+    }
+    $conf_template          = &#39;apache/httpd.conf.erb&#39;
+    $http_protocol_options  = undef
+    $keepalive              = &#39;Off&#39;
+    $keepalive_timeout      = 15
+    $max_keepalive_requests = 100
+    $fastcgi_lib_path       = &#39;/var/lib/apache2/fastcgi&#39;
+    $mime_support_package = &#39;aaa_base&#39;
+    $mime_types_config    = &#39;/etc/mime.types&#39;
+    $docroot              = &#39;/srv/www&#39;
+    $cas_cookie_path      = &#39;/var/cache/apache2/mod_auth_cas/&#39;
+    $mellon_lock_file     = undef
+    $mellon_cache_size    = undef
+    $mellon_post_directory = undef
+    $alias_icons_path     = &#39;/usr/share/apache2/icons&#39;
+    $error_documents_path = &#39;/usr/share/apache2/error&#39;
+    $dev_packages        = [&#39;libapr-util1-devel&#39;, &#39;libapr1-devel&#39;, &#39;libcurl-devel&#39;]
+    $modsec_crs_package   = undef
+    $modsec_crs_path      = undef
+    $modsec_default_rules = undef
+    $modsec_dir           = &#39;/etc/apache2/modsecurity&#39;
+    $secpcrematchlimit = 1500
+    $secpcrematchlimitrecursion = 1500
+    $modsec_secruleengine = &#39;On&#39;
+    $error_log           = &#39;error.log&#39;
+    $scriptalias         = &#39;/usr/lib/cgi-bin&#39;
+    $access_log_file     = &#39;access.log&#39;
+
+    #
+    # Passenger-specific settings
+    #
+
+    $passenger_conf_file          = &#39;passenger.conf&#39;
+    $passenger_conf_package_file  = undef
+
+    $passenger_root               = &#39;/usr/lib64/ruby/gems/1.8/gems/passenger-5.0.30&#39;
+    $passenger_ruby               = &#39;/usr/bin/ruby&#39;
+    $passenger_default_ruby       = &#39;/usr/bin/ruby&#39;
+    $wsgi_socket_prefix           = undef
+
+  } else {
+    fail(&quot;Class[&#39;apache::params&#39;]: Unsupported osfamily: ${::osfamily}&quot;)
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

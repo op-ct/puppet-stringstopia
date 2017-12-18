@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: svckill
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::svckill";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">svckill</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: svckill</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-lccbkw/manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Svckill is a system that attempts to run with the security best
+practice that “No unnecessary services should be running on the
+system.”</p>
+
+<p>The way svckill works is to fetch all services on the running system
+and then shutdown and disable any that are not declared in a Puppet
+manifest (or ignore list/file) somewhere.</p>
+
+<p>The following services will <em>never</em> be killed by svckill:
+  * amtu
+  * blk-availability
+  * crond
+  * ebtables
+  * gpm
+  * haldaemon
+  * ip6tables
+  * iptables
+  * irqbalance
+  * killall
+  * libvirt-guests
+  * lvm2-monitor
+  * mcstrans
+  * mdmonitor
+  * messagebus
+  * netcf-transaction
+  * netfs
+  * netlabel
+  * network
+  * ntpdate
+  * portreserve
+  * puppet
+  * restorecond
+  * sandbox
+  * sshd
+  * sysstat
+  * udev-post</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>enable</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Enable svckill on the system</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ignore</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of services to never kill</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ignore_defaults</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An internal list of embedded services to never kill</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ignore_files</span>
+      
+      
+        <span class='type'>(<tt>Array[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of files that contain services to never kill, one per line</p>
+
+<ul>
+  <li>You can add your own files here if you wish to use an alternate ignore
+list</li>
+  <li>The file specified in <code>default_ignore_file</code> will always be used but is
+fully managed by puppet</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>mode</span>
+      
+      
+        <span class='type'>(<tt>Enum['enforcing','warning']</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;warning&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The strategy svckill should use when it encounters undeclared services.</p>
+
+<ul>
+  <li>
+    <p>If set to <code>enforcing</code>, will actually shut down and disable all
+services not listed in your manifests or the exclusion file.</p>
+  </li>
+  <li>
+    <p>If set to <code>warning</code>, will only report on what would happen
+without actually making the changes to the system.
+attempted to kill</p>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>verbose</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Report on exactly what <code>svckill</code> attempted to kill</p>
+
+<ul>
+  <li>If <code>false</code>, it will only report on the number of services that it
+attempted to kill</li>
+</ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-lccbkw/manifests/init.pp', line 73</span>
+
+class svckill (
+  Boolean                     $enable          = true,
+  Array[String]               $ignore          = [],
+  Array[String]               $ignore_defaults = [],
+  Array[Stdlib::Absolutepath] $ignore_files    = [],
+  Enum[&#39;enforcing&#39;,&#39;warning&#39;] $mode            = &#39;warning&#39;,
+  Boolean                     $verbose         = true,
+){
+  if $enable {
+    include &#39;::svckill::ignore::collector&#39;
+
+    $combined_ignore_list = $ignore + $ignore_defaults
+    $flattened_ignore_files = flatten([$ignore_files, $::svckill::ignore::collector::default_ignore_file])
+
+    svckill { &#39;svckill&#39;:
+      ignore      =&gt; $combined_ignore_list,
+      ignorefiles =&gt; $flattened_ignore_files,
+      verbose     =&gt; $verbose,
+      mode        =&gt; $mode,
+      require     =&gt; Class[&#39;svckill::ignore::collector&#39;]
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

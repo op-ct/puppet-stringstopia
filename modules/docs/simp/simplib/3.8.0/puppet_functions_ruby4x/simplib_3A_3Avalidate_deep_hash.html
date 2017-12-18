@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Function: simplib::validate_deep_hash (Ruby 4.x API)
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_functions_ruby4x::simplib::validate_deep_hash";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_function_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (s)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Functions</span></span>
+     &raquo; 
+    <span class="title">simplib::validate_deep_hash</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Function: simplib::validate_deep_hash</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      lib/puppet/functions/simplib/validate_deep_hash.rb<span class="defines">,<br />
+      /tmp/tmp_git_repo20171214-12245-rji9kl/lib/puppet/functions/simplib/validate_deep_hash.rb</div>
+      
+    </dd>
+  </dl>
+  <dl>
+    <dt>Function type:</dt>
+    <dd>Ruby 4.x API</dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="method_details first">
+  
+  <div class="tags overload overload_item">
+    <span class="overload">
+      <span class="overload_item">
+        <span class="signature first" style="margin-left: 0px;"><strong>simplib::validate_deep_hash(Hash $reference, Hash $to_check)</strong> &#x21d2; <tt>Nil</tt> </span>
+      </span>
+    </span>
+  </div>
+  
+  <div class="docstring">
+    <div class="discussion">
+      <p>Perform a deep validation on two passed <code>Hashes</code>.</p>
+
+<p>All keys must be defined in the reference <code>Hash</code> that is being
+validated against.</p>
+
+<p>Unknown keys in the <code>Hash</code> being compared will cause a failure in
+validation</p>
+
+<p>All values in the final leaves of the ‘reference ‘Hash’ must
+be a String, Boolean, or nil.</p>
+
+<p>All values in the final leaves of the <code>Hash</code> being compared must
+support a to_s() method.</p>
+
+    </div>
+  </div>
+  <div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Passing Examples</p>
+</div></p>
+      
+      <pre class="example code"><code>reference = {
+  &#39;foo&#39; =&gt; {
+    &#39;bar&#39; =&gt; {
+      #NOTE: Use quotes for regular expressions instead of &#39;/&#39;
+      &#39;baz&#39; =&gt; &#39;^\d+$&#39;,
+      &#39;abc&#39; =&gt; &#39;^\w+$&#39;,
+      &#39;def&#39; =&gt; nil
+    },
+    &#39;baz&#39; =&gt; {
+      &#39;qrs&#39; =&gt; false
+      &#39;xyz&#39; =&gt; &#39;^true|false$&#39;
+    }
+  }
+}
+
+to_check = {
+  &#39;foo&#39; =&gt; {
+    &#39;bar&#39; =&gt; {
+      &#39;baz&#39; =&gt; [&#39;123&#39;, 45]
+      &#39;abc&#39; =&gt; [ &#39;these&#39;, &#39;are&#39;, &#39;words&#39; ],
+      &#39;def&#39; =&gt; &#39;Anything will work here!&#39;
+    },
+    &#39;baz&#39; =&gt; {
+      &#39;qrs&#39; =&gt; false
+      &#39;xyz&#39; =&gt; true
+    }
+  }
+}
+
+validate_deep_hash(reference, to_check)</code></pre>
+    
+      
+        <p class="example_title"><div class='inline'><p>Failing Examples</p>
+</div></p>
+      
+      <pre class="example code"><code>reference =&gt; { &#39;foo&#39; =&gt; &#39;^\d+$&#39; }
+to_check  =&gt; { &#39;foo&#39; =&gt; &#39;abc&#39; }
+
+validate_deep_hash(reference, to_check)</code></pre>
+    
+  </div>
+
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>reference</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Hash to validate against. Keys at all levels of
+the hash define the structure of the hash and the value at each
+final leaf in the hash tree contains a regular expression string,
+a boolean or nil for value validation:</p>
+
+<ul>
+  <li>
+    <p>When the validation value is a regular expression string,
+the string representation of the to_check value (from the
+to_s() method) will be compared to the regular expression
+contained in the reference string.</p>
+  </li>
+  <li>
+    <p>When the validation value is a Boolean, the string
+representation of the to_check value will be compared
+with the string representation of the Boolean (as provided
+by the to_s() method).</p>
+  </li>
+  <li>
+    <p>When the validation value is a <code>nil</code> or ‘nil’, no value
+validation will be done for the key.</p>
+  </li>
+  <li>
+    <p>When the to_check value contains an <code>Array</code> of values for a
+key, the validation for that key will be applied to each
+element in that array.</p>
+  </li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>to_check</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Hash to be validated against the reference</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Nil</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'lib/puppet/functions/simplib/validate_deep_hash.rb', line 14</span>
+
+<span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='symbol'>:simplib::validate_deep_hash</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+
+  <span class='comment'># @param reference Hash to validate against. Keys at all levels of
+</span>  <span class='comment'>#   the hash define the structure of the hash and the value at each
+</span>  <span class='comment'>#   final leaf in the hash tree contains a regular expression string,
+</span>  <span class='comment'>#   a boolean or nil for value validation:
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#   * When the validation value is a regular expression string,
+</span>  <span class='comment'>#     the string representation of the to_check value (from the
+</span>  <span class='comment'>#     to_s() method) will be compared to the regular expression
+</span>  <span class='comment'>#     contained in the reference string.
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#   * When the validation value is a Boolean, the string
+</span>  <span class='comment'>#     representation of the to_check value will be compared
+</span>  <span class='comment'>#     with the string representation of the Boolean (as provided
+</span>  <span class='comment'>#     by the to_s() method).
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#   * When the validation value is a `nil` or &#39;nil&#39;, no value
+</span>  <span class='comment'>#     validation will be done for the key.
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#   * When the to_check value contains an `Array` of values for a
+</span>  <span class='comment'>#     key, the validation for that key will be applied to each
+</span>  <span class='comment'>#     element in that array.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param to_check Hash to be validated against the reference
+</span>  <span class='comment'># @return [Nil]
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @example Passing Examples
+</span>  <span class='comment'>#   reference = {
+</span>  <span class='comment'>#     &#39;foo&#39; =&gt; {
+</span>  <span class='comment'>#       &#39;bar&#39; =&gt; {
+</span>  <span class='comment'>#         #NOTE: Use quotes for regular expressions instead of &#39;/&#39;
+</span>  <span class='comment'>#         &#39;baz&#39; =&gt; &#39;^\d+$&#39;,
+</span>  <span class='comment'>#         &#39;abc&#39; =&gt; &#39;^\w+$&#39;,
+</span>  <span class='comment'>#         &#39;def&#39; =&gt; nil
+</span>  <span class='comment'>#       },
+</span>  <span class='comment'>#       &#39;baz&#39; =&gt; {
+</span>  <span class='comment'>#         &#39;qrs&#39; =&gt; false
+</span>  <span class='comment'>#         &#39;xyz&#39; =&gt; &#39;^true|false$&#39;
+</span>  <span class='comment'>#       }
+</span>  <span class='comment'>#     }
+</span>  <span class='comment'>#   }
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#   to_check = {
+</span>  <span class='comment'>#     &#39;foo&#39; =&gt; {
+</span>  <span class='comment'>#       &#39;bar&#39; =&gt; {
+</span>  <span class='comment'>#         &#39;baz&#39; =&gt; [&#39;123&#39;, 45]
+</span>  <span class='comment'>#         &#39;abc&#39; =&gt; [ &#39;these&#39;, &#39;are&#39;, &#39;words&#39; ],
+</span>  <span class='comment'>#         &#39;def&#39; =&gt; &#39;Anything will work here!&#39;
+</span>  <span class='comment'>#       },
+</span>  <span class='comment'>#       &#39;baz&#39; =&gt; {
+</span>  <span class='comment'>#         &#39;qrs&#39; =&gt; false
+</span>  <span class='comment'>#         &#39;xyz&#39; =&gt; true
+</span>  <span class='comment'>#       }
+</span>  <span class='comment'>#     }
+</span>  <span class='comment'>#   }
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#   validate_deep_hash(reference, to_check)
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @example Failing Examples
+</span>  <span class='comment'>#   reference =&gt; { &#39;foo&#39; =&gt; &#39;^\d+$&#39; }
+</span>  <span class='comment'>#   to_check  =&gt; { &#39;foo&#39; =&gt; &#39;abc&#39; }
+</span>  <span class='comment'>#
+</span>  <span class='comment'>#   validate_deep_hash(reference, to_check)
+</span>  <span class='comment'>#
+</span>  <span class='id identifier rubyid_dispatch'>dispatch</span> <span class='symbol'>:validate_deep_hash</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_required_param'>required_param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hash</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:reference</span>
+    <span class='id identifier rubyid_required_param'>required_param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hash</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:to_check</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_validate_deep_hash'>validate_deep_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_reference'>reference</span><span class='comma'>,</span> <span class='id identifier rubyid_to_check'>to_check</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_invalid'>invalid</span> <span class='op'>=</span> <span class='id identifier rubyid_deep_validate'>deep_validate</span><span class='lparen'>(</span><span class='id identifier rubyid_reference'>reference</span><span class='comma'>,</span> <span class='id identifier rubyid_to_check'>to_check</span><span class='rparen'>)</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_invalid'>invalid</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='kw'>then</span>
+      <span class='id identifier rubyid_err_msg'>err_msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>simplib::validate_deep_hash failed validation:\n  </span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_err_msg'>err_msg</span> <span class='op'>+=</span> <span class='id identifier rubyid_invalid'>invalid</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n  </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_fail'>fail</span><span class='lparen'>(</span><span class='id identifier rubyid_err_msg'>err_msg</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_valid_value'>valid_value</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='lbracket'>[</span><span class='const'>String</span><span class='comma'>,</span> <span class='const'>TrueClass</span><span class='comma'>,</span> <span class='const'>FalseClass</span><span class='comma'>,</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='const'>NilClass</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_allowed_class'>allowed_class</span><span class='op'>|</span>
+      <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='id identifier rubyid_allowed_class'>allowed_class</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_compare'>compare</span><span class='lparen'>(</span><span class='id identifier rubyid_ref_value'>ref_value</span><span class='comma'>,</span> <span class='id identifier rubyid_to_check_value'>to_check_value</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='symbol'>:invalid_ref_type</span> <span class='kw'>unless</span> <span class='id identifier rubyid_valid_value'>valid_value</span><span class='lparen'>(</span><span class='id identifier rubyid_ref_value'>ref_value</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_ref_string'>ref_string</span> <span class='op'>=</span> <span class='id identifier rubyid_ref_value'>ref_value</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+
+    <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_to_check_value'>to_check_value</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+      <span class='kw'>return</span> <span class='symbol'>:invalid_check_type</span> <span class='kw'>unless</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:to_s</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='symbol'>:failed_check</span> <span class='kw'>unless</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_ref_string'>ref_string</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='symbol'>:success</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_deep_validate'>deep_validate</span><span class='lparen'>(</span><span class='id identifier rubyid_reference'>reference</span><span class='comma'>,</span> <span class='id identifier rubyid_to_check'>to_check</span><span class='comma'>,</span> <span class='id identifier rubyid_level'>level</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TOP</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_invalid'>invalid</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_to_check'>to_check</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_reference'>reference</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+        <span class='comment'># skip over keys for which further validation has been disabled
+</span>        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_reference'>reference</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_reference'>reference</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nil</span><span class='tstring_end'>&#39;</span></span>
+
+        <span class='comment'># Step down a level if value is another hash
+</span>        <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_reference'>reference</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_ref_key_hash'>ref_key_hash</span> <span class='op'>=</span> <span class='id identifier rubyid_reference'>reference</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
+            <span class='id identifier rubyid_deep_validate'>deep_validate</span><span class='lparen'>(</span><span class='id identifier rubyid_ref_key_hash'>ref_key_hash</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_level'>level</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_invalid'>invalid</span><span class='rparen'>)</span>
+          <span class='kw'>else</span>
+            <span class='id identifier rubyid_invalid'>invalid</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_level'>level</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'> should not be a Hash</span><span class='tstring_end'>&quot;</span></span>
+          <span class='kw'>end</span>
+        <span class='comment'># Compare regular expressions since we are at the bottom level
+</span>        <span class='comment'># (leaf in the Hash tree)
+</span>        <span class='kw'>else</span>
+          <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_compare'>compare</span><span class='lparen'>(</span><span class='id identifier rubyid_reference'>reference</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_to_check'>to_check</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='kw'>case</span> <span class='id identifier rubyid_result'>result</span>
+          <span class='kw'>when</span> <span class='symbol'>:invalid_ref_type</span>
+            <span class='id identifier rubyid_err_msg'>err_msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>simplib::validate_deep_hash(): Check for </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+              <span class='id identifier rubyid_level'>level</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'> has invalid type &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_reference'>reference</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+            <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_err_msg'>err_msg</span><span class='rparen'>)</span>
+
+          <span class='kw'>when</span> <span class='symbol'>:invalid_check_type</span>
+            <span class='id identifier rubyid_invalid'>invalid</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_level'>level</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_to_check'>to_check</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> cannot</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+              <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> be converted to string for comparison</span><span class='tstring_end'>&quot;</span></span>
+
+          <span class='kw'>when</span> <span class='symbol'>:failed_check</span>
+            <span class='id identifier rubyid_invalid'>invalid</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_level'>level</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'> &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_to_check'>to_check</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; must</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+              <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> validate against &#39;/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_reference'>reference</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>/&#39;</span><span class='tstring_end'>&quot;</span></span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_invalid'>invalid</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--&gt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'> not in reference hash</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_invalid'>invalid</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: puppetdb::master::config
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::puppetdb::master::config";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">puppetdb::master::config</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: puppetdb::master::config</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd><span class='object_link'><a href="puppetdb_3A_3Aparams.html" title="puppet_classes::puppetdb::params (puppet_class)">puppetdb::params</a></span></dd>
+  </dl>
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-gd4zev/manifests/master/config.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Manage puppet configuration. See README.md for more details.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>puppetdb_server</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$::fqdn</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppetdb_port</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>defined(Class[&#39;puppetdb&#39;])</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppetdb_disable_ssl</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>defined(Class[&#39;puppetdb&#39;])</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>masterless</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::masterless</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppetdb_soft_write_failure</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_routes</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_storeconfigs</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_report_processor</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_config</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>strict_validation</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>enable_reports</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppet_confdir</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::puppet_confdir</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppet_conf</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::puppet_conf</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>terminus_package</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::terminus_package</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppet_service_name</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::puppet_service_name</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>puppetdb_startup_timeout</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::puppetdb_startup_timeout</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>test_url</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$puppetdb::params::test_url</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>restart_puppet</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-gd4zev/manifests/master/config.pp', line 2</span>
+
+class puppetdb::master::config (
+  $puppetdb_server             = $::fqdn,
+  $puppetdb_port               = defined(Class[&#39;puppetdb&#39;]) ? {
+    true    =&gt; $::puppetdb::disable_ssl ? {
+      true =&gt; 8080,
+      default =&gt; 8081,
+    },
+    default =&gt; 8081,
+  },
+  $puppetdb_disable_ssl        = defined(Class[&#39;puppetdb&#39;]) ? {
+    true    =&gt; $::puppetdb::disable_ssl,
+    default =&gt; false,
+  },
+  $masterless                  = $puppetdb::params::masterless,
+  $puppetdb_soft_write_failure = false,
+  $manage_routes               = true,
+  $manage_storeconfigs         = true,
+  $manage_report_processor     = false,
+  $manage_config               = true,
+  $strict_validation           = true,
+  $enable_reports              = false,
+  $puppet_confdir              = $puppetdb::params::puppet_confdir,
+  $puppet_conf                 = $puppetdb::params::puppet_conf,
+  $terminus_package            = $puppetdb::params::terminus_package,
+  $puppet_service_name         = $puppetdb::params::puppet_service_name,
+  $puppetdb_startup_timeout    = $puppetdb::params::puppetdb_startup_timeout,
+  $test_url                    = $puppetdb::params::test_url,
+  $restart_puppet              = true,
+) inherits puppetdb::params {
+
+  # **WARNING**: Ugly hack to work around a yum bug with metadata parsing. This
+  # should not be copied, replicated or even looked at. In short, never rename
+  # your packages...
+  #
+  # With `yum` we can&#39;t have the termini package override the terminus package
+  # because that would prevent users from installing v2.3 of the terminus in
+  # PC1. We tried using a dummy terminus-3 metadata package which pulled in
+  # termini-3.latest as a dependency and put a requires terminus &gt;= 3, &lt;4. The
+  # idea was that doing `yum install puppetdb-termini-3.x.y-1.el7` would pull up
+  # the terminus package to the dummy 3 version, but `yum` has a bug which
+  # requires that both the dummy package and termini be installed in the same
+  # transaction, i.e. `yum install puppetdb-termini-3.x.y-1.el7
+  # puppetdb-terminus-3` which is impossible to do via Puppet.
+  #
+  # This will orphan some old terminus files (from pre-puppet-agent, i.e. puppet
+  # 3.x) that are orphaned as part of the Puppet 3 to Puppet 4 upgrade anyways
+  # and some of the new terminus files temporarily. If this exec fails all you
+  # need to do is reinstall whatever 2.3 version of the terminus was already
+  # installed to revert the change.
+  if !($puppetdb::params::puppetdb_version in [&#39;present&#39;,&#39;absent&#39;])
+  and versioncmp($puppetdb::params::puppetdb_version, &#39;3.0.0&#39;) &gt;= 0
+  and $::osfamily in [&#39;RedHat&#39;,&#39;Suse&#39;] {
+    exec { &#39;Remove puppetdb-terminus metadata for upgrade&#39;:
+      command =&gt; &#39;rpm -e --justdb puppetdb-terminus&#39;,
+      path    =&gt; &#39;/sbin/:/bin/&#39;,
+      onlyif  =&gt; &#39;rpm -q puppetdb-terminus&#39;,
+      before  =&gt; Package[$terminus_package],
+    }
+  }
+
+  package { $terminus_package:
+    ensure =&gt; $puppetdb::params::puppetdb_version,
+  }
+
+  if ($strict_validation) {
+
+    # Validate the puppetdb connection.  If we can&#39;t connect to puppetdb then we
+    # *must* not perform the other configuration steps, or else
+
+    $conn_puppetdb_server = $manage_config ? {
+      true    =&gt; $puppetdb_server,
+      default =&gt; undef,
+    }
+    $conn_puppetdb_port = $manage_config ? {
+      true    =&gt; $puppetdb_port,
+      default =&gt; undef,
+    }
+    $conn_puppetdb_ssl = $puppetdb_disable_ssl ? {
+      true    =&gt; false,
+      default =&gt; true,
+    }
+
+    puppetdb_conn_validator { &#39;puppetdb_conn&#39;:
+      puppetdb_server =&gt; $conn_puppetdb_server,
+      puppetdb_port   =&gt; $conn_puppetdb_port,
+      use_ssl         =&gt; $conn_puppetdb_ssl,
+      timeout         =&gt; $puppetdb_startup_timeout,
+      require         =&gt; Package[$terminus_package],
+      test_url        =&gt; $test_url,
+    }
+
+    # This is a bit of puppet chicanery that allows us to create a
+    # conditional dependency.  Basically, we&#39;re saying that &quot;if the PuppetDB
+    # service is being managed in this same catalog, it needs to come before
+    # this validator.&quot;
+    Service&lt;|title == $puppetdb::params::puppetdb_service|&gt; -&gt; Puppetdb_conn_validator[&#39;puppetdb_conn&#39;]
+  }
+
+  # Conditionally manage the `routes.yaml` file.  Restart the puppet service
+  # if changes are made.
+  if ($manage_routes) {
+    $routes_require = $strict_validation ? {
+      true    =&gt; Puppetdb_conn_validator[&#39;puppetdb_conn&#39;],
+      default =&gt; Package[$terminus_package],
+    }
+
+    class { &#39;puppetdb::master::routes&#39;:
+      puppet_confdir =&gt; $puppet_confdir,
+      masterless     =&gt; $masterless,
+      require        =&gt; $routes_require,
+    }
+  }
+
+  # Conditionally manage the storeconfigs settings in `puppet.conf`.  We don&#39;t
+  # need to trigger a restart of the puppet master service for this one, because
+  # it polls it automatically.
+  if ($manage_storeconfigs) {
+    $storeconfigs_require = $strict_validation ? {
+      true    =&gt; Puppetdb_conn_validator[&#39;puppetdb_conn&#39;],
+      default =&gt; Package[$terminus_package],
+    }
+
+    class { &#39;puppetdb::master::storeconfigs&#39;:
+      puppet_conf =&gt; $puppet_conf,
+      masterless  =&gt; $masterless,
+      require     =&gt; $storeconfigs_require,
+    }
+  }
+
+  # Conditionally manage the puppetdb report processor setting in `puppet.conf`.
+  # We don&#39;t need to trigger a restart of the puppet master service for this one,
+  # because it polls it automatically.
+  if ($manage_report_processor) {
+    $report_processor_require = $strict_validation ? {
+      true    =&gt; Puppetdb_conn_validator[&#39;puppetdb_conn&#39;],
+      default =&gt; Package[$terminus_package],
+    }
+
+    class { &#39;puppetdb::master::report_processor&#39;:
+      puppet_conf =&gt; $puppet_conf,
+      masterless  =&gt; $masterless,
+      enable      =&gt; $enable_reports,
+      require     =&gt; $report_processor_require,
+    }
+  }
+
+  if ($manage_config) {
+    # Manage the `puppetdb.conf` file.  Restart the puppet service if changes
+    # are made.
+    $puppetdb_conf_require = $strict_validation ? {
+      true    =&gt; Puppetdb_conn_validator[&#39;puppetdb_conn&#39;],
+      default =&gt; Package[$terminus_package],
+    }
+
+    class { &#39;puppetdb::master::puppetdb_conf&#39;:
+      server             =&gt; $puppetdb_server,
+      port               =&gt; $puppetdb_port,
+      soft_write_failure =&gt; $puppetdb_soft_write_failure,
+      puppet_confdir     =&gt; $puppet_confdir,
+      legacy_terminus    =&gt; $puppetdb::params::terminus_package == &#39;puppetdb-terminus&#39;,
+      require            =&gt; $puppetdb_conf_require,
+    }
+  }
+
+  if ($restart_puppet) {
+    # We will need to restart the puppet master service if certain config
+    # files are changed, so here we make sure it&#39;s in the catalog.
+    if ! defined(Service[$puppet_service_name]) {
+      service { $puppet_service_name:
+        ensure =&gt; running,
+      }
+    }
+
+    if ($manage_config) {
+      Class[&#39;puppetdb::master::puppetdb_conf&#39;] ~&gt; Service[$puppet_service_name]
+    }
+
+    if ($manage_routes) {
+      Class[&#39;puppetdb::master::routes&#39;] ~&gt; Service[$puppet_service_name]
+    }
+  }
+
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

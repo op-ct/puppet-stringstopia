@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: apache::mod::prefork
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::apache::mod::prefork";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">apache::mod::prefork</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: apache::mod::prefork</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod/prefork.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>startservers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;8&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>minspareservers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;5&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maxspareservers</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;20&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>serverlimit</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;256&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maxclients</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;256&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>maxrequestsperchild</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;4000&#39;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>apache_version</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/mod/prefork.pp', line 1</span>
+
+class apache::mod::prefork (
+  $startservers        = &#39;8&#39;,
+  $minspareservers     = &#39;5&#39;,
+  $maxspareservers     = &#39;20&#39;,
+  $serverlimit         = &#39;256&#39;,
+  $maxclients          = &#39;256&#39;,
+  $maxrequestsperchild = &#39;4000&#39;,
+  $apache_version      = undef,
+) {
+  include ::apache
+  $_apache_version = pick($apache_version, $apache::apache_version)
+  if defined(Class[&#39;apache::mod::event&#39;]) {
+    fail(&#39;May not include both apache::mod::prefork and apache::mod::event on the same node&#39;)
+  }
+  if versioncmp($_apache_version, &#39;2.4&#39;) &lt; 0 {
+    if defined(Class[&#39;apache::mod::itk&#39;]) {
+      fail(&#39;May not include both apache::mod::prefork and apache::mod::itk on the same node&#39;)
+    }
+  }
+  if defined(Class[&#39;apache::mod::peruser&#39;]) {
+    fail(&#39;May not include both apache::mod::prefork and apache::mod::peruser on the same node&#39;)
+  }
+  if defined(Class[&#39;apache::mod::worker&#39;]) {
+    fail(&#39;May not include both apache::mod::prefork and apache::mod::worker on the same node&#39;)
+  }
+  File {
+    owner =&gt; &#39;root&#39;,
+    group =&gt; $::apache::params::root_group,
+    mode  =&gt; $::apache::file_mode,
+  }
+
+  # Template uses:
+  # - $startservers
+  # - $minspareservers
+  # - $maxspareservers
+  # - $serverlimit
+  # - $maxclients
+  # - $maxrequestsperchild
+  file { &quot;${::apache::mod_dir}/prefork.conf&quot;:
+    ensure  =&gt; file,
+    content =&gt; template(&#39;apache/mod/prefork.conf.erb&#39;),
+    require =&gt; Exec[&quot;mkdir ${::apache::mod_dir}&quot;],
+    before  =&gt; File[$::apache::mod_dir],
+    notify  =&gt; Class[&#39;apache::service&#39;],
+  }
+
+  case $::osfamily {
+    &#39;redhat&#39;: {
+      if versioncmp($_apache_version, &#39;2.4&#39;) &gt;= 0 {
+        ::apache::mpm{ &#39;prefork&#39;:
+          apache_version =&gt; $_apache_version,
+        }
+      }
+      else {
+        file_line { &#39;/etc/sysconfig/httpd prefork enable&#39;:
+          ensure  =&gt; present,
+          path    =&gt; &#39;/etc/sysconfig/httpd&#39;,
+          line    =&gt; &#39;#HTTPD=/usr/sbin/httpd.worker&#39;,
+          match   =&gt; &#39;#?HTTPD=/usr/sbin/httpd.worker&#39;,
+          require =&gt; Package[&#39;httpd&#39;],
+          notify  =&gt; Class[&#39;apache::service&#39;],
+        }
+      }
+    }
+    &#39;debian&#39;, &#39;freebsd&#39;: {
+      ::apache::mpm{ &#39;prefork&#39;:
+        apache_version =&gt; $_apache_version,
+      }
+    }
+    &#39;Suse&#39;: {
+      ::apache::mpm{ &#39;prefork&#39;:
+        apache_version =&gt; $apache_version,
+        lib_path       =&gt; &#39;/usr/lib64/apache2-prefork&#39;,
+      }
+    }
+    &#39;gentoo&#39;: {
+      ::portage::makeconf { &#39;apache2_mpms&#39;:
+        content =&gt; &#39;prefork&#39;,
+      }
+    }
+    default: {
+      fail(&quot;Unsupported osfamily ${::osfamily}&quot;)
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

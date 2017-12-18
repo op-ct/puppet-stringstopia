@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: krb5::kdc::realm
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::krb5::kdc::realm";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (k)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">krb5::kdc::realm</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: krb5::kdc::realm</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-i022n2/manifests/kdc/realm.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>This define allows you to add a realm to the <code>[realms]</code> section of
+<code>/var/kerberos/krb5kdc/kdc.conf</code></p>
+
+<p>Note: The kdc.conf file is <em>fully managed</em> by Puppet</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>initialize</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If set, auto-initialize the Realm. This will
+add an initial Principal for this Realm.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>auto_principal</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;puppet_auto&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If <code>$initialize</code> is set, this principal will
+be created as an administrative Principal on the Realm.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>trusted_nets</span>
+      
+      
+        <span class='type'>(<tt>Simplib::Netlist</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>pick(
+                                                                    getvar(&#39;::krb5::kdc::trusted_nets&#39;),
+                                                                    simplib::lookup(&#39;simp_options::trusted_nets&#39;, { &#39;default_value&#39; =&gt; [&#39;127.0.0.1&#39;]})
+                                                                  )</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>networks to allow access into the KDC realm.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>acl_file</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;/var/kerberos/krb5kdc/kadm5_${name}.acl&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the KDC realm ACL file.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>admin_keytab</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;/var/kerberos/krb5kdc/kadm5_${name}.keytab&quot;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the KDC realm keytab.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>database_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the KDC realm database.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_principal_expiration</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The Absolute Time for
+expiring the principal expiration date for this realm.
+@see http://web.mit.edu/kerberos/krb5-devel/doc/basic/date_format.html#abstime</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default_principal_flags</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An array following the
+format prescribed in the man page. The absence of a ‘-‘ in front of the
+entry implies that a ‘+’ will be added.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>dict_file</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;/usr/share/dict/words&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the dictionary file of strings
+that are not allowed as passwords.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kadmind_port</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Port]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port on which kadmind should listen.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kpasswd_port</span>
+      
+      
+        <span class='type'>(<tt>Optional[Simplib::Port]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The port on which kpasswd should listen.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>key_stash_file</span>
+      
+      
+        <span class='type'>(<tt>Optional[Stdlib::Absolutepath]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the KDC realm master key.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kdc_ports</span>
+      
+      
+        <span class='type'>(<tt>Array[Simplib::Port]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>UDP ports upon which the KDC should listen.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>kdc_tcp_ports</span>
+      
+      
+        <span class='type'>(<tt>Array[Simplib::Port]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>TCP ports upon which the KDC should listen.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>master_key_name</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The principal associated with the master key.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>master_key_type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;aes256-cts&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The master key’s key type.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_life</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The maximum time period for which a ticket may be valid.
+Should be a valid krb5 Time Duration string.
+@see http://web.mit.edu/kerberos/krb5-1.13/doc/basic/date_format.html#duration</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>max_renewable_life</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The maximum time period during which
+a valid ticket may be renewed.  Should be a valid krb5 Time Duration string.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>iprop_enable</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether incremental database propogation is enabled.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>iprop_master_ulogsize</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The maximum number of log entries for
+incremental propogation.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>iprop_slave_poll</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>How often the KDC polls for new updates
+from the master.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>supported_enctypes</span>
+      
+      
+        <span class='type'>(<tt>Array[String]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[ &#39;aes256-cts:normal&#39;, &#39;aes128-cts:normal&#39; ]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The default key/salt combinations for this realm.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>reject_bad_transit</span>
+      
+      
+        <span class='type'>(<tt>Optional[Boolean]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to check the list of transited
+realms for cross-realm tickets.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>config_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Absolutepath</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;krb5::kdc::config_dir&#39;, { &#39;default_value&#39; =&gt; &#39;/var/kerberos/krb5kdc/kdc.conf.simp.d&#39; })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the Puppet managed config files.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ensure</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;present&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to set or clear the key.
+Valid values are ‘present’ and ‘absent’. Setting anything besides ‘absent’
+will default to ‘present’.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>firewall</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>simplib::lookup(&#39;krb5::kdc::firewall&#39;, { &#39;default_value&#39; =&gt; false })</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to add appropriate iptables rules for KDC</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>-> REALMS SECTION</li>
+    
+  </ul>
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-i022n2/manifests/kdc/realm.pp', line 53</span>
+
+define krb5::kdc::realm (
+  Boolean                        $initialize                   = false,
+  String                         $auto_principal               = &#39;puppet_auto&#39;,
+  Simplib::Netlist               $trusted_nets                 = pick(
+                                                                    getvar(&#39;::krb5::kdc::trusted_nets&#39;),
+                                                                    simplib::lookup(&#39;simp_options::trusted_nets&#39;, { &#39;default_value&#39; =&gt; [&#39;127.0.0.1&#39;]})
+                                                                  ),
+  Stdlib::Absolutepath           $acl_file                     = &quot;/var/kerberos/krb5kdc/kadm5_${name}.acl&quot;,
+  Stdlib::Absolutepath           $admin_keytab                 = &quot;/var/kerberos/krb5kdc/kadm5_${name}.keytab&quot;,
+  Optional[String]               $database_name                = undef,
+  Optional[String]               $default_principal_expiration = undef,
+  Array[String]                  $default_principal_flags      = [],
+  Stdlib::Absolutepath           $dict_file                    = &#39;/usr/share/dict/words&#39;,
+  Optional[Simplib::Port]        $kadmind_port                 = undef,
+  Optional[Simplib::Port]        $kpasswd_port                 = undef,
+  Optional[Stdlib::Absolutepath] $key_stash_file               = undef,
+  Array[Simplib::Port]           $kdc_ports                    = [],
+  Array[Simplib::Port]           $kdc_tcp_ports                = [],
+  Optional[String]               $master_key_name              = undef,
+  String                         $master_key_type              = &#39;aes256-cts&#39;,
+  Optional[String]               $max_life                     = undef,
+  Optional[String]               $max_renewable_life           = undef,
+  Optional[Boolean]              $iprop_enable                 = undef,
+  Optional[Integer]              $iprop_master_ulogsize        = undef,
+  Optional[String]               $iprop_slave_poll             = undef,
+  Array[String]                  $supported_enctypes           = [ &#39;aes256-cts:normal&#39;, &#39;aes128-cts:normal&#39; ],
+  Optional[Boolean]              $reject_bad_transit           = undef,
+  Stdlib::Absolutepath           $config_dir                   = simplib::lookup(&#39;krb5::kdc::config_dir&#39;, { &#39;default_value&#39; =&gt; &#39;/var/kerberos/krb5kdc/kdc.conf.simp.d&#39; }),
+  String                         $ensure                       = &#39;present&#39;,
+  Boolean                        $firewall                     = simplib::lookup(&#39;krb5::kdc::firewall&#39;, { &#39;default_value&#39; =&gt; false })
+) {
+
+  if !defined(Class[&#39;krb5::kdc&#39;]) {
+    fail(&#39;You must include ::krb5::kdc before using ::krb5::kdc::realm&#39;)
+  }
+
+  if !empty($default_principal_flags) {
+    if is_string($_default_principal_flags) {
+      $_default_principal_flags = split($default_principal_flags,&#39;\s+&#39;)
+    }
+    else {
+      $_default_principal_flags = $default_principal_flags
+
+      $_possible_principal_flags = [
+        &#39;allow-tickets&#39;,
+        &#39;dup-skey&#39;,
+        &#39;forwardable&#39;,
+        &#39;hwauth&#39;,
+        &#39;no-auth-data-required&#39;,
+        &#39;ok-as-delegate&#39;,
+        &#39;ok-to-auth-as-delegate&#39;,
+        &#39;postdateable&#39;,
+        &#39;preauth&#39;,
+        &#39;proxiable&#39;,
+        &#39;pwchange&#39;,
+        &#39;pwservice&#39;,
+        &#39;renewable&#39;,
+        &#39;service&#39;,
+        &#39;tgt-based&#39;
+      ]
+
+      $_possible_principal_flag_check_string = join($_possible_principal_flags, &#39;|&#39;)
+
+      validate_re_array(
+        $_default_principal_flags,
+        &quot;^([+-]?(${_possible_principal_flag_check_string}))&quot;
+      )
+    }
+  }
+  else {
+    $_default_principal_flags = []
+  }
+
+  if $max_life { krb5::validate_time_duration($max_life) }
+  if $max_renewable_life { krb5::validate_time_duration($max_renewable_life) }
+
+  # Formatted for the output file
+  $_kdc_ports = join($kdc_ports,&#39;,&#39;)
+  $_kdc_tcp_ports = join($kdc_tcp_ports,&#39;,&#39;)
+  $_supported_enctypes = join($supported_enctypes,&#39;,&#39;)
+
+  $_name = krb5::munge_conf_filename($name)
+
+  $_upcase_realm = upcase($name)
+
+  file { $acl_file:
+    ensure  =&gt; &#39;file&#39;,
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0600&#39;,
+    seltype =&gt; &#39;krb5kdc_conf_t&#39;
+  }
+
+  file { &quot;${config_dir}/${_name}__realm&quot;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0600&#39;,
+    seltype =&gt; &#39;krb5kdc_conf_t&#39;,
+    content =&gt; template(&quot;${module_name}/kdc/realm.erb&quot;)
+  }
+
+  if $firewall {
+    if !empty($kdc_tcp_ports) {
+      iptables::listen::tcp_stateful { &quot;${name}_allow_kdc&quot;:
+        order        =&gt; 11,
+        trusted_nets =&gt; $trusted_nets,
+        dports       =&gt; $kdc_tcp_ports
+      }
+    }
+
+    if !empty($kdc_ports) {
+      iptables::listen::udp { &quot;${name}_allow_kdc&quot;:
+        order        =&gt; 11,
+        trusted_nets =&gt; $trusted_nets,
+        dports       =&gt; $kdc_ports
+      }
+    }
+  }
+
+  if $initialize {
+    krb5_acl { &quot;${name}_puppet_auto_admin&quot;:
+      target         =&gt; $acl_file,
+      principal      =&gt; &quot;${auto_principal}/admin@${_upcase_realm}&quot;,
+      operation_mask =&gt; &#39;*&#39;
+    }
+
+    exec { &quot;add_admin_principal_${auto_principal}&quot;:
+      command =&gt; &quot;kadmin.local -q &#39;addprinc -randkey ${auto_principal}/admin@${_upcase_realm}&#39;&quot;,
+      unless  =&gt; &quot;kadmin.local -q &#39;get_principal ${auto_principal}/admin&#39; 2&gt;&amp;1 | \
+                  grep -q &#39;Principal: ${auto_principal}/admin&#39;&quot;,
+      path    =&gt; [&#39;/sbin&#39;,&#39;/bin&#39;,&#39;/usr/sbin&#39;,&#39;/usr/bin&#39;]
+    }
+
+    exec { &quot;create_admin_principal_${auto_principal}_keytab&quot;:
+      command =&gt; &quot;kadmin.local -q &#39;ktadd -k ${admin_keytab} ${auto_principal}/admin@${_upcase_realm}&#39;&quot;,
+      unless  =&gt; &quot;echo -e &#39;read_kt ${admin_keytab}\nlist&#39; | ktutil | grep -q &#39;${auto_principal}/admin@${_upcase_realm}&#39;&quot;,
+      path    =&gt; [&#39;/sbin&#39;,&#39;/bin&#39;,&#39;/usr/sbin&#39;,&#39;/usr/bin&#39;],
+      require =&gt; Exec[&quot;add_admin_principal_${auto_principal}&quot;]
+    }
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

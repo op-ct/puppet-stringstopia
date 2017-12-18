@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Defined Type: apache::balancermember
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_defined_types::apache::balancermember";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_defined_type_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (a)</a> &raquo;
+    <span class='title'><span class='object_link'>Defined Types</span></span>
+     &raquo; 
+    <span class="title">apache::balancermember</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Defined Type: apache::balancermember</h1>
+<div class="box_info">
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/balancermember.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>== Define Resource Type: apache::balancermember</p>
+
+<p>This type will setup a balancer member inside a listening service
+configuration block in /etc/apache/apache.cfg on the load balancer.
+currently it only has the ability to specify the instance name, url and an
+array of options. More features can be added as needed. The best way to
+implement this is to export this resource for all apache balancer member
+servers, and then collect them on the main apache load balancer.</p>
+
+<p>=== Requirement/Dependencies:</p>
+
+<p>Currently requires the puppetlabs/concat module on the Puppet Forge and
+uses storeconfigs on the Puppet Master to export/collect resources
+from all balancer members.</p>
+
+<p>=== Parameters</p>
+
+<p>[<em>name</em>]
+The title of the resource is arbitrary and only utilized in the concat
+fragment name.</p>
+
+<p>[<em>balancer_cluster</em>]
+The apache service’s instance name (or, the title of the apache::balancer
+resource). This must match up with a declared apache::balancer resource.</p>
+
+<p>[<em>url</em>]
+The url used to contact the balancer member server.</p>
+
+<p>[<em>options</em>]
+An array of options to be specified after the url.</p>
+
+<p>=== Examples</p>
+
+<p>Exporting the resource for a balancer member:</p>
+
+<p>@@apache::balancermember { ‘apache’:
+  balancer_cluster =&gt; ‘puppet00’,
+  url              =&gt; “ajp://$fqdn:8009”
+  options          =&gt; [‘ping=5’, ‘disablereuse=on’, ‘retry=5’, ‘ttl=120’],
+}</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>balancer_cluster</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>url</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&quot;http://${::fqdn}/&quot;</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Any</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-1qezcyx/manifests/balancermember.pp', line 42</span>
+
+define apache::balancermember(
+  $balancer_cluster,
+  $url = &quot;http://${::fqdn}/&quot;,
+  $options = [],
+) {
+
+  concat::fragment { &quot;BalancerMember ${name}&quot;:
+    target  =&gt; &quot;apache_balancer_${balancer_cluster}&quot;,
+    content =&gt; inline_template(&quot; BalancerMember ${url} &lt;%= @options.join &#39; &#39; %&gt;\n&quot;),
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

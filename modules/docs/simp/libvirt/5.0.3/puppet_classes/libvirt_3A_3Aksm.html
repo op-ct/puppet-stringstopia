@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: libvirt::ksm
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::libvirt::ksm";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (l)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">libvirt::ksm</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: libvirt::ksm</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      /tmp/tmp_git_repo20171214-12245-ryuqq1/manifests/ksm.pp
+    </dd>
+  </dl>
+</div>
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>A class to configure Kernel Shared Memory components.
+This isn’t strictly tied to libvirt, but it’s included in the qemu-kvm
+package so it made sense to include it here.</p>
+
+<p>Since there are no useful man pages at this time, the comments were lifted
+from the configuration files.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ksm_max_kernel_pages</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The maximum number of unswappable kernel pages which may be allocated by
+ksm (0 for unlimited) If unset, defaults to half of total memory.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ksm_monitor_interval</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>60</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The number of seconds ksmtuned should sleep between tuning adjustments
+Every KSM_MONITOR_INTERVAL seconds ksmtuned adjust how aggressive KSM
+will search for duplicated pages based on free memory.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ksm_sleep_msec</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>100</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Millisecond sleep between ksm scans for 16Gb server.  Smaller servers
+sleep more, bigger sleep less.  How many Milliseconds to sleep between
+scans of 16GB of RAM.  The actual sleep time is calculated as sleep =
+KSM_SLEEP_MSEC * 16 / Total GB of RAM The final sleep value will be
+written to /sys/kernel/mm/ksm/sleep_millisecs</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ksm_npages_boost</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>3000</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Amount to increment the number of pages to scan. The number of pages to
+be scanned will be increased by KSM_NPAGES_BOOST when the amount of free
+ram &lt; threshold (see KSM_THRES_* below)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ksm_npages_decay</span>
+      
+      
+        <span class='type'>(<tt>Integer[default,0]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>-</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Amount to decrease the number of pages to scan The number of pages to be
+scanned will be decreased by KSM_NPAGES_DECAY when the amount of free ram
+&gt;= threshold (see KSM_THRES_* below)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ksm_npages_min</span>
+      
+      
+        <span class='type'>(<tt>Variant[Enum['shmall'],Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;shmall&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Minimum number of pages to be scanned at all times
+If this variable is set to ‘shmall’, then half of the value in
+/proc/sys/kernel/shmall will be used.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ksm_npages_max</span>
+      
+      
+        <span class='type'>(<tt>Variant[Enum['shmall'],Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;shmall&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Maximum number of pages to be scanned at all times
+If this variable is set to ‘shmall’, then the value in
+/proc/sys/kernel/shmall will be used.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ksm_thres_coef</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>10</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If free memory is less than this percentage KSM will be activated.
+NOTE: Only KSM_THRES_CONST or KSM_THRES_COEF is actually used.  Whichever
+results in a larger number wins.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ksm_thres_const</span>
+      
+      
+        <span class='type'>(<tt>Optional[Integer]</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>undef</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If free memory is less than this number KSM will be activated
+NOTE: Only KSM_THRES_CONST or KSM_THRES_COEF is actually used.  Whichever
+results in a larger number wins.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Trevor Vaughan <a href="mailto:tvaughan@onyxpoint.com">tvaughan@onyxpoint.com</a></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File '/tmp/tmp_git_repo20171214-12245-ryuqq1/manifests/ksm.pp', line 56</span>
+
+class libvirt::ksm (
+  Optional[Integer]               $ksm_max_kernel_pages = undef,
+  Integer                         $ksm_monitor_interval = 60,
+  Integer                         $ksm_sleep_msec       = 100,
+  Integer                         $ksm_npages_boost     = 3000,
+  Integer[default,0]              $ksm_npages_decay     = -50,
+  Variant[Enum[&#39;shmall&#39;],Integer] $ksm_npages_min       = &#39;shmall&#39;,
+  Variant[Enum[&#39;shmall&#39;],Integer] $ksm_npages_max       = &#39;shmall&#39;,
+  Integer                         $ksm_thres_coef       = 10,
+  Optional[Integer]               $ksm_thres_const      = undef
+) {
+
+  file { &#39;/etc/ksmtuned.conf&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0644&#39;,
+    content =&gt; template(&#39;libvirt/ksmtuned.erb&#39;),
+    notify  =&gt; Service[&#39;ksmtuned&#39;]
+  }
+
+  file { &#39;/etc/sysconfig/ksm&#39;:
+    owner   =&gt; &#39;root&#39;,
+    group   =&gt; &#39;root&#39;,
+    mode    =&gt; &#39;0644&#39;,
+    content =&gt; template(&#39;libvirt/ksm.erb&#39;),
+    notify  =&gt; Service[&#39;ksm&#39;]
+  }
+
+  service { &#39;ksm&#39;:
+    enable     =&gt; true,
+    hasstatus  =&gt; true,
+    hasrestart =&gt; true,
+    require    =&gt; Package[&#39;qemu-kvm&#39;]
+  }
+
+  service { &#39;ksmtuned&#39;:
+    ensure     =&gt; &#39;running&#39;,
+    enable     =&gt; true,
+    hasstatus  =&gt; true,
+    hasrestart =&gt; true,
+    require    =&gt; Package[&#39;qemu-kvm&#39;]
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>
